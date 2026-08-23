@@ -1,0 +1,72 @@
+import {
+  Target02Icon,
+  Money01Icon,
+  GameController01Icon,
+  Calendar03Icon,
+  WorkflowSquare01Icon,
+  Shield01Icon,
+} from "hugeicons-react";
+
+const features = [
+  {
+    title: "Sales Goal Tracking",
+    desc: "Sales Goal Tracking helps teams stay aligned, focused.",
+    icon: Target02Icon,
+  },
+  {
+    title: "Price Management",
+    desc: "Price management helps adjust and control pricing strategies.",
+    icon: Money01Icon,
+  },
+  {
+    title: "Sales Gamification",
+    desc: "Sales gamification is the use of game-like elements.",
+    icon: GameController01Icon,
+  },
+  {
+    title: "Smart Forecasting",
+    desc: "Smart forecasting uses real-time data and AI to predict future.",
+    icon: Calendar03Icon,
+  },
+  {
+    title: "Sales Workflows",
+    desc: "Sales workflows are structured processes that guide deals.",
+    icon: WorkflowSquare01Icon,
+  },
+  {
+    title: "Access Control",
+    desc: "Access control ensures that only the right people can view.",
+    icon: Shield01Icon,
+  },
+];
+
+export default function FeatureGrid() {
+  return (
+    <section className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto mb-12 max-w-xl text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">
+          We Make Work Feel Effortless
+        </h2>
+        <p className="mt-3 text-sm text-ink-500">
+          Automation squeezes out tasks like follow-ups, reminders, and data
+          entry to save time.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {features.map(({ title, desc, icon: Icon }) => (
+          <div
+            key={title}
+            className="rounded-2xl border border-ink-900/5 bg-white p-6 transition hover:shadow-lg hover:shadow-ink-900/5"
+          >
+            <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+              <Icon size={20} />
+            </span>
+            <h3 className="text-sm font-semibold text-ink-900">{title}</h3>
+            <p className="mt-2 text-xs leading-relaxed text-ink-500">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
