@@ -42,28 +42,27 @@ const features = [
 
 export default function FeatureGrid() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
-      <div className="mx-auto mb-12 max-w-xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">
+    <section>
+      <div>
+        <h2>
           We Make Work Feel Effortless
         </h2>
-        <p className="mt-3 text-sm text-ink-500">
+        <p>
           Automation squeezes out tasks like follow-ups, reminders, and data
           entry to save time.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div>
         {features.map(({ title, desc, icon: Icon }) => (
           <div
             key={title}
-            className="rounded-2xl border border-ink-900/5 bg-white p-6 transition hover:shadow-lg hover:shadow-ink-900/5"
           >
-            <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+            <span>
               <Icon size={20} />
             </span>
-            <h3 className="text-sm font-semibold text-ink-900">{title}</h3>
-            <p className="mt-2 text-xs leading-relaxed text-ink-500">{desc}</p>
+            <h3>{title}</h3>
+            <p>{desc}</p>
           </div>
         ))}
       </div>
