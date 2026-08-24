@@ -55,7 +55,7 @@ export default function Navbar() {
   const [appsOpen, setAppsOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 bg-white/70 backdrop-blur-md px-4 py-4">
+    <div className="sticky top-0 z-50 px-4 py-4">
       <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-ink-900/5 px-6 py-3 shadow-[0_2px_20px_rgba(11,13,23,0.06)]">
         <a href="#" className="text-xl font-extrabold text-ink-900">
           7shifts
