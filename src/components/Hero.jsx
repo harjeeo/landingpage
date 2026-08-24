@@ -48,6 +48,15 @@ export default function Hero() {
           </a>
         </div>
       </div>
+
+      <div className="mx-auto mt-14 max-w-5xl">
+        <div
+          className="flex aspect-video w-full items-center justify-center bg-ink-900/5 text-2xl font-semibold text-ink-500"
+          style={{ borderRadius: "20px" }}
+        >
+          IMAGE
+        </div>
+      </div>
     </section>
   );
 }

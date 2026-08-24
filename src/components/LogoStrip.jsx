@@ -1,19 +1,17 @@
-const logos = ["Logobaze", "Primmark", "Logozen", "Graphicraft", "Aurdicons"];
+const logos = ["Chatime", "Pizza Ranch", "Mandy's", "Andy's", "Jamba"];
 
 export default function LogoStrip() {
   return (
-    <section>
-      <div>
-        <p>
-          Trusted by 5,000+ founders &amp; business owners
-        </p>
-        <div>
-          {logos.map((name) => (
-            <span key={name}>
-              {name}
-            </span>
-          ))}
-        </div>
+    <section className="px-4 py-10">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-14 gap-y-6">
+        {logos.map((name) => (
+          <span
+            key={name}
+            className="text-xl font-bold text-ink-900/40 grayscale"
+          >
+            {name}
+          </span>
+        ))}
       </div>
     </section>
   );
