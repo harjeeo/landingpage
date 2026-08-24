@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import LogoStrip from "./components/LogoStrip";
 import WorkSmarter from "./components/WorkSmarter";
+import WhyConnected from "./components/WhyConnected";
+import IconSlider from "./components/IconSlider";
 
 export default function App() {
   return (
@@ -12,6 +14,8 @@ export default function App() {
       <Hero />
       <LogoStrip />
       <WorkSmarter />
+      <WhyConnected />
+      <IconSlider />
     </div>
   );
 }
