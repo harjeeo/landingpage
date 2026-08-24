@@ -4,7 +4,6 @@ import Hero from "./components/Hero";
 import LogoStrip from "./components/LogoStrip";
 import WorkSmarter from "./components/WorkSmarter";
 import WhyConnected from "./components/WhyConnected";
-import IconSlider from "./components/IconSlider";
 import Faq from "./components/Faq";
 
 export default function App() {
@@ -16,7 +15,6 @@ export default function App() {
       <LogoStrip />
       <WorkSmarter />
       <WhyConnected />
-      <IconSlider />
       <Faq />
     </div>
   );
