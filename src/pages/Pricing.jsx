@@ -103,7 +103,7 @@ export default function Pricing() {
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-600">
             <SparklesIcon size={14} strokeWidth={2} />
-            <span style={{ fontFamily: "var(--font-hand)" }}>
+            <span style={{ fontFamily: "var(--font-hand)", fontSize: "20px" }}>
               Simple &amp; Honest Pricing
             </span>
           </span>
