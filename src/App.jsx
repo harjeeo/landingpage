@@ -6,6 +6,7 @@ import WorkSmarter from "./components/WorkSmarter";
 import PlatformFeatures from "./components/PlatformFeatures";
 import WhyConnected from "./components/WhyConnected";
 import Faq from "./components/Faq";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <PlatformFeatures />
       <WhyConnected />
       <Faq />
+      <Footer />
     </div>
   );
 }
