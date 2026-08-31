@@ -11,7 +11,7 @@ import {
   Hotel01Icon,
   ScissorIcon,
   Briefcase01Icon,
-  Calendar03Icon,
+  Restaurant01Icon,
   Clock01Icon,
   Message01Icon,
   Task01Icon,
@@ -42,9 +42,10 @@ const solutionsMenu = [
 
 const appsMenu = [
   {
-    icon: Calendar03Icon,
-    title: "Scheduling",
-    desc: "Build and publish schedules your team can access anywhere",
+    icon: Restaurant01Icon,
+    title: "Cafe & Restaurant POS",
+    desc: "Billing, QR ordering, and kitchen display in one system",
+    to: "/pos/cafe-restaurant",
   },
   {
     icon: Clock01Icon,
@@ -164,26 +165,30 @@ export default function Navbar() {
 
                   <div className="my-1 h-px bg-ink-900/5" />
 
-                  {appsMenu.map(({ icon: Icon, title, desc }) => (
-                    <a
-                      key={title}
-                      href="#"
-                      className="flex items-start gap-3 p-3 hover:bg-ink-900/5"
-                      style={{ borderRadius: "14px" }}
-                    >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
-                        <Icon size={18} strokeWidth={2} />
-                      </span>
-                      <span>
-                        <span className="block font-semibold text-ink-900">
-                          {title}
+                  {appsMenu.map(({ icon: Icon, title, desc, to }) => {
+                    const ItemTag = to ? Link : "a";
+                    const itemProps = to ? { to } : { href: "#" };
+                    return (
+                      <ItemTag
+                        key={title}
+                        {...itemProps}
+                        className="flex items-start gap-3 p-3 hover:bg-ink-900/5"
+                        style={{ borderRadius: "14px" }}
+                      >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                          <Icon size={18} strokeWidth={2} />
                         </span>
-                        <span className="mt-0.5 block text-sm text-ink-500">
-                          {desc}
+                        <span>
+                          <span className="block font-semibold text-ink-900">
+                            {title}
+                          </span>
+                          <span className="mt-0.5 block text-sm text-ink-500">
+                            {desc}
+                          </span>
                         </span>
-                      </span>
-                    </a>
-                  ))}
+                      </ItemTag>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -242,11 +247,17 @@ export default function Navbar() {
             <li>
               <span className="mb-2 block text-ink-500">Apps</span>
               <ul className="flex flex-col gap-2 pl-2">
-                {appsMenu.map(({ title }) => (
+                {appsMenu.map(({ title, to }) => (
                   <li key={title}>
-                    <a href="#" onClick={() => setOpen(false)}>
-                      {title}
-                    </a>
+                    {to ? (
+                      <Link to={to} onClick={() => setOpen(false)}>
+                        {title}
+                      </Link>
+                    ) : (
+                      <a href="#" onClick={() => setOpen(false)}>
+                        {title}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
