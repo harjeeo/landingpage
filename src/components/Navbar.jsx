@@ -3,6 +3,7 @@ import {
   Menu01Icon,
   Cancel01Icon,
   ArrowDown01Icon,
+  SparklesIcon,
   Calendar03Icon,
   Clock01Icon,
   Message01Icon,
@@ -16,6 +17,12 @@ const links = [
   { label: "Pricing", href: "#pricing" },
   { label: "Help", href: "#help" },
 ];
+
+const allAppsItem = {
+  icon: SparklesIcon,
+  title: "All Apps",
+  desc: "Overview of every app",
+};
 
 const appsMenu = [
   {
@@ -77,18 +84,39 @@ export default function Navbar() {
             </button>
 
             {appsOpen && (
-              <div className="absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-4">
+              <div className="absolute left-0 top-full w-[340px] pt-4">
                 <div
-                  className="grid grid-cols-2 gap-x-8 gap-y-6 border border-ink-900/5 bg-white p-6 shadow-[0_16px_40px_rgba(11,13,23,0.12)]"
+                  className="flex flex-col gap-1 border border-ink-900/5 bg-white p-3 shadow-[0_16px_40px_rgba(11,13,23,0.12)]"
                   style={{ borderRadius: "20px" }}
                 >
+                  <a
+                    href="#"
+                    className="flex items-start gap-3 p-3 hover:bg-ink-900/5"
+                    style={{ borderRadius: "14px" }}
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                      <allAppsItem.icon size={18} strokeWidth={2} />
+                    </span>
+                    <span>
+                      <span className="block font-semibold text-ink-900">
+                        {allAppsItem.title}
+                      </span>
+                      <span className="mt-0.5 block text-sm text-ink-500">
+                        {allAppsItem.desc}
+                      </span>
+                    </span>
+                  </a>
+
+                  <div className="my-1 h-px bg-ink-900/5" />
+
                   {appsMenu.map(({ icon: Icon, title, desc }) => (
                     <a
                       key={title}
                       href="#"
-                      className="flex items-start gap-3 rounded-2xl p-2 hover:bg-ink-900/5"
+                      className="flex items-start gap-3 p-3 hover:bg-ink-900/5"
+                      style={{ borderRadius: "14px" }}
                     >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink-900/5 text-accent-500">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
                         <Icon size={18} strokeWidth={2} />
                       </span>
                       <span>
