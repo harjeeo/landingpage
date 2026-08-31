@@ -108,9 +108,11 @@ export default function CafeRestaurantPOS() {
       <section className="px-4 pb-16 pt-16 md:pt-20">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:items-center">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-brand-600">
+            <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-600">
               <Restaurant01Icon size={14} strokeWidth={2} />
-              Restaurants & Cafe
+              <span style={{ fontFamily: "var(--font-hand)", fontSize: "20px" }}>
+                Restaurants & Cafe
+              </span>
             </span>
 
             <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-ink-900 md:text-5xl">
