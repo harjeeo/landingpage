@@ -144,8 +144,8 @@ export default function Navbar() {
                   className="flex flex-col gap-1 border border-ink-900/5 bg-white p-3 shadow-[0_16px_40px_rgba(11,13,23,0.12)]"
                   style={{ borderRadius: "20px" }}
                 >
-                  <a
-                    href="#"
+                  <Link
+                    to="/apps"
                     className="flex items-start gap-3 p-3 hover:bg-ink-900/5"
                     style={{ borderRadius: "14px" }}
                   >
@@ -160,7 +160,7 @@ export default function Navbar() {
                         {allAppsItem.desc}
                       </span>
                     </span>
-                  </a>
+                  </Link>
 
                   <div className="my-1 h-px bg-ink-900/5" />
 
