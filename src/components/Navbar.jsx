@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Menu01Icon,
   Cancel01Icon,
@@ -14,7 +15,7 @@ import {
 
 const links = [
   { label: "Industries", href: "#industries" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Pricing", to: "/pricing" },
   { label: "Help", href: "#help" },
 ];
 
@@ -64,9 +65,9 @@ export default function Navbar() {
   return (
     <div className="sticky top-0 z-50 px-4 py-4">
       <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-ink-900/5 bg-white/70 backdrop-blur-md px-6 py-3 shadow-[0_2px_20px_rgba(11,13,23,0.06)]">
-        <a href="#" className="text-xl font-extrabold text-ink-900">
+        <Link to="/" className="text-xl font-extrabold text-ink-900">
           7shifts
-        </a>
+        </Link>
 
         <ul className="hidden md:flex items-center gap-8 text-[15px] font-medium text-ink-900">
           <li
@@ -134,13 +135,21 @@ export default function Navbar() {
             )}
           </li>
 
-          {links.map((link) => (
-            <li key={link.label}>
-              <a href={link.href} className="hover:text-brand-600">
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {links.map((link) =>
+            link.to ? (
+              <li key={link.label}>
+                <Link to={link.to} className="hover:text-brand-600">
+                  {link.label}
+                </Link>
+              </li>
+            ) : (
+              <li key={link.label}>
+                <a href={link.href} className="hover:text-brand-600">
+                  {link.label}
+                </a>
+              </li>
+            ),
+          )}
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
@@ -182,13 +191,21 @@ export default function Navbar() {
                 ))}
               </ul>
             </li>
-            {links.map((link) => (
-              <li key={link.label}>
-                <a href={link.href} onClick={() => setOpen(false)}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {links.map((link) =>
+              link.to ? (
+                <li key={link.label}>
+                  <Link to={link.to} onClick={() => setOpen(false)}>
+                    {link.label}
+                  </Link>
+                </li>
+              ) : (
+                <li key={link.label}>
+                  <a href={link.href} onClick={() => setOpen(false)}>
+                    {link.label}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
           <div className="mt-4 flex flex-col gap-2">
             <a

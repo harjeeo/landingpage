@@ -1,24 +1,19 @@
+import { Routes, Route } from "react-router-dom";
 import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import LogoStrip from "./components/LogoStrip";
-import WorkSmarter from "./components/WorkSmarter";
-import PlatformFeatures from "./components/PlatformFeatures";
-import WhyConnected from "./components/WhyConnected";
-import Faq from "./components/Faq";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Pricing from "./pages/Pricing";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <AnnouncementBar />
       <Navbar />
-      <Hero />
-      <LogoStrip />
-      <WorkSmarter />
-      <PlatformFeatures />
-      <WhyConnected />
-      <Faq />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pricing" element={<Pricing />} />
+      </Routes>
       <Footer />
     </div>
   );
