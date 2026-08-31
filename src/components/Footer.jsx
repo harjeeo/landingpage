@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   ChartLineData01Icon,
   Call02Icon,
@@ -14,7 +15,7 @@ const columns = [
       "QSR & Cloud Kitchens",
       "Bars & Nightlife",
       "Cafes & Bakeries",
-      "Pricing & Plans",
+      { label: "Pricing & Plans", to: "/pricing" },
     ],
   },
   {
@@ -33,7 +34,7 @@ const columns = [
   },
   {
     title: "Company",
-    links: ["About Us", "Careers", "Partner Program", "Contact Us"],
+    links: [{ label: "About Us", to: "/about" }, "Careers", "Partner Program", "Contact Us"],
   },
 ];
 
@@ -79,12 +80,12 @@ export default function Footer() {
 
         <div className="mt-16 grid gap-12 md:grid-cols-[1.2fr_2fr]">
           <div>
-            <a href="#" className="flex items-center gap-2 text-xl font-extrabold text-white">
+            <Link to="/" className="flex items-center gap-2 text-xl font-extrabold text-white">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
                 <ChartLineData01Icon size={16} strokeWidth={2} />
               </span>
               7shifts
-            </a>
+            </Link>
             <p className="mt-4 max-w-xs text-sm text-white/60">
               The platform behind great restaurant teams. Scheduling, time
               tracking, and payroll, built for the way restaurants work.
@@ -115,13 +116,23 @@ export default function Footer() {
               <div key={col.title}>
                 <p className="text-sm font-semibold text-white">{col.title}</p>
                 <ul className="mt-4 flex flex-col gap-3">
-                  {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-sm text-white/60 hover:text-white">
-                        {l}
-                      </a>
-                    </li>
-                  ))}
+                  {col.links.map((l) => {
+                    const label = typeof l === "string" ? l : l.label;
+                    const to = typeof l === "string" ? null : l.to;
+                    return (
+                      <li key={label}>
+                        {to ? (
+                          <Link to={to} className="text-sm text-white/60 hover:text-white">
+                            {label}
+                          </Link>
+                        ) : (
+                          <a href="#" className="text-sm text-white/60 hover:text-white">
+                            {label}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
