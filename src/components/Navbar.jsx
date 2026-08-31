@@ -22,7 +22,7 @@ import {
 const links = [
   { label: "Pricing", to: "/pricing" },
   { label: "About", to: "/about" },
-  { label: "Contact", href: "#contact-us" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const allAppsItem = {
