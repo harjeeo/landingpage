@@ -12,7 +12,7 @@ import {
   ScissorIcon,
   Briefcase01Icon,
   Restaurant01Icon,
-  Clock01Icon,
+  Calculator01Icon,
   Message01Icon,
   Task01Icon,
   Wallet01Icon,
@@ -48,9 +48,10 @@ const appsMenu = [
     to: "/pos/cafe-restaurant",
   },
   {
-    icon: Clock01Icon,
-    title: "Time Clocking",
+    icon: Calculator01Icon,
+    title: "Accounting Software",
     desc: "Track hours and attendance with an easy-to-use time clock",
+    to: "/accounting-software",
   },
   {
     icon: Message01Icon,

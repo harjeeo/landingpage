@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import AllApps from "./pages/AllApps";
 import CafeRestaurantPOS from "./pages/CafeRestaurantPOS";
+import AccountingSoftware from "./pages/AccountingSoftware";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/apps" element={<AllApps />} />
         <Route path="/pos/cafe-restaurant" element={<CafeRestaurantPOS />} />
+        <Route path="/accounting-software" element={<AccountingSoftware />} />
       </Routes>
       <Footer />
     </div>
