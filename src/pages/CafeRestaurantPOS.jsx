@@ -3,11 +3,11 @@ import {
   ComputerIcon,
   QrCodeIcon,
   ChefHatIcon,
-  UserGroupIcon,
+  Link01Icon,
+  Database01Icon,
   ChartBarLineIcon,
-  CreditCardIcon,
   PackageIcon,
-  Megaphone01Icon,
+  StoreLocation01Icon,
   QuoteUpIcon,
 } from "hugeicons-react";
 
@@ -42,19 +42,19 @@ const features = [
     desc: "Real-time order streaming to kitchen. Zero paper tickets, zero confusion.",
   },
   {
-    icon: UserGroupIcon,
-    title: "Customer Loyalty",
-    desc: "Auto-reward with points. Digital promotions. Birthday offers.",
+    icon: Link01Icon,
+    title: "Public Menu Link",
+    desc: "Every cafe gets its own pos.getojar.com/menu/cafe-name link — drop it in your Instagram bio and take direct orders without a table QR.",
+  },
+  {
+    icon: Database01Icon,
+    title: "Customer Database",
+    desc: "Every order auto-captures the customer's name and phone — a ready list for loyalty and marketing.",
   },
   {
     icon: ChartBarLineIcon,
-    title: "Live Analytics",
-    desc: "Revenue, top dishes, peak hours — all tracked live on any device.",
-  },
-  {
-    icon: CreditCardIcon,
-    title: "All Payments",
-    desc: "Cards, wallets, and every major payment processor — accepted.",
+    title: "Live Reports & Analytics",
+    desc: "Revenue, top-selling items, peak hours — track it all live from any device.",
   },
   {
     icon: PackageIcon,
@@ -62,9 +62,9 @@ const features = [
     desc: "Track ingredients, set low-stock alerts, reduce food waste.",
   },
   {
-    icon: Megaphone01Icon,
-    title: "Native Promotions",
-    desc: "Build loyalty, send win-back offers, and run digital campaigns — all from your dashboard.",
+    icon: StoreLocation01Icon,
+    title: "Multi-Outlet & Staff Management",
+    desc: "Multiple branches, staff roles & permissions, attendance and payroll — all from one dashboard.",
   },
 ];
 
