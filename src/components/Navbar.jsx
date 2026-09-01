@@ -214,6 +214,12 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
+          <Link
+            to="/dashboard"
+            className="rounded-full px-5 py-2.5 text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
+          >
+            Login
+          </Link>
           <a
             href="#signup"
             className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
@@ -281,6 +287,13 @@ export default function Navbar() {
             )}
           </ul>
           <div className="mt-4 flex flex-col gap-2">
+            <Link
+              to="/dashboard"
+              onClick={() => setOpen(false)}
+              className="rounded-full border border-ink-900/10 px-5 py-2.5 text-center text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
+            >
+              Login
+            </Link>
             <a
               href="#signup"
               className="rounded-full bg-brand-600 px-5 py-2.5 text-center text-[15px] font-semibold text-white hover:bg-brand-700"

@@ -1,7 +1,7 @@
-export default function Logo({ height = 28 }) {
+export default function Logo({ height = 28, className = "text-ink-900" }) {
   return (
     <span
-      className="inline-flex items-center gap-2.5 text-ink-900"
+      className={`inline-flex items-center gap-2.5 ${className}`}
       style={{ height }}
     >
       <svg
