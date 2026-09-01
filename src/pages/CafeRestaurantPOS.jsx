@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Restaurant01Icon,
   ComputerIcon,
@@ -142,6 +143,13 @@ export default function CafeRestaurantPOS() {
                 Book a Demo
               </a>
             </div>
+
+            <Link
+              to="/pos/cafe-restaurant/pricing"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700"
+            >
+              View Cafe & Restaurant POS pricing →
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

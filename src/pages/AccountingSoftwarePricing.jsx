@@ -6,16 +6,15 @@ const plans = [
     key: "starter",
     icon: FlashIcon,
     name: "Starter",
-    desc: "For small teams and single-location restaurants getting started.",
-    price: "29",
+    desc: "For sole proprietors and small businesses tracking the basics.",
+    price: "19",
     note: "per month, billed annually",
-    save: "Save ₹70/yr",
+    save: "Save ₹45/yr",
     features: [
-      "1 location maximum",
-      "Employee scheduling",
-      "Time clocking & attendance",
-      "Team messaging",
-      "Basic reporting",
+      "1 business profile",
+      "Invoicing & billing",
+      "Expense tracking",
+      "Bank account sync",
       "Up to 3 concurrent devices",
       "Email & chat support",
     ],
@@ -28,17 +27,17 @@ const plans = [
     icon: RocketIcon,
     name: "Growth",
     badge: "Most Popular",
-    desc: "For growing restaurant groups that want to scale fast.",
-    price: "59",
+    desc: "For growing businesses that need full financial visibility.",
+    price: "45",
     note: "per month, billed annually",
-    save: "Save ₹140/yr",
+    save: "Save ₹108/yr",
     everythingIn: "Everything in Starter, plus:",
     features: [
-      "Up to 5 locations",
-      "Task management",
-      "Tip pooling & manager log book",
-      "Labor cost forecasting",
-      "Payroll integrations",
+      "Up to 5 business profiles",
+      "Tax reports & filing prep",
+      "Payroll sync",
+      "Multi-currency support",
+      "Custom financial dashboards",
       "Unlimited devices",
       "Priority 24/7 support",
     ],
@@ -50,14 +49,14 @@ const plans = [
     key: "enterprise",
     icon: Building02Icon,
     name: "Enterprise",
-    desc: "For hotel chains, restaurant groups & franchises.",
+    desc: "For accounting firms and multi-entity organizations.",
     price: "Custom",
     everythingIn: "Everything in Growth, plus:",
     features: [
-      "Unlimited locations",
-      "Centralized multi-outlet analytics",
+      "Unlimited business profiles",
+      "Consolidated multi-entity reporting",
       "Custom API & integrations",
-      "White-label mobile app & branding",
+      "White-label client portal",
       "Dedicated onboarding & training",
       "99.9% uptime SLA",
     ],
@@ -67,12 +66,12 @@ const plans = [
   },
 ];
 
-export default function Pricing() {
+export default function AccountingSoftwarePricing() {
   return (
     <PricingSections
-      badge="Simple & Honest Pricing"
-      heading1="One subscription."
-      heading2="Every feature."
+      badge="Accounting Software"
+      heading1="Accounting pricing that"
+      heading2="stays out of your way."
       subtitle={
         <>
           Start with a <span className="font-semibold text-ink-900">7-day free trial</span> —
@@ -81,7 +80,7 @@ export default function Pricing() {
       }
       plans={plans}
       trialTitle="Your 7-Day Free Trial"
-      trialDesc="Experience everything 7shifts has to offer — completely free for 7 days. No strings attached, no surprises."
+      trialDesc="Experience the full Accounting Software — invoicing, expense tracking, tax reports, and more — completely free for 7 days."
     />
   );
 }

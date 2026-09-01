@@ -6,16 +6,15 @@ const plans = [
     key: "starter",
     icon: FlashIcon,
     name: "Starter",
-    desc: "For small teams and single-location restaurants getting started.",
-    price: "29",
+    desc: "For a single counter or a small cafe just getting set up.",
+    price: "15",
     note: "per month, billed annually",
-    save: "Save ₹70/yr",
+    save: "Save ₹36/yr",
     features: [
-      "1 location maximum",
-      "Employee scheduling",
-      "Time clocking & attendance",
-      "Team messaging",
-      "Basic reporting",
+      "1 outlet maximum",
+      "Billing & invoicing",
+      "QR table ordering",
+      "Basic inventory tracking",
       "Up to 3 concurrent devices",
       "Email & chat support",
     ],
@@ -28,17 +27,17 @@ const plans = [
     icon: RocketIcon,
     name: "Growth",
     badge: "Most Popular",
-    desc: "For growing restaurant groups that want to scale fast.",
-    price: "59",
+    desc: "For restaurants and cafes ready to run everything from one system.",
+    price: "35",
     note: "per month, billed annually",
-    save: "Save ₹140/yr",
+    save: "Save ₹84/yr",
     everythingIn: "Everything in Starter, plus:",
     features: [
-      "Up to 5 locations",
-      "Task management",
-      "Tip pooling & manager log book",
-      "Labor cost forecasting",
-      "Payroll integrations",
+      "Up to 5 outlets",
+      "Kitchen Display (KDS)",
+      "Customer loyalty & promotions",
+      "Live sales analytics",
+      "All payment methods accepted",
       "Unlimited devices",
       "Priority 24/7 support",
     ],
@@ -50,14 +49,14 @@ const plans = [
     key: "enterprise",
     icon: Building02Icon,
     name: "Enterprise",
-    desc: "For hotel chains, restaurant groups & franchises.",
+    desc: "For multi-location restaurant groups and franchises.",
     price: "Custom",
     everythingIn: "Everything in Growth, plus:",
     features: [
-      "Unlimited locations",
+      "Unlimited outlets",
       "Centralized multi-outlet analytics",
       "Custom API & integrations",
-      "White-label mobile app & branding",
+      "White-label branding",
       "Dedicated onboarding & training",
       "99.9% uptime SLA",
     ],
@@ -67,12 +66,12 @@ const plans = [
   },
 ];
 
-export default function Pricing() {
+export default function CafeRestaurantPOSPricing() {
   return (
     <PricingSections
-      badge="Simple & Honest Pricing"
-      heading1="One subscription."
-      heading2="Every feature."
+      badge="Restaurants & Cafe"
+      heading1="POS pricing that"
+      heading2="scales with your outlets."
       subtitle={
         <>
           Start with a <span className="font-semibold text-ink-900">7-day free trial</span> —
@@ -81,7 +80,7 @@ export default function Pricing() {
       }
       plans={plans}
       trialTitle="Your 7-Day Free Trial"
-      trialDesc="Experience everything 7shifts has to offer — completely free for 7 days. No strings attached, no surprises."
+      trialDesc="Experience the full Cafe & Restaurant POS — billing, QR ordering, kitchen display, and more — completely free for 7 days."
     />
   );
 }

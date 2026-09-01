@@ -8,7 +8,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import AllApps from "./pages/AllApps";
 import CafeRestaurantPOS from "./pages/CafeRestaurantPOS";
+import CafeRestaurantPOSPricing from "./pages/CafeRestaurantPOSPricing";
 import AccountingSoftware from "./pages/AccountingSoftware";
+import AccountingSoftwarePricing from "./pages/AccountingSoftwarePricing";
 
 export default function App() {
   return (
@@ -22,7 +24,9 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/apps" element={<AllApps />} />
         <Route path="/pos/cafe-restaurant" element={<CafeRestaurantPOS />} />
+        <Route path="/pos/cafe-restaurant/pricing" element={<CafeRestaurantPOSPricing />} />
         <Route path="/accounting-software" element={<AccountingSoftware />} />
+        <Route path="/accounting-software/pricing" element={<AccountingSoftwarePricing />} />
       </Routes>
       <Footer />
     </div>
