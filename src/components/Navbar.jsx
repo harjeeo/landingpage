@@ -81,7 +81,10 @@ export default function Navbar() {
   const [appsOpen, setAppsOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const location = useLocation();
-  const isDashboard = location.pathname.startsWith("/dashboard");
+  const isSuperAdmin = location.pathname.startsWith("/super-admin");
+  const isDashboard = location.pathname.startsWith("/dashboard") || isSuperAdmin;
+  const appShellHref = isSuperAdmin ? "/super-admin" : "/dashboard";
+  const appShellLabel = isSuperAdmin ? "Super Admin" : "My Dashboard";
 
   return (
     <div className="sticky top-0 z-50 px-4 py-4">
@@ -218,10 +221,10 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           {isDashboard ? (
             <Link
-              to="/dashboard"
+              to={appShellHref}
               className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
             >
-              My Dashboard
+              {appShellLabel}
             </Link>
           ) : (
             <>
@@ -302,11 +305,11 @@ export default function Navbar() {
           <div className="mt-4 flex flex-col gap-2">
             {isDashboard ? (
               <Link
-                to="/dashboard"
+                to={appShellHref}
                 onClick={() => setOpen(false)}
                 className="rounded-full bg-brand-600 px-5 py-2.5 text-center text-[15px] font-semibold text-white hover:bg-brand-700"
               >
-                My Dashboard
+                {appShellLabel}
               </Link>
             ) : (
               <>

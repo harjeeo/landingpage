@@ -11,6 +11,7 @@ import CafeRestaurantPOS from "./pages/CafeRestaurantPOS";
 import AccountingSoftware from "./pages/AccountingSoftware";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import SuperAdmin from "./pages/SuperAdmin";
 
 export default function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/accounting-software" element={<AccountingSoftware />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/super-admin" element={<SuperAdmin />} />
       </Routes>
       {!isAuthPage && <Footer />}
     </div>
