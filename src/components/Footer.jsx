@@ -11,30 +11,32 @@ const columns = [
   {
     title: "Solutions",
     links: [
-      "Restaurants & Fine Dine",
-      "QSR & Cloud Kitchens",
-      "Bars & Nightlife",
-      "Cafes & Bakeries",
-      { label: "Pricing & Plans", to: "/pricing" },
+      "Cafes & Restaurants",
+      "Schools",
+      "Grocery",
+      "Hotels",
+      "Salons & Parlor",
+      "Agencies",
     ],
   },
   {
-    title: "Platform",
+    title: "Apps",
     links: [
-      "Scheduling & POS",
-      "Time Clocking",
+      { label: "Cafe & Restaurant POS", to: "/pos/cafe-restaurant" },
+      { label: "Accounting Software", to: "/accounting-software" },
       "Team Communication",
-      "Payroll",
+      "Task Management",
       "Tip Manager",
+      "Payroll",
     ],
-  },
-  {
-    title: "Resources",
-    links: ["Help Center", "API Documentation", "Integrations", "Community Blog", "Changelog"],
   },
   {
     title: "Company",
-    links: [{ label: "About Us", to: "/about" }, "Careers", "Partner Program", "Contact Us"],
+    links: [
+      { label: "Pricing", to: "/pricing" },
+      { label: "About", to: "/about" },
+      { label: "Contact", to: "/contact" },
+    ],
   },
 ];
 
@@ -111,7 +113,7 @@ export default function Footer() {
             </form>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             {columns.map((col) => (
               <div key={col.title}>
                 <p className="text-sm font-semibold text-white">{col.title}</p>
