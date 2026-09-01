@@ -17,7 +17,7 @@ const plans = [
     desc: "For small teams and single-location restaurants getting started.",
     price: "29",
     note: "per month, billed annually",
-    save: "Save $70/yr",
+    save: "Save ₹70/yr",
     features: [
       "1 location maximum",
       "Employee scheduling",
@@ -39,7 +39,7 @@ const plans = [
     desc: "For growing restaurant groups that want to scale fast.",
     price: "59",
     note: "per month, billed annually",
-    save: "Save $140/yr",
+    save: "Save ₹140/yr",
     everythingIn: "Everything in Starter, plus:",
     features: [
       "Up to 5 locations",
@@ -186,7 +186,7 @@ export default function Pricing() {
                     <p className={`text-4xl font-extrabold ${textPrimary}`}>Custom</p>
                   ) : (
                     <p className={`text-4xl font-extrabold ${textPrimary}`}>
-                      ${billing === "annual" ? plan.price : Math.ceil(plan.price * 1.25)}
+                      ₹{billing === "annual" ? plan.price : Math.ceil(plan.price * 1.25)}
                     </p>
                   )}
                   {plan.note && (
