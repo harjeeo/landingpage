@@ -12,26 +12,26 @@ const contactCards = [
   {
     icon: Call02Icon,
     label: "Sales",
-    value: "+1 (800) 555-0173",
-    note: "Mon–Fri 9am–6pm ET",
+    value: "+91-9814522993",
+    note: "Mon–Fri 9am–6pm",
   },
   {
     icon: Call02Icon,
     label: "Support",
-    value: "+1 (800) 555-0199",
-    note: "24/7 for paid plans",
+    value: "+91-9814522993",
+    note: "24/7 for all plans",
   },
   {
     icon: Mail01Icon,
     label: "Email Sales",
-    value: "sales@7shifts.com",
+    value: "info@designsclue.com",
     note: "Reply within 2 hours",
   },
   {
     icon: Location01Icon,
     label: "Head Office",
-    value: "Toronto, Canada",
-    note: "7shifts Inc.",
+    value: "Ludhiana, India",
+    note: "Designs Clue",
   },
 ];
 

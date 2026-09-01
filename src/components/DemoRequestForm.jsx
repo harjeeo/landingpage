@@ -42,7 +42,7 @@ export default function DemoRequestForm() {
               className="flex items-center border border-ink-900/10 bg-ink-900/[0.02] px-4 py-3 text-sm text-ink-900"
               style={{ borderRadius: "12px" }}
             >
-              +1
+              +91
             </span>
             <input
               type="tel"
@@ -59,7 +59,7 @@ export default function DemoRequestForm() {
           </span>
           <input
             type="text"
-            placeholder="e.g. Toronto, New York"
+            placeholder="e.g. Chandigarh"
             className="border border-ink-900/10 bg-ink-900/[0.02] px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400"
             style={{ borderRadius: "12px" }}
           />
