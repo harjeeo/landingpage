@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -10,12 +10,16 @@ import AllApps from "./pages/AllApps";
 import CafeRestaurantPOS from "./pages/CafeRestaurantPOS";
 import AccountingSoftware from "./pages/AccountingSoftware";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 
 export default function App() {
+  const location = useLocation();
+  const isAuthPage = location.pathname.startsWith("/login");
+
   return (
     <div className="min-h-screen bg-white">
-      <AnnouncementBar />
-      <Navbar />
+      {!isAuthPage && <AnnouncementBar />}
+      {!isAuthPage && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pricing" element={<Pricing />} />
@@ -25,8 +29,9 @@ export default function App() {
         <Route path="/pos/cafe-restaurant" element={<CafeRestaurantPOS />} />
         <Route path="/accounting-software" element={<AccountingSoftware />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
-      <Footer />
+      {!isAuthPage && <Footer />}
     </div>
   );
 }

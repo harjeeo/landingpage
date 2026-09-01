@@ -226,7 +226,7 @@ export default function Navbar() {
           ) : (
             <>
               <Link
-                to="/dashboard"
+                to="/login"
                 className="rounded-full px-5 py-2.5 text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
               >
                 Login
@@ -311,7 +311,7 @@ export default function Navbar() {
             ) : (
               <>
                 <Link
-                  to="/dashboard"
+                  to="/login"
                   onClick={() => setOpen(false)}
                   className="rounded-full border border-ink-900/10 px-5 py-2.5 text-center text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
                 >
