@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Calculator01Icon,
   ComputerIcon,
@@ -143,13 +142,6 @@ export default function AccountingSoftware() {
                 Book a Demo
               </a>
             </div>
-
-            <Link
-              to="/accounting-software/pricing"
-              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700"
-            >
-              View Accounting Software pricing →
-            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
