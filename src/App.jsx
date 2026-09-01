@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -12,13 +12,10 @@ import AccountingSoftware from "./pages/AccountingSoftware";
 import Dashboard from "./pages/Dashboard";
 
 export default function App() {
-  const location = useLocation();
-  const isDashboard = location.pathname.startsWith("/dashboard");
-
   return (
     <div className="min-h-screen bg-white">
-      {!isDashboard && <AnnouncementBar />}
-      {!isDashboard && <Navbar />}
+      <AnnouncementBar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pricing" element={<Pricing />} />
@@ -29,7 +26,7 @@ export default function App() {
         <Route path="/accounting-software" element={<AccountingSoftware />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-      {!isDashboard && <Footer />}
+      <Footer />
     </div>
   );
 }

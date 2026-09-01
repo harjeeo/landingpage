@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import {
   Menu01Icon,
@@ -80,6 +80,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [appsOpen, setAppsOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith("/dashboard");
 
   return (
     <div className="sticky top-0 z-50 px-4 py-4">
@@ -214,18 +216,29 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            to="/dashboard"
-            className="rounded-full px-5 py-2.5 text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
-          >
-            Login
-          </Link>
-          <a
-            href="#signup"
-            className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
-          >
-            Start 30-Days Free Trial
-          </a>
+          {isDashboard ? (
+            <Link
+              to="/dashboard"
+              className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
+            >
+              My Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/dashboard"
+                className="rounded-full px-5 py-2.5 text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
+              >
+                Login
+              </Link>
+              <a
+                href="#signup"
+                className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
+              >
+                Start 30-Days Free Trial
+              </a>
+            </>
+          )}
         </div>
 
         <button
@@ -287,19 +300,31 @@ export default function Navbar() {
             )}
           </ul>
           <div className="mt-4 flex flex-col gap-2">
-            <Link
-              to="/dashboard"
-              onClick={() => setOpen(false)}
-              className="rounded-full border border-ink-900/10 px-5 py-2.5 text-center text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
-            >
-              Login
-            </Link>
-            <a
-              href="#signup"
-              className="rounded-full bg-brand-600 px-5 py-2.5 text-center text-[15px] font-semibold text-white hover:bg-brand-700"
-            >
-              Start 30-Days Free Trial
-            </a>
+            {isDashboard ? (
+              <Link
+                to="/dashboard"
+                onClick={() => setOpen(false)}
+                className="rounded-full bg-brand-600 px-5 py-2.5 text-center text-[15px] font-semibold text-white hover:bg-brand-700"
+              >
+                My Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/dashboard"
+                  onClick={() => setOpen(false)}
+                  className="rounded-full border border-ink-900/10 px-5 py-2.5 text-center text-[15px] font-semibold text-ink-900 hover:bg-ink-900/5"
+                >
+                  Login
+                </Link>
+                <a
+                  href="#signup"
+                  className="rounded-full bg-brand-600 px-5 py-2.5 text-center text-[15px] font-semibold text-white hover:bg-brand-700"
+                >
+                  Start 30-Days Free Trial
+                </a>
+              </>
+            )}
           </div>
         </div>
       )}
