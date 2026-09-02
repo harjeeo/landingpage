@@ -2,22 +2,24 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   ShieldUserIcon,
   Home01Icon,
-  Building06Icon,
-  Analytics01Icon,
+  InboxIcon,
+  RepeatIcon,
+  CreditCardIcon,
+  UserGroup03Icon,
   Activity01Icon,
   Settings02Icon,
   Logout01Icon,
-  Image01Icon,
 } from "hugeicons-react";
 import ThemeToggle from "../components/superadmin/ThemeToggle";
 import { logout } from "../lib/superadmin/useAuth";
 
 const navLinks = [
   { to: "/super-admin", label: "Dashboard", icon: Home01Icon, end: true },
-  { to: "/super-admin/tenants", label: "Cafes / Restaurants", icon: Building06Icon },
-  { to: "/super-admin/reports", label: "Platform Reports", icon: Analytics01Icon },
+  { to: "/super-admin/leads", label: "Leads", icon: InboxIcon },
+  { to: "/super-admin/subscriptions", label: "Subscriptions", icon: RepeatIcon },
+  { to: "/super-admin/payments", label: "Payments", icon: CreditCardIcon },
+  { to: "/super-admin/users", label: "Users", icon: UserGroup03Icon },
   { to: "/super-admin/activity", label: "Activity Log", icon: Activity01Icon },
-  { to: "/super-admin/icon-library", label: "Menu Icon Library", icon: Image01Icon },
 ];
 
 function SuperAdminLink({ to, label, icon: Icon, end = false }) {

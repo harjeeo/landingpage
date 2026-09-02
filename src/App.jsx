@@ -14,10 +14,11 @@ import Login from "./pages/Login";
 import SuperAdminLayout from "./layouts/SuperAdminLayout";
 import SuperAdminLoginPage from "./pages/superadmin/SuperAdminLoginPage";
 import SuperAdminDashboardPage from "./pages/superadmin/SuperAdminDashboardPage";
-import SuperAdminTenantsPage from "./pages/superadmin/SuperAdminTenantsPage";
-import SuperAdminReportsPage from "./pages/superadmin/SuperAdminReportsPage";
+import SuperAdminLeadsPage from "./pages/superadmin/SuperAdminLeadsPage";
+import SuperAdminSubscriptionsPage from "./pages/superadmin/SuperAdminSubscriptionsPage";
+import SuperAdminPaymentsPage from "./pages/superadmin/SuperAdminPaymentsPage";
+import SuperAdminUsersPage from "./pages/superadmin/SuperAdminUsersPage";
 import SuperAdminActivityPage from "./pages/superadmin/SuperAdminActivityPage";
-import SuperAdminIconLibraryPage from "./pages/superadmin/SuperAdminIconLibraryPage";
 import SuperAdminSettingsPage from "./pages/superadmin/SuperAdminSettingsPage";
 import RequireAuth from "./components/superadmin/RequireAuth";
 
@@ -51,10 +52,11 @@ export default function App() {
           }
         >
           <Route index element={<SuperAdminDashboardPage />} />
-          <Route path="tenants" element={<SuperAdminTenantsPage />} />
-          <Route path="reports" element={<SuperAdminReportsPage />} />
+          <Route path="leads" element={<SuperAdminLeadsPage />} />
+          <Route path="subscriptions" element={<SuperAdminSubscriptionsPage />} />
+          <Route path="payments" element={<SuperAdminPaymentsPage />} />
+          <Route path="users" element={<SuperAdminUsersPage />} />
           <Route path="activity" element={<SuperAdminActivityPage />} />
-          <Route path="icon-library" element={<SuperAdminIconLibraryPage />} />
           <Route path="settings" element={<SuperAdminSettingsPage />} />
         </Route>
       </Routes>
