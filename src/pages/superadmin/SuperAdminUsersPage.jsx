@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserGroup03Icon, Search01Icon, Delete02Icon } from "hugeicons-react";
+import { UserGroup03Icon, Search01Icon, CheckmarkCircle02Icon, PauseIcon } from "hugeicons-react";
 
 const USERS = [
   { id: 1, name: "Riya Sharma", email: "riya@thekitchenhub.com", role: "Owner", client: "The Kitchen Hub", status: "Active" },
@@ -9,20 +9,30 @@ const USERS = [
   { id: 5, name: "Sana Iqbal", email: "sana@spiceroute.in", role: "Owner", client: "Spice Route", status: "Active" },
 ];
 
+const STATUS_META = {
+  Active: { icon: CheckmarkCircle02Icon, className: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" },
+  Suspended: { icon: PauseIcon, className: "bg-red-500/10 text-red-500" },
+};
+
 export default function SuperAdminUsersPage() {
   const [search, setSearch] = useState("");
 
   const filtered = USERS.filter(
     (u) => u.name.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase()),
   );
+  const active = USERS.filter((u) => u.status === "Active").length;
+  const suspended = USERS.filter((u) => u.status === "Suspended").length;
 
   return (
     <div className="px-10 py-8">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <h1 className="flex items-center gap-2 text-2xl font-semibold">
-          <UserGroup03Icon size={20} strokeWidth={1.8} />
-          Users
-        </h1>
+        <div>
+          <h1 className="flex items-center gap-2 text-2xl font-semibold">
+            <UserGroup03Icon size={20} strokeWidth={1.8} />
+            Users
+          </h1>
+          <p className="mt-1 text-sm text-(--color-text-muted)">Every owner and staff login across all clients.</p>
+        </div>
         <div className="relative w-64">
           <Search01Icon
             size={16}
@@ -33,11 +43,25 @@ export default function SuperAdminUsersPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search users"
-            className="w-full rounded-full border border-(--color-border) bg-transparent py-1.5 pl-8 pr-3 text-sm outline-none focus:border-(--color-accent)"
+            className="w-full rounded-md border border-(--color-border) bg-transparent py-1.5 pl-8 pr-3 text-sm outline-none focus:border-(--color-accent)"
           />
         </div>
       </div>
-      <p className="mt-1 text-sm text-(--color-text-muted)">Every owner and staff login across all clients.</p>
+
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="rounded-xl border border-(--color-border) p-4">
+          <div className="text-2xl font-semibold tabular-nums">{USERS.length}</div>
+          <div className="text-xs text-(--color-text-muted)">Total Users</div>
+        </div>
+        <div className="rounded-xl border border-(--color-border) p-4">
+          <div className="text-2xl font-semibold tabular-nums text-emerald-600 dark:text-emerald-400">{active}</div>
+          <div className="text-xs text-(--color-text-muted)">Active</div>
+        </div>
+        <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-4">
+          <div className="text-2xl font-semibold tabular-nums text-red-500">{suspended}</div>
+          <div className="text-xs text-(--color-text-muted)">Suspended</div>
+        </div>
+      </div>
 
       <div className="mt-6 overflow-x-auto rounded-xl border border-(--color-border)">
         <table className="w-full text-left text-sm">
@@ -48,42 +72,32 @@ export default function SuperAdminUsersPage() {
               <th className="px-4 py-2.5 font-medium">Role</th>
               <th className="px-4 py-2.5 font-medium">Client</th>
               <th className="px-4 py-2.5 font-medium">Status</th>
-              <th className="px-4 py-2.5 font-medium" />
             </tr>
           </thead>
           <tbody>
-            {filtered.map((u) => (
-              <tr key={u.id} className="border-b border-(--color-border) last:border-0">
-                <td className="px-4 py-3 font-medium">{u.name}</td>
-                <td className="px-4 py-3 text-(--color-text-muted)">{u.email}</td>
-                <td className="px-4 py-3">
-                  <span className="rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium dark:bg-white/10">{u.role}</span>
-                </td>
-                <td className="px-4 py-3 text-(--color-text-muted)">{u.client}</td>
-                <td className="px-4 py-3">
-                  <span
-                    className={`flex w-fit items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
-                      u.status === "Active"
-                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                        : "bg-red-500/10 text-red-500"
-                    }`}
-                  >
-                    {u.status}
-                  </span>
-                </td>
-                <td className="px-4 py-3 text-right">
-                  <button
-                    type="button"
-                    className="flex h-7 w-7 items-center justify-center rounded-md text-(--color-text-muted) transition-colors hover:bg-red-500/10 hover:text-red-500"
-                  >
-                    <Delete02Icon size={14} strokeWidth={1.8} />
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {filtered.map((u) => {
+              const meta = STATUS_META[u.status];
+              const Icon = meta.icon;
+              return (
+                <tr key={u.id} className="border-b border-(--color-border) last:border-0">
+                  <td className="px-4 py-3 font-medium">{u.name}</td>
+                  <td className="px-4 py-3 text-(--color-text-muted)">{u.email}</td>
+                  <td className="px-4 py-3">
+                    <span className="rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium dark:bg-white/10">{u.role}</span>
+                  </td>
+                  <td className="px-4 py-3 text-(--color-text-muted)">{u.client}</td>
+                  <td className="px-4 py-3">
+                    <span className={`flex w-fit items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${meta.className}`}>
+                      <Icon size={11} strokeWidth={1.8} />
+                      {u.status}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-8 text-center text-sm text-(--color-text-muted)">
+                <td colSpan={5} className="px-4 py-8 text-center text-sm text-(--color-text-muted)">
                   No users found.
                 </td>
               </tr>
