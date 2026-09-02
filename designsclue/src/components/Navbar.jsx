@@ -10,7 +10,7 @@ import {
   Menu
 } from 'lucide-react';
 
-import logoAsset from '../assets/logo.svg';
+import logoAsset from '../assets/designs-clue-logo.svg';
 
 // Inline SVG icon components for the mega menu — orange on salmon background style
 const NavIcon = ({ children }) => (
