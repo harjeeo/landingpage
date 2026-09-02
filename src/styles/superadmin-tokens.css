@@ -1,0 +1,19 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-canvas: #ffffff;
+  --color-sidebar: #f7f7fb;
+  --color-text: #0b0d17;
+  --color-text-muted: #6b6f8a;
+  --color-border: rgba(11, 13, 23, 0.1);
+  --color-accent: #4147e0;
+}
+
+.dark {
+  --color-canvas: #0b0d17;
+  --color-sidebar: #12141f;
+  --color-text: #f5f5f8;
+  --color-text-muted: #9a9db1;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-accent: #7c86f5;
+}

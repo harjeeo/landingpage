@@ -81,10 +81,7 @@ export default function Navbar() {
   const [appsOpen, setAppsOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const location = useLocation();
-  const isSuperAdmin = location.pathname.startsWith("/super-admin");
-  const isDashboard = location.pathname.startsWith("/dashboard") || isSuperAdmin;
-  const appShellHref = isSuperAdmin ? "/super-admin" : "/dashboard";
-  const appShellLabel = isSuperAdmin ? "Super Admin" : "My Dashboard";
+  const isDashboard = location.pathname.startsWith("/dashboard");
 
   return (
     <div className="sticky top-0 z-50 px-4 py-4">
