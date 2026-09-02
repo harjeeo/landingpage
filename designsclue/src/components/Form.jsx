@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { submitLead } from '../lib/leads';
 
 export default function Form({ title = "You have an idea.\nWe have the team." }) {
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleCopyEmail = () => {
     if (navigator.clipboard) {
@@ -12,9 +15,38 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    const data = new FormData(e.target);
+    const name = data.get('name')?.toString().trim();
+    const email = data.get('email')?.toString().trim();
+    if (!name || !email) return;
+
+    setError('');
+    setSubmitting(true);
+    try {
+      await submitLead({
+        name,
+        contact: email,
+        sourcePage: window.location.pathname,
+        message: [
+          data.get('company') && `Company: ${data.get('company')}`,
+          data.get('phone') && `Phone: ${data.get('phone')}`,
+          data.get('industry') && `Industry: ${data.get('industry')}`,
+          data.get('companySize') && `Company size: ${data.get('companySize')}`,
+          data.get('website') && `Current website: ${data.get('website')}`,
+          data.get('launch') && `Planned launch: ${data.get('launch')}`,
+          data.get('details') && `Details: ${data.get('details')}`,
+        ]
+          .filter(Boolean)
+          .join('\n'),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not submit — please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputStyle = {
@@ -266,23 +298,25 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
                   <label className="form-label" style={labelStyle}>
                     Name <span style={{ color: '#FF470A' }}>*</span>
                   </label>
-                  <input 
-                    required 
-                    type="text" 
-                    placeholder="Your Name" 
+                  <input
+                    required
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
                     className="form-input"
-                    style={inputStyle} 
+                    style={inputStyle}
                   />
                 </div>
                 <div>
                   <label className="form-label" style={labelStyle}>
                     Company
                   </label>
-                  <input 
-                    type="text" 
-                    placeholder="Your Company" 
+                  <input
+                    type="text"
+                    name="company"
+                    placeholder="Your Company"
                     className="form-input"
-                    style={inputStyle} 
+                    style={inputStyle}
                   />
                 </div>
               </div>
@@ -293,23 +327,25 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
                   <label className="form-label" style={labelStyle}>
                     Email <span style={{ color: '#FF470A' }}>*</span>
                   </label>
-                  <input 
-                    required 
-                    type="email" 
-                    placeholder="Your Email-Address" 
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="Your Email-Address"
                     className="form-input"
-                    style={inputStyle} 
+                    style={inputStyle}
                   />
                 </div>
                 <div>
                   <label className="form-label" style={labelStyle}>
                     Phone
                   </label>
-                  <input 
-                    type="text" 
-                    placeholder="Your Number" 
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Your Number"
                     className="form-input"
-                    style={inputStyle} 
+                    style={inputStyle}
                   />
                 </div>
               </div>
@@ -328,20 +364,22 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
                   <label className="form-label" style={labelStyle}>
                     In which industry do you work? <span style={{ color: '#FF470A' }}>*</span>
                   </label>
-                  <input 
-                    required 
-                    type="text" 
-                    placeholder="Your branch" 
+                  <input
+                    required
+                    type="text"
+                    name="industry"
+                    placeholder="Your branch"
                     className="form-input"
-                    style={inputStyle} 
+                    style={inputStyle}
                   />
                 </div>
                 <div>
                   <label className="form-label" style={labelStyle}>
                     Company size <span style={{ color: '#FF470A' }}>*</span>
                   </label>
-                  <select 
-                    required 
+                  <select
+                    required
+                    name="companySize"
                     className="form-input"
                     style={{ ...inputStyle, cursor: 'pointer' }}
                   >
@@ -361,22 +399,24 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
                   <label className="form-label" style={labelStyle}>
                     Current website
                   </label>
-                  <input 
-                    type="text" 
-                    placeholder="Your current website" 
+                  <input
+                    type="text"
+                    name="website"
+                    placeholder="Your current website"
                     className="form-input"
-                    style={inputStyle} 
+                    style={inputStyle}
                   />
                 </div>
                 <div>
                   <label className="form-label" style={labelStyle}>
                     Planned launch
                   </label>
-                  <input 
-                    type="text" 
-                    placeholder="Planned launch" 
+                  <input
+                    type="text"
+                    name="launch"
+                    placeholder="Planned launch"
                     className="form-input"
-                    style={inputStyle} 
+                    style={inputStyle}
                   />
                 </div>
               </div>
@@ -389,6 +429,7 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
                 <textarea
                   required
                   rows={4}
+                  name="details"
                   placeholder="Short project summary + planned goals"
                   className="form-input"
                   style={{
@@ -406,9 +447,14 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
                 By submitting this form, I agree that my information will be processed for the purpose of handling my request. Further details can be found in our <a href="#" style={{ color: '#000000', textDecoration: 'underline' }}>Privacy Policy</a>.
               </p>
 
+              {error && (
+                <p style={{ fontSize: '13px', color: '#FF470A', marginBottom: '16px' }}>{error}</p>
+              )}
+
               {/* Orange Pill Submit Button */}
-              <button 
-                type="submit" 
+              <button
+                type="submit"
+                disabled={submitting}
                 className="form-submit-btn"
                 style={{
                   background: '#FF470A',
@@ -418,14 +464,15 @@ export default function Form({ title = "You have an idea.\nWe have the team." })
                   borderRadius: '120px',
                   fontWeight: 500,
                   fontSize: '16px',
-                  cursor: 'pointer',
+                  cursor: submitting ? 'default' : 'pointer',
+                  opacity: submitting ? 0.7 : 1,
                   width: '100%',
                   transition: 'background 0.3s ease'
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.background = '#e43f08'}
                 onMouseLeave={(e) => e.currentTarget.style.background = '#FF470A'}
               >
-                Submit request
+                {submitting ? 'Submitting…' : 'Submit request'}
               </button>
 
               <p style={{ textAlign: 'center', fontSize: '13px', color: '#71717A', marginTop: '12px', marginBottom: 0 }}>

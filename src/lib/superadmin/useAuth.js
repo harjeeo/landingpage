@@ -75,7 +75,7 @@ function backendRoleToAppRole(role) {
 
 // Calls the real backend. Throws with the server's error message on failure.
 export async function login(email, password) {
-  const base = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
+  const base = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
   const res = await fetch(`${base}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

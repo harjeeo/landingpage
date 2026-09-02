@@ -7,6 +7,7 @@ import {
   ViewIcon,
   ViewOffIcon,
   Settings02Icon,
+  CreditCardIcon,
 } from "hugeicons-react";
 import {
   getPlatformSettings,
@@ -21,6 +22,7 @@ import {
 
 const TABS = [
   { key: "platform", label: "Platform", icon: Settings02Icon },
+  { key: "payments", label: "Payments", icon: CreditCardIcon },
   { key: "email", label: "Email / API", icon: MailSend02Icon },
   { key: "sms", label: "SMS / WhatsApp", icon: SmartPhone01Icon },
   { key: "account", label: "My Account", icon: SquareLock02Icon },
@@ -255,6 +257,37 @@ export default function SuperAdminSettingsPage() {
                 When enabled, anyone can create their own cafe account at{" "}
                 <span className="font-mono text-(--color-text)">/signup</span>. When off, that page still loads but
                 the server rejects new sign-ups until this is turned back on.
+              </p>
+            </div>
+          )}
+
+          {tab === "payments" && (
+            <div className="flex flex-col gap-4">
+              <p className="text-sm text-(--color-text-muted)">
+                Connect Razorpay to collect subscription payments from clients on Ojar and Designs Clue.
+              </p>
+
+              <Field label="Razorpay API Key">
+                <div className="relative">
+                  <input
+                    type={showSecret.razorpayKey ? "text" : "password"}
+                    value={form.razorpayKey ?? ""}
+                    onChange={(e) => set("razorpayKey", e.target.value)}
+                    placeholder="rzp_live_xxxxxxxxxxxx"
+                    className={`${inputClass} w-full pr-9`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowSecret((s) => ({ ...s, razorpayKey: !s.razorpayKey }))}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-(--color-text-muted)"
+                  >
+                    {showSecret.razorpayKey ? <ViewOffIcon size={15} strokeWidth={1.8} /> : <ViewIcon size={15} strokeWidth={1.8} />}
+                  </button>
+                </div>
+              </Field>
+              <p className="-mt-2 text-xs text-(--color-text-muted)">
+                From your Razorpay Dashboard → Settings → API Keys. The remaining payment steps (webhooks,
+                subscription plans) come later — this just stores the key for now.
               </p>
             </div>
           )}

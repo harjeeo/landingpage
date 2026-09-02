@@ -1,31 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InboxIcon, Search01Icon, CheckmarkCircle02Icon, RepeatIcon, Alert02Icon } from "hugeicons-react";
+import { getLeads } from "../../lib/superadmin/api";
+import Pagination from "../../components/superadmin/Pagination";
 
-const LEADS = [
-  { id: 1, name: "Riya Sharma", contact: "riya@business.com", source: "Cafe & Restaurant POS", status: "New", date: "25 Mar 2026" },
-  { id: 2, name: "Arjun Mehta", contact: "+91 98765 43210", source: "Contact Page", status: "Contacted", date: "24 Mar 2026" },
-  { id: 3, name: "Priya Nair", contact: "priya.nair@cafeplace.in", source: "Accounting Software", status: "Converted", date: "22 Mar 2026" },
-  { id: 4, name: "Karan Patel", contact: "karan@thekitchenhub.com", source: "Book a Demo", status: "New", date: "21 Mar 2026" },
-  { id: 5, name: "Sana Iqbal", contact: "+91 90210 11223", source: "Pricing Page", status: "Contacted", date: "19 Mar 2026" },
-];
+const PAGE_SIZE = 20;
 
 const STATUS_META = {
-  New: { icon: RepeatIcon, className: "bg-(--color-accent)/10 text-(--color-accent)" },
-  Contacted: { icon: Alert02Icon, className: "bg-amber-500/10 text-amber-600 dark:text-amber-400" },
-  Converted: { icon: CheckmarkCircle02Icon, className: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" },
+  new: { label: "New", icon: RepeatIcon, className: "bg-(--color-accent)/10 text-(--color-accent)" },
+  contacted: { label: "Contacted", icon: Alert02Icon, className: "bg-amber-500/10 text-amber-600 dark:text-amber-400" },
+  converted: { label: "Converted", icon: CheckmarkCircle02Icon, className: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" },
 };
 
-export default function SuperAdminLeadsPage() {
-  const [search, setSearch] = useState("");
+const SOURCE_META = {
+  dc: { label: "DC", title: "Designs Clue", className: "bg-black/5 text-(--color-text) dark:bg-white/10" },
+  ojar: { label: "OJAR", title: "Ojar", className: "border border-(--color-accent)/30 text-(--color-accent)" },
+};
 
-  const filtered = LEADS.filter(
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+}
+
+export default function SuperAdminLeadsPage() {
+  const [leads, setLeads] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    setLoading(true);
+    getLeads({ page, pageSize: PAGE_SIZE })
+      .then((result) => {
+        setLeads(result.items);
+        setTotal(result.total);
+        setError("");
+      })
+      .catch((err) => setError(err instanceof Error ? err.message : "Could not load leads"))
+      .finally(() => setLoading(false));
+  }, [page]);
+
+  const filtered = leads.filter(
     (l) => l.name.toLowerCase().includes(search.toLowerCase()) || l.contact.toLowerCase().includes(search.toLowerCase()),
   );
-  const counts = {
-    total: LEADS.length,
-    new: LEADS.filter((l) => l.status === "New").length,
-    converted: LEADS.filter((l) => l.status === "Converted").length,
-  };
+  const newCount = leads.filter((l) => l.status === "new").length;
+  const convertedCount = leads.filter((l) => l.status === "converted").length;
 
   return (
     <div className="px-10 py-8">
@@ -35,7 +54,9 @@ export default function SuperAdminLeadsPage() {
             <InboxIcon size={20} strokeWidth={1.8} />
             Leads
           </h1>
-          <p className="mt-1 text-sm text-(--color-text-muted)">Every inbound lead from the marketing site.</p>
+          <p className="mt-1 text-sm text-(--color-text-muted)">
+            Every inbound lead from Ojar and Designs Clue, in one place.
+          </p>
         </div>
         <div className="relative w-64">
           <Search01Icon
@@ -54,18 +75,20 @@ export default function SuperAdminLeadsPage() {
 
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
         <div className="rounded-xl border border-(--color-border) p-4">
-          <div className="text-2xl font-semibold tabular-nums">{counts.total}</div>
+          <div className="text-2xl font-semibold tabular-nums">{total}</div>
           <div className="text-xs text-(--color-text-muted)">Total Leads</div>
         </div>
         <div className="rounded-xl border border-(--color-border) p-4">
-          <div className="text-2xl font-semibold tabular-nums">{counts.new}</div>
-          <div className="text-xs text-(--color-text-muted)">New</div>
+          <div className="text-2xl font-semibold tabular-nums">{newCount}</div>
+          <div className="text-xs text-(--color-text-muted)">New (this page)</div>
         </div>
         <div className="rounded-xl border border-(--color-border) p-4">
-          <div className="text-2xl font-semibold tabular-nums text-emerald-600 dark:text-emerald-400">{counts.converted}</div>
-          <div className="text-xs text-(--color-text-muted)">Converted</div>
+          <div className="text-2xl font-semibold tabular-nums text-emerald-600 dark:text-emerald-400">{convertedCount}</div>
+          <div className="text-xs text-(--color-text-muted)">Converted (this page)</div>
         </div>
       </div>
+
+      {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
 
       <div className="mt-6 overflow-x-auto rounded-xl border border-(--color-border)">
         <table className="w-full text-left text-sm">
@@ -74,32 +97,42 @@ export default function SuperAdminLeadsPage() {
               <th className="px-4 py-2.5 font-medium">Lead</th>
               <th className="px-4 py-2.5 font-medium">Contact</th>
               <th className="px-4 py-2.5 font-medium">Source</th>
+              <th className="px-4 py-2.5 font-medium">Page</th>
               <th className="px-4 py-2.5 font-medium">Date</th>
               <th className="px-4 py-2.5 font-medium">Status</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((lead) => {
-              const meta = STATUS_META[lead.status];
-              const Icon = meta.icon;
+              const statusMeta = STATUS_META[lead.status] ?? STATUS_META.new;
+              const StatusIcon = statusMeta.icon;
+              const sourceMeta = SOURCE_META[lead.source] ?? SOURCE_META.ojar;
               return (
-                <tr key={lead.id} className="border-b border-(--color-border) last:border-0">
+                <tr key={lead._id} className="border-b border-(--color-border) last:border-0">
                   <td className="px-4 py-3 font-medium">{lead.name}</td>
                   <td className="px-4 py-3 text-(--color-text-muted)">{lead.contact}</td>
-                  <td className="px-4 py-3 text-(--color-text-muted)">{lead.source}</td>
-                  <td className="px-4 py-3 text-(--color-text-muted)">{lead.date}</td>
                   <td className="px-4 py-3">
-                    <span className={`flex w-fit items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${meta.className}`}>
-                      <Icon size={11} strokeWidth={1.8} />
-                      {lead.status}
+                    <span
+                      title={sourceMeta.title}
+                      className={`w-fit rounded-full px-2 py-0.5 text-[11px] font-bold tracking-wide ${sourceMeta.className}`}
+                    >
+                      {sourceMeta.label}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-(--color-text-muted)">{lead.sourcePage ?? "—"}</td>
+                  <td className="px-4 py-3 text-(--color-text-muted)">{formatDate(lead.createdAt)}</td>
+                  <td className="px-4 py-3">
+                    <span className={`flex w-fit items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${statusMeta.className}`}>
+                      <StatusIcon size={11} strokeWidth={1.8} />
+                      {statusMeta.label}
                     </span>
                   </td>
                 </tr>
               );
             })}
-            {filtered.length === 0 && (
+            {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-sm text-(--color-text-muted)">
+                <td colSpan={6} className="px-4 py-8 text-center text-sm text-(--color-text-muted)">
                   No leads found.
                 </td>
               </tr>
@@ -107,6 +140,8 @@ export default function SuperAdminLeadsPage() {
           </tbody>
         </table>
       </div>
+
+      <Pagination page={page} pageSize={PAGE_SIZE} total={total} onPageChange={setPage} />
     </div>
   );
 }

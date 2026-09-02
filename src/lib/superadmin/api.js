@@ -6,7 +6,7 @@
 
 import { getToken, logout } from "./useAuth";
 
-const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 async function request(path, options = {}) {
   const token = getToken();
@@ -231,4 +231,24 @@ export async function createMenuIcon(data) {
 
 export async function deleteMenuIcon(id) {
   return del(`/menu-icons/${id}`);
+}
+
+// --- Leads (captured from both the Ojar site and the Designs Clue site) ---
+
+function mapLead(l) {
+  return {
+    _id: l.id,
+    name: l.name,
+    contact: l.contact,
+    source: l.source, // "dc" | "ojar"
+    sourcePage: l.source_page,
+    message: l.message,
+    status: l.status,
+    createdAt: l.created_at,
+  };
+}
+
+export async function getLeads({ page = 1, pageSize = 20 } = {}) {
+  const result = await get(`/leads${qs({ page: String(page), pageSize: String(pageSize) })}`);
+  return { items: result.items.map(mapLead), total: result.total, page: result.page, pageSize: result.pageSize };
 }
