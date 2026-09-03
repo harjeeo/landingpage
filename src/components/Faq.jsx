@@ -3,32 +3,28 @@ import { HelpCircleIcon, Add01Icon, Remove01Icon } from "hugeicons-react";
 
 const faqs = [
   {
-    q: "What is 7shifts?",
-    a: "7shifts is a team management platform built for restaurants, covering scheduling, time tracking, payroll, and communication in one place.",
+    q: "What software solutions do you offer?",
+    a: "We offer Cafe/Restaurant POS, Accounting Software, HR Management System, Hotel Management System, and Salon Management Software designed to simplify and automate daily business operations.",
   },
   {
-    q: "Is 7shifts free?",
-    a: "7shifts offers a free plan for small teams, plus paid plans with more advanced features as your team grows.",
+    q: "Is the software cloud-based?",
+    a: "Yes. Our cloud-based solutions can be accessed anytime, anywhere, from any device with an internet connection.",
   },
   {
-    q: "Does 7shifts work for independent restaurants? How about franchisees?",
-    a: "Yes. 7shifts is built to work for single-location independents as well as multi-unit franchise groups.",
+    q: "Can I manage multiple users or branches?",
+    a: "Yes. Depending on your selected plan, you can add multiple users and manage multiple branches or locations from a centralized system.",
   },
   {
-    q: "Will I be locked into a contract?",
-    a: "No, most 7shifts plans are month-to-month with no long-term contract required.",
+    q: "Is my business data secure?",
+    a: "Yes. We use security measures such as secure authentication, role-based access, encrypted data transmission, backups, and access controls to help protect your data.",
   },
   {
-    q: "Can I trial 7shifts?",
-    a: "Yes, you can start a free trial to explore the platform before committing to a paid plan.",
+    q: "Can you customize the software according to my business?",
+    a: "Yes. We can develop custom ERP and Management Systems tailored to your specific business requirements, workflows, and integrations.",
   },
   {
-    q: "Will it be easy for team members to use?",
-    a: "Yes, employees can view schedules, swap shifts, and clock in from the 7shifts mobile app with a simple, intuitive interface.",
-  },
-  {
-    q: "What can managers and employees do with the free restaurant scheduling app?",
-    a: "Managers can build and publish schedules, while employees can view shifts, request time off, and swap shifts—all from the free app.",
+    q: "Do you provide support after purchase?",
+    a: "Yes. We provide technical support and assistance to help you with software setup, usage, troubleshooting, and other service-related queries.",
   },
 ];
 
