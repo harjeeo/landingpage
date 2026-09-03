@@ -41,9 +41,9 @@ const columns = [
 ];
 
 const contacts = [
-  { icon: Call02Icon, label: "Sales", value: "+1 (800) 555-0173" },
-  { icon: Mail01Icon, label: "Support", value: "support@7shifts.com" },
-  { icon: Location01Icon, label: "HQ", value: "Toronto, Canada" },
+  { icon: Call02Icon, label: "Sales", value: "+91-9814522993" },
+  { icon: Mail01Icon, label: "Support", value: "info@designsclue.com" },
+  { icon: Location01Icon, label: "HQ", value: "Ludhiana, Punjab, India" },
 ];
 
 const legalLinks = [
