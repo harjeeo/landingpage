@@ -161,7 +161,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/40 sm:flex-row">
-          <p>&copy; 2026 7shifts. All rights reserved.</p>
+          <p>&copy; 2026 Designs Clue. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-6">
             {legalLinks.map((l) => (
               <Link key={l.to} to={l.to} className="hover:text-white">
