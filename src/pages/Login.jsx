@@ -73,7 +73,7 @@ export default function Login() {
         />
 
         <div className="relative">
-          <Logo height={26} className="text-white" />
+          <Logo height={26} variant="white" />
 
           <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />

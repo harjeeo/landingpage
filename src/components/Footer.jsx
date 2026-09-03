@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import {
-  ChartLineData01Icon,
   Call02Icon,
   Mail01Icon,
   Location01Icon,
   ArrowRight02Icon,
 } from "hugeicons-react";
+import Logo from "./Logo";
 
 const columns = [
   {
@@ -88,11 +88,8 @@ export default function Footer() {
 
         <div className="mt-16 grid gap-12 md:grid-cols-[1.2fr_2fr]">
           <div>
-            <Link to="/" className="flex items-center gap-2 text-xl font-extrabold text-white">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-                <ChartLineData01Icon size={16} strokeWidth={2} />
-              </span>
-              7shifts
+            <Link to="/" className="inline-flex items-center">
+              <Logo height={32} variant="white" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/60">
               The platform behind great restaurant teams. Scheduling, time
