@@ -15,7 +15,7 @@ const plans = [
     icon: FlashIcon,
     name: "Starter",
     desc: "For small teams and single-location restaurants getting started.",
-    price: "29",
+    price: "399",
     note: "per month, billed annually",
     save: "Save ₹70/yr",
     features: [
@@ -37,7 +37,7 @@ const plans = [
     name: "Growth",
     badge: "Most Popular",
     desc: "For growing restaurant groups that want to scale fast.",
-    price: "59",
+    price: "599",
     note: "per month, billed annually",
     save: "Save ₹140/yr",
     everythingIn: "Everything in Starter, plus:",
