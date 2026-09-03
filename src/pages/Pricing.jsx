@@ -17,7 +17,7 @@ const plans = [
     desc: "Essential tools to manage your daily business operations with ease.",
     price: "399",
     note: "per month, billed annually",
-    save: "Save ₹70/yr",
+    save: "Save ₹3,192/yr",
     features: [
       "Cafe/Restaurant POS",
       "Accounting Software",
@@ -42,7 +42,7 @@ const plans = [
     desc: "Advanced tools and automation to streamline operations, improve efficiency, and grow your business faster.",
     price: "599",
     note: "per month, billed annually",
-    save: "Save ₹140/yr",
+    save: "Save ₹4,800/yr",
     everythingIn: "Everything in Starter, plus:",
     features: [
       "School Management System",
@@ -154,7 +154,7 @@ export default function Pricing() {
           >
             Annual
             <span className="rounded-full bg-emerald-500 px-2 py-0.5 text-[11px] font-bold text-white">
-              SAVE 20%
+              SAVE 40%
             </span>
           </button>
         </div>
@@ -197,7 +197,7 @@ export default function Pricing() {
                     <p className={`text-4xl font-extrabold ${textPrimary}`}>Custom</p>
                   ) : (
                     <p className={`text-4xl font-extrabold ${textPrimary}`}>
-                      ₹{billing === "annual" ? plan.price : Math.ceil(plan.price * 1.25)}
+                      ₹{billing === "annual" ? plan.price : Math.ceil(plan.price / 0.6)}
                     </p>
                   )}
                   {plan.note && (
