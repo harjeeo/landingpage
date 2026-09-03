@@ -1,99 +1,105 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  UserAdd01Icon,
-  HelpCircleIcon,
-  Calendar03Icon,
-  Wallet01Icon,
-  RepeatIcon,
+  Restaurant01Icon,
+  Calculator01Icon,
+  UserGroup03Icon,
+  Hotel01Icon,
+  ScissorIcon,
   ArrowRight02Icon,
   Tick02Icon,
 } from "hugeicons-react";
 
 const tabs = [
   {
-    key: "hire",
-    label: "Hire",
-    icon: UserAdd01Icon,
-    heading: "Train",
-    title: "Build consistent skills across roles",
-    desc: "Standardize training across your team, from onboarding to ongoing development.",
+    key: "cafe-restaurant",
+    label: "Cafe/Restaurant",
+    icon: Restaurant01Icon,
+    heading: "Cafe & Restaurant POS",
+    title: "Billing, ordering, and kitchen — all in sync",
+    desc: "Run your cafe or restaurant with fast billing, QR ordering, and a real-time kitchen display, all from one system.",
     bullets: [
-      "Turn existing docs into courses in seconds",
-      "Auto-generate quizzes and acknowledgements",
-      "Assign, track progress, remind automatically",
+      "GST-compliant billing in seconds",
+      "QR menu & table ordering",
+      "Live kitchen display (KDS)",
     ],
-    cta: "Explore Training",
+    cta: "Explore Cafe & Restaurant POS",
+    to: "/pos/cafe-restaurant",
   },
   {
-    key: "train",
-    label: "Train",
-    icon: HelpCircleIcon,
-    heading: "Train",
-    title: "Build consistent skills across roles",
-    desc: "Standardize training across your team, from onboarding to ongoing development.",
+    key: "accounting",
+    label: "Accounting",
+    icon: Calculator01Icon,
+    heading: "Accounting Software",
+    title: "Invoicing and books that stay accurate",
+    desc: "Track invoices, expenses, and GST without spreadsheets or guesswork.",
     bullets: [
-      "Turn existing docs into courses in seconds",
-      "Auto-generate quizzes and acknowledgements",
-      "Assign, track progress, remind automatically",
+      "Automated GST & tax calculations",
+      "Invoicing & expense tracking",
+      "Real-time financial reports",
     ],
-    cta: "Explore Training",
+    cta: "Explore Accounting Software",
+    to: "/accounting-software",
   },
   {
-    key: "schedule",
-    label: "Schedule",
-    icon: Calendar03Icon,
-    heading: "Train",
-    title: "Build consistent skills across roles",
-    desc: "Standardize training across your team, from onboarding to ongoing development.",
+    key: "hr",
+    label: "HR Management",
+    icon: UserGroup03Icon,
+    heading: "HR Management System",
+    title: "Manage your team from hire to payday",
+    desc: "Employee records, attendance, and payroll — handled in one place.",
     bullets: [
-      "Turn existing docs into courses in seconds",
-      "Auto-generate quizzes and acknowledgements",
-      "Assign, track progress, remind automatically",
+      "Attendance & shift tracking",
+      "Payroll processing",
+      "Employee records & documents",
     ],
-    cta: "Explore Training",
+    cta: "Explore HR Management",
+    to: "/apps",
   },
   {
-    key: "pay",
-    label: "Pay",
-    icon: Wallet01Icon,
-    heading: "Train",
-    title: "Build consistent skills across roles",
-    desc: "Standardize training across your team, from onboarding to ongoing development.",
+    key: "hotel",
+    label: "Hotel Management",
+    icon: Hotel01Icon,
+    heading: "Hotel Management System",
+    title: "Bookings and guests, organized",
+    desc: "Manage reservations, check-ins, and guest billing without the back-and-forth.",
     bullets: [
-      "Turn existing docs into courses in seconds",
-      "Auto-generate quizzes and acknowledgements",
-      "Assign, track progress, remind automatically",
+      "Room bookings & availability",
+      "Guest check-in / check-out",
+      "Integrated guest billing",
     ],
-    cta: "Explore Training",
+    cta: "Explore Hotel Management",
+    to: "/apps",
   },
   {
-    key: "retain",
-    label: "Retain",
-    icon: RepeatIcon,
-    heading: "Train",
-    title: "Build consistent skills across roles",
-    desc: "Standardize training across your team, from onboarding to ongoing development.",
+    key: "salon",
+    label: "Salon Management",
+    icon: ScissorIcon,
+    heading: "Salon Management Software",
+    title: "Appointments and clients, simplified",
+    desc: "Book appointments, manage staff schedules, and keep client history handy.",
     bullets: [
-      "Turn existing docs into courses in seconds",
-      "Auto-generate quizzes and acknowledgements",
-      "Assign, track progress, remind automatically",
+      "Appointment scheduling",
+      "Staff & service management",
+      "Client history & billing",
     ],
-    cta: "Explore Training",
+    cta: "Explore Salon Management",
+    to: "/apps",
   },
 ];
 
 export default function WorkSmarter() {
-  const [activeKey, setActiveKey] = useState("train");
+  const [activeKey, setActiveKey] = useState("cafe-restaurant");
   const active = tabs.find((tab) => tab.key === activeKey);
 
   return (
     <section id="features" className="bg-[#eeece4] px-4 py-20">
       <div className="mx-auto max-w-5xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-ink-900 md:text-5xl">
-          Everything your team relies on, working together
+          Everything your business relies on, working together
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-ink-700">
-          7shifts acts as the hub for the workflows behind your team, keeping
+          Ojar acts as the hub for the workflows behind your business, keeping
           key tasks connected in one place.
         </p>
 
@@ -160,13 +166,13 @@ export default function WorkSmarter() {
             ))}
           </ul>
 
-          <a
-            href="#explore"
+          <Link
+            to={active.to}
             className="mt-6 inline-flex items-center gap-1 font-semibold text-ink-900 hover:text-brand-600"
           >
             {active.cta}
             <ArrowRight02Icon size={16} strokeWidth={2.5} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
