@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
@@ -32,6 +33,10 @@ export default function App() {
   const isAuthPage = location.pathname.startsWith("/login");
   const isSuperAdmin = location.pathname.startsWith("/super-admin");
   const hideChrome = isAuthPage || isSuperAdmin;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-white">
