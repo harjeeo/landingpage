@@ -102,7 +102,7 @@ export default function SuperAdminLoginPage() {
 
         {import.meta.env.DEV && (
           <p className="mt-4 text-center text-xs text-(--color-text-muted)">
-            Demo login: owner@orderdashboard.example / password123
+            Demo login: admin@designsclue.com / password
           </p>
         )}
       </div>
