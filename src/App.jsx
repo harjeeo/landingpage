@@ -9,6 +9,11 @@ import Contact from "./pages/Contact";
 import AllApps from "./pages/AllApps";
 import CafeRestaurantPOS from "./pages/CafeRestaurantPOS";
 import AccountingSoftware from "./pages/AccountingSoftware";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import RefundCancellationPolicy from "./pages/RefundCancellationPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import DataSecurityPolicy from "./pages/DataSecurityPolicy";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import SuperAdminLayout from "./layouts/SuperAdminLayout";
@@ -40,6 +45,11 @@ export default function App() {
         <Route path="/apps" element={<AllApps />} />
         <Route path="/pos/cafe-restaurant" element={<CafeRestaurantPOS />} />
         <Route path="/accounting-software" element={<AccountingSoftware />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/refund-cancellation-policy" element={<RefundCancellationPolicy />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
+        <Route path="/data-security-policy" element={<DataSecurityPolicy />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/super-admin" element={<SuperAdminLoginPage />} />

@@ -46,7 +46,13 @@ const contacts = [
   { icon: Location01Icon, label: "HQ", value: "Toronto, Canada" },
 ];
 
-const legalLinks = ["Privacy", "Terms", "Security", "GDPR"];
+const legalLinks = [
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Terms & Conditions", to: "/terms-and-conditions" },
+  { label: "Refund & Cancellation", to: "/refund-cancellation-policy" },
+  { label: "Cookie Policy", to: "/cookie-policy" },
+  { label: "Data Security", to: "/data-security-policy" },
+];
 
 export default function Footer() {
   return (
@@ -161,9 +167,9 @@ export default function Footer() {
           <p>&copy; 2026 7shifts. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-6">
             {legalLinks.map((l) => (
-              <a key={l} href="#" className="hover:text-white">
-                {l}
-              </a>
+              <Link key={l.to} to={l.to} className="hover:text-white">
+                {l.label}
+              </Link>
             ))}
           </div>
         </div>
