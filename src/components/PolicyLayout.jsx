@@ -1,6 +1,6 @@
 import { SparklesIcon } from "hugeicons-react";
 
-export default function PolicyLayout({ badge, title, subtitle, updated, sections }) {
+export default function PolicyLayout({ badge, title, subtitle, updated, intro, sections }) {
   return (
     <>
       <section className="px-4 pb-10 pt-16 md:pt-20">
@@ -30,6 +30,11 @@ export default function PolicyLayout({ badge, title, subtitle, updated, sections
 
       <section className="px-4 pb-24">
         <div className="mx-auto flex max-w-3xl flex-col gap-10">
+          {intro && (
+            <div className="flex flex-col gap-3 text-sm leading-relaxed text-ink-700">
+              {intro}
+            </div>
+          )}
           {sections.map(({ heading, body }) => (
             <div key={heading}>
               <h2 className="text-lg font-bold text-ink-900">{heading}</h2>
