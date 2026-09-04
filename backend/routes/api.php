@@ -15,12 +15,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/me', [AuthController::class, 'me']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 
-    Route::get('/leads', [LeadController::class, 'index']);
-
-    Route::get('/platform-settings', [PlatformSettingController::class, 'show']);
-    Route::patch('/platform-settings', [PlatformSettingController::class, 'update']);
-
     Route::post('/subscriptions/checkout', [SubscriptionController::class, 'checkout']);
     Route::post('/subscriptions/verify', [SubscriptionController::class, 'verify']);
     Route::get('/subscriptions/mine', [SubscriptionController::class, 'mine']);
+
+    Route::middleware('super-admin')->group(function () {
+        Route::get('/leads', [LeadController::class, 'index']);
+
+        Route::get('/platform-settings', [PlatformSettingController::class, 'show']);
+        Route::patch('/platform-settings', [PlatformSettingController::class, 'update']);
+    });
 });
