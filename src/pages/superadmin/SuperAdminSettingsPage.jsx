@@ -272,6 +272,8 @@ export default function SuperAdminSettingsPage() {
                   value={form.razorpayKeyId ?? ""}
                   onChange={(e) => set("razorpayKeyId", e.target.value)}
                   placeholder="rzp_test_xxxxxxxxxxxx"
+                  autoComplete="off"
+                  name="razorpay-key-id-no-autofill"
                   className={`${inputClass} w-full`}
                 />
               </Field>
@@ -283,6 +285,8 @@ export default function SuperAdminSettingsPage() {
                     value={form.razorpayKeySecret ?? ""}
                     onChange={(e) => set("razorpayKeySecret", e.target.value)}
                     placeholder="Paste your key secret here"
+                    autoComplete="new-password"
+                    name="razorpay-key-secret-no-autofill"
                     className={`${inputClass} w-full pr-9`}
                   />
                   <button
