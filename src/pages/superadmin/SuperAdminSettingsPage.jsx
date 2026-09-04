@@ -267,27 +267,36 @@ export default function SuperAdminSettingsPage() {
                 Connect Razorpay to collect subscription payments from clients on Ojar and Designs Clue.
               </p>
 
-              <Field label="Razorpay API Key">
+              <Field label="Razorpay Key ID">
+                <input
+                  value={form.razorpayKeyId ?? ""}
+                  onChange={(e) => set("razorpayKeyId", e.target.value)}
+                  placeholder="rzp_test_xxxxxxxxxxxx"
+                  className={`${inputClass} w-full`}
+                />
+              </Field>
+
+              <Field label="Razorpay Key Secret">
                 <div className="relative">
                   <input
-                    type={showSecret.razorpayKey ? "text" : "password"}
-                    value={form.razorpayKey ?? ""}
-                    onChange={(e) => set("razorpayKey", e.target.value)}
-                    placeholder="rzp_live_xxxxxxxxxxxx"
+                    type={showSecret.razorpayKeySecret ? "text" : "password"}
+                    value={form.razorpayKeySecret ?? ""}
+                    onChange={(e) => set("razorpayKeySecret", e.target.value)}
+                    placeholder="Paste your key secret here"
                     className={`${inputClass} w-full pr-9`}
                   />
                   <button
                     type="button"
-                    onClick={() => setShowSecret((s) => ({ ...s, razorpayKey: !s.razorpayKey }))}
+                    onClick={() => setShowSecret((s) => ({ ...s, razorpayKeySecret: !s.razorpayKeySecret }))}
                     className="absolute right-2.5 top-1/2 -translate-y-1/2 text-(--color-text-muted)"
                   >
-                    {showSecret.razorpayKey ? <ViewOffIcon size={15} strokeWidth={1.8} /> : <ViewIcon size={15} strokeWidth={1.8} />}
+                    {showSecret.razorpayKeySecret ? <ViewOffIcon size={15} strokeWidth={1.8} /> : <ViewIcon size={15} strokeWidth={1.8} />}
                   </button>
                 </div>
               </Field>
               <p className="-mt-2 text-xs text-(--color-text-muted)">
-                From your Razorpay Dashboard → Settings → API Keys. The remaining payment steps (webhooks,
-                subscription plans) come later — this just stores the key for now.
+                From your Razorpay Dashboard → Settings → API Keys. Use your test keys first — checkout on
+                Pricing will use whichever key pair is saved here.
               </p>
             </div>
           )}

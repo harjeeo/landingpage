@@ -53,7 +53,7 @@ export async function changePassword(currentPassword, newPassword) {
 
 // --- Super Admin: Tenant management -------------------------------------
 
-export const TENANT_PLANS = ["Free", "Basic", "Pro"];
+export const TENANT_PLANS = ["Starter", "Growth"];
 
 function mapTenant(t) {
   return {

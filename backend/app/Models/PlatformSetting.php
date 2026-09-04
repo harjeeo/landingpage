@@ -22,9 +22,8 @@ class PlatformSetting extends Model
             'billingEmail' => 'billing@designsclue.com',
             'trialDays' => 7,
             'planPricing' => [
-                'Free' => 0,
-                'Basic' => 1199,
-                'Pro' => 2499,
+                'Starter' => 399,
+                'Growth' => 599,
             ],
             'allowSelfSignup' => true,
             'emailSettings' => [
@@ -38,7 +37,8 @@ class PlatformSetting extends Model
                 'provider' => 'none',
                 'twilio' => ['accountSid' => '', 'authToken' => '', 'fromNumber' => ''],
             ],
-            'razorpayKey' => '',
+            'razorpayKeyId' => '',
+            'razorpayKeySecret' => '',
         ];
     }
 }
