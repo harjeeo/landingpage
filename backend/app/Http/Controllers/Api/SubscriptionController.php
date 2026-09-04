@@ -52,7 +52,11 @@ class SubscriptionController extends Controller
         }
 
         if (! $response->successful()) {
-            return response()->json(['error' => 'Could not create Razorpay order. Check your API keys.'], 502);
+            $razorpayError = $response->json('error.description') ?? $response->body();
+
+            return response()->json([
+                'error' => 'Could not create Razorpay order: '.$razorpayError,
+            ], 502);
         }
 
         $order = $response->json();
