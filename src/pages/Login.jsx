@@ -9,6 +9,7 @@ import {
   ArrowRight02Icon,
 } from "hugeicons-react";
 import Logo from "../components/Logo";
+import * as customerAuth from "../lib/customerAuth";
 
 const highlights = [
   {
@@ -53,11 +54,24 @@ function GoogleIcon() {
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/dashboard");
+    setError("");
+    setSubmitting(true);
+    try {
+      await customerAuth.login(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Login failed");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -120,8 +134,8 @@ export default function Login() {
             ))}
           </div>
           <p className="text-sm text-white/70">
-            <span className="font-semibold text-white">500+ restaurants</span>{" "}
-            trust 7shifts
+            <span className="font-semibold text-white">500+ businesses</span>{" "}
+            trust Ojar
           </p>
         </div>
       </div>
@@ -139,8 +153,9 @@ export default function Login() {
 
           <button
             type="button"
-            onClick={() => navigate("/dashboard")}
-            className="mt-8 flex w-full items-center justify-center gap-2 border border-ink-900/10 py-3 text-sm font-semibold text-ink-900 hover:bg-ink-900/5"
+            disabled
+            title="Coming soon"
+            className="mt-8 flex w-full items-center justify-center gap-2 border border-ink-900/10 py-3 text-sm font-semibold text-ink-900 opacity-50"
             style={{ borderRadius: "9999px" }}
           >
             <GoogleIcon />
@@ -162,6 +177,8 @@ export default function Login() {
               </span>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="owner@restaurant.com"
                 className="border border-ink-900/10 bg-ink-900/[0.02] px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400"
                 style={{ borderRadius: "12px" }}
@@ -180,6 +197,8 @@ export default function Login() {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   className="w-full border border-ink-900/10 bg-ink-900/[0.02] px-4 py-3 pr-11 text-sm text-ink-900 placeholder:text-ink-400"
                   style={{ borderRadius: "12px" }}
@@ -199,21 +218,24 @@ export default function Login() {
               </div>
             </label>
 
+            {error && <p className="text-xs font-semibold text-red-500">{error}</p>}
+
             <button
               type="submit"
-              className="mt-1 inline-flex items-center justify-center gap-2 bg-ink-900 py-3.5 text-sm font-semibold text-white hover:bg-ink-900/90"
+              disabled={submitting}
+              className="mt-1 inline-flex items-center justify-center gap-2 bg-ink-900 py-3.5 text-sm font-semibold text-white hover:bg-ink-900/90 disabled:opacity-60"
               style={{ borderRadius: "9999px" }}
             >
-              Sign in
+              {submitting ? "Signing in…" : "Sign in"}
               <ArrowRight02Icon size={16} strokeWidth={2.5} />
             </button>
           </form>
 
           <p className="mt-6 text-center text-sm text-ink-500">
-            New to 7shifts?{" "}
-            <a href="#signup" className="font-semibold text-ink-900 underline">
+            New to Ojar?{" "}
+            <Link to="/pricing" className="font-semibold text-ink-900 underline">
               Start your free trial
-            </a>
+            </Link>
           </p>
         </div>
       </div>

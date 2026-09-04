@@ -218,10 +218,10 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           {isDashboard ? (
             <Link
-              to={appShellHref}
+              to="/dashboard"
               className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
             >
-              {appShellLabel}
+              My Dashboard
             </Link>
           ) : (
             <>
@@ -302,11 +302,11 @@ export default function Navbar() {
           <div className="mt-4 flex flex-col gap-2">
             {isDashboard ? (
               <Link
-                to={appShellHref}
+                to="/dashboard"
                 onClick={() => setOpen(false)}
                 className="rounded-full bg-brand-600 px-5 py-2.5 text-center text-[15px] font-semibold text-white hover:bg-brand-700"
               >
-                {appShellLabel}
+                My Dashboard
               </Link>
             ) : (
               <>

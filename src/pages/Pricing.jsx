@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   SparklesIcon,
   FlashIcon,
@@ -233,8 +234,12 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <a
-                  href={plan.key === "enterprise" ? "#contact-us" : "#get-started"}
+                <Link
+                  to={
+                    plan.key === "enterprise"
+                      ? "/contact"
+                      : `/checkout?plan=${plan.name}&billing=${billing}`
+                  }
                   className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold ${
                     plan.dark
                       ? "bg-white text-ink-900 hover:bg-white/90"
@@ -245,7 +250,7 @@ export default function Pricing() {
                 >
                   {plan.cta}
                   <ArrowRight02Icon size={16} strokeWidth={2.5} />
-                </a>
+                </Link>
                 <p className={`mt-3 text-center text-xs ${textMuted}`}>{plan.footnote}</p>
               </div>
             );

@@ -17,6 +17,7 @@ import CookiePolicy from "./pages/CookiePolicy";
 import DataSecurityPolicy from "./pages/DataSecurityPolicy";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
 import SuperAdminLayout from "./layouts/SuperAdminLayout";
 import SuperAdminLoginPage from "./pages/superadmin/SuperAdminLoginPage";
 import SuperAdminDashboardPage from "./pages/superadmin/SuperAdminDashboardPage";
@@ -32,7 +33,8 @@ export default function App() {
   const location = useLocation();
   const isAuthPage = location.pathname.startsWith("/login");
   const isSuperAdmin = location.pathname.startsWith("/super-admin");
-  const hideChrome = isAuthPage || isSuperAdmin;
+  const isCheckout = location.pathname.startsWith("/checkout");
+  const hideChrome = isAuthPage || isSuperAdmin || isCheckout;
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -56,6 +58,7 @@ export default function App() {
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/data-security-policy" element={<DataSecurityPolicy />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/super-admin" element={<SuperAdminLoginPage />} />
         <Route
