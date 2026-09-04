@@ -30,7 +30,7 @@ function SuperAdminLink({ to, label, icon: Icon, end = false }) {
       className={({ isActive }) =>
         `flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
           isActive
-            ? "bg-black/5 font-medium text-(--color-text) dark:bg-white/10"
+            ? "bg-(--color-accent)/10 font-medium text-(--color-accent)"
             : "text-(--color-text-muted) hover:bg-black/5 dark:hover:bg-white/10"
         }`
       }
