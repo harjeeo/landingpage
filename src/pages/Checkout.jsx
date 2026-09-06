@@ -19,7 +19,7 @@ const PLAN_BASE_PRICE = { Starter: 399, Growth: 599 };
 
 function planPrice(plan, billingCycle) {
   const base = PLAN_BASE_PRICE[plan] ?? 0;
-  return billingCycle === "annual" ? base : Math.ceil(base / 0.6);
+  return billingCycle === "annual" ? Math.round(base * 0.6) : base;
 }
 
 const inputClass =

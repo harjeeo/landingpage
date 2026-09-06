@@ -16,9 +16,7 @@ const plans = [
     icon: FlashIcon,
     name: "Starter",
     desc: "Essential tools to manage your daily business operations with ease.",
-    price: "399",
-    note: "per month, billed annually",
-    save: "Save ₹3,192/yr",
+    price: 399,
     features: [
       "Cafe/Restaurant POS",
       "Accounting Software",
@@ -41,9 +39,7 @@ const plans = [
     name: "Growth",
     badge: "Most Popular",
     desc: "Advanced tools and automation to streamline operations, improve efficiency, and grow your business faster.",
-    price: "599",
-    note: "per month, billed annually",
-    save: "Save ₹4,800/yr",
+    price: 599,
     everythingIn: "Everything in Starter, plus:",
     features: [
       "School Management System",
@@ -170,6 +166,15 @@ export default function Pricing() {
               ? "bg-white/10 text-white"
               : "bg-brand-50 text-brand-600";
 
+            const isCustom = plan.price === "Custom";
+            const annualMonthlyPrice = isCustom ? 0 : Math.round(plan.price * 0.6);
+            const displayPrice = isCustom
+              ? "Custom"
+              : billing === "annual"
+                ? annualMonthlyPrice
+                : plan.price;
+            const annualSavings = isCustom ? 0 : plan.price * 12 - annualMonthlyPrice * 12;
+
             return (
               <div
                 key={plan.key}
@@ -194,19 +199,21 @@ export default function Pricing() {
                 <p className={`mt-3 text-sm ${textMuted}`}>{plan.desc}</p>
 
                 <div className="mt-6">
-                  {plan.price === "Custom" ? (
+                  {isCustom ? (
                     <p className={`text-4xl font-extrabold ${textPrimary}`}>Custom</p>
                   ) : (
                     <p className={`text-4xl font-extrabold ${textPrimary}`}>
-                      ₹{billing === "annual" ? plan.price : Math.ceil(plan.price / 0.6)}
+                      ₹{displayPrice}
                     </p>
                   )}
-                  {plan.note && (
-                    <p className={`mt-1 text-sm ${textMuted}`}>{plan.note}</p>
+                  {!isCustom && (
+                    <p className={`mt-1 text-sm ${textMuted}`}>
+                      {billing === "annual" ? "per month, billed annually" : "per month"}
+                    </p>
                   )}
-                  {plan.save && billing === "annual" && (
+                  {!isCustom && billing === "annual" && (
                     <p className="mt-0.5 text-sm font-semibold text-emerald-500">
-                      {plan.save}
+                      Save ₹{annualSavings.toLocaleString("en-IN")}/yr
                     </p>
                   )}
                 </div>

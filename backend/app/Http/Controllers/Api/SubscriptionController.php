@@ -34,8 +34,8 @@ class SubscriptionController extends Controller
 
         $monthlyPrice = (int) ($settings['planPricing'][$data['plan']] ?? 0);
         $amountInRupees = $data['billingCycle'] === 'annual'
-            ? $monthlyPrice * 12
-            : (int) ceil($monthlyPrice / 0.6);
+            ? (int) round($monthlyPrice * 0.6) * 12
+            : $monthlyPrice;
         $amountInPaise = $amountInRupees * 100;
 
         $receipt = 'sub_'.uniqid();
