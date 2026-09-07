@@ -1,41 +1,52 @@
 import {
   SparklesIcon,
   Location01Icon,
-  ChefHatIcon,
-  UserGroupIcon,
+  Store01Icon,
+  CloudIcon,
   FlashIcon,
   CompassIcon,
   Shield01Icon,
 } from "hugeicons-react";
 
 const storyStats = [
-  { icon: Location01Icon, label: "Built In", value: "Toronto, Canada" },
-  { icon: ChefHatIcon, label: "Tested In", value: "500+ restaurants, every shift" },
-  { icon: UserGroupIcon, label: "Trusted By", value: "Restaurants, bars, cafes" },
+  { icon: Location01Icon, label: "Built In", value: "Ludhiana, Punjab, India" },
+  {
+    icon: Store01Icon,
+    label: "Built For",
+    value: "Restaurants, hotels, salons & businesses",
+  },
+  {
+    icon: CloudIcon,
+    label: "Powered By",
+    value: "Smart software, automation & cloud technology",
+  },
 ];
 
 const principles = [
   {
     icon: FlashIcon,
-    title: "Built for the rush",
-    desc: "Every interaction is measured against a Friday dinner rush. A schedule publishes in seconds. A shift swap gets approved before the next order fires. If a screen makes a manager wait, we cut it.",
+    title: "Built for simplicity",
+    subtitle: "Powerful tools without unnecessary complexity.",
+    desc: "We design every feature to be easy to understand, quick to use, and practical for real businesses.",
   },
   {
     icon: CompassIcon,
-    title: "Clarity over cleverness",
-    desc: "Restaurant staff change often. Servers, cooks, hosts. Anyone opening the app for the first time should be productive within a minute. We resist the urge to add a setting where a sensible default works.",
+    title: "Smarter operations",
+    subtitle: "Less manual work, more productivity.",
+    desc: "From billing and accounting to HR and daily operations, we help businesses automate tasks and work more efficiently.",
   },
   {
     icon: Shield01Icon,
-    title: "Reliability is the feature",
-    desc: "The schedule needs to post on time. The clock-in needs to work service after service. We design the system for the reality of a restaurant floor, not for a demo.",
+    title: "Security & reliability",
+    subtitle: "Your business data deserves protection.",
+    desc: "We focus on secure systems, reliable cloud infrastructure, and dependable software you can count on every day.",
   },
 ];
 
 const numbers = [
-  { value: "500+", label: "Active Restaurants" },
-  { value: "2M+", label: "Shifts Scheduled" },
-  { value: "30 min", label: "Average Setup Time" },
+  { value: "270+", label: "Active Businesses" },
+  { value: "24/7", label: "Cloud Access" },
+  { value: "15 min", label: "Average Setup Time" },
   { value: "99.9%", label: "Platform Uptime" },
 ];
 
@@ -61,19 +72,18 @@ export default function About() {
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-600">
             <SparklesIcon size={14} strokeWidth={2} />
             <span style={{ fontFamily: "var(--font-hand)", fontSize: "20px" }}>
-              About 7shifts
+              About Ojar
             </span>
           </span>
 
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-ink-900 md:text-5xl">
-            Built for people who run restaurants.
+            Built for people who run businesses.
             <br />
             <span className="italic text-brand-600">Not the other way around.</span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-lg text-ink-700">
-            We started 7shifts because scheduling software wasn't built by
-            people who'd actually worked a shift.
+            We started Ojar to make business management simpler, faster, and unified.
           </p>
         </div>
       </section>
@@ -83,21 +93,24 @@ export default function About() {
           <div>
             <SectionLabel>Our Story</SectionLabel>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-ink-900 md:text-4xl">
-              Restaurant software built by people who've worked a shift.
+              Software built to simplify the way businesses work.
             </h2>
 
             <p className="mt-6 text-ink-700">
-              7shifts started with a shift schedule taped to a kitchen wall.
-              The software available to restaurant operators was either a
-              clunky enterprise HR suite or a spreadsheet nobody trusted.
+              We started with a simple idea — businesses shouldn’t have to
+              manage their operations across multiple disconnected tools. From
+              billing and accounting to employees, customers, and daily
+              operations, everything should work together in one place.
             </p>
             <p className="mt-4 text-ink-700">
-              So we built what we wished existed: a scheduling and team
-              management platform that works from your phone, survives a
-              no-call-no-show, and feels obvious to a server working their
-              first shift. Thousands of restaurants later, it still has to
-              pass the same test: would a new manager be able to build next
-              week's schedule in ten minutes?
+              So we built a powerful suite of business management solutions
+              designed for restaurants, hotels, salons, and growing businesses —
+              helping teams save time, stay organized, and make smarter
+              decisions.
+            </p>
+            <p className="mt-4 text-ink-700">
+              Today, our goal remains simple: make business management easier,
+              smarter, and more efficient.
             </p>
           </div>
 
@@ -138,15 +151,15 @@ export default function About() {
         <div className="mx-auto max-w-5xl">
           <SectionLabel>What We Believe</SectionLabel>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 md:text-4xl">
-            Three principles, not twelve.
+            Three principles that guide everything we build.
           </h2>
-          <p className="mt-3 max-w-xl text-ink-700">
-            Most software companies have a wall of values. We stuck with the
-            three that actually decide whether we ship a feature.
+          <p className="mt-3 max-w-2xl text-ink-700">
+            We believe great business software should be simple to use, powerful
+            enough to scale, and reliable enough for everyday operations.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {principles.map(({ icon: Icon, title, desc }) => (
+            {principles.map(({ icon: Icon, title, subtitle, desc }) => (
               <div
                 key={title}
                 className="border border-ink-900/5 bg-white p-6"
@@ -156,6 +169,11 @@ export default function About() {
                   <Icon size={20} strokeWidth={2} />
                 </span>
                 <h3 className="mt-4 text-lg font-bold text-ink-900">{title}</h3>
+                {subtitle && (
+                  <p className="mt-1 text-sm font-semibold text-ink-700">
+                    {subtitle}
+                  </p>
+                )}
                 <p className="mt-2 text-sm text-ink-500">{desc}</p>
               </div>
             ))}
@@ -167,7 +185,7 @@ export default function About() {
         <div className="mx-auto max-w-5xl">
           <SectionLabel>By The Numbers</SectionLabel>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 md:text-4xl">
-            Numbers we can actually show you.
+            Built with purpose. Real value for everyday businesses.
           </h2>
 
           <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">

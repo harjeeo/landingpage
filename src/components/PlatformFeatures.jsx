@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
 import {
-  ComputerIcon,
-  QrCodeIcon,
-  ChefHatIcon,
-  PackageIcon,
-  UserGroupIcon,
+  CreditCardPosIcon,
+  RestaurantTableIcon,
+  Invoice01Icon,
   ChartBarLineIcon,
-  Sofa01Icon,
-  GlobeIcon,
-  Megaphone01Icon,
+  UserGroup03Icon,
+  Wallet01Icon,
+  Hotel01Icon,
+  BedSingle01Icon,
+  Calendar01Icon,
+  CreditCardIcon,
+  PackageIcon,
+  LoyaltyCardIcon,
   ArrowRight02Icon,
 } from "hugeicons-react";
 
@@ -24,67 +28,100 @@ const colors = {
 
 const features = [
   {
-    icon: ComputerIcon,
+    icon: CreditCardPosIcon,
     tag: "Core POS",
     color: "blue",
     title: "Billing & Invoicing",
-    desc: "GST-compliant billing in under 3 seconds. UPI, cards, wallets, cash — all in one flow.",
+    desc: "Fast billing, GST invoices, UPI, cards, cash & digital payments.",
+    to: "/pos/cafe-restaurant",
   },
   {
-    icon: QrCodeIcon,
-    tag: "Self-Ordering",
+    icon: RestaurantTableIcon,
+    tag: "Restaurant",
     color: "green",
-    title: "QR Menu & Ordering",
-    desc: "Each table gets a unique QR. Customers scan, browse, order and pay — zero app install.",
+    title: "Orders & Table Management",
+    desc: "Manage dine-in, takeaway, KOT, tables and restaurant orders easily.",
+    to: "/pos/cafe-restaurant",
   },
   {
-    icon: ChefHatIcon,
-    tag: "Kitchen",
-    color: "red",
-    title: "Kitchen Display (KDS)",
-    desc: "Live KOT streaming to your kitchen screen. Eliminate paper tickets and missed orders.",
-  },
-  {
-    icon: PackageIcon,
-    tag: "Operations",
-    color: "orange",
-    title: "Inventory Management",
-    desc: "Real-time stock, low-stock alerts, batch expiry tracking, multi-warehouse control.",
-  },
-  {
-    icon: UserGroupIcon,
-    tag: "Marketing",
-    color: "pink",
-    title: "CRM & Loyalty",
-    desc: "Reward points, customer profiles, and visit tracking — automated. Bring customers back.",
+    icon: Invoice01Icon,
+    tag: "Accounting",
+    color: "indigo",
+    title: "Invoicing & GST",
+    desc: "Create professional invoices, manage GST and track every transaction.",
+    to: "/accounting-software",
   },
   {
     icon: ChartBarLineIcon,
-    tag: "Reports",
+    tag: "Finance",
     color: "purple",
-    title: "Cloud Analytics",
-    desc: "Sales trends, top dishes, staff performance, multi-outlet view — on any device.",
+    title: "Expenses & Financial Reports",
+    desc: "Track income, expenses, purchases and get clear financial insights.",
+    to: "/accounting-software",
   },
   {
-    icon: Sofa01Icon,
-    tag: "Dine-In",
-    color: "indigo",
-    title: "Table Seating & Layouts",
-    desc: "Design interactive layouts, track real-time occupancy status, reservations, and coordinate waitstaff.",
+    icon: UserGroup03Icon,
+    tag: "HR & Team",
+    color: "pink",
+    title: "Employee & Attendance",
+    desc: "Manage employee profiles, attendance, shifts and working hours.",
+    to: "/apps",
   },
   {
-    icon: GlobeIcon,
-    tag: "Online",
+    icon: Wallet01Icon,
+    tag: "Payroll",
+    color: "orange",
+    title: "Payroll & Leave Management",
+    desc: "Automate salary processing, payslips, leave tracking and payroll records.",
+    to: "/apps",
+  },
+  {
+    icon: Hotel01Icon,
+    tag: "Hospitality",
     color: "cyan",
-    title: "eStore & Online Orders",
-    desc: "Your branded online store. Accept from your website, or integrate aggregators via webhooks.",
+    title: "Reservations & Guest Management",
+    desc: "Manage room bookings, guest details, check-ins and check-outs.",
+    to: "/apps",
   },
   {
-    icon: Megaphone01Icon,
-    tag: "Marketing",
+    icon: BedSingle01Icon,
+    tag: "Rooms",
+    color: "blue",
+    title: "Rooms & Billing",
+    desc: "Track room availability, room status, services and guest billing.",
+    to: "/apps",
+  },
+  {
+    icon: Calendar01Icon,
+    tag: "Appointments",
+    color: "red",
+    title: "Appointments & Customer Management",
+    desc: "Manage bookings, customer profiles, services and appointment schedules.",
+    to: "/apps",
+  },
+  {
+    icon: CreditCardIcon,
+    tag: "Operations",
     color: "green",
-    title: "Native Promotions",
-    desc: "Digital loyalty wallets, internal push offers, and targeted customer segmentation.",
+    title: "Billing & Staff Management",
+    desc: "Handle billing, staff schedules, commissions and daily salon operations.",
+    to: "/apps",
+  },
+  {
+    icon: PackageIcon,
+    tag: "Services",
+    color: "indigo",
+    title: "Service & Package Management",
+    desc: "Create and manage services, packages, pricing, durations, and special offers with ease.",
+    to: "/apps",
+  },
+  {
+    icon: LoyaltyCardIcon,
+    tag: "Loyalty",
+    color: "pink",
+    title: "Membership & Loyalty Management",
+    desc: "Manage memberships, loyalty points, rewards, and repeat-customer benefits to increase retention.",
+    to: "/apps",
   },
 ];
 
@@ -104,8 +141,8 @@ export default function PlatformFeatures() {
         </p>
       </div>
 
-      <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
-        {features.map(({ icon: Icon, tag, color, title, desc }) => {
+      <div className="mx-auto mt-12 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {features.map(({ icon: Icon, tag, color, title, desc, to }) => {
           const c = colors[color];
           return (
             <div
@@ -129,13 +166,13 @@ export default function PlatformFeatures() {
               <h3 className="mt-4 text-lg font-bold text-ink-900">{title}</h3>
               <p className="mt-2 text-sm text-ink-500">{desc}</p>
 
-              <a
-                href="#"
+              <Link
+                to={to || "#"}
                 className={`mt-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wide ${c.text} hover:opacity-80`}
               >
                 Learn more
                 <ArrowRight02Icon size={14} strokeWidth={2.5} />
-              </a>
+              </Link>
             </div>
           );
         })}

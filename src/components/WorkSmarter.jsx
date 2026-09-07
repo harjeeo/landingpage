@@ -15,6 +15,8 @@ const tabs = [
     key: "cafe-restaurant",
     label: "Cafe/Restaurant",
     icon: Restaurant01Icon,
+    image: "/images/cafe-restaurant-pos.jpg",
+    imageAlt: "Cafe and Restaurant POS system",
     heading: "Cafe & Restaurant POS",
     title: "Billing, ordering, and kitchen — all in sync",
     desc: "Run your cafe or restaurant with fast billing, QR ordering, and a real-time kitchen display, all from one system.",
@@ -30,6 +32,8 @@ const tabs = [
     key: "accounting",
     label: "Accounting",
     icon: Calculator01Icon,
+    image: "/images/accounting-software.jpg",
+    imageAlt: "Accounting software and financial management",
     heading: "Accounting Software",
     title: "Invoicing and books that stay accurate",
     desc: "Track invoices, expenses, and GST without spreadsheets or guesswork.",
@@ -45,6 +49,8 @@ const tabs = [
     key: "hr",
     label: "HR Management",
     icon: UserGroup03Icon,
+    image: "/images/hr-management.jpg",
+    imageAlt: "HR Management and team collaboration",
     heading: "HR Management System",
     title: "Manage your team from hire to payday",
     desc: "Employee records, attendance, and payroll — handled in one place.",
@@ -136,8 +142,18 @@ export default function WorkSmarter() {
         className="mx-auto mt-8 flex max-w-5xl flex-col overflow-hidden bg-white text-left md:flex-row"
         style={{ borderRadius: "20px" }}
       >
-        <div className="flex aspect-square w-full items-center justify-center bg-ink-900/5 text-2xl font-semibold text-ink-500 md:w-1/2">
-          IMAGE
+        <div className="relative aspect-square w-full overflow-hidden bg-ink-900/5 md:w-1/2">
+          {active.image ? (
+            <img
+              src={active.image}
+              alt={active.imageAlt || active.heading}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-2xl font-semibold text-ink-500">
+              IMAGE
+            </div>
+          )}
         </div>
 
         <div className="flex w-full flex-col justify-center p-8 md:w-1/2 md:p-12">

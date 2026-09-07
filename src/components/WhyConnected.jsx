@@ -1,15 +1,15 @@
 import { Cancel01Icon, Tick02Icon } from "hugeicons-react";
 
 const oldWay = [
-  "Shift and team information scattered",
-  "More manual follow-up",
-  "Slower, reactionary decisions",
+  "Data scattered across different systems",
+  "More manual work and follow-ups",
+  "Difficult to track business performance",
 ];
 
 const withUs = [
-  "Everything you need in one place",
-  "Fewer gaps between tasks",
-  "Faster, more confident decisions",
+  "Everything your business needs in one place",
+  "Streamlined operations with less manual work",
+  "Faster decisions with real-time business insights",
 ];
 
 export default function WhyConnected() {
@@ -17,11 +17,12 @@ export default function WhyConnected() {
     <section className="px-4 py-20">
       <div className="mx-auto max-w-5xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-ink-900 md:text-5xl">
-          Why connected work wins
+          Why smarter business management wins
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-ink-700">
-          When your team works from one place, it's easier to stay
-          organized, act faster, and keep shifts running smoothly.
+          When your operations, people, finances, and customers work from one
+          platform, it's easier to stay organized, save time, and grow your
+          business.
         </p>
 
         <div className="mt-10 grid gap-6 text-left md:grid-cols-2">
@@ -33,7 +34,7 @@ export default function WhyConnected() {
               The old way
             </p>
             <h3 className="mt-1 text-2xl font-extrabold tracking-tight text-ink-900">
-              Disconnected tools, less clarity
+              Disconnected tools, more work
             </h3>
 
             <ul className="mt-8 flex flex-col gap-4">
@@ -53,10 +54,10 @@ export default function WhyConnected() {
               className="text-2xl text-white"
               style={{ fontFamily: "var(--font-hand)" }}
             >
-              With 7shifts
+              With Our Platform
             </p>
             <h3 className="mt-1 text-2xl font-extrabold tracking-tight text-white">
-              Connected system, clearer next steps
+              One connected system, complete control
             </h3>
 
             <ul className="mt-8 flex flex-col gap-4">
@@ -76,7 +77,7 @@ export default function WhyConnected() {
           href="#get-started"
           className="mt-10 inline-flex items-center rounded-full bg-brand-600 px-6 py-3 text-base font-semibold text-white hover:bg-brand-700"
         >
-          Get my free trial
+          Start for Free - No Subscription
         </a>
       </div>
     </section>

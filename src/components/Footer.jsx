@@ -64,10 +64,11 @@ export default function Footer() {
         >
           <div>
             <h2 className="text-2xl font-extrabold text-white">
-              Ready to upgrade your restaurant?
+              Ready to simplify your business?
             </h2>
             <p className="mt-1 text-white/60">
-              Join 500+ restaurants running on 7shifts today.
+              Manage your operations, finances, team, and customers with one
+              powerful platform.
             </p>
           </div>
           <div className="flex flex-shrink-0 items-center gap-3">
@@ -75,7 +76,7 @@ export default function Footer() {
               href="#get-started"
               className="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
             >
-              Start Free Trial
+              Get Started
             </a>
             <a
               href="#contact-us"
@@ -92,12 +93,17 @@ export default function Footer() {
               <Logo height={32} variant="white" />
             </Link>
             <p className="mt-4 max-w-xs text-sm text-white/60">
-              The platform behind great restaurant teams. Scheduling, time
-              tracking, and payroll, built for the way restaurants work.
+              The platform built for smarter business management. POS,
+              accounting, HR, hotel, and salon management — all in one powerful
+              platform.
             </p>
 
             <p className="mt-8 text-sm font-semibold text-white">
-              Subscribe to Industry Insights
+              Subscribe to Business Insights
+            </p>
+            <p className="mt-1 max-w-xs text-xs text-white/60">
+              Get useful tips, product updates & business insights delivered to
+              your inbox.
             </p>
             <form className="mt-2 flex max-w-xs items-center gap-2">
               <input
