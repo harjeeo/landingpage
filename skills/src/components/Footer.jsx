@@ -82,10 +82,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Navigation Links (Matching Navbar) */}
+        {/* Quick Links & Get in Touch */}
         <div className="md:col-span-2 lg:col-span-5 grid grid-cols-2 gap-8 sm:gap-10">
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white">Navigation</h4>
+            <h4 className="text-sm font-bold text-white">Quick Links</h4>
             <ul className="space-y-2.5 text-xs text-[#a1a1aa]">
               <li>
                 <Link to="/courses" className="hover:text-white transition-colors">
@@ -106,17 +106,37 @@ export default function Footer() {
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white">Account</h4>
+            <h4 className="text-sm font-bold text-white">Get in Touch</h4>
             <ul className="space-y-2.5 text-xs text-[#a1a1aa]">
               <li>
-                <Link to="/login" className="hover:text-white transition-colors">
-                  Login
-                </Link>
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Facebook
+                </a>
               </li>
               <li>
-                <Link to="/signup" className="hover:text-white transition-colors">
-                  Sign up
-                </Link>
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Linkedin
+                </a>
               </li>
             </ul>
           </div>

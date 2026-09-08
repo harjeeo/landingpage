@@ -110,7 +110,7 @@ const COURSE_DATA = {
     categoryBadge: '✨ Next-Gen UI & AI Masterclass',
     description: 'Learn how to create world-class UI designs, build scalable design systems in Figma, and accelerate your creative workflow using cutting-edge AI design tools.',
     coverImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
-    price: '$300',
+    price: '₹2,999',
     students: '2,400+ Students',
     rating: '5.0 Rating (340+ Reviews)',
     duration: '16+ Hours HD Video',
@@ -172,6 +172,112 @@ const COURSE_DATA = {
           </svg>
         )
       }
+    ],
+    modules: [
+      {
+        title: "Module 01 — UI/UX Design Fundamentals",
+        lessonsCount: "8 lessons • 1 hour 15 min",
+        lessons: [
+          "UI vs UX — Understanding the Difference",
+          "Design Thinking & User-Centered Design",
+          "Visual Hierarchy & Layout Principles",
+          "Typography & Font Pairing",
+          "Color Theory & Design Systems",
+          "Spacing, Grids & Alignment",
+          "Common UI Design Mistakes",
+          "Understanding Modern Digital Products"
+        ]
+      },
+      {
+        title: "Module 02 — Figma From Zero to Pro",
+        lessonsCount: "8 lessons • 1 hour 30 min",
+        lessons: [
+          "Figma Interface & Essential Tools",
+          "Frames, Layers, Shapes & Components",
+          "Auto Layout & Responsive Design",
+          "Constraints & Layout Grids",
+          "Components & Variants",
+          "Styles, Variables & Design Tokens",
+          "Prototyping & Interactive Flows",
+          "Developer Handoff & Collaboration"
+        ]
+      },
+      {
+        title: "Module 03 — UX Process & Interface Planning",
+        lessonsCount: "8 lessons • 1 hour 20 min",
+        lessons: [
+          "Understanding User Needs",
+          "User Personas & User Journeys",
+          "Information Architecture",
+          "User Flows",
+          "Wireframing — Low to High Fidelity",
+          "Designing Web & Mobile Experiences",
+          "UX Research Basics",
+          "Turning Ideas into Practical UI Solutions"
+        ]
+      },
+      {
+        title: "Module 04 — Advanced UI Design & Design Systems",
+        lessonsCount: "8 lessons • 1 hour 35 min",
+        lessons: [
+          "Creating Professional Design Systems",
+          "Color & Typography Systems",
+          "Components & Component Libraries",
+          "Responsive Web Design",
+          "Mobile App UI Design",
+          "Forms, Tables, Dashboards & Complex Interfaces",
+          "Accessibility & Usability",
+          "Creating Consistent Product Experiences"
+        ]
+      },
+      {
+        title: "Module 05 — AI-Powered UI Design",
+        lessonsCount: "10 lessons • 1 hour 45 min",
+        lessons: [
+          "Introduction to AI in UI/UX Design",
+          "Figma AI for Design Workflows",
+          "AI-Assisted Content & UI Generation",
+          "Using AI for Design Ideas & Variations",
+          "Prompting for UI/UX Design",
+          "Google Stitch — Turning Ideas/Prompts into UI Concepts",
+          "Exploring AI-generated layouts & interfaces",
+          "Refining AI-generated designs manually",
+          "AI + Figma Workflow",
+          "Where AI Helps — and Where Designers Still Matter"
+        ]
+      },
+      {
+        title: "Module 06 — Real-World UI Design Project",
+        lessonsCount: "10 lessons • 2 hours",
+        lessons: [
+          "Project Brief & Requirement Analysis",
+          "Competitor & Product Research",
+          "Sitemap & User Flow",
+          "Wireframes",
+          "Creating the Visual Direction",
+          "Designing Complete UI Screens",
+          "Responsive Desktop & Mobile Versions",
+          "Interactive Prototype",
+          "Design Review & Iteration",
+          "Final UI Presentation"
+        ]
+      },
+      {
+        title: "Module 07 — Portfolio, Freelancing & Career",
+        lessonsCount: "10 lessons • 1 hour 50 min",
+        lessons: [
+          "Creating a Professional UI/UX Portfolio",
+          "Turning Projects into Case Studies",
+          "Presenting Your Design Process",
+          "Figma Prototype Presentation",
+          "Creating Portfolio on Behance / Personal Website",
+          "Building a Strong Designer Profile",
+          "Finding Freelance UI Design Projects",
+          "Client Communication & Design Presentation",
+          "Preparing for UI/UX Design Interviews",
+          "How to Keep Learning in the AI Era"
+        ]
+      }
     ]
   },
   'shopify-1-week-master-course': {
@@ -181,7 +287,7 @@ const COURSE_DATA = {
     categoryBadge: '🛍️ Shopify Masterclass',
     description: 'Learn how to build, design, customize, and launch a complete professional Shopify store from scratch in just 7 days.',
     coverImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-    price: '$300',
+    price: '₹2,999',
     students: '650+ Students',
     rating: '4.9 Rating (120+ Reviews)',
     duration: '8+ Hours HD Video',
@@ -361,7 +467,7 @@ const COURSE_DATA = {
     categoryBadge: '🎨 Graphic Design & AI Masterclass',
     description: 'Master graphic design fundamentals, typography, branding, visual hierarchy, marketing visuals, and cutting-edge generative AI design workflows in just 7 days.',
     coverImage: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
-    price: '$300',
+    price: '₹2,999',
     students: '1,500+ Students',
     rating: '5.0 Rating (Loved by creators, designers & marketing professionals)',
     duration: '7 Days • 10+ Hours HD Video',
@@ -556,7 +662,7 @@ const COURSE_DATA = {
     categoryBadge: '⚡ Figma Masterclass',
     description: 'Learn advanced Figma workflows, Auto-Layout 5.0, variables, design tokens, interactive prototyping, building component libraries, and developer handoff.',
     coverImage: 'https://cdn.prod.website-files.com/65c0868c26990d4c1ce3b302/6859ea31e0fe32b922f07293_Course%20Cover_The%20Ultimate%20Figma%20Masterclass%20Course%202.0%20-%20Study%201%20(1)%20(1)%20(1)%201.jpg',
-    price: '$300',
+    price: '₹2,999',
     students: '8,500+ Students',
     rating: '4.9 Rating (500+ Reviews)',
     duration: '10+ Hours HD Video',
@@ -733,7 +839,7 @@ const COURSE_DATA = {
     categoryBadge: '🤖 AI & Graphic Design',
     description: 'Master Adobe Photoshop, Illustrator, Affinity, and AI Design Tools through live practical training, real-world projects, portfolio development.',
     coverImage: 'https://cdn.prod.website-files.com/65c1ae21fb2191466dd6ce72/661f382c9213e7e0719aefb1_Major%20Updates%20Designership_Cover.jpg',
-    price: '$300',
+    price: '₹2,999',
     students: '1,500+ Students',
     rating: '4.9 Rating (240+ Reviews)',
     duration: '12+ Hours HD Video',
@@ -998,7 +1104,7 @@ const COURSE_DATA = {
     categoryBadge: '🎨 UX/UI Design',
     description: 'Master the complete product design lifecycle: user research, personas, wireframing, high-fidelity UI visual design, interactive usability testing, and client handoff.',
     coverImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
-    price: '$300',
+    price: '₹2,999',
     students: '800+ Students',
     rating: '4.9 Rating (180+ Reviews)',
     duration: '14+ Hours HD Video',
@@ -1152,7 +1258,7 @@ function getCourseData(rawSlug) {
     categoryBadge: `🎓 ${formattedTitle}`,
     description: `Learn highly demanded skills through practical online lessons in ${formattedTitle}, created by trusted industry professionals.`,
     coverImage: 'https://cdn.prod.website-files.com/65c0868c26990d4c1ce3b302/6859ea31e0fe32b922f07293_Course%20Cover_The%20Ultimate%20Figma%20Masterclass%20Course%202.0%20-%20Study%201%20(1)%20(1)%20(1)%201.jpg',
-    price: '$300',
+    price: '₹2,999',
     students: '1,200+ Students',
     rating: '4.9 Rating (300+ Reviews)',
     duration: '10+ Hours HD Video',
@@ -1585,7 +1691,7 @@ export default function FigmaMasterclassPage() {
           
           <div className="text-center space-y-3">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#09090b] tracking-tight">
-              12-module industry-aligned syllabus
+              {(course.modules && course.modules.length > 0) ? `${course.modules.length}-module industry-aligned syllabus` : 'Industry-aligned syllabus'}
             </h2>
             <p className="text-base text-slate-600">
              Designed in partnership with hiring managers. Continuously updated for AI-first workflows.
@@ -1685,7 +1791,13 @@ export default function FigmaMasterclassPage() {
               Instant Lifetime Access
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold text-[#09090b] tracking-tight leading-tight max-w-3xl mx-auto pt-1">
-              Ready to master {course.title}?
+              {course.slug === 'ui-design-masterclass'
+                ? 'Ready to Become a Next-Gen UI Designer?'
+                : course.slug === 'graphic-design-in-7-days'
+                ? 'Ready to Become a Professional Graphic Designer?'
+                : course.slug === 'shopify-1-week-master-course'
+                ? 'Ready to Master Shopify in 7 Days?'
+                : 'Ready to Become a Next-Gen UI Designer?'}
             </h2>
             <p className="text-base text-slate-600 max-w-xl mx-auto">
               Join thousands of designers building real-world skills and advancing their careers.
@@ -1705,24 +1817,29 @@ export default function FigmaMasterclassPage() {
                     <h3 className="text-xl font-bold text-slate-900">{course.title}</h3>
                     <span className="text-xs text-slate-500">Full Course Pass</span>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right shrink-0">
                     <div className="text-3xl font-extrabold text-slate-900">₹2,999</div>
-                    <span className="text-xs font-medium text-slate-500">One Time Payment</span>
+                    <span className="inline-block mt-1.5 text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                      One Time Payment
+                    </span>
                   </div>
                 </div>
 
                 <div className="space-y-3 pt-2 text-sm text-slate-700 border-t border-slate-100">
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Full Lifetime Video Access
+                    <span className="text-emerald-600 font-bold">✓</span> Learn Figma with Real-World Projects
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Source Files & Templates
+                    <span className="text-emerald-600 font-bold">✓</span> Design Modern &amp; Conversion-Focused Interfaces
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Completion
+                    <span className="text-emerald-600 font-bold">✓</span> Use AI to Design Faster &amp; Smarter
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Private Discord Community Access
+                    <span className="text-emerald-600 font-bold">✓</span> Build Portfolio-Ready UI Projects
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Course Completion
                   </div>
                 </div>
               </div>
@@ -1747,24 +1864,29 @@ export default function FigmaMasterclassPage() {
                     <h3 className="text-xl font-bold text-slate-900">{course.title}</h3>
                     <span className="text-xs text-slate-500">Full Course Pass</span>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right shrink-0">
                     <div className="text-3xl font-extrabold text-slate-900">₹4,999</div>
-                    <span className="text-xs font-medium text-slate-500">One Time Payment</span>
+                    <span className="inline-block mt-1.5 text-[11px] font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                      One Time Payment
+                    </span>
                   </div>
                 </div>
 
                 <div className="space-y-3 pt-2 text-sm text-slate-700 border-t border-slate-100">
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Full Lifetime Video Access
+                    <span className="text-emerald-600 font-bold">✓</span> Learn Figma with Real-World Projects
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Source Files & Templates
+                    <span className="text-emerald-600 font-bold">✓</span> Design Modern &amp; Conversion-Focused Interfaces
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Completion
+                    <span className="text-emerald-600 font-bold">✓</span> Use AI to Design Faster &amp; Smarter
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Private Discord Community Access
+                    <span className="text-emerald-600 font-bold">✓</span> Build Portfolio-Ready UI Projects
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Course Completion
                   </div>
                 </div>
               </div>
@@ -1784,10 +1906,10 @@ export default function FigmaMasterclassPage() {
 
 
       {/* FAQ Section matching exact user screenshot */}
-      <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="py-20 bg-white border-t border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#09090b] tracking-tight">
               Frequently asked questions
             </h2>
           </div>
@@ -1795,34 +1917,74 @@ export default function FigmaMasterclassPage() {
           <div className="space-y-4">
             {[
               {
-                question: "What is Designership?",
-                answer: "Designership is an online design academy and resource hub founded by Mizko. We help designers master Figma, UI/UX strategy, design systems, and career growth through practical, outcome-driven courses."
+                category: "Courses & Syllabus",
+                question: "What courses do you offer?",
+                answer: "We offer practical courses in Graphic Design, UI Design, Digital Marketing, Google Ads and Meta Ads."
               },
-              ...(course.faqs || [])
-            ].map((faq, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white border border-slate-200/80 overflow-hidden shadow-2xs transition-all"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
-                  className="w-full p-5 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
+              {
+                category: "Beginners & Learning",
+                question: "Are the courses suitable for beginners?",
+                answer: "Yes. Our courses are designed step-by-step, making them suitable for beginners as well as those looking to upgrade their skills."
+              },
+              {
+                category: "Courses & Syllabus",
+                question: "Are the courses online or offline?",
+                answer: "Our courses are available online, so you can learn from anywhere at your own pace."
+              },
+              {
+                category: "Projects & Practical",
+                question: "Will I work on real-world projects?",
+                answer: "Yes. You'll work on practical projects and exercises to understand how these skills are used in real-world situations."
+              },
+              {
+                category: "Support & Mentorship",
+                question: "Do I get support while learning?",
+                answer: "Yes. You'll receive guidance and support to help you understand concepts, complete projects and improve your skills."
+              },
+              {
+                category: "Career & Freelancing",
+                question: "Can these courses help me start freelancing?",
+                answer: "Yes. You'll develop practical skills and build projects that can help you create a portfolio and explore freelancing opportunities."
+              }
+            ].map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div
+                  key={idx}
+                  className="rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-slate-300 transition-all overflow-hidden"
                 >
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                    {faq.question}
-                  </h3>
-                  <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 text-xs font-bold shrink-0 ml-4">
-                    {openFaq === idx ? '▲' : '∨'}
-                  </div>
-                </button>
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? -1 : idx)}
+                    className={`w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg transition-colors cursor-pointer ${
+                      isOpen ? 'text-[#0bc40e]' : 'text-[#18181b] hover:text-[#0bc40e]'
+                    }`}
+                  >
+                    <div className="space-y-1">
+                      <span className="block text-[11px] uppercase tracking-wider font-semibold text-slate-400">
+                        {faq.category}
+                      </span>
+                      <span>{faq.question}</span>
+                    </div>
 
-                {openFaq === idx && (
-                  <div className="px-6 pb-6 pt-1 text-sm text-slate-600 leading-relaxed border-t border-slate-100 font-normal">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            ))}
+                    <div
+                      className={`p-1.5 rounded-lg bg-slate-100 border border-slate-200 transition-transform duration-200 shrink-0 ${
+                        isOpen ? 'rotate-180 text-[#0bc40e]' : 'text-[#71717a]'
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-5 sm:px-6 pb-6 text-sm sm:text-base text-[#52525b] leading-relaxed border-t border-slate-100 pt-4 animate-in fade-in duration-200 font-normal">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

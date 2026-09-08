@@ -188,7 +188,7 @@ const COURSES_DATA = [
     rating: '5.0',
     CoverComponent: CoverUIDesign,
     description: 'Master modern UI design principles, Figma design systems, component architecture, and AI-accelerated workflows.',
-    price: 300,
+    price: 2999,
     popularIndex: 0,
     isNew: true,
     badge: 'Hot',
@@ -204,7 +204,7 @@ const COURSES_DATA = [
     rating: '5.0',
     CoverComponent: CoverGraphicDesign,
     description: 'Master graphic design principles, visual hierarchy, branding, social media creatives, and cutting-edge AI design tools in 7 days.',
-    price: 300,
+    price: 2999,
     popularIndex: 1,
     isNew: true,
     badge: 'New',
@@ -220,7 +220,7 @@ const COURSES_DATA = [
     rating: '4.9',
     CoverComponent: CoverShopify,
     description: 'Master Shopify store design, custom Liquid themes, e-commerce UX, and conversion optimization in just 7 days.',
-    price: 199,
+    price: 2999,
     popularIndex: 2,
     isNew: true,
     badge: 'New',
@@ -499,21 +499,21 @@ export default function CoursesPage() {
                             {course.title}
                           </h3>
                           {course.isNew && (
-                            <span className="text-[10px] font-bold bg-[#7c3aed]/10 text-[#7c3aed] px-1.5 py-0.5 rounded border border-[#7c3aed]/20 shrink-0">
+                            <span className="text-[10px] font-bold bg-[#0bc40e]/10 text-[#0bc40e] px-1.5 py-0.5 rounded border border-[#0bc40e]/20 shrink-0">
                               New
                             </span>
                           )}
                         </div>
 
-                        {/* Meta Badges: Students, Rating, Level */}
-                        <div className="flex items-center gap-3 text-xs text-[#71717a] font-medium">
-                          <span className="flex items-center gap-1">
+                        {/* 3 Meta Badges */}
+                        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-semibold border border-slate-200/70">
                             👥 {course.students}
                           </span>
-                          <span className="flex items-center gap-1 text-amber-500 font-semibold">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 text-[10px] font-bold border border-amber-200/70">
                             ★ {course.rating}
                           </span>
-                          <span className="flex items-center gap-1">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-200/70">
                             📊 {course.level}
                           </span>
                         </div>
@@ -528,7 +528,7 @@ export default function CoursesPage() {
                     {/* Price */}
                     <div className="p-5 pt-0">
                       <div className="text-xl font-bold text-[#09090b]">
-                        ${course.price}
+                        ₹{typeof course.price === 'number' ? course.price.toLocaleString('en-IN') : course.price}
                       </div>
                     </div>
                   </Link>

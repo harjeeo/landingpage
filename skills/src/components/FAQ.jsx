@@ -5,26 +5,32 @@ export default function FAQ() {
 
   const faqs = [
     {
+      category: "Courses & Syllabus",
       question: "What courses do you offer?",
       answer: "We offer practical courses in Graphic Design, UI Design, Digital Marketing, Google Ads and Meta Ads."
     },
     {
+      category: "Beginners & Learning",
       question: "Are the courses suitable for beginners?",
       answer: "Yes. Our courses are designed step-by-step, making them suitable for beginners as well as those looking to upgrade their skills."
     },
     {
+      category: "Courses & Syllabus",
       question: "Are the courses online or offline?",
       answer: "Our courses are available online, so you can learn from anywhere at your own pace."
     },
     {
+      category: "Projects & Practical",
       question: "Will I work on real-world projects?",
       answer: "Yes. You'll work on practical projects and exercises to understand how these skills are used in real-world situations."
     },
     {
+      category: "Support & Mentorship",
       question: "Do I get support while learning?",
       answer: "Yes. You'll receive guidance and support to help you understand concepts, complete projects and improve your skills."
     },
     {
+      category: "Career & Freelancing",
       question: "Can these courses help me start freelancing?",
       answer: "Yes. You'll develop practical skills and build projects that can help you create a portfolio and explore freelancing opportunities."
     }
@@ -52,12 +58,17 @@ export default function FAQ() {
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? -1 : idx)}
-                  className={`w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg transition-colors cursor-pointer ${
+                  className={`w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg transition-colors cursor-pointer ${
                     isOpen ? 'text-[#0bc40e]' : 'text-[#18181b] hover:text-[#0bc40e]'
                   }`}
                 >
-                  <span>{faq.question}</span>
-                  <div className={`p-1.5 rounded-lg bg-slate-100 border border-slate-200 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#0bc40e]' : 'text-[#71717a]'}`}>
+                  <div className="space-y-1">
+                    <span className="block text-[11px] uppercase tracking-wider font-semibold text-slate-400">
+                      {faq.category}
+                    </span>
+                    <span>{faq.question}</span>
+                  </div>
+                  <div className={`p-1.5 rounded-lg bg-slate-100 border border-slate-200 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 text-[#0bc40e]' : 'text-[#71717a]'}`}>
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>

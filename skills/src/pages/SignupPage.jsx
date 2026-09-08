@@ -66,15 +66,15 @@ export default function SignupPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4 pt-1">
             
-            {/* Full Name */}
+            {/* Name */}
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Full Name
+                Name
               </label>
               <input
                 type="text"
                 required
-                placeholder="John Doe"
+                placeholder="Enter your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-[#6400e6] focus:ring-2 focus:ring-[#6400e6]/20 transition-all shadow-2xs"
@@ -88,7 +88,7 @@ export default function SignupPage() {
               </label>
               <div className="relative flex">
                 <span className="inline-flex items-center px-3.5 rounded-l-xl border border-r-0 border-slate-300 bg-slate-100 text-slate-600 text-xs font-semibold">
-                  🇮🇳 +91
+                  +91
                 </span>
                 <input
                   type="tel"
@@ -266,11 +266,6 @@ export default function SignupPage() {
           </div>
 
         </div>
-      </div>
-
-      {/* Footer Copyright */}
-      <div className="max-w-md mx-auto w-full text-center text-xs text-slate-500 font-medium pt-8">
-        © {new Date().getFullYear()} Designs Clue Skills. All rights reserved.
       </div>
 
     </div>

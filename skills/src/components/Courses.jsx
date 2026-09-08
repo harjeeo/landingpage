@@ -15,7 +15,7 @@ export default function Courses() {
       level: "All Levels",
       duration: "1 Month Comprehensive",
       description: "Master modern UI design principles, Figma design systems, component architecture, and AI-accelerated workflows.",
-      price: "$300",
+      price: "₹2,999",
       image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
       isNew: true
     },
@@ -29,7 +29,7 @@ export default function Courses() {
       level: "All Levels",
       duration: "7 Days Sprint",
       description: "Master graphic design principles, visual composition, branding, and cutting-edge generative AI design tools in 7 days.",
-      price: "$199",
+      price: "₹2,999",
       image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80",
       isNew: true
     },
@@ -43,7 +43,7 @@ export default function Courses() {
       level: "All Levels",
       duration: "7 Days Sprint",
       description: "Master Shopify store design, custom Liquid themes, e-commerce UX, and conversion optimization in just 7 days.",
-      price: "$199",
+      price: "₹2,999",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
       isNew: true
     }
@@ -125,34 +125,40 @@ export default function Courses() {
 
                 <div className="p-6 space-y-4">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-lg sm:text-[19px] font-bold text-slate-900 tracking-tight group-hover:text-[#6400e6] transition-colors leading-snug">
+                    <h3 className="text-lg sm:text-[19px] font-bold text-slate-900 tracking-tight group-hover:text-[#0bc40e] transition-colors leading-snug">
                       {course.title}
                     </h3>
                     {course.isNew && (
-                      <span className="text-[10px] font-bold bg-[#6400e6]/10 text-[#6400e6] px-2 py-0.5 rounded-full border border-[#6400e6]/20 shrink-0">
+                      <span className="text-[10px] font-bold bg-[#0bc40e]/10 text-[#0bc40e] px-2 py-0.5 rounded-full border border-[#0bc40e]/20 shrink-0">
                         New
                       </span>
                     )}
                   </div>
 
-                  <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
-                    <span className="flex items-center gap-1.5">
-                      <svg className="w-3.5 h-3.5 text-[#6400e6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  {/* 3 Meta Badges */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {/* Badge 1: Students */}
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100/90 text-slate-700 text-[11px] font-semibold border border-slate-200/70">
+                      <svg className="w-3.5 h-3.5 text-[#0bc40e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
-                      {course.students}
+                      <span>{course.students}</span>
                     </span>
-                    <span className="flex items-center gap-1.5 text-amber-500 font-semibold">
-                      <svg className="w-3.5 h-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
+
+                    {/* Badge 2: Rating */}
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 text-[11px] font-bold border border-amber-200/70">
+                      <svg className="w-3.5 h-3.5 text-amber-500 fill-amber-500" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                       </svg>
-                      {course.rating}
+                      <span>{course.rating}</span>
                     </span>
-                    <span className="flex items-center gap-1.5">
-                      <svg className="w-3.5 h-3.5 text-[#6400e6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+
+                    {/* Badge 3: Level */}
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[11px] font-semibold border border-emerald-200/70">
+                      <svg className="w-3.5 h-3.5 text-[#0bc40e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
-                      {course.level}
+                      <span>{course.level}</span>
                     </span>
                   </div>
 
@@ -166,8 +172,8 @@ export default function Courses() {
                 <span className="text-xl sm:text-2xl font-bold text-slate-900">
                   {course.price}
                 </span>
-                <span className="text-xs font-bold text-[#6400e6] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                  View Syllabus →
+                <span className="text-xs font-bold text-[#0bc40e] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  View Course →
                 </span>
               </div>
 

@@ -185,11 +185,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Footer Copyright */}
-      <div className="max-w-md mx-auto w-full text-center text-xs text-slate-500 font-medium pt-8">
-        © {new Date().getFullYear()} Designs Clue Skills. All rights reserved.
-      </div>
-
     </div>
   );
 }
