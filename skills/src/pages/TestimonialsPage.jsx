@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { Mortarboard01Icon } from 'hugeicons-react';
 
 // Sample Video Testimonials Data
 const VIDEO_TESTIMONIALS = [
@@ -48,159 +49,432 @@ const VIDEO_TESTIMONIALS = [
 const INITIAL_TESTIMONIALS = [
   {
     id: '1',
-    name: 'Doris A',
-    flag: '🇺🇸',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150',
+    name: 'Harpreet Singh',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'UX/UI Design Course',
-    outcome: '🚀 Career Switcher',
-    content: 'The whole frame work was designed to build confidence for UIUX designers. A great course, packed with the write information, value for your money.',
+    course: 'UI/UX Design Course',
+    outcome: '⚡ Practical Projects',
+    content: 'Figma was quite confusing for me initially, but the course made everything much easier to understand. The practical projects were definitely the most useful part.',
     rating: 5,
-    date: 'August 1, 2024',
+    date: 'August 14, 2024',
     helpfulCount: 42
   },
   {
     id: '2',
-    name: 'Lhagvabud Purev',
-    flag: '🇲🇳',
+    name: 'Aman Sharma',
+    flag: '🇮🇳',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Figma Masterclass 2.0',
-    outcome: '⚡ Fast Workflow',
-    content: '9/10. Thank you! Absolutely loved how structured and practical every lesson was.',
+    course: 'Shopify Course',
+    outcome: '🛍️ Simple Store Setup',
+    content: 'Setting up a Shopify store seemed complicated at first, but the step-by-step approach made the whole process much easier to understand.',
     rating: 5,
-    date: 'July 28, 2024',
-    helpfulCount: 18
-  },
-  {
-    id: '3',
-    name: 'Nuno Silva',
-    flag: '🇵🇹',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
-    verified: true,
-    course: 'Figma Masterclass 2.0',
-    outcome: '🔥 Mastered Auto-Layout',
-    content: 'Absolutely brilliant masterclass, thanks, man! Changed the way our studio handles responsive component variants.',
-    rating: 5,
-    date: 'July 26, 2024',
-    helpfulCount: 34
-  },
-  {
-    id: '4',
-    name: 'Shania P',
-    flag: '🇨🇦',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150',
-    verified: true,
-    course: 'UX/UI Design Course',
-    outcome: '💼 Landed First UI Role',
-    content: 'The course lessons and modules are well made. The attention on details, content and quality of each videos is top tier, really worth the investment if you want to upskill in your UX/UI career and learn new ways to start your projects. Special mention on the user testing module!',
-    rating: 5,
-    date: 'July 24, 2024',
+    date: 'August 12, 2024',
     helpfulCount: 38
   },
   {
-    id: '5',
-    name: 'Amukta Ambati',
+    id: '3',
+    name: 'Simran Kaur',
     flag: '🇮🇳',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Figma Masterclass 2.0',
-    outcome: '✨ Figma Mastery',
-    content: "I loved Mizko's course on Figma. It's exactly what I needed to start my UX design journey.",
+    course: 'Graphic Design Course',
+    outcome: '🎨 Design Principles',
+    content: "I knew the basics of designing but didn't really understand design principles. The lessons on typography, colours and layouts gave me much more clarity.",
     rating: 5,
-    date: 'July 23, 2024',
-    helpfulCount: 27
-  },
-  {
-    id: '6',
-    name: 'Kristen Surujbhan',
-    flag: '🇺🇸',
-    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150',
-    verified: true,
-    course: 'Figma Masterclass 2.0',
-    outcome: '🏆 Cross-Functional Lead',
-    content: 'This course is a must if you are unsure about how the design world operates cross-functionally. It gives you a strong sense of how to navigate stakeholder meetings.',
-    rating: 5,
-    date: 'July 23, 2024',
-    helpfulCount: 45
-  },
-  {
-    id: '7',
-    name: 'Aryna L',
-    flag: '🇩🇪',
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150',
-    verified: true,
-    course: 'Practical UX Research & Strategy',
-    outcome: '📈 +$28k Salary Bump',
-    content: 'This course has been a game-changer, providing the crucial skills to navigate the future of UX/UI design through the ever-evolving industry, now accompanied by the rise of AI.',
-    rating: 5,
-    date: 'July 22, 2024',
+    date: 'August 10, 2024',
     helpfulCount: 29
   },
   {
-    id: '8',
-    name: 'Luis Veloz',
-    flag: '🇲🇽',
-    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150',
+    id: '4',
+    name: 'Riya Kapoor',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'UX/UI Design Course',
-    outcome: '⚡ Saved 15+ hrs/week',
-    content: 'I loved this course, Mizko explained every detail with ease. The way he teaches is incredibly easy to understand and easy to follow. All the templates provided are incredibly useful.',
+    course: 'UI/UX Design Course',
+    outcome: '✨ Project-Based',
+    content: 'I really liked the practical approach. Instead of just explaining theory, every concept was demonstrated through actual Figma projects. It made learning much easier for me.',
     rating: 5,
-    date: 'July 22, 2024',
-    helpfulCount: 56
+    date: 'August 8, 2024',
+    helpfulCount: 51
+  },
+  {
+    id: '5',
+    name: 'Neha Verma',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '🚀 First Online Store',
+    content: 'I had never built an online store before. The lessons helped me understand Shopify from the basics and gave me the confidence to create my first store. The practical demonstrations were especially helpful.',
+    rating: 5,
+    date: 'August 6, 2024',
+    helpfulCount: 47
+  },
+  {
+    id: '6',
+    name: 'Gurpreet Singh',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '💼 Creative Workflow',
+    content: 'I used Photoshop before, but creating professional-looking designs consistently was difficult. The course helped me improve my overall design workflow and understand how to approach a creative project properly.',
+    rating: 5,
+    date: 'August 4, 2024',
+    helpfulCount: 33
+  },
+  {
+    id: '7',
+    name: 'Arjun Mehta',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'UI/UX Design Course',
+    outcome: '📐 Wireframing & Prototyping',
+    content: 'The wireframing and prototyping modules were really helpful. I now feel much more confident turning an idea into a proper interface and presenting it professionally.',
+    rating: 5,
+    date: 'August 2, 2024',
+    helpfulCount: 36
+  },
+  {
+    id: '8',
+    name: 'Pooja Sharma',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '⚡ Demo Store Build',
+    content: 'Shopify felt confusing when I first started. Following the course and actually building a demo store made the learning experience much more practical.',
+    rating: 5,
+    date: 'July 30, 2024',
+    helpfulCount: 25
   },
   {
     id: '9',
-    name: 'Binu P',
-    flag: '🇬🇧',
-    avatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=150',
+    name: 'Jasleen Kaur',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Figma Masterclass 2.0',
-    outcome: '🎯 System Organized',
-    content: 'Love the YouTube channel and course I just recently purchased :) Looking forward to tidying up my Figma skills and especially handover techniques. Kudos!',
+    course: 'Graphic Design Course',
+    outcome: '📱 Social Media Creatives',
+    content: 'The pace of the course was good and the assignments helped me retain what I learned. I especially enjoyed working on social media creatives because they felt close to real client work.',
     rating: 5,
-    date: 'July 15, 2024',
-    helpfulCount: 31
+    date: 'July 28, 2024',
+    helpfulCount: 44
   },
   {
     id: '10',
-    name: 'Ami Takahashi',
-    flag: '🇯🇵',
-    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150',
+    name: 'Ananya Gupta',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'UX/UI Design Course',
-    outcome: '💣🔥 Absolute Bomb',
-    content: 'This course answered all my questions. This was just a 💣🔥. I feel super confident with my new knowledge. Thank you 🤩',
+    course: 'UI/UX Design Course',
+    outcome: '💡 User-First Mindset',
+    content: 'I joined mainly to improve my Figma skills, but I ended up learning a lot more about UX and designing with the user in mind. The project work was a great addition.',
     rating: 5,
-    date: 'June 18, 2024',
-    helpfulCount: 64
+    date: 'July 26, 2024',
+    helpfulCount: 39
   },
   {
     id: '11',
-    name: 'Donato Espinosa',
-    flag: '🇪🇸',
-    avatar: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=150',
+    name: 'Rohit Bansal',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Figma Masterclass 2.0',
-    outcome: '🚀 Scaled Design System',
-    content: 'Awesome content! Worth every penny. Mizko makes everything digestible and easy to implement in real production files immediately.',
+    course: 'Shopify Course',
+    outcome: '📦 Store Structure',
+    content: "Good course if you're starting with Shopify. The store structure, products, collections and basic customization were explained clearly. I liked that the lessons focused on actually building things instead of only explaining features.",
     rating: 5,
-    date: 'June 12, 2024',
-    helpfulCount: 22
+    date: 'July 24, 2024',
+    helpfulCount: 53
   },
   {
     id: '12',
-    name: 'Priya Sharma',
-    flag: '🇸🇬',
-    avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=150',
+    name: 'Manpreet Singh',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Practical UX Research & Strategy',
-    outcome: '🌟 Case Studies Mastered',
-    content: 'The UX research framework gave me exact scripts for interviewing stakeholders. Landed my first Senior Product Designer job within 3 weeks of completion!',
+    course: 'Graphic Design Course',
+    outcome: '🎯 Purpose-Driven',
+    content: "I learned that good design isn't just about making something look nice. Understanding the purpose behind a design has completely changed how I approach projects.",
     rating: 5,
-    date: 'June 05, 2024',
+    date: 'July 22, 2024',
+    helpfulCount: 31
+  },
+  {
+    id: '13',
+    name: 'Karan Malhotra',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'UI/UX Design Course',
+    outcome: '🔥 Auto Layout & Responsive',
+    content: 'Components, Auto Layout and responsive design were areas I struggled with before. The course made the overall Figma workflow much clearer, and I now use these features more confidently in my projects.',
+    rating: 5,
+    date: 'July 20, 2024',
     helpfulCount: 48
+  },
+  {
+    id: '14',
+    name: 'Sakshi Arora',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '💎 Product Pages & Navigation',
+    content: 'The course covered the things I actually needed while building a store. Product pages, navigation and basic settings were explained really well.',
+    rating: 5,
+    date: 'July 18, 2024',
+    helpfulCount: 27
+  },
+  {
+    id: '15',
+    name: 'Navjot Kaur',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '🚀 Social Posts & Banners',
+    content: 'I learned how to create social media posts, banners and promotional creatives properly. The practical feedback was also very helpful.',
+    rating: 5,
+    date: 'July 16, 2024',
+    helpfulCount: 35
+  },
+  {
+    id: '16',
+    name: 'Harleen Kaur',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'UI/UX Design Course',
+    outcome: '🔍 User Flows & Research',
+    content: 'UX research and user flows felt quite theoretical at first, but the practical examples made everything much easier to understand.',
+    rating: 5,
+    date: 'July 14, 2024',
+    helpfulCount: 40
+  },
+  {
+    id: '17',
+    name: 'Aditya Jain',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '🌐 Ecommerce Fundamentals',
+    content: 'I wanted to understand ecommerce without getting into complicated technical stuff. This course gave me a solid starting point with Shopify and helped me understand how the different parts of a store work together.',
+    rating: 5,
+    date: 'July 12, 2024',
+    helpfulCount: 43
+  },
+  {
+    id: '18',
+    name: 'Vivek Sharma',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '📂 Professional Portfolio',
+    content: 'After completing the course, I feel much more confident presenting my designs professionally. The portfolio projects were a great addition and gave me something practical to work on.',
+    rating: 5,
+    date: 'July 10, 2024',
+    helpfulCount: 37
+  },
+  {
+    id: '19',
+    name: 'Harman Singh',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'UI/UX Design Course',
+    outcome: '🎯 Step-by-Step Structure',
+    content: 'I had watched quite a few Figma tutorials before, but having everything structured into one course helped the concepts finally come together. The step-by-step approach worked really well for me.',
+    rating: 5,
+    date: 'July 8, 2024',
+    helpfulCount: 49
+  },
+  {
+    id: '20',
+    name: 'Tanya Mehra',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '🏬 Built Live Store',
+    content: 'I was able to create my first proper Shopify store while following the course. The practical demonstrations made a big difference.',
+    rating: 5,
+    date: 'July 6, 2024',
+    helpfulCount: 30
+  },
+  {
+    id: '21',
+    name: 'Muskan Saini',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '✨ Color & Typography',
+    content: 'Choosing the right colours and typography was something I always struggled with. I now have much more confidence when making those design decisions, especially for social media creatives.',
+    rating: 5,
+    date: 'July 4, 2024',
+    helpfulCount: 45
+  },
+  {
+    id: '22',
+    name: 'Amandeep Kaur',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'UI/UX Design Course',
+    outcome: '🛠️ Hands-on Projects',
+    content: 'The projects made the learning experience much more engaging. Creating something after every module really helped me understand the concepts instead of just watching tutorials.',
+    rating: 5,
+    date: 'July 2, 2024',
+    helpfulCount: 32
+  },
+  {
+    id: '23',
+    name: 'Sahil Verma',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '📦 Product Organization',
+    content: 'From adding products to organizing the store, the complete process became much clearer after completing the lessons. A good practical introduction to Shopify for someone starting from scratch.',
+    rating: 5,
+    date: 'June 29, 2024',
+    helpfulCount: 28
+  },
+  {
+    id: '24',
+    name: 'Yash Thakur',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '🌱 Beginner to Confident',
+    content: 'I liked how the course starts with the basics and gradually moves into real creative projects. It felt easy to follow even as a beginner, and I never felt overwhelmed.',
+    rating: 5,
+    date: 'June 27, 2024',
+    helpfulCount: 41
+  },
+  {
+    id: '25',
+    name: 'Ritika Sharma',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'UI/UX Design Course',
+    outcome: '⚡ Advanced UI Workflow',
+    content: 'I already knew the basics of Figma, but I wanted to improve my overall UI workflow. The advanced concepts and practical exercises helped a lot.',
+    rating: 5,
+    date: 'June 25, 2024',
+    helpfulCount: 36
+  },
+  {
+    id: '26',
+    name: 'Mohit Arora',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '📈 Professional Presentation',
+    content: 'I learned several useful ways to make a Shopify store look more professional, especially when it comes to homepage structure and product presentation. These small details made a noticeable difference in my store.',
+    rating: 5,
+    date: 'June 23, 2024',
+    helpfulCount: 39
+  },
+  {
+    id: '27',
+    name: 'Priya Chawla',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '🎯 Relevant Branding',
+    content: 'The language was simple and the examples were relevant. I found the social media design and branding sections particularly useful.',
+    rating: 5,
+    date: 'June 21, 2024',
+    helpfulCount: 34
+  },
+  {
+    id: '28',
+    name: 'Shivani Gupta',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'UI/UX Design Course',
+    outcome: '🎨 Better UI Decisions',
+    content: 'The course helped me understand why certain UI decisions work better than others. The combination of UX concepts, Figma practice and real projects was really useful for me.',
+    rating: 5,
+    date: 'June 19, 2024',
+    helpfulCount: 46
+  },
+  {
+    id: '29',
+    name: 'Ishita Khanna',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '🎯 Complete Workflow',
+    content: 'I started with very little ecommerce knowledge and by the end I had a much better understanding of the complete Shopify workflow. The step-by-step format made it easy to follow.',
+    rating: 5,
+    date: 'June 17, 2024',
+    helpfulCount: 33
+  },
+  {
+    id: '30',
+    name: 'Dilpreet Kaur',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '📈 Clear Direction',
+    content: "I was interested in graphic design but didn't really know where to start. The course gave me a clear direction and plenty of opportunities to practice. It was nice to see my designs improve throughout the course.",
+    rating: 5,
+    date: 'June 15, 2024',
+    helpfulCount: 42
+  },
+  {
+    id: '31',
+    name: 'Gagandeep Singh',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '🛠️ Clear Explanations',
+    content: 'The practical approach made Shopify much easier to learn. I particularly liked how the store setup was explained step by step instead of rushing through it.',
+    rating: 5,
+    date: 'June 12, 2024',
+    helpfulCount: 37
+  },
+  {
+    id: '32',
+    name: 'Parminder Singh',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Graphic Design Course',
+    outcome: '🔥 Client-Level Designs',
+    content: 'The assignments and practical exercises encouraged me to keep practicing. I now feel more confident creating designs similar to real client projects.',
+    rating: 5,
+    date: 'June 10, 2024',
+    helpfulCount: 31
+  },
+  {
+    id: '33',
+    name: 'Rahul Kumar',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
+    verified: true,
+    course: 'Shopify Course',
+    outcome: '🚀 Solid Foundation',
+    content: 'I wanted to learn how to build a Shopify store from scratch, and the course covered the important steps in a simple and easy-to-follow way. It gave me a good foundation to start working on my own store.',
+    rating: 5,
+    date: 'June 08, 2024',
+    helpfulCount: 44
   }
 ];
 
@@ -351,10 +625,9 @@ export default function TestimonialsPage() {
           <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
             {[
               { id: 'All', label: 'All Testimonials' },
-              { id: 'UX/UI Design Course', label: 'UX/UI Design Course' },
-              { id: 'Figma Masterclass', label: 'Figma Masterclass 2.0' },
-              { id: 'UX Research', label: 'UX Research & Strategy' },
-              { id: 'Shipfaster UI', label: 'Shipfaster UI Kit' }
+              { id: 'UI/UX Design Course', label: 'UI/UX Design Course' },
+              { id: 'Graphic Design Course', label: 'Graphic Design Course' },
+              { id: 'Shopify Course', label: 'Shopify Course' }
             ].map((cat) => (
               <button
                 key={cat.id}
@@ -471,28 +744,28 @@ export default function TestimonialsPage() {
 
         {/* Newsletter / CTA Section (White matching real site footer top) */}
         <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 text-center shadow-sm max-w-4xl mx-auto mb-16">
-          <div className="w-12 h-12 rounded-2xl bg-purple-100 text-[#6400e6] flex items-center justify-center mx-auto mb-4 text-xl">
-            🎓
+          <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center mx-auto mb-4">
+            <Mortarboard01Icon className="w-6 h-6 text-[#6400e6]" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
-            Ready to start your design journey?
+            Ready to build skills that matter?
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto mb-6">
-            Join over 10,000+ designers level up their UI/UX and Figma skills with lifetime access and practical templates.
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto mb-6">
+            Join learners who are building practical skills in UI Design, Graphic Design & Shopify through structured, hands-on courses designed for real-world work.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/courses/the-ultimate-figma-masterclass"
+              to="/courses"
               className="w-full sm:w-auto bg-[#6400e6] hover:bg-[#530dd3] text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-transform hover:-translate-y-0.5"
             >
-              Explore Figma Masterclass 2.0 →
+              Explore Courses →
             </Link>
-            <button
-              onClick={() => setShowReviewModal(true)}
-              className="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm px-6 py-3 rounded-xl transition-colors"
+            <a
+              href="mailto:info@designsclue.com"
+              className="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm px-6 py-3 rounded-xl transition-colors inline-flex items-center justify-center"
             >
-              Write a Review
-            </button>
+              Talk to Us
+            </a>
           </div>
         </div>
 
@@ -600,10 +873,9 @@ export default function TestimonialsPage() {
                   onChange={(e) => setNewReview({ ...newReview, course: e.target.value })}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-[#6400e6]"
                 >
-                  <option value="Figma Masterclass 2.0">Figma Masterclass 2.0</option>
-                  <option value="Practical UX Research & Strategy">Practical UX Research & Strategy</option>
-                  <option value="UX/UI Design Course">UX/UI Design Course</option>
-                  <option value="Shipfaster UI: Figma UI Kit & Design System">Shipfaster UI Kit & Design System</option>
+                  <option value="UI/UX Design Course">UI/UX Design Course</option>
+                  <option value="Graphic Design Course">Graphic Design Course</option>
+                  <option value="Shopify Course">Shopify Course</option>
                 </select>
               </div>
 

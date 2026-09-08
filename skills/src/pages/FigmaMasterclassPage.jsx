@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
+import { LaptopVideoIcon, Building02Icon } from 'hugeicons-react';
 
 const MODULE_ICONS = [
   {
@@ -102,6 +103,77 @@ const MODULE_ICONS = [
 ];
 
 const COURSE_DATA = {
+  'ui-design-masterclass': {
+    slug: 'ui-design-masterclass',
+    title: 'UI Design Masterclass — Next-Gen UI Design with AI',
+    heroTagline: 'Design High-Converting, Production-Ready Digital Interfaces Powered by AI',
+    categoryBadge: '✨ Next-Gen UI & AI Masterclass',
+    description: 'Learn how to create world-class UI designs, build scalable design systems in Figma, and accelerate your creative workflow using cutting-edge AI design tools.',
+    coverImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
+    price: '$300',
+    students: '2,400+ Students',
+    rating: '5.0 Rating (340+ Reviews)',
+    duration: '16+ Hours HD Video',
+    level: 'All Levels',
+    whatYouWillLearn: [
+      {
+        title: "1. Next-Gen UI Foundations & Visual Design",
+        description: "Master typography scales, spacing grids, modern color theory, contrast ratios, and visual hierarchy principles for stunning UI.",
+        icon: (
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+          </svg>
+        )
+      },
+      {
+        title: "2. AI Tools for UI Designers",
+        description: "Leverage AI for rapid wireframing, moodboard generation, copywriting, automated component creation, and visual asset generation.",
+        icon: (
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        )
+      },
+      {
+        title: "3. Advanced Figma Design Systems & Tokens",
+        description: "Build scalable design systems with variables, auto-layout 5.0, responsive components, interactive states, and design tokens.",
+        icon: (
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth={2} />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 4v16M4 9h16" />
+          </svg>
+        )
+      },
+      {
+        title: "4. Web & Mobile App Interface Design",
+        description: "Design pixel-perfect SaaS dashboards, mobile apps (iOS & Android), landing pages, and interactive high-fidelity prototypes.",
+        icon: (
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "5. Micro-Interactions & Prototyping",
+        description: "Create smooth animations, smart animate micro-interactions, page transitions, and interactive user flows.",
+        icon: (
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "6. Developer Handoff & Client Delivery",
+        description: "Prepare clean specs, export production-ready assets, organize Figma files, and pitch your designs with confidence.",
+        icon: (
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        )
+      }
+    ]
+  },
   'shopify-1-week-master-course': {
     slug: 'shopify-1-week-master-course',
     title: 'Shopify 1 Week Master Course',
@@ -282,32 +354,23 @@ const COURSE_DATA = {
       }
     ]
   },
-  'web-design-2-weeks-mastery-course': {
-    slug: 'web-design-2-weeks-mastery-course',
-    title: 'Web Design 2 Weeks Mastery Course',
-    heroTagline: 'Learn. Design. Build. Launch.',
-    categoryBadge: '🌐 Web Design Masterclass',
-    description: 'Learn how to design, build, customize, and launch modern, professional, responsive websites from scratch — in just 14 days.',
-    coverImage: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80',
+  'graphic-design-in-7-days': {
+    slug: 'graphic-design-in-7-days',
+    title: 'Graphic Design in 7 Days — Learn, Create & Master AI',
+    heroTagline: 'Learn. Create. Master AI.',
+    categoryBadge: '🎨 Graphic Design & AI Masterclass',
+    description: 'Master graphic design fundamentals, typography, branding, visual hierarchy, marketing visuals, and cutting-edge generative AI design workflows in just 7 days.',
+    coverImage: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
     price: '$300',
-    students: '1,200+ Students',
-    rating: '5.0 Rating (Loved by aspiring designers, freelancers & business owners)',
-    duration: '14 Days • 14+ Hours HD Video',
+    students: '1,500+ Students',
+    rating: '5.0 Rating (Loved by creators, designers & marketing professionals)',
+    duration: '7 Days • 10+ Hours HD Video',
     level: 'All Levels',
-    trustedBy: ['Google', 'Meta', 'Shopify', 'WordPress', 'Webflow'],
+    trustedBy: ['Adobe', 'Midjourney', 'Figma', 'Canva', 'Google'],
     whatYouWillLearn: [
       {
-        title: "1. Build Your First Website",
-        description: "Learn the complete process of creating a website from scratch. Understand website structure, pages, layouts, navigation, and essential components.",
-        icon: (
-          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-          </svg>
-        )
-      },
-      {
-        title: "2. Design Professional Websites",
-        description: "Learn how to create clean, modern, and conversion-focused website designs. Understand layouts, typography, colors, spacing, and visual hierarchy.",
+        title: "1. Graphic Design Fundamentals",
+        description: "Master the core principles of design: balance, contrast, alignment, repetition, proximity, visual hierarchy, and composition rules.",
         icon: (
           <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.006-.62l3.087-7.006A2.25 2.25 0 0112.983 5.4h.01a2.25 2.25 0 012.062 1.348l3.088 7.006m-9.155.62l9.155 0m-9.155 0L12.5 13.5" />
@@ -315,17 +378,26 @@ const COURSE_DATA = {
         )
       },
       {
-        title: "3. Master Responsive Design",
-        description: "Make your websites look perfect on desktop, tablet, and mobile. Learn responsive layouts, breakpoints, flexible sections, and mobile-first design principles.",
+        title: "2. Typography & Color Theory",
+        description: "Learn font pairing, kerning, leading, typographic scale, color psychology, and how to create cohesive, emotion-driven color palettes.",
         icon: (
           <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.5" />
           </svg>
         )
       },
       {
-        title: "4. Create Interactive & Functional Websites",
-        description: "Learn how to add forms, buttons, menus, animations, sliders, galleries, popups, and other essential website elements to create a complete user experience.",
+        title: "3. Brand Identity & Logo Systems",
+        description: "Design memorable logos, brand identity guidelines, style tiles, mockups, and complete visual assets for brands.",
+        icon: (
+          <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
+          </svg>
+        )
+      },
+      {
+        title: "4. Social Media & Marketing Creatives",
+        description: "Create scroll-stopping Instagram posts, carousel carousels, YouTube thumbnails, ad banners, and promotional campaign materials.",
         icon: (
           <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
@@ -333,17 +405,17 @@ const COURSE_DATA = {
         )
       },
       {
-        title: "5. Learn Modern Web Design Tools",
-        description: "Work with industry-popular tools and workflows such as Figma, WordPress, Elementor, Webflow, and other essential web design technologies.",
+        title: "5. Generative AI Tools & Prompt Engineering",
+        description: "Harness Midjourney, ChatGPT/DALL-E, Adobe Firefly, and Stable Diffusion to generate photorealistic images, textures, patterns, and creative concepts 10x faster.",
         icon: (
           <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.83-5.83M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766l5.123-1.537c.725-.218.894-1.168.28-1.543l-4.103-2.505a2.25 2.25 0 00-1.874-.183L6.877 7.917c-.502.215-.815.717-.775 1.258l.42 5.673c.045.606.37 1.157.876 1.488l4.022 2.632z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
           </svg>
         )
       },
       {
-        title: "6. Launch & Start Building Professionally",
-        description: "Learn how to test, optimize, publish, and maintain a website. Understand domains, hosting, SSL, basic SEO, performance, and how to prepare websites for real clients.",
+        title: "6. Professional Portfolio & Freelance Career",
+        description: "Package your 7-day projects into a stunning Behance/Dribbble portfolio, write proposals, price your design work, and land high-paying clients.",
         icon: (
           <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.926 14.926 0 01-5.84 2.58m-.12-8.54a6 6 0 00-7.38 5.84h4.8m2.58-5.84a14.926 14.926 0 00-2.58 5.84M15 9a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -353,198 +425,129 @@ const COURSE_DATA = {
     ],
     modules: [
       {
-        title: "Module 1: Web Design Fundamentals & Website Setup",
-        lessonsCount: "7 Lessons · 50 min",
+        title: "Day 1: Graphic Design Fundamentals & Composition Masterclass",
+        lessonsCount: "6 Lessons · 1 hour 15 min",
         lessons: [
-          "Welcome to the Web Design 1 Week Mastery Course",
-          "Understanding Websites & Web Design",
-          "How Websites Work",
-          "Website Types & Business Requirements",
-          "Understanding Domains & Hosting",
-          "Website Structure & Essential Pages",
-          "Module 1 Practical Exercise"
+          "Welcome to Graphic Design in 7 Days",
+          "The 7 Core Principles of Visual Design",
+          "Mastering Visual Hierarchy & Negative Space",
+          "Grid Systems & Alignment Rules",
+          "Understanding File Formats (SVG, PNG, JPG, PDF)",
+          "Day 1 Hands-on Composition Challenge"
         ]
       },
       {
-        title: "Module 2: UI/UX & Website Planning",
-        lessonsCount: "8 Lessons · 1 hour 15 min",
+        title: "Day 2: Typography, Hierarchy & Color Psychology",
+        lessonsCount: "7 Lessons · 1 hour 25 min",
         lessons: [
-          "Understanding UI & UX",
-          "Website Research & Inspiration",
-          "Understanding User Flow",
-          "Creating Website Sitemap",
-          "Planning Website Sections",
-          "Wireframing a Website",
-          "Understanding Conversion-Focused Layouts",
-          "Module 2 Practical Exercise"
+          "Typography Basics: Serif, Sans-Serif & Display Fonts",
+          "The Golden Rules of Font Pairing & Hierarchy",
+          "Leading, Kerning & Tracking Best Practices",
+          "Color Theory & Understanding Color Harmonies",
+          "Psychology of Color in Branding & Marketing",
+          "Building Cohesive Color Palettes",
+          "Day 2 Typographic Poster Challenge"
         ]
       },
       {
-        title: "Module 3: Figma & Professional Website Design",
-        lessonsCount: "8 Lessons · 1 hour 20 min",
+        title: "Day 3: Brand Identity, Logo Design & Style Guides",
+        lessonsCount: "8 Lessons · 1 hour 40 min",
         lessons: [
-          "Introduction to Figma",
-          "Creating Frames & Layouts",
-          "Typography & Font Selection",
-          "Color Theory & Brand Colors",
-          "Grids, Spacing & Alignment",
-          "Buttons, Cards & UI Components",
-          "Designing a Complete Website Homepage",
-          "Module 3 Practical Exercise"
+          "Introduction to Brand Identity Design",
+          "Logo Styles: Wordmarks, Monograms, Badges & Emblems",
+          "The Logo Design Process: Sketching to Vector",
+          "Creating Brand Style Guides & Brand Kits",
+          "Designing Business Cards & Stationery",
+          "Real-World Mockup Presentation Techniques",
+          "Exporting Brand Assets for Print and Digital",
+          "Day 3 Brand Identity Capstone"
         ]
       },
       {
-        title: "Module 4: WordPress & Elementor Website Development",
-        lessonsCount: "9 Lessons · 1 hour 30 min",
+        title: "Day 4: High-Converting Social Media & Ad Creatives",
+        lessonsCount: "8 Lessons · 1 hour 30 min",
         lessons: [
-          "Understanding WordPress",
-          "Installing & Setting Up WordPress",
-          "Understanding WordPress Dashboard",
-          "Installing Themes & Plugins",
-          "Introduction to Elementor",
-          "Building Website Sections",
-          "Creating Header & Footer",
-          "Creating Essential Website Pages",
-          "Module 4 Practical Exercise"
+          "Anatomy of High-Converting Social Media Graphics",
+          "Designing Multi-Slide Instagram Carousels",
+          "Creating Click-Worthy YouTube Thumbnails",
+          "Facebook & Google Display Ad Banners",
+          "Motion Graphics & GIF Basics for Social Media",
+          "Batch Creating Social Content with Templates",
+          "Day 4 Social Media Campaign Challenge"
         ]
       },
       {
-        title: "Module 5: Responsive Web Design",
-        lessonsCount: "7 Lessons · 1 hour",
+        title: "Day 5: Generative AI for Designers (Midjourney, ChatGPT & Firefly)",
+        lessonsCount: "9 Lessons · 1 hour 45 min",
         lessons: [
-          "Understanding Responsive Design",
-          "Desktop vs Tablet vs Mobile",
-          "Responsive Layouts",
-          "Elementor Responsive Controls",
-          "Mobile Typography & Spacing",
-          "Mobile Navigation & Menus",
-          "Responsive Website Practical"
+          "The AI Design Revolution: Tools Overview",
+          "Midjourney Prompt Engineering for Graphic Designers",
+          "Style Modifiers, Lighting, Aspect Ratios & Parameters",
+          "Using ChatGPT for Creative Direction & Copywriting",
+          "Adobe Firefly Generative Fill & Expand Workflows",
+          "Generating Vector Graphics & Icons with AI",
+          "Combining AI Assets with Photoshop & Illustrator",
+          "Day 5 AI-Powered Poster & Art Creation"
         ]
       },
       {
-        title: "Module 6: Advanced Website Customization",
-        lessonsCount: "8 Lessons · 1 hour 15 min",
+        title: "Day 6: Advanced AI Workflows, Inpainting & Photo Editing",
+        lessonsCount: "7 Lessons · 1 hour 20 min",
         lessons: [
-          "Customizing Website Themes",
-          "Advanced Elementor Sections",
-          "Global Fonts & Colors",
-          "Reusable Components",
-          "Forms & Contact Sections",
-          "Popups & Interactive Elements",
-          "Animations & Hover Effects",
-          "Module 6 Practical Exercise"
+          "Image Upscaling & Quality Enhancement with AI",
+          "Background Removal & Clean Cutout Techniques",
+          "AI Inpainting & Object Replacement",
+          "Creating AI-Generated Textures & Patterns",
+          "Consistent Character & Style Generation in Midjourney",
+          "Ethical Guidelines & Copyright with AI Art",
+          "Day 6 Commercial Campaign Production"
         ]
       },
       {
-        title: "Module 7: Webflow & Modern Website Building",
-        lessonsCount: "7 Lessons · 1 hour",
+        title: "Day 7: Portfolio Showcase, Pricing & Landing Design Clients",
+        lessonsCount: "8 Lessons · 1 hour 30 min",
         lessons: [
-          "Introduction to Webflow",
-          "Understanding Webflow Workspace",
-          "Creating Pages & Sections",
-          "Layouts, Containers & Grids",
-          "Typography & Styling",
-          "Responsive Webflow Design",
-          "Building a Website in Webflow"
-        ]
-      },
-      {
-        title: "Module 8: Website Content & Visual Design",
-        lessonsCount: "7 Lessons · 55 min",
-        lessons: [
-          "Writing Website Content",
-          "Creating Strong Headlines",
-          "Call-to-Action Strategy",
-          "Image & Icon Selection",
-          "Website Visual Hierarchy",
-          "Building Trust & Social Proof",
-          "Creating Conversion-Focused Sections"
-        ]
-      },
-      {
-        title: "Module 9: Basic SEO & Website Optimization",
-        lessonsCount: "7 Lessons · 1 hour",
-        lessons: [
-          "Understanding Website SEO",
-          "SEO-Friendly Website Structure",
-          "Page Titles & Meta Descriptions",
-          "Image Optimization",
-          "Heading Structure",
-          "Website Speed Optimization",
-          "Connecting Google Search Console"
-        ]
-      },
-      {
-        title: "Module 10: Forms, Integrations & Essential Features",
-        lessonsCount: "8 Lessons · 1 hour 10 min",
-        lessons: [
-          "Contact Forms",
-          "WhatsApp Integration",
-          "Google Maps Integration",
-          "Social Media Integration",
-          "Newsletter & Lead Forms",
-          "Analytics Integration",
-          "Essential Website Plugins",
-          "Module 10 Practical Exercise"
-        ]
-      },
-      {
-        title: "Module 11: Testing, Security & Performance",
-        lessonsCount: "7 Lessons · 55 min",
-        lessons: [
-          "Website Testing Checklist",
-          "Mobile & Browser Testing",
-          "Fixing Layout Issues",
-          "Website Speed Testing",
-          "SSL & Basic Website Security",
-          "Backup & Maintenance",
-          "Final Website Quality Check"
-        ]
-      },
-      {
-        title: "Module 12: Website Launch & Freelancing",
-        lessonsCount: "8 Lessons · 1 hour 15 min",
-        lessons: [
-          "Connecting Domain & Hosting",
-          "Publishing Your Website",
-          "Final Website Launch Checklist",
-          "Client Website Handover",
-          "Website Maintenance Basics",
-          "Creating Your Web Design Portfolio",
-          "Finding Your First Web Design Client",
-          "Final Course Project"
+          "Assembling a Standout Design Portfolio",
+          "Case Study Writing for Behance & Dribbble",
+          "How to Price Graphic Design & AI Services",
+          "Writing Winning Freelance Proposals & Contracts",
+          "Finding High-Paying Clients (Upwork, LinkedIn, Cold Outreach)",
+          "Client Communication & Revision Handling",
+          "Final Certification Project & Review",
+          "Next Steps for Your Design Career"
         ]
       }
     ],
     outcomes: [
-      "Plan and structure professional websites",
-      "Create modern UI designs in Figma",
-      "Build websites using WordPress & Elementor",
-      "Understand Webflow and modern web-building workflows",
-      "Create responsive desktop, tablet & mobile designs",
-      "Add forms, integrations and interactive elements",
-      "Apply basic SEO and performance optimization",
-      "Launch a complete professional website",
-      "Build websites for real clients",
-      "Start your journey as a freelance web designer"
+      "Master the fundamental principles of graphic design",
+      "Confidently choose typography, hierarchy, and color palettes",
+      "Design complete brand identity kits and logos",
+      "Create high-converting social media creatives and ad banners",
+      "Supercharge your workflow with Midjourney, ChatGPT, and Adobe Firefly",
+      "Upscale, enhance, and edit AI-generated graphics professionally",
+      "Build a showstopping portfolio of 7 real-world projects",
+      "Learn freelance pricing, proposal writing, and client acquisition"
     ],
     faqs: [
       {
-        question: "Do I need any coding knowledge to get started?",
-        answer: "No prior coding knowledge is required! This course takes you step-by-step from website design principles in Figma to building fully working websites with Elementor and Webflow."
+        question: "Do I need prior graphic design experience or drawing skills?",
+        answer: "No prior experience or drawing skills are needed! This course is designed from scratch to guide complete beginners to professional-level proficiency in just 7 days."
       },
       {
-        question: "How long does it take to complete the course?",
-        answer: "The syllabus is structured as a 14-day (2-week) step-by-step masterclass with 12 structured modules, allowing you to learn at your own pace."
+        question: "Which AI tools will be taught in this course?",
+        answer: "You will master Midjourney, ChatGPT/DALL-E, Adobe Firefly, and specialized AI upscaling and enhancement tools integrated into standard design workflows."
       },
       {
-        question: "Can I build real client websites after completing this course?",
-        answer: "Yes! Module 12 explicitly covers client handover, portfolios, maintenance, and landing your first web design clients."
+        question: "Will I receive a verified certificate upon completion?",
+        answer: "Yes! Once you finish all 7 daily modules and complete the capstone projects, you will receive a verifiable Certificate of Completion."
       }
     ]
   },
+  'web-design-2-weeks-mastery-course': {
+    get slug() { return COURSE_DATA['graphic-design-in-7-days'].slug; }
+  },
   'web-design-mastery-course': {
-    get slug() { return COURSE_DATA['web-design-2-weeks-mastery-course'].slug; }
+    get slug() { return COURSE_DATA['graphic-design-in-7-days'].slug; }
   },
   'the-ultimate-figma-masterclass': {
     slug: 'the-ultimate-figma-masterclass',
@@ -1133,6 +1136,9 @@ function getCourseData(rawSlug) {
   if (rawSlug && COURSE_DATA[rawSlug]) {
     return COURSE_DATA[rawSlug];
   }
+  if (!rawSlug && COURSE_DATA['ui-design-masterclass']) {
+    return COURSE_DATA['ui-design-masterclass'];
+  }
   
   // Format slug into clean human-readable title
   const formattedTitle = rawSlug
@@ -1299,7 +1305,7 @@ export default function FigmaMasterclassPage() {
                 {course.description}
               </p>
 
-              {/* Loved by 15,000+ Designers Badge Pill */}
+              {/* Loved by 578+ Students Badge Pill */}
               <div className="p-3 px-4 rounded-2xl bg-[#181b2a]/90 border border-white/10 backdrop-blur-md inline-flex items-center gap-3.5 shadow-xl hover:border-white/20 transition-all">
                 <div className="flex -space-x-2 overflow-hidden">
                   <img className="inline-block h-8 w-8 rounded-full ring-2 ring-[#181b2a] object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Student" />
@@ -1320,7 +1326,7 @@ export default function FigmaMasterclassPage() {
                     </div>
                     <span className="text-xs font-bold text-amber-400 ml-1">5.0</span>
                   </div>
-                  <span className="text-xs text-[#a1a1aa] font-medium block mt-0.5">Loved by 15,000+ designers</span>
+                  <span className="text-xs text-[#a1a1aa] font-medium block mt-0.5">Loved by 578+ students</span>
                 </div>
               </div>
 
@@ -1425,7 +1431,7 @@ export default function FigmaMasterclassPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                       </div>
-                      <span className="truncate">{course.slug === 'web-design-2-weeks-mastery-course' ? '92+ lessons' : (course.slug === 'shopify-1-week-master-course' ? '54+ lessons' : '110+ lessons')}</span>
+                      <span className="truncate">{course.slug === 'graphic-design-in-7-days' ? '53+ lessons' : (course.slug === 'shopify-1-week-master-course' ? '54+ lessons' : (course.slug === 'ui-design-masterclass' ? '80+ lessons' : '110+ lessons'))}</span>
                     </div>
                     <div className="flex items-center gap-2.5 truncate">
                       <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 border border-indigo-100/60">
@@ -1672,7 +1678,7 @@ export default function FigmaMasterclassPage() {
 
       {/* Pricing / Enrollment Section (LIGHT THEME) */}
       <section id="pricing" className="py-24 border-b border-slate-100 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10">
           
           <div className="flex flex-col items-center gap-4 text-center pb-2">
             <span className="inline-block text-xs font-semibold text-[#6400e6] uppercase tracking-wider bg-purple-100 px-4 py-1.5 rounded-full border border-purple-200 shadow-2xs">
@@ -1686,36 +1692,90 @@ export default function FigmaMasterclassPage() {
             </p>
           </div>
 
-          <div className="max-w-md mx-auto p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6 text-left">
-            <div className="flex items-baseline justify-between">
-              <div>
-                <h3 className="text-xl font-bold text-slate-900">{course.title}</h3>
-                <span className="text-xs text-slate-500">Full Course Pass</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+            {/* Online Pricing Card */}
+            <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6 text-left flex flex-col justify-between hover:border-purple-300 transition-all">
+              <div className="space-y-6">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full mb-3">
+                      <LaptopVideoIcon className="w-3.5 h-3.5" />
+                      Online
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900">{course.title}</h3>
+                    <span className="text-xs text-slate-500">Full Course Pass</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold text-slate-900">₹2,999</div>
+                    <span className="text-xs font-medium text-slate-500">One Time Payment</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3 pt-2 text-sm text-slate-700 border-t border-slate-100">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Full Lifetime Video Access
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Source Files & Templates
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Completion
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Private Discord Community Access
+                  </div>
+                </div>
               </div>
-              <span className="text-3xl font-extrabold text-slate-900">{course.price}</span>
+
+              <Link
+                to="/courses"
+                className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block"
+              >
+                Enroll Now for ₹2,999
+              </Link>
             </div>
 
-            <div className="space-y-3 pt-2 text-sm text-slate-700">
-              <div className="flex items-center gap-2.5">
-                <span className="text-emerald-600 font-bold">✓</span> Full Lifetime Video Access
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="text-emerald-600 font-bold">✓</span> Source Files & Templates
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="text-emerald-600 font-bold">✓</span> Certificate of Completion
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="text-emerald-600 font-bold">✓</span> Private Discord Community Access
-              </div>
-            </div>
+            {/* Offline Pricing Card */}
+            <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6 text-left flex flex-col justify-between hover:border-purple-300 transition-all">
+              <div className="space-y-6">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 bg-purple-50 border border-purple-200 px-3 py-1 rounded-full mb-3">
+                      <Building02Icon className="w-3.5 h-3.5" />
+                      Offline
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900">{course.title}</h3>
+                    <span className="text-xs text-slate-500">Full Course Pass</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold text-slate-900">₹4,999</div>
+                    <span className="text-xs font-medium text-slate-500">One Time Payment</span>
+                  </div>
+                </div>
 
-            <Link
-              to="/courses"
-              className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block"
-            >
-              Enroll Now for {course.price}
-            </Link>
+                <div className="space-y-3 pt-2 text-sm text-slate-700 border-t border-slate-100">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Full Lifetime Video Access
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Source Files & Templates
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Completion
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span> Private Discord Community Access
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                to="/courses"
+                className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block"
+              >
+                Enroll Now for ₹4,999
+              </Link>
+            </div>
           </div>
 
         </div>

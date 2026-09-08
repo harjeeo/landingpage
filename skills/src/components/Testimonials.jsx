@@ -4,39 +4,39 @@ import { Link } from 'react-router-dom';
 const HOME_TESTIMONIALS = [
   {
     id: 't-1',
-    name: 'Sarah Jenkins',
-    flag: '🇺🇸',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+    name: 'Harpreet Singh',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Ultimate Figma Masterclass 2.0',
-    outcome: '🚀 Promoted to Senior UI',
-    content: 'The Ultimate Figma Masterclass completely transformed how I build design systems. I landed a Senior Product Designer role at Canva with a 45% salary bump within 2 months!',
+    course: 'UI/UX Design Course',
+    outcome: '⚡ Practical Projects',
+    content: 'Figma was quite confusing for me initially, but the course made everything much easier to understand. The practical projects were definitely the most useful part.',
     rating: 5,
-    helpfulCount: 52
+    helpfulCount: 42
   },
   {
     id: 't-2',
-    name: 'Marcus Chen',
-    flag: '🇦🇺',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+    name: 'Aman Sharma',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Practical UX Research & Strategy',
-    outcome: '💡 Lead UX Strategist',
-    content: "Designership's UX Research course taught me practical strategy that bootcamps never cover. Mizko's teaching style is clear, direct, and actionable.",
+    course: 'Shopify Course',
+    outcome: '🛍️ Simple Store Setup',
+    content: 'Setting up a Shopify store seemed complicated at first, but the step-by-step approach made the whole process much easier to understand.',
     rating: 5,
-    helpfulCount: 41
+    helpfulCount: 38
   },
   {
     id: 't-3',
-    name: 'Elena Rostova',
-    flag: '🇫🇷',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
+    name: 'Simran Kaur',
+    flag: '🇮🇳',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
     verified: true,
-    course: 'Shipfaster UI Kit & Design System',
-    outcome: '⚡ Saved 100+ Hours',
-    content: 'I bought the ALL-IN bundle and it was the best investment of my career. The design system files alone saved me hundreds of hours of work.',
+    course: 'Graphic Design Course',
+    outcome: '🎨 Design Principles',
+    content: "I knew the basics of designing but didn't really understand design principles. The lessons on typography, colours and layouts gave me much more clarity.",
     rating: 5,
-    helpfulCount: 68
+    helpfulCount: 29
   }
 ];
 

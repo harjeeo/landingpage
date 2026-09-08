@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { ChatQuestion01Icon } from 'hugeicons-react';
 
 const FAQ_DATA = [
   {
@@ -83,6 +84,14 @@ export default function FaqPage() {
   const [showAskModal, setShowAskModal] = useState(false);
   const [askSubmitted, setAskSubmitted] = useState(false);
   const [askFormData, setAskFormData] = useState({ name: '', phone: '', question: '' });
+  const categoryScrollRef = useRef(null);
+
+  const scrollCategories = (direction) => {
+    if (categoryScrollRef.current) {
+      const scrollAmount = direction === 'left' ? -200 : 200;
+      categoryScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const categories = [
     { id: 'All', label: 'All Questions' },
@@ -203,31 +212,67 @@ export default function FaqPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         {/* Category Filter Bar */}
-        <div className="mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <div className="mb-8 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           
-          {/* Category Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'bg-[#0bc40e] text-white shadow-sm'
-                    : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          {/* Category Filter Pills Container with Arrows & Smooth Scrolling */}
+          <div className="relative flex items-center min-w-0 flex-1 group">
+            {/* Scroll Left Button */}
+            <button
+              type="button"
+              onClick={() => scrollCategories('left')}
+              className="hidden sm:flex shrink-0 w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-slate-900 hover:bg-slate-50 items-center justify-center mr-1 shadow-xs cursor-pointer z-10 transition-all active:scale-95"
+              aria-label="Scroll categories left"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Scrollable Pills List */}
+            <div
+              ref={categoryScrollRef}
+              onWheel={(e) => {
+                if (e.deltaY !== 0 && categoryScrollRef.current) {
+                  categoryScrollRef.current.scrollLeft += e.deltaY;
+                }
+              }}
+              className="flex items-center gap-2 overflow-x-auto scroll-smooth py-1 px-1 w-full scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+            >
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer shrink-0 select-none ${
+                    selectedCategory === cat.id
+                      ? 'bg-[#0bc40e] text-white shadow-sm'
+                      : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Scroll Right Button */}
+            <button
+              type="button"
+              onClick={() => scrollCategories('right')}
+              className="hidden sm:flex shrink-0 w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-slate-900 hover:bg-slate-50 items-center justify-center ml-1 shadow-xs cursor-pointer z-10 transition-all active:scale-95"
+              aria-label="Scroll categories right"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
 
           {/* Ask Question Button */}
           <button
             onClick={() => setShowAskModal(true)}
-            className="bg-[#0bc40e] hover:bg-[#0aa30c] text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl shadow-md transition-colors shrink-0 flex items-center justify-center gap-1.5 cursor-pointer"
+            className="bg-[#0bc40e] hover:bg-[#0aa30c] text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl shadow-md transition-colors shrink-0 flex items-center justify-center gap-2 cursor-pointer active:scale-95"
           >
-            <span>💬</span> Ask a Question
+            <ChatQuestion01Icon size={18} strokeWidth={2.5} className="shrink-0" />
+            <span>Ask a Question</span>
           </button>
 
         </div>
@@ -334,8 +379,8 @@ export default function FaqPage() {
 
         {/* Bottom Support Banner matching TestimonialsPage footer style */}
         <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 text-center shadow-sm max-w-4xl mx-auto mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-[#0bc40e] border border-emerald-100 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-            💬
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-[#0bc40e] border border-emerald-100 flex items-center justify-center mx-auto mb-4">
+            <ChatQuestion01Icon size={24} strokeWidth={2.5} className="text-[#0bc40e]" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 tracking-tight">
             Still have questions?

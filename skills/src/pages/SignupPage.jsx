@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function SignupPage() {
   const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(true);
+  const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match. Please check and try again.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
@@ -18,31 +35,73 @@ export default function LoginPage() {
     }, 800);
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleSignup = () => {
     navigate('/dashboard');
   };
 
   return (
     <div className="min-h-[85vh] bg-[#f8fafc] text-slate-900 font-sans flex flex-col justify-between py-12 px-4 sm:px-6">
       
-      {/* Centered Login Card */}
+      {/* Centered Signup Card */}
       <div className="w-full max-w-md mx-auto my-auto">
         <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 space-y-6">
           
           {/* Header */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Welcome Back
+              Create an Account
             </h1>
             <p className="text-sm text-slate-600">
-              Log in to continue your learning journey
+              Join thousands of learners building real-world design skills
             </p>
           </div>
 
+          {/* Error Message */}
+          {error && (
+            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-medium">
+              {error}
+            </div>
+          )}
+
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4 pt-2">
+          <form onSubmit={handleSubmit} className="space-y-4 pt-1">
             
-            {/* Email Field */}
+            {/* Full Name */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Full Name
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="John Doe"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-[#6400e6] focus:ring-2 focus:ring-[#6400e6]/20 transition-all shadow-2xs"
+              />
+            </div>
+
+            {/* Phone Number */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Phone Number
+              </label>
+              <div className="relative flex">
+                <span className="inline-flex items-center px-3.5 rounded-l-xl border border-r-0 border-slate-300 bg-slate-100 text-slate-600 text-xs font-semibold">
+                  🇮🇳 +91
+                </span>
+                <input
+                  type="tel"
+                  required
+                  placeholder="9876543210"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-r-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-[#6400e6] focus:ring-2 focus:ring-[#6400e6]/20 transition-all shadow-2xs"
+                />
+              </div>
+            </div>
+
+            {/* Email Address */}
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Email Address
@@ -57,25 +116,16 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* Password Field */}
+            {/* Password */}
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  Password
-                </label>
-                <button
-                  type="button"
-                  onClick={() => alert('Password reset link will be sent to your email.')}
-                  className="text-xs text-[#6400e6] hover:underline font-medium"
-                >
-                  Forgot password?
-                </button>
-              </div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Password
+              </label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
-                  placeholder="••••••••"
+                  placeholder="At least 6 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-[#6400e6] focus:ring-2 focus:ring-[#6400e6]/20 transition-all shadow-2xs pr-12"
@@ -90,26 +140,50 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* Remember Me Checkbox */}
+            {/* Confirm Password */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Confirm Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  required
+                  placeholder="Re-enter password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-[#6400e6] focus:ring-2 focus:ring-[#6400e6]/20 transition-all shadow-2xs pr-12"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-500 hover:text-slate-800"
+                >
+                  {showConfirmPassword ? 'Hide' : 'Show'}
+                </button>
+              </div>
+            </div>
+
+            {/* Terms Checkbox */}
             <label className="flex items-center gap-2.5 pt-1 cursor-pointer group select-none">
               <div className="relative flex items-center justify-center shrink-0">
                 <input
                   type="checkbox"
-                  id="rememberMe"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
+                  id="agreeTerms"
+                  checked={agreeTerms}
+                  onChange={(e) => setAgreeTerms(e.target.checked)}
                   className="sr-only"
                 />
                 <div
                   className={`w-4.5 h-4.5 rounded-[5px] border-2 transition-all duration-200 flex items-center justify-center ${
-                    rememberMe
+                    agreeTerms
                       ? 'bg-[#6400e6] border-[#6400e6] shadow-sm shadow-[#6400e6]/20'
                       : 'bg-white border-slate-300 group-hover:border-[#6400e6]/60'
                   }`}
                 >
                   <svg
                     className={`w-3 h-3 text-white transition-transform duration-150 ${
-                      rememberMe ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                      agreeTerms ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                     }`}
                     fill="none"
                     viewBox="0 0 24 24"
@@ -120,17 +194,26 @@ export default function LoginPage() {
                   </svg>
                 </div>
               </div>
-              <span className="text-xs font-medium text-slate-700 leading-none group-hover:text-slate-900 transition-colors">
-                Remember me for 30 days
+              <span className="text-xs text-slate-600 leading-none group-hover:text-slate-800 transition-colors">
+                I agree to the{' '}
+                <Link to="/terms-and-conditions" className="text-[#6400e6] font-semibold hover:underline">
+                  Terms & Conditions
+                </Link>{' '}
+                and{' '}
+                <Link to="/privacy-policy" className="text-[#6400e6] font-semibold hover:underline">
+                  Privacy Policy
+                </Link>
+                .
               </span>
             </label>
 
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-bold text-sm py-3.5 rounded-xl transition-all shadow-md shadow-[#0bc40e]/20 mt-2 active:scale-[0.99]"
+              disabled={!agreeTerms}
+              className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm py-3.5 rounded-xl transition-all shadow-md shadow-[#0bc40e]/20 mt-2 active:scale-[0.99]"
             >
-              {isSubmitted ? 'Logging in...' : 'Login'}
+              {isSubmitted ? 'Creating account...' : 'Sign up'}
             </button>
           </form>
 
@@ -142,10 +225,10 @@ export default function LoginPage() {
             </span>
           </div>
 
-          {/* Google Login Button */}
+          {/* Google Signup Button */}
           <button
             type="button"
-            onClick={handleGoogleLogin}
+            onClick={handleGoogleSignup}
             className="w-full flex items-center justify-center gap-3 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-semibold text-sm py-3 px-4 rounded-xl transition-all shadow-2xs hover:shadow-xs active:scale-[0.99]"
           >
             <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
@@ -166,18 +249,18 @@ export default function LoginPage() {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
               />
             </svg>
-            Login with Google
+            Signup with Google
           </button>
 
-          {/* Switch to Signup */}
+          {/* Switch to Login */}
           <div className="text-center pt-2">
             <p className="text-xs text-slate-600">
-              Don't have an account?{' '}
+              Already have an account?{' '}
               <Link
-                to="/signup"
+                to="/login"
                 className="font-bold text-[#6400e6] hover:underline"
               >
-                Sign up
+                Login
               </Link>
             </p>
           </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { PaintBoardIcon } from 'hugeicons-react';
 import dcSkillsLogo from '../assets/dc-skills-logo.svg';
 
 export default function Navbar() {
@@ -64,18 +65,54 @@ export default function Navbar() {
                 </div>
                 
                 <Link
-                  to="/courses/web-design-2-weeks-mastery-course"
+                  to="/courses/ui-design-masterclass"
                   onClick={() => setActiveDropdown(null)}
                   className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
+                  <div className="w-9 h-9 rounded-xl bg-purple-50 text-[#8b5cf6] flex items-center justify-center shrink-0 border border-purple-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
                     <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">Web Design 2 Weeks Mastery Course</span>
+                      <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">UI Design Masterclass — Next-Gen UI Design with AI</span>
+                      <span className="text-[10px] font-bold bg-[#6400e6]/20 text-[#a855f7] px-1.5 py-0.5 rounded-full border border-[#6400e6]/30">Hot</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-[#a1a1aa] mt-1">
+                      <span className="inline-flex items-center gap-1">
+                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        2,400+
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
+                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        5.0
+                      </span>
+                      <span className="inline-flex items-center gap-1">
+                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        All Levels
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+
+                <Link
+                  to="/courses/graphic-design-in-7-days"
+                  onClick={() => setActiveDropdown(null)}
+                  className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/20 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
+                    <PaintBoardIcon className="w-4.5 h-4.5" size={18} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">Graphic Design in 7 Days — Learn, Create & Master AI</span>
                       <span className="text-[10px] font-bold bg-[#6400e6]/20 text-[#a855f7] px-1.5 py-0.5 rounded-full border border-[#6400e6]/30">New</span>
                     </div>
                     <div className="flex items-center gap-3 text-xs text-[#a1a1aa] mt-1">
@@ -83,7 +120,7 @@ export default function Navbar() {
                         <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        1,200+
+                        1,500+
                       </span>
                       <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
                         <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
@@ -137,115 +174,6 @@ export default function Navbar() {
                     </div>
                   </div>
                 </Link>
-
-                <Link
-                  to="/courses/the-ultimate-figma-masterclass"
-                  onClick={() => setActiveDropdown(null)}
-                  className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-purple-50 text-[#6400e6] flex items-center justify-center shrink-0 border border-purple-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
-                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth={2} />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 4v16M4 9h16" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">Ultimate Figma Masterclass 2.0</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-xs text-[#a1a1aa] mt-1">
-                      <span className="inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        8,500+
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
-                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        4.9
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        Intermediate
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link
-                  to="/courses/ai-designer-graphic-designing"
-                  onClick={() => setActiveDropdown(null)}
-                  className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 border border-pink-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
-                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">AI Designer and Graphic Designing Course</span>
-                    <div className="flex items-center gap-3 text-xs text-[#a1a1aa] mt-1">
-                      <span className="inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        1,500+
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
-                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        4.9
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        All Levels
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link
-                  to="/courses/ux-ui-design-course"
-                  onClick={() => setActiveDropdown(null)}
-                  className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 border border-cyan-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
-                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <rect x="3" y="4" width="18" height="14" rx="2" strokeWidth={2} />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 20h8M12 18v2" />
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">UX/UI Design Course</span>
-                    <div className="flex items-center gap-3 text-xs text-[#a1a1aa] mt-1">
-                      <span className="inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        800+
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
-                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        4.9
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-[#9a7cff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        Intermediate
-                      </span>
-                    </div>
-                  </div>
-                </Link>
               </div>
             )}
           </div>
@@ -256,20 +184,38 @@ export default function Navbar() {
         </div>
 
         {/* Action Buttons Desktop */}
-        <div className="hidden lg:flex items-center gap-3">
-          <Link
-            to="/login"
-            className="px-5 py-2.5 rounded-full bg-[#181a24] hover:bg-[#232736] border border-white/15 text-white/90 font-medium text-xs sm:text-sm transition-all"
-          >
-            Enter academy
-          </Link>
-          <Link
-            to="/courses"
-            className="px-5 py-2.5 rounded-full bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-xs sm:text-sm transition-all shadow-md shadow-[#0bc40e]/20"
-          >
-            Buy courses
-          </Link>
-        </div>
+        {location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname === '/student-dashboard' ? (
+          <div className="hidden lg:flex items-center gap-3">
+            {/* Student Profile */}
+            <Link
+              to="/dashboard"
+              className="flex items-center gap-2.5 p-1.5 pr-4 rounded-full bg-[#181a24] hover:bg-[#232736] border border-white/15 transition-all text-left group"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#6400e6] to-[#0bc40e] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                HS
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xs font-bold text-white group-hover:text-[#9a7cff] transition-colors">Harpreet Singh</span>
+                <span className="text-[10px] text-[#a1a1aa] font-medium">UI/UX Student</span>
+              </div>
+            </Link>
+          </div>
+        ) : (
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              to="/login"
+              className="px-5 py-2.5 rounded-full bg-[#181a24] hover:bg-[#232736] border border-white/15 text-white/90 font-medium text-xs sm:text-sm transition-all"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="px-5 py-2.5 rounded-full bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-xs sm:text-sm transition-all shadow-md shadow-[#0bc40e]/20"
+            >
+              Sign up
+            </Link>
+          </div>
+        )}
 
         {/* Mobile menu toggle icon */}
         <button
@@ -370,22 +316,43 @@ export default function Navbar() {
                 </Link>
 
                 {/* Bottom CTA Actions */}
-                <div className="pt-6 space-y-3 pb-8">
-                  <Link
-                    to="/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full text-center block py-3.5 px-4 rounded-xl bg-[#181a24] hover:bg-[#232736] border border-white/15 text-white font-medium text-base transition-all"
-                  >
-                    Enter academy
-                  </Link>
-                  <Link
-                    to="/courses"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full text-center block py-3.5 px-4 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-base shadow-lg shadow-[#0bc40e]/30 transition-all"
-                  >
-                    Buy courses
-                  </Link>
-                </div>
+                {location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname === '/student-dashboard' ? (
+                  <div className="pt-6 space-y-3 pb-8">
+                    <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#181a24] border border-white/15">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#6400e6] to-[#0bc40e] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                        HS
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-white">Harpreet Singh</h4>
+                        <p className="text-xs text-[#a1a1aa]">UI/UX Student</p>
+                      </div>
+                    </div>
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="w-full text-center block py-3.5 px-4 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-base shadow-lg shadow-[#0bc40e]/30 transition-all"
+                    >
+                      My Dashboard
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="pt-6 space-y-3 pb-8">
+                    <Link
+                      to="/login"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="w-full text-center block py-3.5 px-4 rounded-xl bg-[#181a24] hover:bg-[#232736] border border-white/15 text-white font-medium text-base transition-all"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to="/signup"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="w-full text-center block py-3.5 px-4 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-base shadow-lg shadow-[#0bc40e]/30 transition-all"
+                    >
+                      Sign up
+                    </Link>
+                  </div>
+                )}
 
               </div>
 
@@ -424,18 +391,54 @@ export default function Navbar() {
                 </div>
 
                 <Link
-                  to="/courses/web-design-2-weeks-mastery-course"
+                  to="/courses/ui-design-masterclass"
                   onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
                   className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100/60 shadow-xs mt-0.5">
+                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#8b5cf6] flex items-center justify-center shrink-0 border border-purple-100/60 shadow-xs mt-0.5">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">Web Design 2 Weeks Mastery</span>
+                      <span className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">UI Design Masterclass — Next-Gen UI with AI</span>
+                      <span className="text-[9px] font-bold bg-[#6400e6]/20 text-[#a855f7] px-1.5 py-0.5 rounded-full border border-[#6400e6]/30">Hot</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
+                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
+                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        2,400+
+                      </span>
+                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1 text-amber-400 font-semibold">
+                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        5.0
+                      </span>
+                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
+                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        All Levels
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+
+                <Link
+                  to="/courses/graphic-design-in-7-days"
+                  onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
+                  className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/20 shadow-xs mt-0.5">
+                    <PaintBoardIcon className="w-5 h-5" size={20} />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">Graphic Design in 7 Days — Learn, Create & Master AI</span>
                       <span className="text-[9px] font-bold bg-[#6400e6]/20 text-[#a855f7] px-1.5 py-0.5 rounded-full border border-[#6400e6]/30">New</span>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
@@ -443,7 +446,7 @@ export default function Navbar() {
                         <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        1,200+
+                        1,500+
                       </span>
                       <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1 text-amber-400 font-semibold">
                         <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
@@ -491,113 +494,6 @@ export default function Navbar() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                         All Levels
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link
-                  to="/courses/the-ultimate-figma-masterclass"
-                  onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
-                  className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#6400e6] flex items-center justify-center shrink-0 border border-purple-100/60 shadow-xs mt-0.5">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth={2} />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 4v16M4 9h16" />
-                    </svg>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">Ultimate Figma Masterclass 2.0</div>
-                    <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        8,500+
-                      </span>
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1 text-amber-400 font-semibold">
-                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        4.9
-                      </span>
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        Intermediate
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link
-                  to="/courses/ai-designer-graphic-designing"
-                  onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
-                  className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 border border-pink-100/60 shadow-xs mt-0.5">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                    </svg>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">AI Designer & Graphic Course</div>
-                    <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        1,500+
-                      </span>
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1 text-amber-400 font-semibold">
-                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        4.9
-                      </span>
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        All Levels
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link
-                  to="/courses/ux-ui-design-course"
-                  onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
-                  className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 border border-cyan-100/60 shadow-xs mt-0.5">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <rect x="3" y="4" width="18" height="14" rx="2" strokeWidth={2} />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 20h8M12 18v2" />
-                    </svg>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">UX/UI Design Course</div>
-                    <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        800+
-                      </span>
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1 text-amber-400 font-semibold">
-                        <svg className="w-3 h-3 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        4.9
-                      </span>
-                      <span className="bg-white/5 px-2 py-0.5 rounded-md text-[11px] inline-flex items-center gap-1">
-                        <svg className="w-3 h-3 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        Intermediate
                       </span>
                     </div>
                   </div>

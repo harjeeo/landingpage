@@ -137,127 +137,94 @@ const CoverShopify = () => (
   </div>
 );
 
-const CoverWebDesign = () => (
-  <div className="w-full h-full bg-[#f5f3ff] p-4 flex flex-col justify-between select-none relative overflow-hidden">
+const CoverGraphicDesign = () => (
+  <div className="w-full h-full bg-[#fefce8] p-4 flex flex-col justify-between select-none relative overflow-hidden">
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <div className="w-4 h-4 rounded bg-[#6400e6] flex items-center justify-center text-white text-[9px] font-bold">w</div>
+        <div className="w-4 h-4 rounded bg-amber-500 flex items-center justify-center text-white text-[9px] font-bold">G</div>
         <span className="text-[10px] font-bold text-slate-700">Designership</span>
       </div>
-      <span className="text-[9px] font-bold bg-[#6400e6]/20 text-[#6400e6] px-1.5 py-0.5 rounded">New</span>
+      <span className="text-[9px] font-bold bg-amber-500/20 text-amber-700 px-1.5 py-0.5 rounded">New</span>
     </div>
     <div className="my-auto">
-      <div className="text-[11px] font-bold text-slate-800 leading-tight">Web Design 2 Weeks</div>
-      <div className="text-xs font-black text-[#6400e6]">Mastery Course</div>
+      <div className="text-[11px] font-bold text-slate-800 leading-tight">Graphic Design 7 Days</div>
+      <div className="text-xs font-black text-amber-600">Learn, Create & Master AI</div>
     </div>
     <div className="flex items-center gap-1 text-[8px] font-semibold text-slate-600 flex-wrap">
-      <span className="bg-white px-1.5 py-0.5 rounded border border-purple-100 shadow-2xs">🌐 Design & Build</span>
-      <span className="bg-white px-1.5 py-0.5 rounded border border-purple-100 shadow-2xs">🚀 Launch Websites</span>
+      <span className="bg-white px-1.5 py-0.5 rounded border border-amber-100 shadow-2xs">🎨 Branding & UI</span>
+      <span className="bg-white px-1.5 py-0.5 rounded border border-amber-100 shadow-2xs">⚡ Generative AI</span>
+    </div>
+  </div>
+);
+
+const CoverUIDesign = () => (
+  <div className="w-full h-full bg-[#fdf4ff] p-4 flex flex-col justify-between select-none relative overflow-hidden">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[#9333ea] flex items-center justify-center text-white text-[9px] font-bold">UI</div>
+        <span className="text-[10px] font-bold text-slate-700">Designership</span>
+      </div>
+      <span className="text-[9px] font-bold bg-[#9333ea]/20 text-[#9333ea] px-1.5 py-0.5 rounded">Hot</span>
+    </div>
+    <div className="my-auto">
+      <div className="text-[11px] font-bold text-slate-800 leading-tight">UI Design Masterclass</div>
+      <div className="text-xs font-black text-[#9333ea]">Next-Gen UI with AI</div>
+    </div>
+    <div className="flex items-center gap-1 text-[8px] font-semibold text-slate-600 flex-wrap">
+      <span className="bg-white px-1.5 py-0.5 rounded border border-purple-100 shadow-2xs">⚡ Design Systems</span>
+      <span className="bg-white px-1.5 py-0.5 rounded border border-purple-100 shadow-2xs">🤖 Next-Gen AI</span>
     </div>
   </div>
 );
 
 const COURSES_DATA = [
   {
-    id: 'web-design-2-weeks-mastery-course',
-    title: 'Web Design 2 Weeks Mastery Course',
+    id: 'ui-design-masterclass',
+    title: 'UI Design Masterclass — Next-Gen UI Design with AI',
     type: 'Individual',
-    category: 'Web Design',
+    category: 'UI/UX Design',
     level: 'All Levels',
-    students: '1,200+',
+    students: '2,400+',
     rating: '5.0',
-    CoverComponent: CoverWebDesign,
-    description: 'Learn how to design, build, customize, and launch modern, professional, responsive websites from scratch in just 14 days.',
+    CoverComponent: CoverUIDesign,
+    description: 'Master modern UI design principles, Figma design systems, component architecture, and AI-accelerated workflows.',
     price: 300,
     popularIndex: 0,
     isNew: true,
-    badge: 'New',
-    link: '/courses/web-design-2-weeks-mastery-course'
+    badge: 'Hot',
+    link: '/courses/ui-design-masterclass'
   },
   {
-    id: 'figma-masterclass',
-    title: 'Ultimate Figma Masterclass Course',
+    id: 'graphic-design-in-7-days',
+    title: 'Graphic Design in 7 Days — Learn, Create & Master AI',
     type: 'Individual',
-    category: 'Figma',
-    level: 'Intermediate',
-    students: '8,500+',
-    rating: '4.9',
-    CoverComponent: CoverFigma,
-    description: 'Learn advanced Figma workflows, Auto-Layout 5.0, variables, design tokens, interactive prototyping, building component libraries, and developer handoff.',
+    category: 'Graphic Design',
+    level: 'All Levels',
+    students: '1,500+',
+    rating: '5.0',
+    CoverComponent: CoverGraphicDesign,
+    description: 'Master graphic design principles, visual hierarchy, branding, social media creatives, and cutting-edge AI design tools in 7 days.',
     price: 300,
     popularIndex: 1,
     isNew: true,
-    link: '/courses/the-ultimate-figma-masterclass'
+    badge: 'New',
+    link: '/courses/graphic-design-in-7-days'
   },
   {
-    id: 'ux-research-strategy',
-    title: 'Practical UX Research & Strategy',
+    id: 'shopify-1-week-master-course',
+    title: 'Shopify 1 Week Master Course',
     type: 'Individual',
-    category: 'UX Research',
-    level: 'Beginner',
-    students: '1,500+',
+    category: 'Shopify',
+    level: 'All Levels',
+    students: '650+',
     rating: '4.9',
-    CoverComponent: CoverResearch,
-    description: 'Master user interviews, usability testing, journey mapping, quantitative metrics, problem framing, and strategic insights for real-world products.',
-    price: 250,
+    CoverComponent: CoverShopify,
+    description: 'Master Shopify store design, custom Liquid themes, e-commerce UX, and conversion optimization in just 7 days.',
+    price: 199,
     popularIndex: 2,
-    link: '/courses/practical-ux-research-strategy'
-  },
-  {
-    id: 'figma-research-bundle',
-    title: 'Figma & UX Research Course Bundle',
-    type: 'Bundles',
-    category: 'Figma',
-    level: 'Intermediate',
-    students: '3,200+',
-    rating: '4.9',
-    CoverComponent: CoverFigmaResearchBundle,
-    description: 'Get both the Ultimate Figma Masterclass 2.0 and Practical UX Research & Strategy course. Save $60 on the bundle.',
-    price: 490,
-    popularIndex: 3,
-    link: '/courses/figma-research-bundle'
-  },
-  {
-    id: 'ux-ui-masterclass',
-    title: 'UX/UI Design Course',
-    type: 'Individual',
-    category: 'UI/UX Design',
-    level: 'Intermediate',
-    students: '800+',
-    rating: '4.9',
-    CoverComponent: CoverUXUI,
-    description: 'Comprehensive end-to-end UX/UI design masterclass covering product strategy, wireframing, UI execution, accessibility, and design handoff.',
-    price: 280,
-    popularIndex: 4,
-    link: '/courses/ux-ui-design-course'
-  },
-  {
-    id: 'all-in-bundle',
-    title: 'Ultimate ALL-IN Bundle',
-    type: 'Bundles',
-    category: 'UI/UX Design',
-    level: 'Advance',
-    students: '5,000+',
-    rating: '5.0',
-    CoverComponent: CoverAllInBundle,
-    description: 'Complete access to all current and future courses, plus all design kits, UI systems, and design templates. Maximum savings ($210 off).',
-    price: 790,
-    popularIndex: 5,
-    link: '/courses/all-in-bundle'
-  },
-  {
-    id: 'ux-ui-research-bundle',
-    title: 'UX/UI Design & Research Bundle',
-    type: 'Bundles',
-    category: 'UI/UX Design',
-    level: 'Intermediate',
-    students: '1,900+',
-    rating: '4.9',
-    CoverComponent: CoverUXUIResearchBundle,
-    description: 'Master both UI design execution and UX research strategy in a single bundled pass. Includes all project files and case studies.',
-    price: 470,
-    popularIndex: 6,
-    link: '/courses/ux-ui-research-bundle'
+    isNew: true,
+    badge: 'New',
+    link: '/courses/shopify-1-week-master-course'
   }
 ];
 
@@ -404,11 +371,9 @@ export default function CoursesPage() {
               <div className="space-y-2.5 text-xs sm:text-sm pl-0.5">
                 {[
                   'All Categories',
-                  'Web Design',
-                  'Figma',
-                  'Shopify',
-                  'UX Research',
-                  'UI/UX Design'
+                  'UI/UX Design',
+                  'Graphic Design',
+                  'Shopify'
                 ].map((cat) => {
                   const isChecked = selectedCategories.includes(cat);
                   return (
