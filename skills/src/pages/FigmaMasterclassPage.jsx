@@ -1,6 +1,106 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 
+const MODULE_ICONS = [
+  {
+    bg: "bg-blue-50 text-blue-600 border-blue-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-purple-50 text-purple-600 border-purple-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-emerald-50 text-emerald-600 border-emerald-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-amber-50 text-amber-600 border-amber-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-rose-50 text-rose-600 border-rose-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5h12M9 5v14m0 0H7m2 0h2M15 11h6m-3 0v8m0 0h-1.5m1.5 0h1.5" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-cyan-50 text-cyan-600 border-cyan-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-indigo-50 text-indigo-600 border-indigo-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-violet-50 text-violet-600 border-violet-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-fuchsia-50 text-fuchsia-600 border-fuchsia-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-teal-50 text-teal-600 border-teal-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-orange-50 text-orange-600 border-orange-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    )
+  },
+  {
+    bg: "bg-emerald-50 text-[#0bc40e] border-emerald-100",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      </svg>
+    )
+  }
+];
+
 const COURSE_DATA = {
   'shopify-1-week-master-course': {
     slug: 'shopify-1-week-master-course',
@@ -1228,7 +1328,7 @@ export default function FigmaMasterclassPage() {
               <div className="flex flex-wrap items-center gap-4 pt-3">
                 <a
                   href="#pricing"
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] hover:from-[#6d28d9] hover:to-[#7e22ce] text-white font-semibold text-sm transition-all shadow-lg shadow-purple-900/30"
+                  className="px-7 py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-lg shadow-[#0bc40e]/30"
                 >
                   Enroll now for {course.price}
                 </a>
@@ -1240,17 +1340,42 @@ export default function FigmaMasterclassPage() {
                 </a>
               </div>
 
-              {/* Trust Badges */}
-              <div className="pt-6 border-t border-white/10 space-y-3">
-                <p className="text-[11px] text-[#71717a] uppercase font-semibold tracking-wider">
-                  TRUSTED BY DESIGNERS AT TOP COMPANIES
-                </p>
-                <div className="flex flex-wrap items-center gap-6 opacity-70 grayscale font-bold text-xs text-slate-400">
-                  <span>Google</span>
-                  <span>ATLASSIAN</span>
-                  <span>Meta</span>
-                  <span>Canva</span>
-                  <span>Shopify</span>
+              {/* Course Features Badges */}
+              <div className="pt-6 border-t border-white/10 flex flex-wrap items-center gap-3">
+                {/* Badge 1: Certificate */}
+                <div className="inline-flex items-center gap-3 py-2 pl-2.5 pr-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md">
+                  <div className="w-8 h-8 rounded-xl bg-[#0bc40e]/15 border border-[#0bc40e]/30 text-[#0bc40e] flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7" />
+                    </svg>
+                  </div>
+                  <div className="text-left">
+                    <span className="text-xs font-bold text-white tracking-wide block">
+                      Course Completion Certificate
+                    </span>
+                    <span className="text-[11px] text-[#9ca3af] block">
+                      Official verifiable certificate included
+                    </span>
+                  </div>
+                </div>
+
+                {/* Badge 2: Online & Offline */}
+                <div className="inline-flex items-center gap-3 py-2 pl-2.5 pr-4 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md">
+                  <div className="w-8 h-8 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="text-left">
+                    <span className="text-xs font-bold text-white tracking-wide block">
+                      Online and Offline
+                    </span>
+                    <span className="text-[11px] text-[#9ca3af] block">
+                      Live interactive & classroom modes
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1275,37 +1400,47 @@ export default function FigmaMasterclassPage() {
                     Inclusion
                   </span>
                   
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-xs sm:text-sm text-slate-800 font-medium">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-3.5 text-xs sm:text-sm text-slate-800 font-medium">
                     <div className="flex items-center gap-2.5 truncate">
-                      <svg className="w-5 h-5 text-[#8b5cf6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <div className="w-8 h-8 rounded-xl bg-purple-50 text-[#6400e6] flex items-center justify-center shrink-0 border border-purple-100/60">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
                       <span className="truncate">{course.duration ? course.duration : '20+ hours of content'}</span>
                     </div>
                     <div className="flex items-center gap-2.5 truncate">
-                      <svg className="w-5 h-5 text-[#8b5cf6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01-6.824-2.998L12 14z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7" />
-                      </svg>
+                      <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100/60">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7" />
+                        </svg>
+                      </div>
                       <span className="truncate">Certificate of Completion</span>
                     </div>
                     <div className="flex items-center gap-2.5 truncate">
-                      <svg className="w-5 h-5 text-[#8b5cf6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                      </svg>
+                      <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100/60">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
                       <span className="truncate">{course.slug === 'web-design-2-weeks-mastery-course' ? '92+ lessons' : (course.slug === 'shopify-1-week-master-course' ? '54+ lessons' : '110+ lessons')}</span>
                     </div>
                     <div className="flex items-center gap-2.5 truncate">
-                      <svg className="w-5 h-5 text-[#8b5cf6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                      </svg>
+                      <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 border border-indigo-100/60">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                        </svg>
+                      </div>
                       <span className="truncate">Subtitles: English</span>
                     </div>
                     <div className="flex items-center gap-2.5 truncate col-span-2">
-                      <svg className="w-5 h-5 text-[#8b5cf6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                      </svg>
+                      <div className="w-8 h-8 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 border border-pink-100/60">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                        </svg>
+                      </div>
                       <span className="truncate">10+ file resources</span>
                     </div>
                   </div>
@@ -1317,12 +1452,6 @@ export default function FigmaMasterclassPage() {
                     type="text"
                     required
                     placeholder="Name"
-                    className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#6400e6] focus:ring-1 focus:ring-[#6400e6]"
-                  />
-                  <input
-                    type="email"
-                    required
-                    placeholder="Email"
                     className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#6400e6] focus:ring-1 focus:ring-[#6400e6]"
                   />
                   <input
@@ -1338,7 +1467,7 @@ export default function FigmaMasterclassPage() {
 
                   <button
                     type="submit"
-                    className="w-full bg-[#6400e6] hover:bg-[#530dd3] text-white font-bold text-sm py-3.5 rounded-xl shadow-md shadow-purple-200 transition-all block text-center"
+                    className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-bold text-sm py-3.5 rounded-xl shadow-md shadow-[#0bc40e]/20 transition-all block text-center"
                   >
                     Submit
                   </button>
@@ -1458,40 +1587,52 @@ export default function FigmaMasterclassPage() {
           </div>
 
           <div className="space-y-4">
-            {(course.modules || []).map((mod, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white border border-slate-200/80 overflow-hidden shadow-2xs transition-all"
-              >
-                <button
-                  onClick={() => setOpenModule(openModule === idx ? -1 : idx)}
-                  className="w-full p-5 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
+            {(course.modules || []).map((mod, idx) => {
+              const iconData = MODULE_ICONS[idx % MODULE_ICONS.length];
+              const isOpen = openModule === idx;
+              return (
+                <div
+                  key={idx}
+                  className="rounded-2xl bg-white border border-slate-200/80 overflow-hidden shadow-2xs hover:border-slate-300 transition-all"
                 >
-                  <div className="space-y-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-slate-900">
-                      {mod.title}
-                    </h3>
-                    <span className="text-xs text-slate-500 block font-medium">
-                      {mod.lessonsCount}
-                    </span>
-                  </div>
-                  <span className="text-xl text-[#6400e6] font-bold shrink-0 ml-4">
-                    {openModule === idx ? '−' : '+'}
-                  </span>
-                </button>
-
-                {openModule === idx && (
-                  <div className="px-6 pb-6 pt-3 border-t border-slate-100 space-y-2 bg-slate-50/40">
-                    {(mod.lessons || []).map((lesson, lIdx) => (
-                      <div key={lIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 py-0.5">
-                        <span className="text-[#6400e6] font-bold leading-relaxed shrink-0">•</span>
-                        <span className="leading-relaxed font-normal">{lesson}</span>
+                  <button
+                    onClick={() => setOpenModule(isOpen ? -1 : idx)}
+                    className="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-slate-50/80 transition-colors cursor-pointer gap-4 group"
+                  >
+                    <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                      {/* Module Topic Icon Container */}
+                      <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center shrink-0 border shadow-2xs transition-transform group-hover:scale-105 ${iconData.bg}`}>
+                        {iconData.icon}
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+
+                      <div className="space-y-0.5 sm:space-y-1 min-w-0">
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-slate-900 leading-snug group-hover:text-[#0bc40e] transition-colors">
+                          {mod.title}
+                        </h3>
+                        <span className="text-xs text-slate-500 block font-medium">
+                          {mod.lessonsCount}
+                        </span>
+                      </div>
+                    </div>
+
+                    <span className={`text-xl font-bold shrink-0 ml-2 transition-colors ${isOpen ? 'text-[#0bc40e]' : 'text-slate-400 group-hover:text-[#0bc40e]'}`}>
+                      {isOpen ? '−' : '+'}
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-5 sm:px-6 pb-6 pt-3 border-t border-slate-100 space-y-2.5 bg-slate-50/40 animate-in fade-in duration-200">
+                      {(mod.lessons || []).map((lesson, lIdx) => (
+                        <div key={lIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 py-0.5">
+                          <span className="text-[#0bc40e] font-bold leading-relaxed shrink-0">•</span>
+                          <span className="leading-relaxed font-normal">{lesson}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
         </div>
@@ -1571,7 +1712,7 @@ export default function FigmaMasterclassPage() {
 
             <Link
               to="/courses"
-              className="w-full py-3.5 rounded-xl bg-[#6400e6] hover:bg-[#530dd3] text-white font-semibold text-sm transition-all shadow-md text-center block"
+              className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block"
             >
               Enroll Now for {course.price}
             </Link>

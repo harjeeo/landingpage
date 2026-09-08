@@ -32,14 +32,14 @@ export default function BlogSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-3">
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-medium text-[#09090b] tracking-tight leading-[1.15]">
-              The design pulse
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#09090b] tracking-tight leading-[1.15]">
+              Learn. Create. Grow.
             </h2>
           </div>
 
           <a
             href="#blog"
-            className="px-6 py-3 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-semibold text-sm transition-all shadow-md shrink-0 self-start md:self-auto"
+            className="px-6 py-3 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md shrink-0 self-start md:self-auto"
           >
             View all
           </a>
@@ -62,13 +62,13 @@ export default function BlogSection() {
                 </div>
 
                 <div className="p-6 space-y-3">
-                  <div className="flex items-center gap-3 text-xs text-[#71717a] font-medium">
-                    <span>📅 {p.date}</span>
+                  <div className="flex items-center gap-2 text-xs text-[#71717a] font-medium">
+                    <span>{p.date}</span>
                     <span>•</span>
-                    <span>⏱ {p.readTime}</span>
+                    <span>{p.readTime}</span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#18181b] group-hover:text-[#7c3aed] transition-colors">
+                  <h3 className="text-lg font-bold text-[#18181b] group-hover:text-[#0bc40e] transition-colors">
                     {p.title}
                   </h3>
 

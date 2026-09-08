@@ -659,9 +659,9 @@ export default function CoursesPage() {
                   </button>
                   <button
                     type="submit"
-                    className="bg-[#7c47ff] text-white font-bold px-4 py-2 rounded-xl hover:bg-[#6d28d9]"
+                    className="bg-[#0bc40e] text-white font-bold px-4 py-2 rounded-xl hover:bg-[#0aa30c] shadow-md shadow-[#0bc40e]/20"
                   >
-                    Submit Suggestion
+                    Submit
                   </button>
                 </div>
               </form>

@@ -1,11 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import PartnerStrip from './components/PartnerStrip';
 import Courses from './components/Courses';
 import WhatWeOffer from './components/WhatWeOffer';
 import InstructorShowcase from './components/InstructorShowcase';
@@ -21,29 +18,21 @@ import FigmaMasterclassPage from './pages/FigmaMasterclassPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import CoursesPage from './pages/CoursesPage';
 import LoginPage from './pages/LoginPage';
+import FaqPage from './pages/FaqPage';
 
-function ScrollHandler({ lenisRef }) {
+function ScrollHandler() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
       const targetEl = document.querySelector(hash);
       if (targetEl) {
-        if (lenisRef.current) {
-          lenisRef.current.scrollTo(targetEl, { offset: -80 });
-        } else {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
-        }
+        targetEl.scrollIntoView({ behavior: 'auto' });
         return;
       }
     }
-    
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [pathname, hash, lenisRef]);
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
 
   return null;
 }
@@ -52,7 +41,6 @@ function HomePage() {
   return (
     <main>
       <Hero />
-      <PartnerStrip />
       <Courses />
       <WhatWeOffer />
       <InstructorShowcase />
@@ -67,36 +55,9 @@ function HomePage() {
 }
 
 export default function App() {
-  const lenisRef = useRef(null);
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.5,
-      infinite: false,
-    });
-
-    lenisRef.current = lenis;
-
-    let rafId;
-    function raf(time) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-      lenisRef.current = null;
-    };
-  }, []);
-
   return (
     <Router>
-      <ScrollHandler lenisRef={lenisRef} />
+      <ScrollHandler />
       <div className="min-h-screen bg-[#0c0e15] text-slate-100 selection:bg-[#6400e6] selection:text-white font-sans">
         <Navbar />
         <Routes>
@@ -106,6 +67,8 @@ export default function App() {
           <Route path="/buy" element={<CoursesPage />} />
           <Route path="/testimonial" element={<TestimonialsPage />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/faqs" element={<FaqPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/identity/login" element={<LoginPage />} />
           <Route path="/courses/web-design-2-weeks-mastery-course" element={<FigmaMasterclassPage />} />

@@ -63,30 +63,38 @@ export default function Hero() {
       {/* Main Content Container (Centered typography & CTA buttons) */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
+        {/* Top Badge with Icon */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-sm shadow-sm">
+          <svg className="w-3.5 h-3.5 text-purple-400" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+          </svg>
+          <span>BUILD SKILLS. CREATE. GROW.</span>
+        </div>
+
         {/* Main Headline */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[62px] font-semibold tracking-tight text-white leading-[1.1] max-w-4xl mx-auto">
-          UX/UI Design Courses<br />
-          On-demand & Online
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[58px] font-bold tracking-tight text-white leading-[1.15] max-w-4xl mx-auto">
+          Learn skills that turn <br />
+          creativity into a career.
         </h1>
 
         {/* Subtitle Description */}
-        <p className="text-base sm:text-lg text-[#9ca3af] font-normal leading-relaxed max-w-[620px] mx-auto mt-6">
-          Learn highly demanded skills through practical online courses, created by trusted industry professionals, that focus on real-world applications.
+        <p className="text-base sm:text-lg text-[#9ca3af] font-normal leading-relaxed max-w-3xl mx-auto mt-6">
+          Master Graphic Design, UI Design, Digital Marketing, Google Ads & Meta Ads through practical, industry-focused online courses designed to help you build real-world skills and unlock new opportunities.
         </p>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-center gap-4 mt-8">
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           <a
             href="#courses"
-            className="px-8 py-3.5 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
+            className="px-8 py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-[#0bc40e]/25"
           >
-            View courses
+            Explore Courses
           </a>
           <a
-            href="#testimonials"
+            href="#courses"
             className="px-8 py-3.5 rounded-xl bg-[#141622] hover:bg-[#1f2231] border border-white/10 text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
           >
-            Testimonials
+            Start Learning
           </a>
         </div>
 
@@ -107,38 +115,19 @@ export default function Hero() {
               <div className="flex items-center gap-0.5 text-amber-400 text-sm">
                 ★★★★★
               </div>
-              <span className="text-xs text-[#9ca3af] font-medium block mt-0.5">Loved by 15,000+ designers</span>
+              <span className="text-xs text-[#9ca3af] font-medium block mt-0.5">Loved by 578+ students</span>
             </div>
           </div>
 
-          {/* Card 2: Top companies trust our courses */}
-          <div className="p-4 rounded-2xl bg-[#12141e]/90 border border-white/10 backdrop-blur-md flex flex-col justify-center text-left shadow-xl hover:border-white/20 transition-all">
-            <div className="flex items-center gap-3.5">
-              <span className="font-extrabold text-sm tracking-tight text-white flex items-center">
-                <span className="text-[#4285F4]">G</span>
-                <span className="text-[#EA4335]">o</span>
-                <span className="text-[#FBBC05]">o</span>
-                <span className="text-[#4285F4]">g</span>
-                <span className="text-[#34A853]">l</span>
-                <span className="text-[#EA4335]">e</span>
-              </span>
-
-              <div className="flex items-center gap-1 text-[#2684FF] font-bold text-xs tracking-wider">
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M11.53 2c0 2.4-1.2 4.6-3.2 5.9L2.7 11.7c-.5.3-.7.9-.4 1.4.2.3.5.5.9.5h10.3c.7 0 1.2-.5 1.2-1.2V3.2c0-.7-.5-1.2-1.2-1.2h-2zm1-2h2c.7 0 1.2.5 1.2 1.2v19.6c0 .7-.5 1.2-1.2 1.2h-2c-.7 0-1.2-.5-1.2-1.2V1.2c0-.7.5-1.2 1.2-1.2z"/>
-                </svg>
-                <span>ATLASSIAN</span>
-              </div>
-
-              <div className="flex items-center gap-1 text-[#0081FB] font-bold text-xs">
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M16.7 5.2c-1.8 0-3.3.9-4.7 2.6C10.6 6.1 9.1 5.2 7.3 5.2 4.4 5.2 2 7.7 2 10.7c0 3.8 3.5 7.1 8.3 11.2l1.7 1.4 1.7-1.4c4.8-4.1 8.3-7.4 8.3-11.2 0-3-2.4-5.5-5.3-5.5zm-4.7 14.1c-4.1-3.6-7-6.4-7-8.6 0-1.8 1.4-3.1 3-3.1 1.4 0 2.7.9 3.6 2.3h1.8c.9-1.4 2.2-2.3 3.6-2.3 1.6 0 3 1.3 3 3.1 0 2.2-2.9 5-7 8.6z"/>
-                </svg>
-                <span>Meta</span>
-              </div>
+          {/* Card 2: Practical & Real-World Projects */}
+          <div className="p-4 rounded-2xl bg-[#12141e]/90 border border-white/10 backdrop-blur-md flex items-center gap-3.5 shadow-xl hover:border-white/20 transition-all text-left">
+            <div className="w-9 h-9 rounded-xl bg-[#0bc40e]/10 border border-[#0bc40e]/20 flex items-center justify-center text-[#0bc40e] shrink-0 text-base">
+              ⚡
             </div>
-
-            <span className="text-xs text-[#9ca3af] font-medium block mt-1">Top companies trust our courses</span>
+            <div>
+              <span className="text-xs font-bold text-white block tracking-tight">100% Practical & Projects</span>
+              <span className="text-xs text-[#9ca3af] font-medium block mt-0.5">Learn skills for real-world growth</span>
+            </div>
           </div>
 
         </div>

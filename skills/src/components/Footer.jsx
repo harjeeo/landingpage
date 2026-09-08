@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import dcSkillsLogo from '../assets/dc-skills-logo.svg';
 
 export default function Footer() {
   const coursesList = [
@@ -41,13 +42,13 @@ export default function Footer() {
         
         {/* Left Column: Brand & Info */}
         <div className="lg:col-span-3 space-y-6">
-          <a href="#" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <img
-              src="https://cdn.prod.website-files.com/65c0868c26990d4c1ce3b302/65c18969c9ae25e8771777f1_Group.svg"
-              alt="Designership Logo"
-              className="h-8 w-auto"
+              src={dcSkillsLogo}
+              alt="Designs Clue Skills"
+              className="h-8 w-auto object-contain"
             />
-          </a>
+          </Link>
 
           <p className="text-xs text-[#a1a1aa] leading-relaxed">
             Dedicated to equipping you with all the skills and resources you need to supercharge your design career, freelance, and agency journey. Reach your north star with Designership!
@@ -94,14 +95,9 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-white">Navigation</h4>
             <ul className="space-y-2.5 text-xs text-[#a1a1aa]">
               <li>
-                <Link to="/courses/the-ultimate-figma-masterclass" className="hover:text-white transition-colors">
-                  Figma
-                </Link>
-              </li>
-              <li>
-                <Link to="/courses" className="hover:text-white transition-colors">
-                  UX Design
-                </Link>
+                <a href="/#courses" className="hover:text-white transition-colors">
+                  Ebooks
+                </a>
               </li>
               <li>
                 <Link to="/testimonial" className="hover:text-white transition-colors">
@@ -109,9 +105,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="/#faq" className="hover:text-white transition-colors">
+                <Link to="/faq" className="hover:text-white transition-colors">
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

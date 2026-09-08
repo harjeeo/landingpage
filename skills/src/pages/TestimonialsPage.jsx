@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import PartnerStrip from '../components/PartnerStrip';
 
 // Sample Video Testimonials Data
 const VIDEO_TESTIMONIALS = [
@@ -321,23 +320,21 @@ export default function TestimonialsPage() {
     <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] font-sans">
       
       {/* Dark Hero Section matching real website header */}
-      <div className="bg-[#0c0e15] text-white pt-8 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10">
-        <div className="max-w-7xl mx-auto">
+      <div className="bg-[#0c0e15] text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 text-center">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
           
-          {/* Breadcrumb matching exact screenshot */}
-          <nav className="flex items-center gap-2 text-xs sm:text-sm text-[#9a7cff] mb-6 font-medium">
-            <span className="text-[#9a7cff] text-sm">✦</span>
-            <span className="text-[#71717a] text-xs font-normal">›</span>
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0bc40e]/15 border border-[#0bc40e]/30 text-[#0bc40e] text-xs font-bold tracking-wider uppercase mb-4 shadow-xs">
             <span>Testimonials</span>
-          </nav>
+          </div>
 
           {/* Hero Content */}
-          <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight mb-4">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-bold text-white tracking-tight leading-tight mb-4">
               Hear from our students
             </h1>
-            <p className="text-base sm:text-lg text-[#a1a1aa] leading-relaxed">
-              From career changes to dream jobs, here's how Designership helped their professional journey.
+            <p className="text-base sm:text-lg text-[#a1a1aa] leading-relaxed max-w-2xl mx-auto">
+              From career changes to dream jobs, here's how our practical courses helped their professional journey.
             </p>
           </div>
 
@@ -470,11 +467,6 @@ export default function TestimonialsPage() {
               </div>
             );
           })}
-        </div>
-
-        {/* Partner Strip Section */}
-        <div className="mt-16 -mx-4 sm:-mx-6 lg:-mx-8 border-t border-slate-200 mb-16">
-          <PartnerStrip />
         </div>
 
         {/* Newsletter / CTA Section (White matching real site footer top) */}

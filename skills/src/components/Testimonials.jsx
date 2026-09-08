@@ -154,7 +154,7 @@ export default function Testimonials() {
         <div className="text-center mt-12">
           <Link
             to="/testimonial"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#6400e6] hover:bg-[#530dd3] text-white font-semibold text-sm shadow-md transition-all hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm shadow-md transition-all hover:-translate-y-0.5"
           >
             Explore all student testimonials →
           </Link>

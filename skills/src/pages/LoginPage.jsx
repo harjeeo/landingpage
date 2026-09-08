@@ -81,7 +81,7 @@ export default function LoginPage() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#564bf6] hover:bg-[#4538e4] text-white font-bold text-sm py-3 rounded-xl transition-all shadow-md mt-2 active:scale-[0.99]"
+            className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-bold text-sm py-3 rounded-xl transition-all shadow-md shadow-[#0bc40e]/20 mt-2 active:scale-[0.99]"
           >
             {isSubmitted ? 'Sending login link...' : 'Log In'}
           </button>

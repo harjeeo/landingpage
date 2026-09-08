@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import dcSkillsLogo from '../assets/dc-skills-logo.svg';
 
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -32,19 +33,11 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 bg-[#8b5cf6] blur-md opacity-60 group-hover:opacity-90 transition-opacity rounded-full"></div>
-            <svg className="w-8 h-8 relative z-10 text-[#a855f7]" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 2C16 9.73199 9.73199 16 2 16C9.73199 16 16 22.268 16 30C16 22.268 22.268 16 30 16C22.268 16 16 9.73199 16 2Z" fill="url(#sparkle_grad)" />
-              <defs>
-                <linearGradient id="sparkle_grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#d8b4fe" />
-                  <stop offset="0.5" stopColor="#a855f7" />
-                  <stop offset="1" stopColor="#7e22ce" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+          <img
+            src={dcSkillsLogo}
+            alt="Designs Clue Skills"
+            className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop Links */}
@@ -75,7 +68,11 @@ export default function Navbar() {
                   onClick={() => setActiveDropdown(null)}
                   className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
                 >
-                  <img src="/web-design-course-icon.svg" alt="" className="w-8 h-8 rounded-lg" />
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
+                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">Web Design 2 Weeks Mastery Course</span>
@@ -109,7 +106,11 @@ export default function Navbar() {
                   onClick={() => setActiveDropdown(null)}
                   className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
                 >
-                  <img src="/shopify-course-icon.svg" alt="" className="w-8 h-8 rounded-lg" />
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
+                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                  </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">Shopify 1 Week Master Course</span>
@@ -142,7 +143,12 @@ export default function Navbar() {
                   onClick={() => setActiveDropdown(null)}
                   className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
                 >
-                  <img src="https://cdn.prod.website-files.com/65c1ae21fb2191466dd6ce72/6618d01547ca0f467ffc7e5d_Figma%20Course%20Icon.svg" alt="" className="w-8 h-8 rounded-lg" />
+                  <div className="w-9 h-9 rounded-xl bg-purple-50 text-[#6400e6] flex items-center justify-center shrink-0 border border-purple-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
+                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth={2} />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 4v16M4 9h16" />
+                    </svg>
+                  </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">Ultimate Figma Masterclass 2.0</span>
@@ -175,7 +181,11 @@ export default function Navbar() {
                   onClick={() => setActiveDropdown(null)}
                   className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
                 >
-                  <img src="https://cdn.prod.website-files.com/65c1ae21fb2191466dd6ce72/6618d4ff39ee67d0818efc30_Navigation%20Icons.svg" alt="" className="w-8 h-8 rounded-lg" />
+                  <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 border border-pink-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
+                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                    </svg>
+                  </div>
                   <div>
                     <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">AI Designer and Graphic Designing Course</span>
                     <div className="flex items-center gap-3 text-xs text-[#a1a1aa] mt-1">
@@ -206,7 +216,12 @@ export default function Navbar() {
                   onClick={() => setActiveDropdown(null)}
                   className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group"
                 >
-                  <img src="https://cdn.prod.website-files.com/65c1ae21fb2191466dd6ce72/6618d50b4ad9d91e8ca0c5a8_UI%20Course%20Icon.svg" alt="" className="w-8 h-8 rounded-lg" />
+                  <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 border border-cyan-100/60 shadow-xs transition-transform group-hover:scale-105 mt-0.5">
+                    <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <rect x="3" y="4" width="18" height="14" rx="2" strokeWidth={2} />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 20h8M12 18v2" />
+                    </svg>
+                  </div>
                   <div>
                     <span className="text-sm font-semibold text-white group-hover:text-[#9a7cff] transition-colors">UX/UI Design Course</span>
                     <div className="flex items-center gap-3 text-xs text-[#a1a1aa] mt-1">
@@ -231,26 +246,13 @@ export default function Navbar() {
                     </div>
                   </div>
                 </Link>
-
-                <div className="pt-2 border-t border-white/10">
-                  <div className="text-[11px] font-semibold text-[#71717a] uppercase tracking-wider px-3 py-1">Bundles</div>
-                  <Link
-                    to="/courses/the-ultimate-figma-masterclass"
-                    onClick={() => setActiveDropdown(null)}
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-[#6400e6]/10 hover:bg-[#6400e6]/20 border border-[#6400e6]/30 text-xs text-[#9a7cff] transition-colors"
-                  >
-                    <span className="font-semibold">Ultimate ALL-IN Bundle (Save $210)</span>
-                    <span>→</span>
-                  </Link>
-                </div>
               </div>
             )}
           </div>
 
-          <Link to="/courses/the-ultimate-figma-masterclass" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Figma</Link>
-          <a href="/#courses" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">UX Design</a>
+          <a href="/#courses" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Ebooks</a>
           <Link to="/testimonial" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Testimonials</Link>
-          <a href="/#faq" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">FAQ</a>
+          <Link to="/faq" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">FAQ</Link>
         </div>
 
         {/* Action Buttons Desktop */}
@@ -263,7 +265,7 @@ export default function Navbar() {
           </Link>
           <Link
             to="/courses"
-            className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#9333ea] hover:from-[#6d28d9] hover:to-[#7e22ce] text-white font-semibold text-xs sm:text-sm transition-all"
+            className="px-5 py-2.5 rounded-full bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-xs sm:text-sm transition-all shadow-md shadow-[#0bc40e]/20"
           >
             Buy courses
           </Link>
@@ -294,19 +296,11 @@ export default function Navbar() {
               {/* Top Header */}
               <div className="px-5 py-4 flex items-center justify-between border-b border-white/10 shrink-0 bg-[#0c0e15]/95 backdrop-blur-xl">
                 <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
-                  <div className="relative flex items-center justify-center">
-                    <div className="absolute inset-0 bg-[#8b5cf6] blur-md opacity-60 rounded-full"></div>
-                    <svg className="w-8 h-8 relative z-10 text-[#a855f7]" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 2C16 9.73199 9.73199 16 2 16C9.73199 16 16 22.268 16 30C16 22.268 22.268 16 30 16C22.268 16 16 9.73199 16 2Z" fill="url(#sparkle_grad_mob1)" />
-                      <defs>
-                        <linearGradient id="sparkle_grad_mob1" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#d8b4fe" />
-                          <stop offset="0.5" stopColor="#a855f7" />
-                          <stop offset="1" stopColor="#7e22ce" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
+                  <img
+                    src={dcSkillsLogo}
+                    alt="Designs Clue Skills"
+                    className="h-8 w-auto object-contain"
+                  />
                 </Link>
 
                 <button
@@ -348,22 +342,13 @@ export default function Navbar() {
                   </button>
                 </div>
 
-                {/* Figma */}
-                <Link
-                  to="/courses/the-ultimate-figma-masterclass"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block py-3.5 text-xl font-medium text-[#dfdfe2] hover:text-white hover:translate-x-1 transition-all border-b border-white/10"
-                >
-                  Figma
-                </Link>
-
-                {/* UX Design */}
+                {/* Ebooks */}
                 <a
                   href="/#courses"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-3.5 text-xl font-medium text-[#dfdfe2] hover:text-white hover:translate-x-1 transition-all border-b border-white/10"
                 >
-                  UX Design
+                  Ebooks
                 </a>
 
                 {/* Testimonials */}
@@ -376,13 +361,13 @@ export default function Navbar() {
                 </Link>
 
                 {/* FAQ */}
-                <a
-                  href="/#faq"
+                <Link
+                  to="/faq"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-3.5 text-xl font-medium text-[#dfdfe2] hover:text-white hover:translate-x-1 transition-all border-b border-white/10"
                 >
                   FAQ
-                </a>
+                </Link>
 
                 {/* Bottom CTA Actions */}
                 <div className="pt-6 space-y-3 pb-8">
@@ -396,7 +381,7 @@ export default function Navbar() {
                   <Link
                     to="/courses"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full text-center block py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] hover:from-[#6d28d9] hover:to-[#7e22ce] text-white font-semibold text-base shadow-lg shadow-purple-900/30 transition-all"
+                    className="w-full text-center block py-3.5 px-4 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-base shadow-lg shadow-[#0bc40e]/30 transition-all"
                   >
                     Buy courses
                   </Link>
@@ -443,7 +428,11 @@ export default function Navbar() {
                   onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
                   className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
                 >
-                  <img src="/web-design-course-icon.svg" alt="" className="w-10 h-10 rounded-xl shrink-0 mt-0.5 border border-white/10" />
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100/60 shadow-xs mt-0.5">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  </div>
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">Web Design 2 Weeks Mastery</span>
@@ -477,7 +466,11 @@ export default function Navbar() {
                   onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
                   className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
                 >
-                  <img src="/shopify-course-icon.svg" alt="" className="w-10 h-10 rounded-xl shrink-0 mt-0.5 border border-white/10" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100/60 shadow-xs mt-0.5">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                  </div>
                   <div className="space-y-1">
                     <div className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">Shopify 1 Week Master Course</div>
                     <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
@@ -508,7 +501,12 @@ export default function Navbar() {
                   onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
                   className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
                 >
-                  <img src="https://cdn.prod.website-files.com/65c1ae21fb2191466dd6ce72/6618d01547ca0f467ffc7e5d_Figma%20Course%20Icon.svg" alt="" className="w-10 h-10 rounded-xl shrink-0 mt-0.5 border border-white/10" />
+                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#6400e6] flex items-center justify-center shrink-0 border border-purple-100/60 shadow-xs mt-0.5">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth={2} />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 4v16M4 9h16" />
+                    </svg>
+                  </div>
                   <div className="space-y-1">
                     <div className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">Ultimate Figma Masterclass 2.0</div>
                     <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
@@ -539,7 +537,11 @@ export default function Navbar() {
                   onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
                   className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
                 >
-                  <img src="https://cdn.prod.website-files.com/65c1ae21fb2191466dd6ce72/6618d4ff39ee67d0818efc30_Navigation%20Icons.svg" alt="" className="w-10 h-10 rounded-xl shrink-0 mt-0.5 border border-white/10" />
+                  <div className="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 border border-pink-100/60 shadow-xs mt-0.5">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                    </svg>
+                  </div>
                   <div className="space-y-1">
                     <div className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">AI Designer & Graphic Course</div>
                     <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
@@ -570,7 +572,12 @@ export default function Navbar() {
                   onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
                   className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#131520] hover:bg-[#191c2b] border border-white/10 hover:border-purple-500/40 transition-all group active:scale-[0.99]"
                 >
-                  <img src="https://cdn.prod.website-files.com/65c1ae21fb2191466dd6ce72/6618d50b4ad9d91e8ca0c5a8_UI%20Course%20Icon.svg" alt="" className="w-10 h-10 rounded-xl shrink-0 mt-0.5 border border-white/10" />
+                  <div className="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 border border-cyan-100/60 shadow-xs mt-0.5">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <rect x="3" y="4" width="18" height="14" rx="2" strokeWidth={2} />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 20h8M12 18v2" />
+                    </svg>
+                  </div>
                   <div className="space-y-1">
                     <div className="text-sm font-bold text-white group-hover:text-purple-300 transition-colors">UX/UI Design Course</div>
                     <div className="flex items-center gap-2 text-xs text-[#a1a1aa]">
@@ -595,24 +602,6 @@ export default function Navbar() {
                     </div>
                   </div>
                 </Link>
-
-                {/* Bundle Card */}
-                <div className="pt-2">
-                  <Link
-                    to="/courses/the-ultimate-figma-masterclass"
-                    onClick={() => { setMobileMenuOpen(false); setActiveSubpanel(null); }}
-                    className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-purple-900/40 via-violet-900/30 to-indigo-900/40 border border-purple-500/50 hover:border-purple-400 shadow-xl shadow-purple-950/60 transition-all group active:scale-[0.99]"
-                  >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-purple-300">SPECIAL BUNDLE</span>
-                        <span className="bg-purple-500 text-white font-bold text-[10px] uppercase px-2 py-0.5 rounded-full">Save $210</span>
-                      </div>
-                      <div className="text-sm font-bold text-white mt-1 group-hover:text-purple-200 transition-colors">Ultimate ALL-IN Bundle</div>
-                    </div>
-                    <span className="text-lg text-purple-300 group-hover:translate-x-1 transition-transform">→</span>
-                  </Link>
-                </div>
 
                 <div className="pt-4 text-center pb-8">
                   <Link

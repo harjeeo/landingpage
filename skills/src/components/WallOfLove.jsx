@@ -148,17 +148,17 @@ export default function WallOfLove() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
           <div>
-            <span className="text-xs font-semibold text-[#7c3aed] uppercase tracking-wider bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
+            <span className="text-xs font-semibold text-[#0bc40e] uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
               Student Wall of Love
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#09090b] tracking-tight leading-[1.15] mt-3">
-              Loved by 10,000+ designers
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#09090b] tracking-tight leading-[1.15] mt-3">
+              Loved by 578+ students
             </h2>
           </div>
 
           <Link
             to="/testimonial"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#6400e6] hover:bg-[#530dd3] text-white font-semibold text-xs sm:text-sm shadow-md transition-all shrink-0 self-start sm:self-auto"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-xs sm:text-sm shadow-md transition-all shrink-0 self-start sm:self-auto"
           >
             View all testimonials →
           </Link>
