@@ -192,14 +192,32 @@ export default function Navbar() {
           <a href="/#courses" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Ebooks</a>
           <Link to="/testimonial" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Testimonials</Link>
           <Link to="/faq" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">FAQ</Link>
+          {currentUser && (
+            <Link to="/dashboard" className="text-sm font-semibold text-[#0bc40e] hover:text-[#0aa30c] transition-colors flex items-center gap-1">
+              Dashboard
+            </Link>
+          )}
         </div>
 
         {/* Action Buttons Desktop */}
         {currentUser || location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname.startsWith('/profile') || location.pathname === '/student-dashboard' ? (
-          <div className="hidden lg:flex items-center gap-3.5">
-            <span className="text-sm text-[#9ca3af] font-normal">
-              Signed in as <strong className="text-white font-semibold">{currentUser?.name || 'Mehak'}</strong>
-            </span>
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              to="/dashboard"
+              className="text-sm text-[#9ca3af] hover:text-white font-normal transition-colors cursor-pointer flex items-center gap-1.5"
+              title="Click to open Dashboard"
+            >
+              <span>Signed in as</span>
+              <strong className="text-white hover:text-purple-300 font-semibold transition-colors underline underline-offset-4 decoration-purple-500/30 hover:decoration-purple-400">
+                {currentUser?.name || 'Mehak'}
+              </strong>
+            </Link>
+            <Link
+              to="/dashboard"
+              className="px-3.5 py-1.5 rounded-full bg-[#181a24] hover:bg-[#232736] border border-white/15 text-white hover:text-[#0bc40e] text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
+            >
+              Dashboard
+            </Link>
             <button
               onClick={() => {
                 logout();

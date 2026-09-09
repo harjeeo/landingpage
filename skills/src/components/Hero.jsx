@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { getCurrentUser } from '../lib/auth';
 
 export default function Hero() {
+  const [currentUser, setCurrentUser] = useState(getCurrentUser());
+
+  useEffect(() => {
+    const onAuth = () => setCurrentUser(getCurrentUser());
+    window.addEventListener('dcskills_auth_changed', onAuth);
+    return () => window.removeEventListener('dcskills_auth_changed', onAuth);
+  }, []);
   const studentCards = [
     {
       id: 1,
@@ -90,12 +99,22 @@ export default function Hero() {
           >
             Explore Courses
           </a>
-          <a
-            href="#courses"
-            className="px-8 py-3.5 rounded-xl bg-[#141622] hover:bg-[#1f2231] border border-white/10 text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
-          >
-            Start Learning
-          </a>
+          {currentUser ? (
+            <Link
+              to="/dashboard"
+              className="px-8 py-3.5 rounded-xl bg-[#141622] hover:bg-[#1f2231] border border-[#0bc40e]/40 hover:border-[#0bc40e] text-white font-semibold text-sm transition-all hover:-translate-y-0.5 flex items-center gap-2 shadow-lg shadow-[#0bc40e]/10"
+            >
+              <span>Go to Dashboard</span>
+              <span className="text-[#0bc40e]">→</span>
+            </Link>
+          ) : (
+            <a
+              href="#courses"
+              className="px-8 py-3.5 rounded-xl bg-[#141622] hover:bg-[#1f2231] border border-white/10 text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
+            >
+              Start Learning
+            </a>
+          )}
         </div>
 
         {/* Social Proof / Trust Cards (2 Side-by-Side Cards) */}
