@@ -8,6 +8,7 @@ import {
   UserGroup03Icon,
   Activity01Icon,
   Video01Icon,
+  Mortarboard01Icon,
   Settings02Icon,
   Logout01Icon,
 } from "hugeicons-react";
@@ -16,6 +17,7 @@ import { logout } from "../lib/superadmin/useAuth";
 
 const navLinks = [
   { to: "/super-admin", label: "Dashboard", icon: Home01Icon, end: true },
+  { to: "/super-admin/students", label: "Students", icon: Mortarboard01Icon },
   { to: "/super-admin/leads", label: "Leads", icon: InboxIcon },
   { to: "/super-admin/subscriptions", label: "Subscriptions", icon: RepeatIcon },
   { to: "/super-admin/payments", label: "Payments", icon: CreditCardIcon },

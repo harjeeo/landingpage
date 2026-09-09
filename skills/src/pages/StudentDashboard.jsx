@@ -190,6 +190,8 @@ export default function StudentDashboard() {
   const [currentUser, setCurrentUser] = useState(getCurrentUser());
   const [enrollments, setEnrollments] = useState(getActiveEnrollments());
   const [liveSettings, setLiveSettings] = useState(null);
+  const [adminStudentsList, setAdminStudentsList] = useState([]);
+  const [certDownloadedToast, setCertDownloadedToast] = useState(false);
   const isEnrolledSuccess = searchParams.get('enrolled') === 'success';
 
   useEffect(() => {
@@ -198,8 +200,13 @@ export default function StudentDashboard() {
     
     // Fetch live platform settings (configured by super admin)
     getPublicConfig(true).then((data) => {
-      if (data?.liveClassesSettings) {
-        setLiveSettings(data.liveClassesSettings);
+      if (data) {
+        if (data.liveClassesSettings) {
+          setLiveSettings(data.liveClassesSettings);
+        }
+        if (data.studentsList) {
+          setAdminStudentsList(data.studentsList);
+        }
       }
     });
   }, []);
@@ -208,6 +215,39 @@ export default function StudentDashboard() {
     navigator.clipboard?.writeText(link);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
+  };
+
+  const handleDownloadCertificate = (item) => {
+    // 1. Look for uploaded PDF certificate for this student & course
+    const candidateList = adminStudentsList.length > 0 ? adminStudentsList : (liveSettings?.studentsList || []);
+    const matched = candidateList.find((s) => {
+      if (!s) return false;
+      const matchId = s.certificateId && item.certificateId && s.certificateId === item.certificateId;
+      const matchEmail = s.email && currentUser?.email && s.email.toLowerCase() === currentUser.email.toLowerCase();
+      const matchName = s.name && studentName && s.name.toLowerCase() === studentName.toLowerCase();
+      const matchCourse = s.courseSlug && item.courseSlug && s.courseSlug === item.courseSlug;
+
+      return matchId || (matchCourse && (matchEmail || matchName)) || matchCourse;
+    });
+
+    if (matched && matched.certificatePdf) {
+      // Direct instant download of the PDF certificate uploaded by Super Admin
+      const link = document.createElement('a');
+      link.href = matched.certificatePdf;
+      const safeName = (studentName || 'Student').replace(/[^a-zA-Z0-9_-]/g, '_');
+      const safeCourse = (item.courseSlug || 'Course').replace(/[^a-zA-Z0-9_-]/g, '_');
+      link.download = matched.certificateFileName || `${safeName}_${safeCourse}_Certificate.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setCertDownloadedToast(true);
+      setTimeout(() => setCertDownloadedToast(false), 3500);
+      return;
+    }
+
+    // 2. Fallback: Open Certificate modal to view/print dynamic high-res certificate
+    setSelectedCertCourse(item);
   };
 
   const studentName = currentUser?.name || STUDENT_PROFILE.name;
@@ -368,6 +408,19 @@ export default function StudentDashboard() {
 
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-9">
+
+        {/* Certificate Download Toast */}
+        {certDownloadedToast && (
+          <div className="fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-emerald-950 border border-emerald-500/40 text-white shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-300">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500 text-black flex items-center justify-center font-bold text-sm shrink-0">
+              ✓
+            </div>
+            <div>
+              <div className="text-xs font-bold text-white">Certificate PDF Downloaded!</div>
+              <div className="text-[11px] text-emerald-200">Your official completion certificate has been saved to your downloads.</div>
+            </div>
+          </div>
+        )}
 
         {/* Celebratory Banner on Successful Enrollment */}
         {isEnrolledSuccess && (
@@ -656,7 +709,7 @@ export default function StudentDashboard() {
                 <div className="shrink-0 flex items-center gap-2 pt-2 lg:pt-0 border-t lg:border-t-0 border-white/5">
                   <button
                     type="button"
-                    onClick={() => setSelectedCertCourse(item)}
+                    onClick={() => handleDownloadCertificate(item)}
                     className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
                   >
                     <svg className="w-4 h-4 text-slate-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

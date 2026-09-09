@@ -18,6 +18,7 @@ class PlatformSettingController extends Controller
             'razorpayKeyId' => ! empty($settings['razorpayKeyId']) ? $settings['razorpayKeyId'] : env('RAZORPAY_KEY_ID', ''),
             'allowSelfSignup' => $settings['allowSelfSignup'] ?? true,
             'liveClassesSettings' => $settings['liveClassesSettings'] ?? PlatformSetting::defaults()['liveClassesSettings'],
+            'studentsList' => $settings['studentsList'] ?? (PlatformSetting::defaults()['studentsList'] ?? []),
         ]);
     }
 
