@@ -845,7 +845,7 @@ export default function SuperAdminStudentsPage() {
                       {s.courseTitle}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="rounded-full bg-black/5 px-2.5 py-0.5 text-xs font-medium dark:bg-white/10">
+                      <span className="rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium dark:bg-white/10">
                         {s.mode === "offline" ? "Offline" : "Online"}
                       </span>
                     </td>
@@ -868,19 +868,19 @@ export default function SuperAdminStudentsPage() {
                             e.stopPropagation();
                             handleOpenEditPage(s);
                           }}
-                          className="p-1.5 rounded-lg border border-(--color-border) text-(--color-text-muted) hover:text-(--color-text) hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
+                          className="p-1 rounded-md border border-(--color-border) text-(--color-text-muted) hover:text-(--color-text) hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
                           title="Edit Student & Certificate"
                         >
-                          <Edit01Icon size={15} />
+                          <Edit01Icon size={14} />
                         </button>
 
                         <button
                           type="button"
                           onClick={(e) => handleDeleteStudent(s.id, e)}
-                          className="p-1.5 rounded-lg border border-red-500/20 text-red-500 hover:bg-red-500/10 transition-colors cursor-pointer"
+                          className="p-1 rounded-md border border-red-500/20 text-red-500 hover:bg-red-500/10 transition-colors cursor-pointer"
                           title="Delete Student"
                         >
-                          <Delete02Icon size={15} />
+                          <Delete02Icon size={14} />
                         </button>
                       </div>
                     </td>
