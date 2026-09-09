@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class PlatformSettingController extends Controller
 {
+    public function publicConfig()
+    {
+        $settings = $this->current();
+
+        return response()->json([
+            'platformName' => $settings['platformName'] ?? 'Designs Clue',
+            'supportEmail' => $settings['supportEmail'] ?? 'support@designsclue.com',
+            'razorpayKeyId' => ! empty($settings['razorpayKeyId']) ? $settings['razorpayKeyId'] : env('RAZORPAY_KEY_ID', ''),
+            'allowSelfSignup' => $settings['allowSelfSignup'] ?? true,
+            'liveClassesSettings' => $settings['liveClassesSettings'] ?? PlatformSetting::defaults()['liveClassesSettings'],
+        ]);
+    }
+
     public function show()
     {
         return response()->json($this->current());

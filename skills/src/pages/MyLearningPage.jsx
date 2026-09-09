@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getPublicConfig } from '../lib/payments';
 import {
   Video01Icon,
   Calendar03Icon,
@@ -14,6 +15,7 @@ import {
   LinkSquare01Icon,
   FileAttachmentIcon,
   Folder01Icon,
+  UserCircleIcon,
   SparklesIcon,
   AlertCircleIcon,
   Comment01Icon,
@@ -248,6 +250,15 @@ export default function MyLearningPage() {
   const [selectedBatch, setSelectedBatch] = useState('all');
   const [copiedLink, setCopiedLink] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [liveSettings, setLiveSettings] = useState(null);
+
+  useEffect(() => {
+    getPublicConfig(true).then((data) => {
+      if (data?.liveClassesSettings) {
+        setLiveSettings(data.liveClassesSettings);
+      }
+    });
+  }, []);
 
   // Modals
   const [activeMeetModal, setActiveMeetModal] = useState(null);
@@ -256,8 +267,53 @@ export default function MyLearningPage() {
   const [submissionLinkInput, setSubmissionLinkInput] = useState('');
   const [submissionNoteInput, setSubmissionNoteInput] = useState('');
 
+  // Enrolled Batches dynamic list
+  const batchesList = useMemo(() => {
+    if (liveSettings?.batches?.length > 0) {
+      return liveSettings.batches.map(b => ({
+        id: b.id,
+        courseName: b.courseTitle || b.title,
+        badge: b.badge || 'Live Interactive Cohort',
+        batchCode: b.batchCode,
+        mentorName: b.mentor,
+        mentorRole: b.mentorRole || 'Mentor',
+        schedule: b.schedule,
+        platform: b.platform || 'Google Meet',
+        platformType: (b.platform || '').toLowerCase().includes('zoom') ? 'zoom' : 'meet',
+        meetLink: b.meetLink,
+        whatsappGroupLink: b.whatsappLink,
+        totalSessions: b.totalSessions || 24,
+        completedSessions: b.completedSessions || 14,
+        nextSessionTime: 'Today at 7:00 PM',
+        nextSessionTopic: liveSettings?.todayClass?.topic || 'Live Interactive Class',
+        isLiveToday: true
+      }));
+    }
+    return ENROLLED_BATCHES;
+  }, [liveSettings]);
+
   // Next upcoming class for top alert banner
-  const nextLiveClass = ENROLLED_BATCHES[0];
+  const todayClass = liveSettings?.todayClass || {
+    courseName: ENROLLED_BATCHES[0].courseName,
+    nextSessionTopic: ENROLLED_BATCHES[0].nextSessionTopic,
+    batchCode: ENROLLED_BATCHES[0].batchCode,
+    nextSessionTime: ENROLLED_BATCHES[0].nextSessionTime,
+    mentorName: ENROLLED_BATCHES[0].mentorName,
+    platform: ENROLLED_BATCHES[0].platform,
+    meetLink: ENROLLED_BATCHES[0].meetLink,
+    isLive: true,
+  };
+
+  const nextLiveClass = liveSettings?.todayClass ? {
+    courseName: liveSettings.todayClass.courseTitle,
+    nextSessionTopic: liveSettings.todayClass.topic,
+    batchCode: liveSettings.todayClass.batchCode,
+    nextSessionTime: liveSettings.todayClass.time,
+    mentorName: liveSettings.todayClass.mentor,
+    platform: liveSettings.todayClass.platform,
+    meetLink: liveSettings.todayClass.meetLink,
+    isLive: liveSettings.todayClass.isLive !== false,
+  } : ENROLLED_BATCHES[0];
 
   const handleCopyMeetLink = (link) => {
     navigator.clipboard?.writeText(link);
@@ -358,11 +414,11 @@ export default function MyLearningPage() {
               </Link>
 
               <Link
-                to="/resources"
+                to="/profile"
                 className="pb-3 text-[#a1a1aa] hover:text-white transition-all relative flex items-center gap-1.5"
               >
-                <Folder01Icon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
-                <span>Resources & Files</span>
+                <UserCircleIcon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
+                <span>Student Profile</span>
               </Link>
             </nav>
 
@@ -465,12 +521,12 @@ export default function MyLearningPage() {
               Enrolled Cohorts & Batches
             </h2>
             <span className="text-xs text-[#71717a] font-medium hidden sm:inline-block">
-              2 Active Batches
+              {batchesList.length} Active Batches
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {ENROLLED_BATCHES.map((batch) => {
+            {batchesList.map((batch) => {
               const progressPercentage = Math.round((batch.completedSessions / batch.totalSessions) * 100);
               return (
                 <div

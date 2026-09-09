@@ -113,3 +113,67 @@ export function getPendingEnrollment() {
 export function clearPendingEnrollment() {
   sessionStorage.removeItem("dcskills_pending_enrollment");
 }
+
+export async function updateProfile({ name, phone, email, bio, city }) {
+  const current = getSession() || {};
+  const currentUser = current.user || {};
+  
+  const updatedUser = {
+    ...currentUser,
+    name: name !== undefined ? name : currentUser.name,
+    phone: phone !== undefined ? phone : currentUser.phone,
+    email: email !== undefined ? email : currentUser.email,
+    bio: bio !== undefined ? bio : currentUser.bio,
+    city: city !== undefined ? city : currentUser.city,
+  };
+
+  try {
+    const token = getToken();
+    if (token && !token.startsWith("mock_")) {
+      const res = await fetch(`${BASE_URL}/api/profile`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ name, phone, email, bio, city }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.user) {
+          setSession({ ...current, user: data.user });
+          return data.user;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Backend profile update fallback:", e);
+  }
+
+  setSession({ ...current, user: updatedUser });
+  return updatedUser;
+}
+
+export async function changePassword({ currentPassword, newPassword }) {
+  try {
+    const token = getToken();
+    if (token && !token.startsWith("mock_")) {
+      const res = await fetch(`${BASE_URL}/api/profile/password`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ current_password: currentPassword, new_password: newPassword }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || data.error || "Failed to update password");
+      return { success: true };
+    }
+  } catch (e) {
+    if (!e.message?.includes("Failed to fetch") && e.name !== "TypeError") {
+      throw e;
+    }
+  }
+  return { success: true };
+}

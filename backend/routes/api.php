@@ -11,12 +11,16 @@ Route::post('/leads', [LeadController::class, 'store']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/signup', [AuthController::class, 'signup']);
 
+Route::get('/platform-settings/public', [PlatformSettingController::class, 'publicConfig']);
+Route::get('/public-config', [PlatformSettingController::class, 'publicConfig']);
+
+Route::post('/subscriptions/checkout', [SubscriptionController::class, 'checkout']);
+Route::post('/subscriptions/verify', [SubscriptionController::class, 'verify']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/auth/me', [AuthController::class, 'me']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 
-    Route::post('/subscriptions/checkout', [SubscriptionController::class, 'checkout']);
-    Route::post('/subscriptions/verify', [SubscriptionController::class, 'verify']);
     Route::get('/subscriptions/mine', [SubscriptionController::class, 'mine']);
 
     Route::middleware('super-admin')->group(function () {

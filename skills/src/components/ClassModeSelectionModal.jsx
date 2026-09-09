@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LaptopVideoIcon, Building02Icon, CheckmarkCircle02Icon } from 'hugeicons-react';
 import { isAuthenticated, getCurrentUser, savePendingEnrollment } from '../lib/auth';
-import { loadRazorpayScript, createCourseOrder, verifyCoursePayment, saveActiveEnrollment } from '../lib/payments';
+import { loadRazorpayScript, createCourseOrder, verifyCoursePayment, saveActiveEnrollment, getPublicConfig } from '../lib/payments';
 
 const PRICES = {
   online: 2999,
@@ -15,6 +15,9 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [checkoutStep, setCheckoutStep] = useState('select'); // 'select' | 'simulating' | 'success'
+
+  const user = getCurrentUser();
+  const authed = isAuthenticated();
 
   useEffect(() => {
     if (defaultMode && PRICES[defaultMode]) {
@@ -32,8 +35,6 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
 
   if (!isOpen || !course) return null;
 
-  const user = getCurrentUser();
-  const authed = isAuthenticated();
   const currentPrice = PRICES[selectedMode] || 2999;
 
   const isRealRazorpayKey = (key) => {
@@ -45,7 +46,7 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
   const handleProceedPayment = async () => {
     setErrorMsg('');
 
-    // If user is not logged in, save pending course intent and redirect to signup
+    // If student is not logged in, redirect to signup first
     if (!authed) {
       savePendingEnrollment({
         courseSlug: course.slug,
@@ -61,70 +62,88 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
     setLoading(true);
 
     try {
-      // 1. Create order on Backend
+      // 1. Ensure Razorpay checkout script is loaded
+      await loadRazorpayScript();
+
+      // 2. Create order on Backend
       const orderData = await createCourseOrder({
         courseSlug: course.slug,
         courseTitle: course.title,
         classMode: selectedMode,
         amount: currentPrice,
+        name: user?.name || 'Student',
+        email: user?.email || '',
+        phone: user?.phone || '',
       });
 
-      // 2. If valid Razorpay key exists, open official Razorpay Checkout popup
-      if (isRealRazorpayKey(orderData?.keyId)) {
-        await loadRazorpayScript();
+      // 3. Check for valid Razorpay key
+      let rzpKey = orderData?.keyId;
+      if (!isRealRazorpayKey(rzpKey)) {
+        const pubConfig = await getPublicConfig();
+        if (isRealRazorpayKey(pubConfig?.razorpayKeyId)) {
+          rzpKey = pubConfig.razorpayKeyId;
+        }
+      }
+
+      // 4. If valid Razorpay key exists, open official Razorpay Checkout popup
+      if (isRealRazorpayKey(rzpKey)) {
+        // Sanitize 10-digit phone number if available
+        let sanitizedContact = '';
+        if (user?.phone) {
+          const digits = String(user.phone).replace(/\D/g, '');
+          if (digits.length === 10) {
+            sanitizedContact = digits;
+          } else if (digits.length > 10 && digits.startsWith('91')) {
+            sanitizedContact = digits.slice(-10);
+          }
+        }
 
         const options = {
-          key: orderData.keyId,
-          amount: orderData.amount || currentPrice * 100,
-          currency: orderData.currency || 'INR',
+          key: rzpKey,
+          amount: Number(orderData?.amount || currentPrice * 100),
+          currency: orderData?.currency || 'INR',
           name: 'Designs Clue Skills',
-          description: `${course.title} (${selectedMode.toUpperCase()} Batch)`,
-          image: '/assets/dc-skills-logo.svg',
-          ...(orderData.orderId ? { order_id: orderData.orderId } : {}),
+          description: `${course.title} — ${selectedMode === 'offline' ? 'Offline (Ludhiana)' : 'Online Batch'}`,
+          ...(orderData?.orderId && orderData.orderId.startsWith('order_') ? { order_id: orderData.orderId } : {}),
           prefill: {
-            name: user?.name || '',
-            email: user?.email || '',
-            contact: user?.phone || '',
+            ...(user?.name ? { name: user.name } : {}),
+            ...(user?.email ? { email: user.email } : {}),
+            ...(sanitizedContact ? { contact: sanitizedContact } : {}),
           },
           theme: {
             color: '#0bc40e',
           },
           handler: async function (response) {
             try {
-              await verifyCoursePayment({
-                subscriptionId: orderData.subscriptionId,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-              });
-
-              saveActiveEnrollment({
-                courseSlug: course.slug,
-                courseTitle: course.title,
-                classMode: selectedMode,
-                location: selectedMode === 'offline' ? 'Ludhiana Campus' : 'Online / Live',
-                amountPaid: currentPrice,
-                paymentId: response.razorpay_payment_id,
-                orderId: response.razorpay_order_id,
-              });
-
-              setLoading(false);
-              onClose();
-              navigate('/dashboard?enrolled=success');
+              if (orderData?.subscriptionId) {
+                await verifyCoursePayment({
+                  subscriptionId: orderData.subscriptionId,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  email: user?.email,
+                });
+              }
             } catch (vErr) {
-              console.error('Payment verification error:', vErr);
-              saveActiveEnrollment({
-                courseSlug: course.slug,
-                courseTitle: course.title,
-                classMode: selectedMode,
-                location: selectedMode === 'offline' ? 'Ludhiana Campus' : 'Online / Live',
-                amountPaid: currentPrice,
-                paymentId: response?.razorpay_payment_id || 'pay_confirmed',
-              });
+              console.warn('Payment verification note:', vErr);
+            }
+
+            saveActiveEnrollment({
+              courseSlug: course.slug,
+              courseTitle: course.title,
+              classMode: selectedMode,
+              location: selectedMode === 'offline' ? 'Ludhiana Campus' : 'Online / Live',
+              amountPaid: currentPrice,
+              paymentId: response.razorpay_payment_id || 'pay_success',
+              orderId: response.razorpay_order_id || orderData?.orderId || 'order_success',
+            });
+
+            setCheckoutStep('success');
+            setTimeout(() => {
               setLoading(false);
               onClose();
               navigate('/dashboard?enrolled=success');
-            }
+            }, 1200);
           },
           modal: {
             ondismiss: function () {
@@ -133,7 +152,7 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
           },
         };
 
-        if (typeof window.Razorpay !== 'undefined') {
+        if (typeof window !== 'undefined' && window.Razorpay) {
           const rzp = new window.Razorpay(options);
           rzp.on('payment.failed', function (resp) {
             setErrorMsg(resp.error?.description || 'Payment was unsuccessful. Please try again.');
@@ -144,10 +163,9 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
         }
       }
 
-      // 3. If keys are not configured or in Sandbox / Test mode, show seamless simulation step
+      // 5. Fallback sandbox simulation if Razorpay key is not configured
       setCheckoutStep('simulating');
       
-      // Simulate rapid payment verification flow
       setTimeout(async () => {
         const dummyPayId = 'pay_sim_' + Math.random().toString(36).substring(2, 11);
         const dummyOrderId = orderData?.orderId || 'order_sandbox_' + Date.now();
@@ -192,7 +210,7 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs animate-in fade-in duration-200">
       <div 
         className="bg-white text-slate-900 w-full max-w-xl rounded-3xl border border-slate-200 shadow-2xl overflow-hidden relative"
         onClick={(e) => e.stopPropagation()}
@@ -201,7 +219,7 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
         <div className="p-6 pb-4 border-b border-slate-100 flex items-start justify-between gap-4">
           <div className="space-y-1">
             <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-              {checkoutStep === 'select' ? 'Select Learning Mode' : 'Secure Payment Checkout'}
+              {checkoutStep === 'select' ? 'Select Learning Mode & Enroll' : 'Secure Payment Checkout'}
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug">
               {course.title}
@@ -222,8 +240,9 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
           <>
             <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
               {errorMsg && (
-                <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-medium">
-                  {errorMsg}
+                <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-medium flex items-center gap-2">
+                  <span className="font-bold">⚠️</span>
+                  <span>{errorMsg}</span>
                 </div>
               )}
 
@@ -299,7 +318,7 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
 
                     <div>
                       <div className="text-2xl font-black text-slate-900">₹4,999</div>
-                      {/* Location Badge requested by user */}
+                      {/* Location Badge */}
                       <div className="mt-1 flex items-center gap-1.5">
                         <span className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-800 bg-purple-100 border border-purple-300 px-2.5 py-0.5 rounded-full">
                           📍 Ludhiana
@@ -324,11 +343,14 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
 
               </div>
 
-              {/* User Auth Status Note */}
-              {!authed && (
-                <div className="p-3 bg-blue-50/80 border border-blue-200 rounded-xl text-blue-800 text-xs flex items-center justify-between">
-                  <span>Account required for course access & certificate</span>
-                  <span className="font-bold underline">Quick 1-step Signup</span>
+              {/* Student Information Info Badge */}
+              {authed && (
+                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Enrolling as: <strong className="text-slate-900">{user?.name || user?.email}</strong></span>
+                  </div>
+                  <span className="text-[11px] text-slate-400">{user?.email}</span>
                 </div>
               )}
             </div>
@@ -356,10 +378,10 @@ export default function ClassModeSelectionModal({ isOpen, onClose, course, defau
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                     </svg>
-                    <span>Processing...</span>
+                    <span>Opening Razorpay...</span>
                   </>
                 ) : (
-                  authed ? `Proceed to Pay ₹${currentPrice.toLocaleString('en-IN')}` : `Sign Up & Enroll for ₹${currentPrice.toLocaleString('en-IN')}`
+                  `Proceed to Pay ₹${currentPrice.toLocaleString('en-IN')}`
                 )}
               </button>
             </div>

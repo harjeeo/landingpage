@@ -222,7 +222,7 @@ export default function LoginPage() {
             <p className="text-xs text-slate-600">
               Don't have an account?{' '}
               <Link
-                to="/signup"
+                to={`/signup${redirectParam ? `?redirect=${redirectParam}&course=${courseParam || ''}&mode=${modeParam || ''}` : ''}`}
                 className="font-bold text-[#6400e6] hover:underline"
               >
                 Sign up

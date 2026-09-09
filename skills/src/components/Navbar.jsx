@@ -195,7 +195,7 @@ export default function Navbar() {
         </div>
 
         {/* Action Buttons Desktop */}
-        {currentUser || location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname === '/student-dashboard' ? (
+        {currentUser || location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname.startsWith('/profile') || location.pathname === '/student-dashboard' ? (
           <div className="hidden lg:flex items-center gap-3">
             {/* Student Profile */}
             <Link
@@ -341,7 +341,7 @@ export default function Navbar() {
                 </Link>
 
                 {/* Bottom CTA Actions */}
-                {location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname === '/student-dashboard' ? (
+                {location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname.startsWith('/profile') || location.pathname === '/student-dashboard' ? (
                   <div className="pt-6 space-y-3 pb-8">
                     <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#181a24] border border-white/15">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#6400e6] to-[#0bc40e] text-white flex items-center justify-center font-bold text-sm shadow-xs">

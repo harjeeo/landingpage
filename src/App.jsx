@@ -27,6 +27,7 @@ import SuperAdminPaymentsPage from "./pages/superadmin/SuperAdminPaymentsPage";
 import SuperAdminUsersPage from "./pages/superadmin/SuperAdminUsersPage";
 import SuperAdminActivityPage from "./pages/superadmin/SuperAdminActivityPage";
 import SuperAdminSettingsPage from "./pages/superadmin/SuperAdminSettingsPage";
+import SuperAdminLiveClassesPage from "./pages/superadmin/SuperAdminLiveClassesPage";
 import RequireAuth from "./components/superadmin/RequireAuth";
 
 export default function App() {
@@ -75,6 +76,7 @@ export default function App() {
           <Route path="payments" element={<SuperAdminPaymentsPage />} />
           <Route path="users" element={<SuperAdminUsersPage />} />
           <Route path="activity" element={<SuperAdminActivityPage />} />
+          <Route path="live-classes" element={<SuperAdminLiveClassesPage />} />
           <Route path="settings" element={<SuperAdminSettingsPage />} />
         </Route>
       </Routes>

@@ -24,48 +24,72 @@ async function apiRequest(path, options = {}) {
   return data;
 }
 
+let publicConfigPromise = null;
+export async function getPublicConfig(forceRefresh = false) {
+  if (publicConfigPromise && !forceRefresh) return publicConfigPromise;
+  publicConfigPromise = (async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/platform-settings/public?_t=${Date.now()}`);
+      if (res.ok) {
+        const data = await res.json();
+        return data;
+      }
+    } catch (e) {
+      console.warn("Could not fetch public config:", e);
+    }
+    return null;
+  })();
+  return publicConfigPromise;
+}
+
 // Razorpay Script Loader
 let razorpayScriptPromise = null;
 export function loadRazorpayScript() {
   if (typeof window !== "undefined" && window.Razorpay) {
-    return Promise.resolve();
+    return Promise.resolve(true);
   }
   if (razorpayScriptPromise) return razorpayScriptPromise;
 
-  razorpayScriptPromise = new Promise((resolve, reject) => {
+  razorpayScriptPromise = new Promise((resolve) => {
+    const existing = document.getElementById("razorpay-checkout-sdk");
+    if (existing) {
+      existing.addEventListener("load", () => resolve(true));
+      existing.addEventListener("error", () => resolve(false));
+      return;
+    }
     const script = document.createElement("script");
+    script.id = "razorpay-checkout-sdk";
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error("Could not load Razorpay SDK. Please check your connection."));
+    script.onload = () => resolve(true);
+    script.onerror = () => {
+      console.warn("Could not load Razorpay SDK from CDN.");
+      resolve(false);
+    };
     document.body.appendChild(script);
   });
 
   return razorpayScriptPromise;
 }
 
-export async function createCourseOrder({ courseSlug, courseTitle, classMode, amount }) {
+export async function createCourseOrder({ courseSlug, courseTitle, classMode, amount, name, email, phone }) {
   try {
-    return await apiRequest("/subscriptions/checkout", {
+    const orderData = await apiRequest("/subscriptions/checkout", {
       method: "POST",
       body: JSON.stringify({
         courseSlug,
         courseTitle,
         classMode, // 'online' or 'offline'
         amount,    // 2999 or 4999
+        name,
+        email,
+        phone,
       }),
     });
+    return orderData;
   } catch (err) {
-    // If backend is offline or Razorpay keys not yet set, fallback to simulated order for seamless testing
-    console.warn("Using simulated order fallback for testing:", err);
-    return {
-      isMock: true,
-      subscriptionId: Date.now(),
-      orderId: "order_mock_" + Date.now(),
-      amount: (amount || (classMode === "offline" ? 4999 : 2999)) * 100,
-      currency: "INR",
-      keyId: "rzp_test_mockkey",
-    };
+    console.error("Order checkout error:", err);
+    throw err;
   }
 }
 

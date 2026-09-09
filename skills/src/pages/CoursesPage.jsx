@@ -97,86 +97,6 @@ const CoverAllInBundle = () => (
   </div>
 );
 
-const CoverUXUIResearchBundle = () => (
-  <div className="w-full h-full bg-[#f0f9ff] p-4 flex flex-col justify-between select-none relative overflow-hidden">
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className="w-4 h-4 rounded bg-indigo-600 flex items-center justify-center text-white text-[9px] font-bold">d</div>
-        <span className="text-[10px] font-bold text-slate-700">Designership</span>
-      </div>
-      <span className="text-[9px] font-bold bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded">Save $60</span>
-    </div>
-    <div className="my-auto">
-      <div className="text-[11px] font-bold text-slate-800 leading-tight">UX/UI Design</div>
-      <div className="text-xs font-black text-indigo-700">& Research Bundle</div>
-    </div>
-    <div className="flex items-center gap-1 text-[8px] font-semibold text-slate-600 flex-wrap">
-      <span className="bg-white px-1.5 py-0.5 rounded border border-indigo-100 shadow-2xs">UI Masterclass</span>
-      <span className="bg-white px-1.5 py-0.5 rounded border border-indigo-100 shadow-2xs">UX Research</span>
-    </div>
-  </div>
-);
-
-const CoverShopify = () => (
-  <div className="w-full h-full bg-[#f0fdf4] p-4 flex flex-col justify-between select-none relative overflow-hidden">
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className="w-4 h-4 rounded bg-[#10b981] flex items-center justify-center text-white text-[9px] font-bold">s</div>
-        <span className="text-[10px] font-bold text-slate-700">Designership</span>
-      </div>
-      <span className="text-[9px] font-bold bg-[#10b981]/20 text-[#047857] px-1.5 py-0.5 rounded">New</span>
-    </div>
-    <div className="my-auto">
-      <div className="text-[11px] font-bold text-slate-800 leading-tight">Shopify 1 Week</div>
-      <div className="text-xs font-black text-[#047857]">Master Course</div>
-    </div>
-    <div className="flex items-center gap-1 text-[8px] font-semibold text-slate-600 flex-wrap">
-      <span className="bg-white px-1.5 py-0.5 rounded border border-emerald-100 shadow-2xs">🛍️ Store Design</span>
-      <span className="bg-white px-1.5 py-0.5 rounded border border-emerald-100 shadow-2xs">⚡ E-commerce UX</span>
-    </div>
-  </div>
-);
-
-const CoverGraphicDesign = () => (
-  <div className="w-full h-full bg-[#fefce8] p-4 flex flex-col justify-between select-none relative overflow-hidden">
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className="w-4 h-4 rounded bg-amber-500 flex items-center justify-center text-white text-[9px] font-bold">G</div>
-        <span className="text-[10px] font-bold text-slate-700">Designership</span>
-      </div>
-      <span className="text-[9px] font-bold bg-amber-500/20 text-amber-700 px-1.5 py-0.5 rounded">New</span>
-    </div>
-    <div className="my-auto">
-      <div className="text-[11px] font-bold text-slate-800 leading-tight">Graphic Design 7 Days</div>
-      <div className="text-xs font-black text-amber-600">Learn, Create & Master AI</div>
-    </div>
-    <div className="flex items-center gap-1 text-[8px] font-semibold text-slate-600 flex-wrap">
-      <span className="bg-white px-1.5 py-0.5 rounded border border-amber-100 shadow-2xs">🎨 Branding & UI</span>
-      <span className="bg-white px-1.5 py-0.5 rounded border border-amber-100 shadow-2xs">⚡ Generative AI</span>
-    </div>
-  </div>
-);
-
-const CoverUIDesign = () => (
-  <div className="w-full h-full bg-[#fdf4ff] p-4 flex flex-col justify-between select-none relative overflow-hidden">
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className="w-4 h-4 rounded bg-[#9333ea] flex items-center justify-center text-white text-[9px] font-bold">UI</div>
-        <span className="text-[10px] font-bold text-slate-700">Designership</span>
-      </div>
-      <span className="text-[9px] font-bold bg-[#9333ea]/20 text-[#9333ea] px-1.5 py-0.5 rounded">Hot</span>
-    </div>
-    <div className="my-auto">
-      <div className="text-[11px] font-bold text-slate-800 leading-tight">UI Design Masterclass</div>
-      <div className="text-xs font-black text-[#9333ea]">Next-Gen UI with AI</div>
-    </div>
-    <div className="flex items-center gap-1 text-[8px] font-semibold text-slate-600 flex-wrap">
-      <span className="bg-white px-1.5 py-0.5 rounded border border-purple-100 shadow-2xs">⚡ Design Systems</span>
-      <span className="bg-white px-1.5 py-0.5 rounded border border-purple-100 shadow-2xs">🤖 Next-Gen AI</span>
-    </div>
-  </div>
-);
-
 const COURSES_DATA = [
   {
     id: 'ui-design-masterclass',
@@ -186,12 +106,13 @@ const COURSES_DATA = [
     level: 'All Levels',
     students: '2,400+',
     rating: '5.0',
-    CoverComponent: CoverUIDesign,
+    duration: '1 Month Comprehensive',
+    image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80',
     description: 'Master modern UI design principles, Figma design systems, component architecture, and AI-accelerated workflows.',
     price: 2999,
     popularIndex: 0,
     isNew: true,
-    badge: 'Hot',
+    badge: 'New',
     link: '/courses/ui-design-masterclass'
   },
   {
@@ -202,7 +123,8 @@ const COURSES_DATA = [
     level: 'All Levels',
     students: '1,500+',
     rating: '5.0',
-    CoverComponent: CoverGraphicDesign,
+    duration: '7 Days Sprint',
+    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80',
     description: 'Master graphic design principles, visual hierarchy, branding, social media creatives, and cutting-edge AI design tools in 7 days.',
     price: 2999,
     popularIndex: 1,
@@ -218,7 +140,8 @@ const COURSES_DATA = [
     level: 'All Levels',
     students: '650+',
     rating: '4.9',
-    CoverComponent: CoverShopify,
+    duration: '7 Days Sprint',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
     description: 'Master Shopify store design, custom Liquid themes, e-commerce UX, and conversion optimization in just 7 days.',
     price: 2999,
     popularIndex: 2,
@@ -476,64 +399,85 @@ export default function CoursesPage() {
               </div>
             </div>
 
-            {/* 3-Column Course Grid matching exact Webflow design */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              {filteredCourses.map((course) => {
-                const Cover = course.CoverComponent;
-                return (
-                  <Link
-                    key={course.id}
-                    to={course.link}
-                    className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col justify-between group"
-                  >
-                    <div>
-                      {/* Course Cover Graphic Container */}
-                      <div className="relative h-44 border-b border-slate-100">
-                        <Cover />
-                      </div>
-
-                      <div className="p-5 space-y-3">
-                        {/* Title */}
-                        <div className="flex items-center justify-between gap-2">
-                          <h3 className="text-base font-bold text-[#09090b] group-hover:text-[#7c47ff] transition-colors leading-snug">
-                            {course.title}
-                          </h3>
-                          {course.isNew && (
-                            <span className="text-[10px] font-bold bg-[#0bc40e]/10 text-[#0bc40e] px-1.5 py-0.5 rounded border border-[#0bc40e]/20 shrink-0">
-                              New
-                            </span>
-                          )}
-                        </div>
-
-                        {/* 3 Meta Badges */}
-                        <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-semibold border border-slate-200/70">
-                            👥 {course.students}
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 text-[10px] font-bold border border-amber-200/70">
-                            ★ {course.rating}
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-200/70">
-                            📊 {course.level}
-                          </span>
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-xs text-[#52525b] leading-relaxed line-clamp-3">
-                          {course.description}
-                        </p>
+            {/* 2-Column Course Grid matching exact Card UI */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
+              {filteredCourses.map((course) => (
+                <Link
+                  key={course.id}
+                  to={course.link}
+                  className="bg-white rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all duration-300 overflow-hidden flex flex-col justify-between group cursor-pointer hover:-translate-y-1"
+                >
+                  <div>
+                    {/* Course Thumbnail Image with Duration Badge */}
+                    <div className="h-52 sm:h-56 overflow-hidden bg-slate-50 border-b border-slate-100 relative">
+                      <img
+                        src={course.image}
+                        alt={course.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute top-3.5 left-3.5 bg-black/75 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full border border-white/10">
+                        {course.duration}
                       </div>
                     </div>
 
-                    {/* Price */}
-                    <div className="p-5 pt-0">
-                      <div className="text-xl font-bold text-[#09090b]">
-                        ₹{typeof course.price === 'number' ? course.price.toLocaleString('en-IN') : course.price}
+                    <div className="p-6 space-y-4">
+                      {/* Title & New Badge */}
+                      <div className="flex items-start justify-between gap-2.5">
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight group-hover:text-[#0bc40e] transition-colors leading-snug">
+                          {course.title}
+                        </h3>
+                        {course.isNew && (
+                          <span className="text-[10px] font-bold bg-[#0bc40e]/10 text-[#0bc40e] px-2 py-0.5 rounded-full border border-[#0bc40e]/20 shrink-0">
+                            New
+                          </span>
+                        )}
                       </div>
+
+                      {/* 3 Meta Badges */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        {/* Badge 1: Students */}
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100/90 text-slate-700 text-[11px] font-semibold border border-slate-200/70">
+                          <svg className="w-3.5 h-3.5 text-[#0bc40e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                          <span>{course.students}</span>
+                        </span>
+
+                        {/* Badge 2: Rating */}
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 text-[11px] font-bold border border-amber-200/70">
+                          <svg className="w-3.5 h-3.5 text-amber-500 fill-amber-500" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                          <span>{course.rating}</span>
+                        </span>
+
+                        {/* Badge 3: Level */}
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[11px] font-semibold border border-emerald-200/70">
+                          <svg className="w-3.5 h-3.5 text-[#0bc40e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                          </svg>
+                          <span>{course.level}</span>
+                        </span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
+                        {course.description}
+                      </p>
                     </div>
-                  </Link>
-                );
-              })}
+                  </div>
+
+                  {/* Card Footer: Price & View Course CTA */}
+                  <div className="p-6 pt-0 mt-2 flex items-center justify-between">
+                    <span className="text-xl sm:text-2xl font-bold text-slate-900">
+                      ₹{typeof course.price === 'number' ? course.price.toLocaleString('en-IN') : course.price}
+                    </span>
+                    <span className="text-xs sm:text-sm font-bold text-[#0bc40e] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                      View Course →
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
 
             {filteredCourses.length === 0 && (

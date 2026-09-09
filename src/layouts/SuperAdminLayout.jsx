@@ -7,6 +7,7 @@ import {
   CreditCardIcon,
   UserGroup03Icon,
   Activity01Icon,
+  Video01Icon,
   Settings02Icon,
   Logout01Icon,
 } from "hugeicons-react";
@@ -20,6 +21,7 @@ const navLinks = [
   { to: "/super-admin/payments", label: "Payments", icon: CreditCardIcon },
   { to: "/super-admin/users", label: "Users", icon: UserGroup03Icon },
   { to: "/super-admin/activity", label: "Activity Log", icon: Activity01Icon },
+  { to: "/super-admin/live-classes", label: "Live Classes & Cohorts", icon: Video01Icon },
 ];
 
 function SuperAdminLink({ to, label, icon: Icon, end = false }) {

@@ -22,6 +22,7 @@ import SignupPage from './pages/SignupPage';
 import StudentDashboard from './pages/StudentDashboard';
 import MyLearningPage from './pages/MyLearningPage';
 import ResourcesPage from './pages/ResourcesPage';
+import StudentProfilePage from './pages/StudentProfilePage';
 import FaqPage from './pages/FaqPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
@@ -67,6 +68,8 @@ function MainLayout() {
     location.pathname.startsWith('/dashboard') ||
     location.pathname === '/my-learning' ||
     location.pathname.startsWith('/resources') ||
+    location.pathname.startsWith('/profile') ||
+    location.pathname.startsWith('/student-profile') ||
     location.pathname === '/student-dashboard';
 
   return (
@@ -92,8 +95,10 @@ function MainLayout() {
         <Route path="/register" element={<SignupPage />} />
         <Route path="/dashboard" element={<StudentDashboard />} />
         <Route path="/my-learning" element={<MyLearningPage />} />
-        <Route path="/resources" element={<ResourcesPage />} />
-        <Route path="/resources-files" element={<ResourcesPage />} />
+        <Route path="/profile" element={<StudentProfilePage />} />
+        <Route path="/student-profile" element={<StudentProfilePage />} />
+        <Route path="/resources" element={<StudentProfilePage />} />
+        <Route path="/resources-files" element={<StudentProfilePage />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/courses/ui-design-masterclass" element={<FigmaMasterclassPage />} />
         <Route path="/courses/graphic-design-in-7-days" element={<FigmaMasterclassPage />} />

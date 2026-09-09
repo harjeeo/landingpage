@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getCurrentUser } from '../lib/auth';
-import { getActiveEnrollments } from '../lib/payments';
+import { getActiveEnrollments, getPublicConfig } from '../lib/payments';
 import {
   DashboardSquare01Icon,
   Mortarboard01Icon,
@@ -21,7 +21,7 @@ import {
   ArrowRight01Icon,
   Notification01Icon,
   CheckmarkCircle02Icon,
-  Folder01Icon
+  UserCircleIcon
 } from 'hugeicons-react';
 
 // Student Mock Data
@@ -37,11 +37,11 @@ const STUDENT_PROFILE = {
   pendingAssignments: 1
 };
 
-// Purchased Live Courses
+// Purchased Live Courses Fallback
 const PURCHASED_COURSES = [
   {
     id: 'course-1',
-    title: 'UI/UX Design Masterclass',
+    courseTitle: 'UI/UX Design Masterclass',
     badge: 'Live Interactive Batch',
     batchCode: 'Batch #04 (Evening)',
     mentor: 'Harpreet Singh',
@@ -61,7 +61,7 @@ const PURCHASED_COURSES = [
   },
   {
     id: 'course-2',
-    title: 'Graphic Design & AI Mastery',
+    courseTitle: 'Graphic Design & AI Mastery',
     badge: 'Weekend Live Batch',
     batchCode: 'Batch #02 (Weekend)',
     mentor: 'Harpreet Singh',
@@ -81,8 +81,9 @@ const PURCHASED_COURSES = [
   }
 ];
 
-// Today's Live Class
+// Today's Live Class Fallback
 const TODAY_CLASS = {
+  isLive: true,
   courseTitle: 'UI/UX Design Masterclass',
   topic: 'Mastering Figma Auto Layout, Variables & Component Props',
   batchCode: 'Batch #04 (Evening)',
@@ -92,7 +93,7 @@ const TODAY_CLASS = {
   meetLink: 'https://meet.google.com/dc-uiux-live'
 };
 
-// Upcoming Sessions This Week
+// Upcoming Sessions This Week Fallback
 const WEEK_SESSIONS = [
   {
     id: 'sess-1',
@@ -161,7 +162,7 @@ const ASSIGNMENTS_LIST = [
   }
 ];
 
-// Batch Notice Board
+// Batch Notice Board Fallback
 const NOTICE_BOARD = [
   {
     id: 'not-1',
@@ -185,11 +186,19 @@ export default function StudentDashboard() {
   const [activeMeetModal, setActiveMeetModal] = useState(null);
   const [currentUser, setCurrentUser] = useState(getCurrentUser());
   const [enrollments, setEnrollments] = useState(getActiveEnrollments());
+  const [liveSettings, setLiveSettings] = useState(null);
   const isEnrolledSuccess = searchParams.get('enrolled') === 'success';
 
   useEffect(() => {
     setCurrentUser(getCurrentUser());
     setEnrollments(getActiveEnrollments());
+    
+    // Fetch live platform settings (configured by super admin)
+    getPublicConfig(true).then((data) => {
+      if (data?.liveClassesSettings) {
+        setLiveSettings(data.liveClassesSettings);
+      }
+    });
   }, []);
 
   const handleCopyMeetLink = (link) => {
@@ -199,6 +208,57 @@ export default function StudentDashboard() {
   };
 
   const studentName = currentUser?.name || STUDENT_PROFILE.name;
+  const todayClass = liveSettings?.todayClass || TODAY_CLASS;
+  const weekSessions = liveSettings?.weekSessions?.length > 0 ? liveSettings.weekSessions : WEEK_SESSIONS;
+  const batches = liveSettings?.batches?.length > 0 ? liveSettings.batches : PURCHASED_COURSES;
+  const noticeBoard = liveSettings?.noticeBoard?.length > 0 ? liveSettings.noticeBoard : NOTICE_BOARD;
+
+  // Check if current student has access to today's live class course
+  const isEnrolledInTodayClass = useMemo(() => {
+    if (!todayClass || todayClass.isLive === false) return false;
+
+    const target = (todayClass.targetCourse || 'all').toLowerCase();
+    if (target === 'all') return true;
+
+    // 1. Check student's actual active enrollments from localStorage/backend
+    if (enrollments && enrollments.length > 0) {
+      const hasActive = enrollments.some((e) => {
+        if (!e) return false;
+        const slug = (e.courseSlug || '').toLowerCase();
+        const title = (e.courseTitle || '').toLowerCase();
+        const targetTitle = (todayClass.courseTitle || '').toLowerCase();
+
+        return (
+          slug === target ||
+          slug.includes(target) ||
+          target.includes(slug) ||
+          (target.includes('ui') && (slug.includes('ui') || title.includes('ui'))) ||
+          (target.includes('graphic') && (slug.includes('graphic') || title.includes('graphic'))) ||
+          (target.includes('shopify') && (slug.includes('shopify') || title.includes('shopify'))) ||
+          (targetTitle && title && (title.includes(targetTitle) || targetTitle.includes(title)))
+        );
+      });
+      return hasActive;
+    }
+
+    // 2. Fallback for demo profile based on default enrolled batches
+    const batchMatch = batches.some((b) => {
+      if (!b) return false;
+      const bTitle = (b.courseTitle || b.title || '').toLowerCase();
+      const targetTitle = (todayClass.courseTitle || '').toLowerCase();
+
+      return (
+        b.id === target ||
+        bTitle.includes(target) ||
+        (target.includes('ui') && bTitle.includes('ui')) ||
+        (target.includes('graphic') && bTitle.includes('graphic')) ||
+        (target.includes('shopify') && bTitle.includes('shopify')) ||
+        (targetTitle && bTitle.includes(targetTitle))
+      );
+    });
+
+    return batchMatch;
+  }, [todayClass, enrollments, batches]);
 
   return (
     <div className="min-h-screen bg-[#0c0e15] text-slate-100 font-sans pb-24 selection:bg-[#0bc40e] selection:text-black">
@@ -226,7 +286,7 @@ export default function StudentDashboard() {
                 <Mortarboard01Icon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
                 <span>My Learning</span>
                 <span className="px-1.5 py-0.2 bg-white/10 text-slate-200 border border-white/10 rounded-full text-[10px] font-bold">
-                  {enrollments.length > 0 ? `${enrollments.length + 1} Batches` : '2 Batches'}
+                  {batches.length} Batches
                 </span>
               </Link>
 
@@ -239,11 +299,11 @@ export default function StudentDashboard() {
               </Link>
 
               <Link
-                to="/resources"
+                to="/profile"
                 className="pb-3 text-[#a1a1aa] hover:text-white transition-all relative flex items-center gap-1.5"
               >
-                <Folder01Icon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
-                <span>Resources & Files</span>
+                <UserCircleIcon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
+                <span>Student Profile</span>
               </Link>
             </nav>
 
@@ -315,13 +375,13 @@ export default function StudentDashboard() {
             {/* Stat 1: Total Courses Purchased */}
             <div className="bg-[#13151f] border border-white/10 rounded-2xl p-4 sm:p-5 space-y-1 hover:border-white/20 transition-all shadow-md">
               <div className="flex items-center justify-between">
-                <span className="text-xs text-[#a1a1aa] font-medium">Purchased Courses</span>
+                <span className="text-xs text-[#a1a1aa] font-medium">Purchased Batches</span>
                 <div className="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-400 border border-purple-500/20 flex items-center justify-center shrink-0">
                   <Book02Icon className="w-4 h-4" />
                 </div>
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white">
-                {STUDENT_PROFILE.totalPurchasedCourses}
+                {batches.length}
               </div>
               <p className="text-[11px] text-[#71717a] font-medium">
                 Lifetime Live Batch Access
@@ -353,10 +413,10 @@ export default function StudentDashboard() {
                 </div>
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white">
-                {STUDENT_PROFILE.upcomingThisWeek}
+                {weekSessions.length}
               </div>
-              <p className="text-[11px] text-emerald-400 font-medium">
-                Next: Today at 7:00 PM
+              <p className="text-[11px] text-emerald-400 font-medium truncate">
+                {todayClass?.isLive ? todayClass.time : 'Next session upcoming'}
               </p>
             </div>
 
@@ -380,73 +440,93 @@ export default function StudentDashboard() {
         </section>
 
         {/* SECTION 2: Today's Live Class Action Launcher */}
-        <section className="relative overflow-hidden rounded-2xl bg-[#13151f] border border-white/10 hover:border-white/15 p-5 sm:p-7 shadow-xl shadow-black/30 transition-all">
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            
-            {/* Info */}
-            <div className="space-y-3 max-w-2xl">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-bold tracking-wide">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  TODAY'S LIVE CLASS
-                </span>
-                <span className="text-xs text-[#71717a] font-medium">
-                  {TODAY_CLASS.batchCode}
-                </span>
-              </div>
+        {isEnrolledInTodayClass ? (
+          <section className="relative overflow-hidden rounded-2xl bg-[#13151f] border border-white/10 hover:border-white/15 p-5 sm:p-7 shadow-xl shadow-black/30 transition-all">
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              
+              {/* Info */}
+              <div className="space-y-3 max-w-2xl">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-bold tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    TODAY'S LIVE CLASS
+                  </span>
+                  <span className="text-xs text-[#71717a] font-medium">
+                    {todayClass.batchCode}
+                  </span>
+                  {todayClass.courseTitle && (
+                    <span className="text-[11px] font-semibold text-slate-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded-md">
+                      {todayClass.courseTitle}
+                    </span>
+                  )}
+                </div>
 
-              <div>
-                <h2 className="text-lg sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                  {TODAY_CLASS.topic}
-                </h2>
-                
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#a1a1aa] mt-2 font-medium">
-                  <span className="text-slate-200 flex items-center gap-1.5">
-                    <Clock01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
-                    {TODAY_CLASS.time}
-                  </span>
-                  <span>•</span>
-                  <span>Mentor: <strong className="text-white">{TODAY_CLASS.mentor}</strong></span>
-                  <span>•</span>
-                  <span className="text-slate-300 flex items-center gap-1">
-                    <Video01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
-                    {TODAY_CLASS.platform}
-                  </span>
+                <div>
+                  <h2 className="text-lg sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                    {todayClass.topic}
+                  </h2>
+                  
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#a1a1aa] mt-2 font-medium">
+                    <span className="text-slate-200 flex items-center gap-1.5">
+                      <Clock01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
+                      {todayClass.time}
+                    </span>
+                    <span>•</span>
+                    <span>Mentor: <strong className="text-white">{todayClass.mentor}</strong></span>
+                    <span>•</span>
+                    <span className="text-slate-300 flex items-center gap-1">
+                      <Video01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
+                      {todayClass.platform || 'Google Meet'}
+                    </span>
+                  </div>
                 </div>
               </div>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
+                <button
+                  onClick={() => setActiveMeetModal(todayClass)}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
+                >
+                  <Video01Icon className="w-4 h-4 text-slate-950" />
+                  <span>Join Live Class</span>
+                </button>
+
+                <button
+                  onClick={() => handleCopyMeetLink(todayClass.meetLink)}
+                  className="w-full sm:w-auto px-3.5 py-2.5 rounded-xl bg-[#181a24] hover:bg-[#232736] text-[#dfdfe2] border border-white/10 hover:border-white/20 font-medium text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  title="Copy Meeting Link"
+                >
+                  {copiedLink ? (
+                    <>
+                      <Tick02Icon className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
+                      <span>Copy Link</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
             </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
-              <button
-                onClick={() => setActiveMeetModal(TODAY_CLASS)}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
-              >
-                <Video01Icon className="w-4 h-4 text-slate-950" />
-                <span>Join Live Class</span>
-              </button>
-
-              <button
-                onClick={() => handleCopyMeetLink(TODAY_CLASS.meetLink)}
-                className="w-full sm:w-auto px-3.5 py-2.5 rounded-xl bg-[#181a24] hover:bg-[#232736] text-[#dfdfe2] border border-white/10 hover:border-white/20 font-medium text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                title="Copy Meeting Link"
-              >
-                {copiedLink ? (
-                  <>
-                    <Tick02Icon className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
-                    <span>Copy Link</span>
-                  </>
-                )}
-              </button>
-            </div>
-
-          </div>
-        </section>
+          </section>
+        ) : (
+          <section className="rounded-2xl bg-[#13151f] border border-white/10 p-5 sm:p-6 text-center space-y-2">
+            <h3 className="text-sm font-semibold text-white">
+              {todayClass?.isLive !== false
+                ? `Live session scheduled for other cohorts`
+                : `No Live Class Scheduled Today`}
+            </h3>
+            <p className="text-xs text-[#71717a]">
+              {todayClass?.isLive !== false
+                ? `Today's live class is exclusively for students enrolled in ${todayClass?.courseTitle || 'another course'}. Check your timetable below for your enrolled batch sessions.`
+                : `Check your weekly schedule below for your upcoming sessions, or review past recordings.`}
+            </p>
+          </section>
+        )}
 
         {/* SECTION 3: My Purchased Courses & Batches */}
         <section className="space-y-4">
@@ -471,84 +551,103 @@ export default function StudentDashboard() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {PURCHASED_COURSES.map((course) => (
-              <div
-                key={course.id}
-                className="bg-[#13151f] rounded-2xl border border-white/10 hover:border-white/15 p-5 sm:p-6 transition-all shadow-md flex flex-col justify-between space-y-4"
-              >
-                <div className="space-y-3.5">
-                  {/* Top Badge & Title */}
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="space-y-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white/5 text-[#a1a1aa] border border-white/10">
-                          {course.badge}
-                        </span>
-                        <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
-                          {course.access}
-                        </span>
+            {batches.map((course) => {
+              const total = course.totalSessions || 24;
+              const completed = course.completedSessions || 14;
+              const progressPct = course.progress || Math.round((completed / total) * 100);
+
+              return (
+                <div
+                  key={course.id}
+                  className="bg-[#13151f] rounded-2xl border border-white/10 hover:border-white/15 p-5 sm:p-6 transition-all shadow-md flex flex-col justify-between space-y-4"
+                >
+                  <div className="space-y-3.5">
+                    {/* Top Badge & Title */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="space-y-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white/5 text-[#a1a1aa] border border-white/10">
+                            {course.badge || 'Live Interactive Batch'}
+                          </span>
+                          <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
+                            {course.access || 'Lifetime Access'}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-base font-bold text-white pt-1 truncate">
+                          {course.courseTitle || course.title}
+                        </h3>
+                        <p className="text-xs text-[#71717a]">
+                          {course.batchCode} • Mentor: <span className="text-slate-300 font-medium">{course.mentor}</span>
+                        </p>
                       </div>
-                      
-                      <h3 className="text-base font-bold text-white pt-1 truncate">
-                        {course.title}
-                      </h3>
-                      <p className="text-xs text-[#71717a]">
-                        {course.batchCode} • Mentor: <span className="text-slate-300 font-medium">{course.mentor}</span>
-                      </p>
-                    </div>
 
-                    <span className="text-xs font-semibold text-slate-300 bg-[#181a24] px-2.5 py-1 rounded-lg border border-white/10 shrink-0">
-                      {course.platform}
-                    </span>
-                  </div>
-
-                  {/* Schedule Info */}
-                  <div className="bg-[#0c0e15] border border-white/5 rounded-xl px-3.5 py-2.5 flex items-center justify-between text-xs text-slate-300">
-                    <div className="flex items-center gap-2">
-                      <Calendar03Icon className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      <span>{course.schedule}</span>
-                    </div>
-                  </div>
-
-                  {/* Progress */}
-                  <div className="space-y-1.5 pt-1">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-[#a1a1aa] text-[11px]">
-                        Attendance: <strong className="text-white">{course.sessionsCompleted} of {course.totalSessions} Sessions</strong>
+                      <span className="text-xs font-semibold text-slate-300 bg-[#181a24] px-2.5 py-1 rounded-lg border border-white/10 shrink-0">
+                        {course.platform || 'Google Meet'}
                       </span>
-                      <span className="text-slate-300 font-semibold text-[11px]">{course.progress}%</span>
                     </div>
-                    <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
-                      <div
-                        className="h-full bg-emerald-500 rounded-full transition-all duration-500"
-                        style={{ width: `${course.progress}%` }}
-                      ></div>
+
+                    {/* Schedule Info */}
+                    <div className="bg-[#0c0e15] border border-white/5 rounded-xl px-3.5 py-2.5 flex items-center justify-between text-xs text-slate-300">
+                      <div className="flex items-center gap-2">
+                        <Calendar03Icon className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <span>{course.schedule}</span>
+                      </div>
+                    </div>
+
+                    {/* Progress */}
+                    <div className="space-y-1.5 pt-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-[#a1a1aa] text-[11px]">
+                          Attendance: <strong className="text-white">{completed} of {total} Sessions</strong>
+                        </span>
+                        <span className="text-slate-300 font-semibold text-[11px]">{progressPct}%</span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                        <div
+                          className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                          style={{ width: `${progressPct}%` }}
+                        ></div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Footer Actions */}
-                <div className="pt-2 flex items-center gap-2.5 border-t border-white/10">
-                  <Link
-                    to="/my-learning"
-                    className="flex-1 py-2 px-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
-                  >
-                    <Mortarboard01Icon className="w-3.5 h-3.5 text-slate-950" />
-                    <span>Go to Classroom</span>
-                  </Link>
+                  {/* Footer Actions */}
+                  <div className="pt-2 flex items-center gap-2.5 border-t border-white/10">
+                    {course.meetLink ? (
+                      <button
+                        type="button"
+                        onClick={() => setActiveMeetModal(course)}
+                        className="flex-1 py-2 px-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer"
+                      >
+                        <Mortarboard01Icon className="w-3.5 h-3.5 text-slate-950" />
+                        <span>Go to Classroom</span>
+                      </button>
+                    ) : (
+                      <Link
+                        to="/my-learning"
+                        className="flex-1 py-2 px-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
+                      >
+                        <Mortarboard01Icon className="w-3.5 h-3.5 text-slate-950" />
+                        <span>Go to Classroom</span>
+                      </Link>
+                    )}
 
-                  <a
-                    href={course.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-2 px-3.5 rounded-xl bg-[#181a24] hover:bg-[#232736] text-[#a1a1aa] hover:text-white border border-white/10 font-medium text-xs transition-all flex items-center justify-center gap-1.5"
-                  >
-                    <Comment01Icon className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Batch Group</span>
-                  </a>
+                    {course.whatsappLink && (
+                      <a
+                        href={course.whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2 px-3.5 rounded-xl bg-[#181a24] hover:bg-[#232736] text-[#a1a1aa] hover:text-white border border-white/10 font-medium text-xs transition-all flex items-center justify-center gap-1.5"
+                      >
+                        <Comment01Icon className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Batch Group</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
@@ -563,12 +662,12 @@ export default function StudentDashboard() {
                 This Week's Live Classes
               </h3>
               <span className="text-[11px] text-[#71717a] font-medium">
-                {WEEK_SESSIONS.length} Scheduled
+                {weekSessions.length} Scheduled
               </span>
             </div>
 
             <div className="space-y-2.5">
-              {WEEK_SESSIONS.map((sess) => (
+              {weekSessions.map((sess) => (
                 <div
                   key={sess.id}
                   className={`p-3.5 rounded-xl border transition-all flex items-center justify-between gap-3 ${
@@ -659,7 +758,7 @@ export default function StudentDashboard() {
               </div>
 
               <div className="space-y-2.5">
-                {NOTICE_BOARD.map((not) => (
+                {noticeBoard.map((not) => (
                   <div key={not.id} className="text-xs space-y-1">
                     <div className="flex items-center justify-between">
                       <span className="font-semibold text-white text-xs">{not.title}</span>
