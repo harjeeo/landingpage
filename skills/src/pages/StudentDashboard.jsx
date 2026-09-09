@@ -21,7 +21,9 @@ import {
   ArrowRight01Icon,
   Notification01Icon,
   CheckmarkCircle02Icon,
-  UserCircleIcon
+  UserCircleIcon,
+  LaptopVideoIcon,
+  Building02Icon
 } from 'hugeicons-react';
 
 // Student Mock Data
@@ -599,22 +601,26 @@ export default function StudentDashboard() {
                 className="p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
               >
                 {/* Left: Course Details & Mode */}
-                <div className="space-y-2 min-w-0 flex-1">
+                <div className="space-y-2.5 min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     {item.mode === 'offline' ? (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-300 bg-purple-500/15 border border-purple-500/30 px-2.5 py-0.5 rounded-full">
-                        📍 Offline • Ludhiana
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-300 bg-purple-500/15 border border-purple-500/30 px-3 py-1 rounded-full">
+                        <Building02Icon className="w-3.5 h-3.5 text-purple-400" />
+                        <span>Offline • Ludhiana</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-300 bg-blue-500/15 border border-blue-500/30 px-2.5 py-0.5 rounded-full">
-                        💻 Online Classes
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-300 bg-blue-500/15 border border-blue-500/30 px-3 py-1 rounded-full">
+                        <LaptopVideoIcon className="w-3.5 h-3.5 text-blue-400" />
+                        <span>Online Classes</span>
                       </span>
                     )}
-                    <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-                      ✓ Enrolled &amp; Active
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-3 py-1 rounded-full">
+                      <CheckmarkCircle02Icon className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Enrolled &amp; Active</span>
                     </span>
-                    <span className="text-[10px] text-[#71717a] font-mono">
-                      ID: {item.certificateId}
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#a1a1aa] bg-white/5 border border-white/10 px-3 py-1 rounded-full font-mono">
+                      <span className="text-[#71717a] font-sans font-normal">ID:</span>
+                      <span>{item.certificateId}</span>
                     </span>
                   </div>
 
@@ -626,22 +632,22 @@ export default function StudentDashboard() {
                 {/* Middle: Badges for Date, Time & Amount */}
                 <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 shrink-0">
                   {/* Date Badge */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#181a24] border border-white/10 text-xs shadow-xs">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#181a24] border border-white/10 text-xs font-semibold text-slate-200 shadow-xs">
                     <Calendar03Icon className="w-3.5 h-3.5 text-[#0bc40e]" />
-                    <span className="text-[#71717a] text-[11px] font-medium">Date:</span>
-                    <span className="font-semibold text-white">{item.date}</span>
+                    <span className="text-[#71717a] font-normal">Date:</span>
+                    <span className="text-white">{item.date}</span>
                   </div>
 
                   {/* Time Badge */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#181a24] border border-white/10 text-xs shadow-xs">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#181a24] border border-white/10 text-xs font-semibold text-slate-200 shadow-xs">
                     <Clock01Icon className="w-3.5 h-3.5 text-blue-400" />
-                    <span className="text-[#71717a] text-[11px] font-medium">Time:</span>
-                    <span className="font-semibold text-white">{item.time}</span>
+                    <span className="text-[#71717a] font-normal">Time:</span>
+                    <span className="text-white">{item.time}</span>
                   </div>
 
                   {/* Amount Paid Badge */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-xs shadow-xs">
-                    <span className="text-emerald-400/80 text-[11px] font-medium">Paid:</span>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-xs font-semibold text-emerald-300 shadow-xs">
+                    <span className="text-emerald-400/80 font-normal">Paid:</span>
                     <span className="font-bold text-emerald-300">{item.amount}</span>
                   </div>
                 </div>
