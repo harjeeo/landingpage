@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('plan');
-            $table->enum('billing_cycle', ['monthly', 'annual']);
+            $table->string('billing_cycle');
             $table->unsignedInteger('amount');
             $table->string('currency')->default('INR');
             $table->enum('status', ['pending', 'active', 'cancelled'])->default('pending');

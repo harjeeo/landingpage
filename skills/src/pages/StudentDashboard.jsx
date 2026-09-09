@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { getCurrentUser } from '../lib/auth';
+import { getActiveEnrollments } from '../lib/payments';
 import {
   DashboardSquare01Icon,
   Mortarboard01Icon,
@@ -178,14 +180,25 @@ const NOTICE_BOARD = [
 ];
 
 export default function StudentDashboard() {
+  const [searchParams] = useSearchParams();
   const [copiedLink, setCopiedLink] = useState(false);
   const [activeMeetModal, setActiveMeetModal] = useState(null);
+  const [currentUser, setCurrentUser] = useState(getCurrentUser());
+  const [enrollments, setEnrollments] = useState(getActiveEnrollments());
+  const isEnrolledSuccess = searchParams.get('enrolled') === 'success';
+
+  useEffect(() => {
+    setCurrentUser(getCurrentUser());
+    setEnrollments(getActiveEnrollments());
+  }, []);
 
   const handleCopyMeetLink = (link) => {
     navigator.clipboard?.writeText(link);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
   };
+
+  const studentName = currentUser?.name || STUDENT_PROFILE.name;
 
   return (
     <div className="min-h-screen bg-[#0c0e15] text-slate-100 font-sans pb-24 selection:bg-[#0bc40e] selection:text-black">
@@ -213,7 +226,7 @@ export default function StudentDashboard() {
                 <Mortarboard01Icon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
                 <span>My Learning</span>
                 <span className="px-1.5 py-0.2 bg-white/10 text-slate-200 border border-white/10 rounded-full text-[10px] font-bold">
-                  2 Batches
+                  {enrollments.length > 0 ? `${enrollments.length + 1} Batches` : '2 Batches'}
                 </span>
               </Link>
 
@@ -253,12 +266,34 @@ export default function StudentDashboard() {
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-9">
 
+        {/* Celebratory Banner on Successful Enrollment */}
+        {isEnrolledSuccess && (
+          <div className="p-5 rounded-3xl bg-gradient-to-r from-emerald-950/80 via-[#13151f] to-[#13151f] border border-[#0bc40e]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xl shadow-[#0bc40e]/10 animate-in fade-in slide-in-from-top-3 duration-300">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-2xl bg-[#0bc40e] text-black flex items-center justify-center font-black text-lg shrink-0 shadow-md shadow-[#0bc40e]/30">
+                ✓
+              </div>
+              <div className="space-y-0.5">
+                <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                  <span>🎉 Payment &amp; Enrollment Confirmed!</span>
+                </h3>
+                <p className="text-xs text-[#a1a1aa]">
+                  Your learning batch is active. You have full access to live classes, mentor support &amp; lesson files.
+                </p>
+              </div>
+            </div>
+            <span className="text-xs font-bold text-[#0bc40e] bg-[#0bc40e]/15 border border-[#0bc40e]/30 px-3 py-1 rounded-full whitespace-nowrap self-start sm:self-auto">
+              Active Student
+            </span>
+          </div>
+        )}
+
         {/* SECTION 1: Welcome Header & 4 Stat Cards */}
         <section className="space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                Welcome back, {STUDENT_PROFILE.name} 👋
+                Welcome back, {studentName} 👋
               </h1>
               <p className="text-xs sm:text-sm text-[#a1a1aa] mt-0.5 font-medium">
                 Here is your live classes overview and today's schedule.

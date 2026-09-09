@@ -2,17 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PaintBoardIcon } from 'hugeicons-react';
 import dcSkillsLogo from '../assets/dc-skills-logo.svg';
+import { getCurrentUser, isAuthenticated, logout } from '../lib/auth';
 
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSubpanel, setActiveSubpanel] = useState(null); // null | 'courses'
+  const [currentUser, setCurrentUser] = useState(getCurrentUser());
   const location = useLocation();
+
+  useEffect(() => {
+    const updateAuth = () => {
+      setCurrentUser(getCurrentUser());
+    };
+    window.addEventListener('dcskills_auth_changed', updateAuth);
+    return () => window.removeEventListener('dcskills_auth_changed', updateAuth);
+  }, []);
 
   // Close mobile menu & subpanel when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
     setActiveSubpanel(null);
+    setCurrentUser(getCurrentUser());
   }, [location]);
 
   // Prevent background scrolling when mobile menu is open
@@ -184,21 +195,35 @@ export default function Navbar() {
         </div>
 
         {/* Action Buttons Desktop */}
-        {location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname === '/student-dashboard' ? (
+        {currentUser || location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname === '/student-dashboard' ? (
           <div className="hidden lg:flex items-center gap-3">
             {/* Student Profile */}
             <Link
               to="/dashboard"
               className="flex items-center gap-2.5 p-1.5 pr-4 rounded-full bg-[#181a24] hover:bg-[#232736] border border-white/15 transition-all text-left group"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#6400e6] to-[#0bc40e] text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                HS
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#6400e6] to-[#0bc40e] text-white flex items-center justify-center font-bold text-xs shadow-xs uppercase">
+                {currentUser?.name ? currentUser.name.slice(0, 2) : 'HS'}
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-xs font-bold text-white group-hover:text-[#9a7cff] transition-colors">Harpreet Singh</span>
-                <span className="text-[10px] text-[#a1a1aa] font-medium">UI/UX Student</span>
+                <span className="text-xs font-bold text-white group-hover:text-[#9a7cff] transition-colors truncate max-w-[120px]">
+                  {currentUser?.name || 'Harpreet Singh'}
+                </span>
+                <span className="text-[10px] text-[#a1a1aa] font-medium">Dashboard</span>
               </div>
             </Link>
+            <button
+              onClick={() => {
+                logout();
+                window.location.href = '/';
+              }}
+              title="Logout"
+              className="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white text-xs cursor-pointer transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
           </div>
         ) : (
           <div className="hidden lg:flex items-center gap-3">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { LaptopVideoIcon, Building02Icon } from 'hugeicons-react';
+import ClassModeSelectionModal from '../components/ClassModeSelectionModal';
+import { isAuthenticated, savePendingEnrollment } from '../lib/auth';
 
 const MODULE_ICONS = [
   {
@@ -1370,8 +1372,12 @@ function getCourseData(rawSlug) {
 export default function FigmaMasterclassPage() {
   const { courseSlug } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [openModule, setOpenModule] = useState(0);
   const [openFaq, setOpenFaq] = useState(-1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState('online');
 
   // Extract slug from URL path if not present in params
   let currentSlug = courseSlug;
@@ -1381,10 +1387,34 @@ export default function FigmaMasterclassPage() {
 
   const course = getCourseData(currentSlug);
 
+  // Auto-open modal if redirected with ?enroll=open
+  useEffect(() => {
+    if (searchParams.get('enroll') === 'open') {
+      const mode = searchParams.get('mode') || 'online';
+      setModalMode(mode);
+      setIsModalOpen(true);
+    }
+  }, [searchParams]);
+
   // Scroll to top when page mounts or slug changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentSlug]);
+
+  const handleOpenEnroll = (mode = 'online') => {
+    setModalMode(mode);
+    if (!isAuthenticated()) {
+      savePendingEnrollment({
+        courseSlug: course.slug,
+        courseTitle: course.title,
+        classMode: mode,
+        amount: mode === 'offline' ? 4999 : 2999,
+      });
+      navigate(`/signup?redirect=enroll&course=${course.slug}&mode=${mode}`);
+    } else {
+      setIsModalOpen(true);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white text-[#18181b] font-sans">
@@ -1438,12 +1468,13 @@ export default function FigmaMasterclassPage() {
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-3">
-                <a
-                  href="#pricing"
-                  className="px-7 py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-lg shadow-[#0bc40e]/30"
+                <button
+                  type="button"
+                  onClick={() => handleOpenEnroll('online')}
+                  className="px-7 py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-lg shadow-[#0bc40e]/30 cursor-pointer"
                 >
                   Enroll now for {course.price}
-                </a>
+                </button>
                 <a
                   href="#curriculum"
                   className="px-7 py-3.5 rounded-xl bg-[#181a24] hover:bg-[#232736] border border-white/15 text-white font-semibold text-sm transition-all"
@@ -1844,12 +1875,13 @@ export default function FigmaMasterclassPage() {
                 </div>
               </div>
 
-              <Link
-                to="/courses"
-                className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block"
+              <button
+                type="button"
+                onClick={() => handleOpenEnroll('online')}
+                className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block cursor-pointer"
               >
                 Enroll Now for ₹2,999
-              </Link>
+              </button>
             </div>
 
             {/* Offline Pricing Card */}
@@ -1891,12 +1923,13 @@ export default function FigmaMasterclassPage() {
                 </div>
               </div>
 
-              <Link
-                to="/courses"
-                className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block"
+              <button
+                type="button"
+                onClick={() => handleOpenEnroll('offline')}
+                className="w-full py-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-sm transition-all shadow-md text-center block cursor-pointer"
               >
                 Enroll Now for ₹4,999
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -1988,6 +2021,14 @@ export default function FigmaMasterclassPage() {
           </div>
         </div>
       </section>
+
+      {/* Class Mode Selection & Razorpay Modal */}
+      <ClassModeSelectionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        course={course}
+        defaultMode={modalMode}
+      />
 
     </div>
   );

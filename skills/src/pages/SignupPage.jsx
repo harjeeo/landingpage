@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { signup, getPendingEnrollment, clearPendingEnrollment } from '../lib/auth';
 
 export default function SignupPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -12,9 +14,13 @@ export default function SignupPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(true);
   const [error, setError] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const redirectParam = searchParams.get('redirect');
+  const courseParam = searchParams.get('course');
+  const modeParam = searchParams.get('mode');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -28,15 +34,44 @@ export default function SignupPage() {
       return;
     }
 
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      navigate('/dashboard');
-    }, 800);
+    setLoading(true);
+
+    try {
+      await signup({
+        name,
+        phone: phone.startsWith('+91') ? phone : `+91 ${phone}`,
+        email,
+        password,
+      });
+
+      const pending = getPendingEnrollment();
+      const targetCourse = courseParam || pending?.courseSlug;
+      const targetMode = modeParam || pending?.classMode || 'online';
+
+      if (targetCourse || redirectParam === 'enroll') {
+        clearPendingEnrollment();
+        navigate(`/courses/${targetCourse || 'ui-design-masterclass'}?enroll=open&mode=${targetMode}`);
+      } else {
+        navigate('/dashboard');
+      }
+    } catch (err) {
+      setError(err.message || 'Failed to create account. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleSignup = () => {
-    navigate('/dashboard');
+    const pending = getPendingEnrollment();
+    const targetCourse = courseParam || pending?.courseSlug;
+    const targetMode = modeParam || pending?.classMode || 'online';
+
+    if (targetCourse || redirectParam === 'enroll') {
+      clearPendingEnrollment();
+      navigate(`/courses/${targetCourse || 'ui-design-masterclass'}?enroll=open&mode=${targetMode}`);
+    } else {
+      navigate('/dashboard');
+    }
   };
 
   return (
@@ -207,13 +242,20 @@ export default function SignupPage() {
               </span>
             </label>
 
-            {/* Submit Button */}
             <button
               type="submit"
-              disabled={!agreeTerms}
-              className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm py-3.5 rounded-xl transition-all shadow-md shadow-[#0bc40e]/20 mt-2 active:scale-[0.99]"
+              disabled={!agreeTerms || loading}
+              className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm py-3.5 rounded-xl transition-all shadow-md shadow-[#0bc40e]/20 mt-2 active:scale-[0.99] flex items-center justify-center gap-2"
             >
-              {isSubmitted ? 'Creating account...' : 'Sign up'}
+              {loading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                  </svg>
+                  <span>Creating account...</span>
+                </>
+              ) : 'Sign up'}
             </button>
           </form>
 

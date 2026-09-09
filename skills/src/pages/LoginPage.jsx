@@ -1,25 +1,57 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { login, getPendingEnrollment, clearPendingEnrollment } from '../lib/auth';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const redirectParam = searchParams.get('redirect');
+  const courseParam = searchParams.get('course');
+  const modeParam = searchParams.get('mode');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      navigate('/dashboard');
-    }, 800);
+    setError('');
+    setLoading(true);
+
+    try {
+      await login(email, password);
+
+      const pending = getPendingEnrollment();
+      const targetCourse = courseParam || pending?.courseSlug;
+      const targetMode = modeParam || pending?.classMode || 'online';
+
+      if (targetCourse || redirectParam === 'enroll') {
+        clearPendingEnrollment();
+        navigate(`/courses/${targetCourse || 'ui-design-masterclass'}?enroll=open&mode=${targetMode}`);
+      } else {
+        navigate('/dashboard');
+      }
+    } catch (err) {
+      setError(err.message || 'Invalid email or password. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleLogin = () => {
-    navigate('/dashboard');
+    const pending = getPendingEnrollment();
+    const targetCourse = courseParam || pending?.courseSlug;
+    const targetMode = modeParam || pending?.classMode || 'online';
+
+    if (targetCourse || redirectParam === 'enroll') {
+      clearPendingEnrollment();
+      navigate(`/courses/${targetCourse || 'ui-design-masterclass'}?enroll=open&mode=${targetMode}`);
+    } else {
+      navigate('/dashboard');
+    }
   };
 
   return (
@@ -38,6 +70,13 @@ export default function LoginPage() {
               Log in to continue your learning journey
             </p>
           </div>
+
+          {/* Error Message */}
+          {error && (
+            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-medium">
+              {error}
+            </div>
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4 pt-2">
@@ -128,9 +167,18 @@ export default function LoginPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-bold text-sm py-3.5 rounded-xl transition-all shadow-md shadow-[#0bc40e]/20 mt-2 active:scale-[0.99]"
+              disabled={loading}
+              className="w-full bg-[#0bc40e] hover:bg-[#0aa30c] disabled:opacity-50 text-white font-bold text-sm py-3.5 rounded-xl transition-all shadow-md shadow-[#0bc40e]/20 mt-2 active:scale-[0.99] flex items-center justify-center gap-2"
             >
-              {isSubmitted ? 'Logging in...' : 'Login'}
+              {loading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                  </svg>
+                  <span>Logging in...</span>
+                </>
+              ) : 'Login'}
             </button>
           </form>
 
