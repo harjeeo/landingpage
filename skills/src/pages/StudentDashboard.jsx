@@ -623,35 +623,26 @@ export default function StudentDashboard() {
                   </h3>
                 </div>
 
-                {/* Middle: Date, Time & Amount */}
-                <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-[#a1a1aa] shrink-0">
-                  <div className="space-y-0.5">
-                    <span className="text-[10px] text-[#71717a] block uppercase tracking-wider font-semibold">
-                      Purchased On
-                    </span>
-                    <div className="flex items-center gap-1.5 text-slate-200 font-medium">
-                      <Calendar03Icon className="w-3.5 h-3.5 text-[#0bc40e]" />
-                      <span>{item.date}</span>
-                    </div>
+                {/* Middle: Badges for Date, Time & Amount */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 shrink-0">
+                  {/* Date Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#181a24] border border-white/10 text-xs shadow-xs">
+                    <Calendar03Icon className="w-3.5 h-3.5 text-[#0bc40e]" />
+                    <span className="text-[#71717a] text-[11px] font-medium">Date:</span>
+                    <span className="font-semibold text-white">{item.date}</span>
                   </div>
 
-                  <div className="space-y-0.5">
-                    <span className="text-[10px] text-[#71717a] block uppercase tracking-wider font-semibold">
-                      Time
-                    </span>
-                    <div className="flex items-center gap-1.5 text-slate-200 font-medium">
-                      <Clock01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
-                      <span>{item.time}</span>
-                    </div>
+                  {/* Time Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#181a24] border border-white/10 text-xs shadow-xs">
+                    <Clock01Icon className="w-3.5 h-3.5 text-blue-400" />
+                    <span className="text-[#71717a] text-[11px] font-medium">Time:</span>
+                    <span className="font-semibold text-white">{item.time}</span>
                   </div>
 
-                  <div className="space-y-0.5">
-                    <span className="text-[10px] text-[#71717a] block uppercase tracking-wider font-semibold">
-                      Amount Paid
-                    </span>
-                    <div className="text-sm font-bold text-white">
-                      {item.amount}
-                    </div>
+                  {/* Amount Paid Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-xs shadow-xs">
+                    <span className="text-emerald-400/80 text-[11px] font-medium">Paid:</span>
+                    <span className="font-bold text-emerald-300">{item.amount}</span>
                   </div>
                 </div>
 
