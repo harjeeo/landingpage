@@ -142,7 +142,7 @@ export default function StudentProfilePage() {
                 to="/dashboard"
                 className="pb-3 text-[#a1a1aa] hover:text-white transition-all relative flex items-center gap-1.5"
               >
-                <DashboardSquare01Icon className="w-3.5 h-3.5 text-[#71717a]" />
+                <DashboardSquare01Icon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
                 <span>Dashboard</span>
               </Link>
 
@@ -150,7 +150,7 @@ export default function StudentProfilePage() {
                 to="/my-learning"
                 className="pb-3 text-[#a1a1aa] hover:text-white transition-all relative flex items-center gap-1.5"
               >
-                <Mortarboard01Icon className="w-3.5 h-3.5 text-[#71717a]" />
+                <Mortarboard01Icon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
                 <span>My Learning</span>
                 <span className="px-1.5 py-0.2 bg-white/10 text-slate-200 border border-white/10 rounded-full text-[10px] font-bold">
                   {enrollments.length > 0 ? `${enrollments.length + 1} Batches` : '2 Batches'}
@@ -174,21 +174,6 @@ export default function StudentProfilePage() {
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0bc40e] rounded-full shadow-xs shadow-[#0bc40e]/40"></div>
               </Link>
             </nav>
-
-            {/* Quick Profile Actions */}
-            <div className="flex items-center pb-2 sm:pb-0 gap-3 sm:self-center">
-              <span className="text-sm text-[#9ca3af] hidden sm:inline-block font-normal">
-                Signed in as <strong className="text-white font-semibold">{formData.name || 'Mehak'}</strong>
-              </span>
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="px-4 py-1.5 rounded-full bg-[#3b1219]/70 hover:bg-[#4c1620] border border-rose-500/30 hover:border-rose-500/50 text-rose-300 hover:text-rose-200 text-sm font-medium flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
-              >
-                <Logout01Icon className="w-4 h-4 text-rose-400" />
-                <span>Logout</span>
-              </button>
-            </div>
           </div>
         </div>
       </div>

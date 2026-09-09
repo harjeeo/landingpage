@@ -360,26 +360,6 @@ export default function StudentDashboard() {
               </Link>
             </nav>
 
-            {/* Quick Profile & Logout Actions */}
-            <div className="flex items-center pb-2 sm:pb-0 gap-3.5 sm:self-center">
-              <span className="text-sm text-[#9ca3af] hidden sm:inline-block font-normal">
-                Signed in as <strong className="text-white font-semibold">{studentName || 'Mehak'}</strong>
-              </span>
-              <button
-                type="button"
-                onClick={() => {
-                  logout();
-                  window.location.href = '/';
-                }}
-                className="px-4 py-1.5 rounded-full bg-[#3b1219]/70 hover:bg-[#4c1620] border border-rose-500/30 hover:border-rose-500/50 text-rose-300 hover:text-rose-200 text-sm font-medium flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
-              >
-                <svg className="w-4 h-4 text-rose-400 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-                <span>Logout</span>
-              </button>
-            </div>
-
           </div>
         </div>
       </div>
