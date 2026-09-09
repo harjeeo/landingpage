@@ -832,43 +832,43 @@ export default function SuperAdminStudentsPage() {
                     onClick={() => handleOpenEditPage(s)}
                     className="border-b border-(--color-border) last:border-0 hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
                   >
-                    <td className="px-4 py-3 font-medium text-(--color-text)">
+                    <td className="px-4 py-3 font-medium text-(--color-text) align-middle">
                       {s.name}
                     </td>
-                    <td className="px-4 py-3 text-(--color-text-muted)">
+                    <td className="px-4 py-3 text-(--color-text-muted) align-middle">
                       {s.email || "—"}
                     </td>
-                    <td className="px-4 py-3 text-(--color-text-muted)">
+                    <td className="px-4 py-3 text-(--color-text-muted) align-middle">
                       {s.phone || "—"}
                     </td>
-                    <td className="px-4 py-3 text-(--color-text-muted) max-w-[220px] truncate" title={s.courseTitle}>
+                    <td className="px-4 py-3 text-(--color-text-muted) max-w-[220px] truncate align-middle" title={s.courseTitle}>
                       {s.courseTitle}
                     </td>
-                    <td className="px-4 py-3">
-                      <span className="rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium dark:bg-white/10">
+                    <td className="px-4 py-3 align-middle">
+                      <span className="inline-flex items-center rounded-full bg-black/5 px-2 py-0.5 text-xs font-medium dark:bg-white/10">
                         {s.mode === "offline" ? "Offline" : "Online"}
                       </span>
                     </td>
-                    <td className="px-4 py-3 tabular-nums font-medium text-(--color-text)">
+                    <td className="px-4 py-3 tabular-nums font-medium text-(--color-text) align-middle">
                       {s.amountPaid}
                     </td>
-                    <td className="px-4 py-3">
-                      <span className={`flex w-fit items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${meta.className}`}>
+                    <td className="px-4 py-3 align-middle">
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${meta.className}`}>
                         <Icon size={11} strokeWidth={1.8} />
                         {s.status || "Active"}
                       </span>
                     </td>
                     
                     {/* Action Icon Buttons */}
-                    <td className="px-4 py-3 text-right">
-                      <div className="inline-flex items-center gap-1.5">
+                    <td className="px-4 py-3 text-right align-middle">
+                      <div className="inline-flex items-center justify-end gap-1.5">
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleOpenEditPage(s);
                           }}
-                          className="p-1 rounded-md border border-(--color-border) text-(--color-text-muted) hover:text-(--color-text) hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
+                          className="inline-flex items-center justify-center h-7 w-7 rounded-md border border-(--color-border) text-(--color-text-muted) hover:text-(--color-text) hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
                           title="Edit Student & Certificate"
                         >
                           <Edit01Icon size={14} />
@@ -877,7 +877,7 @@ export default function SuperAdminStudentsPage() {
                         <button
                           type="button"
                           onClick={(e) => handleDeleteStudent(s.id, e)}
-                          className="p-1 rounded-md border border-red-500/20 text-red-500 hover:bg-red-500/10 transition-colors cursor-pointer"
+                          className="inline-flex items-center justify-center h-7 w-7 rounded-md border border-red-500/20 text-red-500 hover:bg-red-500/10 transition-colors cursor-pointer"
                           title="Delete Student"
                         >
                           <Delete02Icon size={14} />
