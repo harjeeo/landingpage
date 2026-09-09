@@ -196,33 +196,22 @@ export default function Navbar() {
 
         {/* Action Buttons Desktop */}
         {currentUser || location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname.startsWith('/profile') || location.pathname === '/student-dashboard' ? (
-          <div className="hidden lg:flex items-center gap-3">
-            {/* Student Profile */}
-            <Link
-              to="/dashboard"
-              className="flex items-center gap-2.5 p-1.5 pr-4 rounded-full bg-[#181a24] hover:bg-[#232736] border border-white/15 transition-all text-left group"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#6400e6] to-[#0bc40e] text-white flex items-center justify-center font-bold text-xs shadow-xs uppercase">
-                {currentUser?.name ? currentUser.name.slice(0, 2) : 'HS'}
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-xs font-bold text-white group-hover:text-[#9a7cff] transition-colors truncate max-w-[120px]">
-                  {currentUser?.name || 'Harpreet Singh'}
-                </span>
-                <span className="text-[10px] text-[#a1a1aa] font-medium">Dashboard</span>
-              </div>
-            </Link>
+          <div className="hidden lg:flex items-center gap-3.5">
+            <span className="text-sm text-[#9ca3af] font-normal">
+              Signed in as <strong className="text-white font-semibold">{currentUser?.name || 'Mehak'}</strong>
+            </span>
             <button
               onClick={() => {
                 logout();
                 window.location.href = '/';
               }}
               title="Logout"
-              className="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white text-xs cursor-pointer transition-colors"
+              className="px-4 py-1.5 rounded-full bg-[#3b1219]/70 hover:bg-[#4c1620] border border-rose-500/30 hover:border-rose-500/50 text-rose-300 hover:text-rose-200 text-sm font-medium flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-4 h-4 text-rose-400 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
+              <span>Logout</span>
             </button>
           </div>
         ) : (
@@ -341,23 +330,31 @@ export default function Navbar() {
                 </Link>
 
                 {/* Bottom CTA Actions */}
-                {location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname.startsWith('/profile') || location.pathname === '/student-dashboard' ? (
+                {currentUser || location.pathname.startsWith('/dashboard') || location.pathname === '/my-learning' || location.pathname.startsWith('/resources') || location.pathname.startsWith('/profile') || location.pathname === '/student-dashboard' ? (
                   <div className="pt-6 space-y-3 pb-8">
-                    <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#181a24] border border-white/15">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#6400e6] to-[#0bc40e] text-white flex items-center justify-center font-bold text-sm shadow-xs">
-                        HS
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-white">Harpreet Singh</h4>
-                        <p className="text-xs text-[#a1a1aa]">UI/UX Student</p>
-                      </div>
+                    <div className="flex items-center justify-between p-3.5 rounded-2xl bg-[#13151f] border border-white/10">
+                      <span className="text-sm text-[#9ca3af]">
+                        Signed in as <strong className="text-white font-semibold">{currentUser?.name || 'Mehak'}</strong>
+                      </span>
+                      <button
+                        onClick={() => {
+                          logout();
+                          window.location.href = '/';
+                        }}
+                        className="px-3.5 py-1.5 rounded-full bg-[#3b1219]/70 hover:bg-[#4c1620] border border-rose-500/30 text-rose-300 text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
+                      >
+                        <svg className="w-3.5 h-3.5 text-rose-400 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        <span>Logout</span>
+                      </button>
                     </div>
                     <Link
                       to="/dashboard"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="w-full text-center block py-3.5 px-4 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-semibold text-base shadow-lg shadow-[#0bc40e]/30 transition-all"
+                      className="w-full text-center block py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-all"
                     >
-                      My Dashboard
+                      Go to Dashboard
                     </Link>
                   </div>
                 ) : (

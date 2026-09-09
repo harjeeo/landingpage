@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { getCurrentUser } from '../lib/auth';
+import { getCurrentUser, logout } from '../lib/auth';
 import { getActiveEnrollments, getPublicConfig } from '../lib/payments';
 import {
   DashboardSquare01Icon,
@@ -184,6 +184,7 @@ export default function StudentDashboard() {
   const [searchParams] = useSearchParams();
   const [copiedLink, setCopiedLink] = useState(false);
   const [activeMeetModal, setActiveMeetModal] = useState(null);
+  const [selectedCertCourse, setSelectedCertCourse] = useState(null);
   const [currentUser, setCurrentUser] = useState(getCurrentUser());
   const [enrollments, setEnrollments] = useState(getActiveEnrollments());
   const [liveSettings, setLiveSettings] = useState(null);
@@ -212,6 +213,58 @@ export default function StudentDashboard() {
   const weekSessions = liveSettings?.weekSessions?.length > 0 ? liveSettings.weekSessions : WEEK_SESSIONS;
   const batches = liveSettings?.batches?.length > 0 ? liveSettings.batches : PURCHASED_COURSES;
   const noticeBoard = liveSettings?.noticeBoard?.length > 0 ? liveSettings.noticeBoard : NOTICE_BOARD;
+
+  // Student purchased courses list (Combines active enrollments + demo fallback)
+  const purchasedList = useMemo(() => {
+    if (enrollments && enrollments.length > 0) {
+      return enrollments.map((en, idx) => {
+        const dt = en.enrolledAt ? new Date(en.enrolledAt) : new Date();
+        const dateStr = dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+        const timeStr = dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+        return {
+          id: en.orderId || en.paymentId || `enr-${idx}`,
+          courseTitle: en.courseTitle || 'UI Design Masterclass — Next-Gen UI Design with AI',
+          courseSlug: en.courseSlug || 'ui-design-masterclass',
+          mode: en.classMode || 'online',
+          location: en.location || (en.classMode === 'offline' ? 'Ludhiana Campus' : 'Online / Live'),
+          amount: en.amountPaid ? `₹${Number(en.amountPaid).toLocaleString('en-IN')}` : (en.classMode === 'offline' ? '₹4,999' : '₹2,999'),
+          date: dateStr,
+          time: timeStr,
+          status: 'Active',
+          certificateId: `DC-CERT-${(en.courseSlug || 'UI').substring(0, 4).toUpperCase()}-${1000 + idx}`,
+        };
+      });
+    }
+
+    // Default fallback demo items matching original purchased courses
+    return [
+      {
+        id: 'dc-pur-1',
+        courseTitle: 'UI Design Masterclass — Next-Gen UI Design with AI',
+        courseSlug: 'ui-design-masterclass',
+        mode: 'online',
+        location: 'Online / Live',
+        amount: '₹2,999',
+        date: '08 Sep 2026',
+        time: '04:30 PM',
+        status: 'Active',
+        certificateId: 'DC-CERT-UID-8821',
+      },
+      {
+        id: 'dc-pur-2',
+        courseTitle: 'Graphic Design in 7 Days — Learn, Create & Master AI',
+        courseSlug: 'graphic-design-in-7-days',
+        mode: 'offline',
+        location: 'Ludhiana Campus',
+        amount: '₹4,999',
+        date: '05 Sep 2026',
+        time: '11:15 AM',
+        status: 'Active',
+        certificateId: 'DC-CERT-GRD-5519',
+      }
+    ];
+  }, [enrollments]);
 
   // Check if current student has access to today's live class course
   const isEnrolledInTodayClass = useMemo(() => {
@@ -307,16 +360,24 @@ export default function StudentDashboard() {
               </Link>
             </nav>
 
-            {/* Quick Search */}
-            <div className="flex items-center pb-2 sm:pb-0 sm:self-center">
-              <div className="relative w-56 sm:w-72 h-8.5 flex items-center">
-                <Search01Icon className="w-3.5 h-3.5 text-[#71717a] absolute left-3 pointer-events-none" />
-                <input
-                  type="text"
-                  placeholder="Search batches, topics, notices..."
-                  className="w-full h-full bg-[#181a24] border border-white/10 rounded-full pl-8 pr-3 text-xs text-white placeholder:text-[#71717a] focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all leading-none"
-                />
-              </div>
+            {/* Quick Profile & Logout Actions */}
+            <div className="flex items-center pb-2 sm:pb-0 gap-3.5 sm:self-center">
+              <span className="text-sm text-[#9ca3af] hidden sm:inline-block font-normal">
+                Signed in as <strong className="text-white font-semibold">{studentName || 'Mehak'}</strong>
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  logout();
+                  window.location.href = '/';
+                }}
+                className="px-4 py-1.5 rounded-full bg-[#3b1219]/70 hover:bg-[#4c1620] border border-rose-500/30 hover:border-rose-500/50 text-rose-300 hover:text-rose-200 text-sm font-medium flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
+              >
+                <svg className="w-4 h-4 text-rose-400 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Logout</span>
+              </button>
             </div>
 
           </div>
@@ -528,253 +589,112 @@ export default function StudentDashboard() {
           </section>
         )}
 
-        {/* SECTION 3: My Purchased Courses & Batches */}
+        {/* SECTION 3: My Purchased Courses Simple List */}
         <section className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight flex items-center gap-2">
-                <Book02Icon className="w-5 h-5 text-slate-400" />
-                My Purchased Courses & Batches
+                <Book02Icon className="w-5 h-5 text-[#0bc40e]" />
+                My Purchased Courses
               </h2>
               <p className="text-xs text-[#71717a] mt-0.5">
-                All live courses enrolled under your account
+                List of all courses enrolled under your account with downloadable verified certificates
               </p>
             </div>
             
             <Link
-              to="/my-learning"
-              className="text-xs text-slate-300 hover:text-white font-semibold flex items-center gap-1"
+              to="/courses"
+              className="text-xs text-slate-300 hover:text-white font-semibold flex items-center gap-1 self-start sm:self-auto"
             >
-              <span>View Classroom Hub</span>
+              <span>+ Explore More Courses</span>
               <ArrowRight01Icon className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {batches.map((course) => {
-              const total = course.totalSessions || 24;
-              const completed = course.completedSessions || 14;
-              const progressPct = course.progress || Math.round((completed / total) * 100);
-
-              return (
-                <div
-                  key={course.id}
-                  className="bg-[#13151f] rounded-2xl border border-white/10 hover:border-white/15 p-5 sm:p-6 transition-all shadow-md flex flex-col justify-between space-y-4"
-                >
-                  <div className="space-y-3.5">
-                    {/* Top Badge & Title */}
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="space-y-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white/5 text-[#a1a1aa] border border-white/10">
-                            {course.badge || 'Live Interactive Batch'}
-                          </span>
-                          <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
-                            {course.access || 'Lifetime Access'}
-                          </span>
-                        </div>
-                        
-                        <h3 className="text-base font-bold text-white pt-1 truncate">
-                          {course.courseTitle || course.title}
-                        </h3>
-                        <p className="text-xs text-[#71717a]">
-                          {course.batchCode} • Mentor: <span className="text-slate-300 font-medium">{course.mentor}</span>
-                        </p>
-                      </div>
-
-                      <span className="text-xs font-semibold text-slate-300 bg-[#181a24] px-2.5 py-1 rounded-lg border border-white/10 shrink-0">
-                        {course.platform || 'Google Meet'}
+          {/* Simple List Container */}
+          <div className="bg-[#13151f] rounded-2xl border border-white/10 overflow-hidden shadow-xl divide-y divide-white/5">
+            {purchasedList.map((item) => (
+              <div
+                key={item.id}
+                className="p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
+              >
+                {/* Left: Course Details & Mode */}
+                <div className="space-y-2 min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {item.mode === 'offline' ? (
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-300 bg-purple-500/15 border border-purple-500/30 px-2.5 py-0.5 rounded-full">
+                        📍 Offline • Ludhiana
                       </span>
-                    </div>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-300 bg-blue-500/15 border border-blue-500/30 px-2.5 py-0.5 rounded-full">
+                        💻 Online Classes
+                      </span>
+                    )}
+                    <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+                      ✓ Enrolled &amp; Active
+                    </span>
+                    <span className="text-[10px] text-[#71717a] font-mono">
+                      ID: {item.certificateId}
+                    </span>
+                  </div>
 
-                    {/* Schedule Info */}
-                    <div className="bg-[#0c0e15] border border-white/5 rounded-xl px-3.5 py-2.5 flex items-center justify-between text-xs text-slate-300">
-                      <div className="flex items-center gap-2">
-                        <Calendar03Icon className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                        <span>{course.schedule}</span>
-                      </div>
-                    </div>
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">
+                    {item.courseTitle}
+                  </h3>
+                </div>
 
-                    {/* Progress */}
-                    <div className="space-y-1.5 pt-1">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-[#a1a1aa] text-[11px]">
-                          Attendance: <strong className="text-white">{completed} of {total} Sessions</strong>
-                        </span>
-                        <span className="text-slate-300 font-semibold text-[11px]">{progressPct}%</span>
-                      </div>
-                      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
-                        <div
-                          className="h-full bg-emerald-500 rounded-full transition-all duration-500"
-                          style={{ width: `${progressPct}%` }}
-                        ></div>
-                      </div>
+                {/* Middle: Date, Time & Amount */}
+                <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-[#a1a1aa] shrink-0">
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] text-[#71717a] block uppercase tracking-wider font-semibold">
+                      Purchased On
+                    </span>
+                    <div className="flex items-center gap-1.5 text-slate-200 font-medium">
+                      <Calendar03Icon className="w-3.5 h-3.5 text-[#0bc40e]" />
+                      <span>{item.date}</span>
                     </div>
                   </div>
 
-                  {/* Footer Actions */}
-                  <div className="pt-2 flex items-center gap-2.5 border-t border-white/10">
-                    {course.meetLink ? (
-                      <button
-                        type="button"
-                        onClick={() => setActiveMeetModal(course)}
-                        className="flex-1 py-2 px-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer"
-                      >
-                        <Mortarboard01Icon className="w-3.5 h-3.5 text-slate-950" />
-                        <span>Go to Classroom</span>
-                      </button>
-                    ) : (
-                      <Link
-                        to="/my-learning"
-                        className="flex-1 py-2 px-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
-                      >
-                        <Mortarboard01Icon className="w-3.5 h-3.5 text-slate-950" />
-                        <span>Go to Classroom</span>
-                      </Link>
-                    )}
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] text-[#71717a] block uppercase tracking-wider font-semibold">
+                      Time
+                    </span>
+                    <div className="flex items-center gap-1.5 text-slate-200 font-medium">
+                      <Clock01Icon className="w-3.5 h-3.5 text-[#a1a1aa]" />
+                      <span>{item.time}</span>
+                    </div>
+                  </div>
 
-                    {course.whatsappLink && (
-                      <a
-                        href={course.whatsappLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="py-2 px-3.5 rounded-xl bg-[#181a24] hover:bg-[#232736] text-[#a1a1aa] hover:text-white border border-white/10 font-medium text-xs transition-all flex items-center justify-center gap-1.5"
-                      >
-                        <Comment01Icon className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>Batch Group</span>
-                      </a>
-                    )}
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] text-[#71717a] block uppercase tracking-wider font-semibold">
+                      Amount Paid
+                    </span>
+                    <div className="text-sm font-bold text-white">
+                      {item.amount}
+                    </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </section>
 
-        {/* SECTION 4: 2-Column Grid (This Week Schedule & Assignments) */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          
-          {/* Left Column (7 cols): This Week Live Schedule */}
-          <div className="lg:col-span-7 bg-[#13151f] rounded-2xl border border-white/10 p-5 sm:p-6 space-y-4 shadow-md">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <Calendar03Icon className="w-4 h-4 text-slate-400" />
-                This Week's Live Classes
-              </h3>
-              <span className="text-[11px] text-[#71717a] font-medium">
-                {weekSessions.length} Scheduled
-              </span>
-            </div>
-
-            <div className="space-y-2.5">
-              {weekSessions.map((sess) => (
-                <div
-                  key={sess.id}
-                  className={`p-3.5 rounded-xl border transition-all flex items-center justify-between gap-3 ${
-                    sess.isToday
-                      ? 'bg-white/5 border-white/20'
-                      : 'bg-[#181a24]/50 border-white/5 hover:border-white/10'
-                  }`}
-                >
-                  <div className="space-y-0.5 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
-                        sess.isToday
-                          ? 'bg-emerald-500/15 text-emerald-400'
-                          : 'bg-white/10 text-slate-300'
-                      }`}>
-                        {sess.day} • {sess.time}
-                      </span>
-                      <span className="text-[11px] text-[#71717a] truncate">{sess.course}</span>
-                    </div>
-
-                    <h4 className="text-xs sm:text-sm font-semibold text-white truncate pt-0.5">
-                      {sess.topic}
-                    </h4>
-                  </div>
-
+                {/* Right: Download Certificate Button */}
+                <div className="shrink-0 flex items-center gap-2 pt-2 lg:pt-0 border-t lg:border-t-0 border-white/5">
                   <button
-                    onClick={() => setActiveMeetModal(sess)}
-                    className={`py-1.5 px-3 rounded-lg text-xs font-semibold shrink-0 cursor-pointer ${
-                      sess.isToday
-                        ? 'bg-white text-slate-950 font-bold hover:bg-slate-100'
-                        : 'bg-[#181a24] text-slate-300 hover:text-white border border-white/10'
-                    }`}
+                    type="button"
+                    onClick={() => setSelectedCertCourse(item)}
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
                   >
-                    {sess.isToday ? 'Join Now' : 'Link'}
+                    <svg className="w-4 h-4 text-slate-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    <span>Download Certificate</span>
                   </button>
                 </div>
-              ))}
-            </div>
+
+              </div>
+            ))}
           </div>
-
-          {/* Right Column (5 cols): Urgent Tasks & Notice Board */}
-          <div className="lg:col-span-5 space-y-4">
-            
-            {/* Assignments Action Box */}
-            <div className="bg-[#13151f] rounded-2xl border border-white/10 p-5 space-y-3.5 shadow-md">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <FileAttachmentIcon className="w-4 h-4 text-slate-400" />
-                  Assignments
-                </h3>
-                <Link to="/my-learning" className="text-[11px] text-slate-400 hover:text-white">
-                  View All
-                </Link>
-              </div>
-
-              <div className="space-y-2.5">
-                {ASSIGNMENTS_LIST.map((asg) => (
-                  <div key={asg.id} className="p-3 rounded-xl bg-[#181a24]/60 border border-white/5 space-y-1.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-slate-300">{asg.tag}</span>
-                      <span className="text-[10px] text-[#71717a]">{asg.course}</span>
-                    </div>
-                    <h5 className="text-xs font-semibold text-white leading-snug">
-                      {asg.title}
-                    </h5>
-                    <div className="flex items-center justify-between pt-1">
-                      <span className="text-[10px] text-[#71717a]">{asg.due}</span>
-                      <Link
-                        to="/my-learning"
-                        className="text-[11px] font-semibold text-emerald-400 hover:underline"
-                      >
-                        {asg.status === 'pending' ? 'Submit Link →' : 'View Score →'}
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Batch Notice Board */}
-            <div className="bg-[#13151f] rounded-2xl border border-white/10 p-5 space-y-3 shadow-md">
-              <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                  <Notification01Icon className="w-4 h-4 text-slate-400" />
-                  Batch Notice Board
-                </h3>
-                <span className="text-[10px] text-[#71717a]">Live Updates</span>
-              </div>
-
-              <div className="space-y-2.5">
-                {noticeBoard.map((not) => (
-                  <div key={not.id} className="text-xs space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-white text-xs">{not.title}</span>
-                      <span className="text-[10px] text-[#71717a]">{not.time}</span>
-                    </div>
-                    <p className="text-[11px] text-[#a1a1aa] leading-relaxed">
-                      {not.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-
         </section>
+
+
 
         {/* SECTION 5: Doubt Help Card */}
         <section className="bg-[#13151f] border border-white/10 hover:border-white/15 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-lg">
@@ -873,6 +793,134 @@ export default function StudentDashboard() {
               >
                 {copiedLink ? 'Copied!' : 'Copy Link'}
               </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: Certificate of Completion Modal */}
+      {selectedCertCourse && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
+          <div className="bg-slate-900 border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative text-white my-8">
+            
+            {/* Modal Header Controls */}
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-[#0bc40e]/20 text-[#0bc40e] flex items-center justify-center font-bold">
+                  🎓
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white">Verified Certificate of Completion</h3>
+                  <span className="text-xs text-[#a1a1aa]">Credential ID: {selectedCertCourse.certificateId}</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedCertCourse(null)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Printable Certificate Canvas Card */}
+            <div className="relative bg-gradient-to-b from-[#0c0e15] to-[#13151f] border-4 border-amber-400/40 rounded-2xl p-6 sm:p-10 text-center space-y-6 shadow-2xl overflow-hidden">
+              
+              {/* Decorative Corner Ornaments */}
+              <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-amber-400/60 rounded-tl pointer-events-none" />
+              <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-amber-400/60 rounded-tr pointer-events-none" />
+              <div className="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2 border-amber-400/60 rounded-bl pointer-events-none" />
+              <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-amber-400/60 rounded-br pointer-events-none" />
+              
+              {/* Academy Brand Header */}
+              <div className="space-y-1">
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-400">
+                  DESIGNS CLUE SKILLS ACADEMY
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-wide uppercase">
+                  Certificate of Completion
+                </h2>
+                <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2" />
+              </div>
+
+              {/* Recipient */}
+              <div className="space-y-2 py-2">
+                <p className="text-xs uppercase tracking-widest text-[#a1a1aa] font-medium">
+                  This is proudly presented to
+                </p>
+                <div className="text-2xl sm:text-3xl font-black text-amber-300 tracking-tight underline decoration-amber-400/40 underline-offset-8">
+                  {studentName}
+                </div>
+              </div>
+
+              {/* Course Accomplishment Description */}
+              <div className="space-y-2 max-w-lg mx-auto">
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                  for successfully mastering the curriculum and completing all practical projects in
+                </p>
+                <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
+                  {selectedCertCourse.courseTitle}
+                </h4>
+                <div className="flex items-center justify-center gap-2 pt-1">
+                  <span className="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                    {selectedCertCourse.mode === 'offline' ? '📍 In-Person Studio (Ludhiana)' : '💻 Online Live Masterclass'}
+                  </span>
+                  <span className="text-[11px] text-slate-400 font-medium">
+                    Issued: {selectedCertCourse.date}
+                  </span>
+                </div>
+              </div>
+
+              {/* Signatures & Seal */}
+              <div className="pt-6 border-t border-white/10 flex items-end justify-between gap-4 text-left">
+                <div className="space-y-1">
+                  <div className="font-serif italic text-base text-amber-300">Harpreet Singh</div>
+                  <div className="text-[10px] text-slate-400 border-t border-slate-700 pt-1 font-semibold uppercase tracking-wider">
+                    Lead Mentor &amp; Founder
+                  </div>
+                </div>
+
+                {/* Verified Golden Badge */}
+                <div className="w-14 h-14 rounded-full border-2 border-amber-400/60 bg-amber-500/10 text-amber-400 flex flex-col items-center justify-center text-[8px] font-black uppercase tracking-tighter shrink-0 shadow-lg shadow-amber-500/20">
+                  <span>★ VERIFIED ★</span>
+                  <span className="text-[7px] text-amber-300">DC SKILLS</span>
+                </div>
+
+                <div className="space-y-1 text-right">
+                  <div className="font-mono text-xs text-slate-300">{selectedCertCourse.certificateId}</div>
+                  <div className="text-[10px] text-slate-400 border-t border-slate-700 pt-1 font-semibold uppercase tracking-wider">
+                    Verified Credential ID
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Modal Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+              <span className="text-xs text-[#a1a1aa] text-center sm:text-left">
+                ✓ Shareable on LinkedIn, Resume &amp; Portfolio
+              </span>
+              
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-bold text-xs transition-all shadow-md shadow-[#0bc40e]/20 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                  </svg>
+                  <span>Print / Save PDF</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCertCourse(null)}
+                  className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs transition-all cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
             </div>
 
           </div>

@@ -177,15 +177,15 @@ export default function StudentProfilePage() {
 
             {/* Quick Profile Actions */}
             <div className="flex items-center pb-2 sm:pb-0 gap-3 sm:self-center">
-              <span className="text-xs text-[#71717a] hidden sm:inline-block">
-                Signed in as <strong className="text-slate-300">{formData.name}</strong>
+              <span className="text-sm text-[#9ca3af] hidden sm:inline-block font-normal">
+                Signed in as <strong className="text-white font-semibold">{formData.name || 'Mehak'}</strong>
               </span>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="text-xs text-rose-400 hover:text-rose-300 border border-rose-500/20 bg-rose-500/10 px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="px-4 py-1.5 rounded-full bg-[#3b1219]/70 hover:bg-[#4c1620] border border-rose-500/30 hover:border-rose-500/50 text-rose-300 hover:text-rose-200 text-sm font-medium flex items-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
               >
-                <Logout01Icon className="w-3.5 h-3.5" />
+                <Logout01Icon className="w-4 h-4 text-rose-400" />
                 <span>Logout</span>
               </button>
             </div>
