@@ -279,7 +279,7 @@ export default function SuperAdminStudentsPage() {
   const certUploadedCount = students.filter((s) => Boolean(s.certificatePdf)).length;
 
   return (
-    <div className="px-6 sm:px-10 py-8 space-y-6">
+    <div className="px-10 py-8 space-y-6">
       
       {savedToast && (
         <div className="fixed bottom-6 right-6 z-50 bg-emerald-600 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2 text-sm font-semibold animate-in fade-in slide-in-from-bottom-3 duration-200">
@@ -291,47 +291,59 @@ export default function SuperAdminStudentsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="flex items-center gap-2.5 text-2xl font-bold">
-            <Mortarboard01Icon size={26} strokeWidth={1.8} className="text-(--color-accent)" />
-            <span>Students &amp; Course Purchases</span>
+          <h1 className="flex items-center gap-2 text-2xl font-semibold">
+            <Mortarboard01Icon size={20} strokeWidth={1.8} />
+            <span>Students</span>
           </h1>
           <p className="mt-1 text-sm text-(--color-text-muted)">
-            Manage students who purchased courses, edit their contact/mode details, and upload verified PDF certificates.
+            Overview of students who purchased courses, edit contact/mode details and upload verified certificates.
           </p>
         </div>
 
         <button
           type="button"
           onClick={handleOpenCreate}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-(--color-accent) text-white font-semibold text-sm hover:opacity-90 transition-all shadow-md active:scale-95 cursor-pointer self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-(--color-accent) text-white font-medium text-sm hover:opacity-90 transition-all shadow-xs active:scale-95 cursor-pointer self-start sm:self-auto"
         >
-          <PlusSignIcon size={18} strokeWidth={2} />
+          <PlusSignIcon size={16} strokeWidth={2} />
           <span>Add / Enroll Student</span>
         </button>
       </div>
 
       {/* 4 Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="rounded-xl border border-(--color-border) p-4 bg-black/2 dark:bg-white/2">
-          <div className="text-2xl font-bold tabular-nums">{totalStudents}</div>
-          <div className="text-xs text-(--color-text-muted) mt-0.5">Total Enrolled Students</div>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="rounded-xl border border-(--color-border) p-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-(--color-accent)/10 text-(--color-accent)">
+            <UserCircleIcon size={18} strokeWidth={1.8} />
+          </div>
+          <div className="mt-3 text-2xl font-semibold tabular-nums">{totalStudents}</div>
+          <div className="text-xs text-(--color-text-muted)">Total Enrolled Students</div>
         </div>
 
-        <div className="rounded-xl border border-(--color-border) p-4 bg-blue-500/5">
-          <div className="text-2xl font-bold tabular-nums text-blue-600 dark:text-blue-400">{onlineCount}</div>
-          <div className="text-xs text-(--color-text-muted) mt-0.5">Online Live Classes</div>
+        <div className="rounded-xl border border-(--color-border) p-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-(--color-accent)/10 text-(--color-accent)">
+            <LaptopVideoIcon size={18} strokeWidth={1.8} />
+          </div>
+          <div className="mt-3 text-2xl font-semibold tabular-nums">{onlineCount}</div>
+          <div className="text-xs text-(--color-text-muted)">Online Live Classes</div>
         </div>
 
-        <div className="rounded-xl border border-(--color-border) p-4 bg-purple-500/5">
-          <div className="text-2xl font-bold tabular-nums text-purple-600 dark:text-purple-400">{offlineCount}</div>
-          <div className="text-xs text-(--color-text-muted) mt-0.5">Offline (Ludhiana Campus)</div>
+        <div className="rounded-xl border border-(--color-border) p-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-(--color-accent)/10 text-(--color-accent)">
+            <Building02Icon size={18} strokeWidth={1.8} />
+          </div>
+          <div className="mt-3 text-2xl font-semibold tabular-nums">{offlineCount}</div>
+          <div className="text-xs text-(--color-text-muted)">Offline (Ludhiana Campus)</div>
         </div>
 
-        <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
-          <div className="text-2xl font-bold tabular-nums text-emerald-600 dark:text-emerald-400">
+        <div className="rounded-xl border border-(--color-border) p-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-(--color-accent)/10 text-(--color-accent)">
+            <FileAttachmentIcon size={18} strokeWidth={1.8} />
+          </div>
+          <div className="mt-3 text-2xl font-semibold tabular-nums">
             {certUploadedCount} / {totalStudents}
           </div>
-          <div className="text-xs text-(--color-text-muted) mt-0.5">Certificates Uploaded (PDF)</div>
+          <div className="text-xs text-(--color-text-muted)">Certificates Uploaded (PDF)</div>
         </div>
       </div>
 
