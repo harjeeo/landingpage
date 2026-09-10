@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserIcon } from 'hugeicons-react';
 
 const HOME_TESTIMONIALS = [
   {
@@ -91,11 +92,9 @@ export default function Testimonials() {
                   {/* Avatar, Name, Verified Badge, Course Tag */}
                   <div className="flex items-center gap-3 mb-3">
                     <div className="relative">
-                      <img
-                        src={t.avatar}
-                        alt={t.name}
-                        className="w-10 h-10 rounded-full object-cover border border-slate-200"
-                      />
+                      <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 shrink-0">
+                        <UserIcon className="w-5 h-5 text-slate-600" />
+                      </div>
                       <span className="absolute -bottom-1 -right-1 text-xs">{t.flag}</span>
                     </div>
 

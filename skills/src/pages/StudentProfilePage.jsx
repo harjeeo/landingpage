@@ -153,7 +153,7 @@ export default function StudentProfilePage() {
                 <Mortarboard01Icon className="w-3.5 h-3.5 text-[#71717a] hover:text-[#0bc40e] transition-colors" />
                 <span>My Learning</span>
                 <span className="px-1.5 py-0.2 bg-white/10 text-slate-200 border border-white/10 rounded-full text-[10px] font-bold">
-                  {enrollments.length > 0 ? `${enrollments.length + 1} Batches` : '2 Batches'}
+                  {enrollments.length > 0 ? `${enrollments.length} ${enrollments.length === 1 ? 'Batch' : 'Batches'}` : '1 Batch'}
                 </span>
               </Link>
 
@@ -264,7 +264,7 @@ export default function StudentProfilePage() {
                   : 'bg-black/40 text-[#71717a]'
               }`}
             >
-              {enrollments.length > 0 ? enrollments.length : 2}
+              {enrollments.length > 0 ? enrollments.length : 1}
             </span>
           </button>
         </div>
@@ -407,7 +407,7 @@ export default function StudentProfilePage() {
                   <div className="flex items-center justify-between">
                     <span className="text-[#a1a1aa]">Live Cohorts:</span>
                     <strong className="text-white">
-                      {enrollments.length > 0 ? `${enrollments.length + 1} Batches` : '2 Batches'}
+                      {enrollments.length > 0 ? `${enrollments.length} ${enrollments.length === 1 ? 'Batch' : 'Batches'}` : '1 Batch'}
                     </strong>
                   </div>
                 </div>
@@ -560,90 +560,65 @@ export default function StudentProfilePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Default Course 1 */}
-              <div className="p-5 rounded-2xl bg-[#181a24] border border-white/10 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                    Live Batch • Active
-                  </span>
-                  <span className="text-xs text-white font-bold">₹2,999</span>
-                </div>
-                <h4 className="text-sm font-bold text-white">
-                  UI/UX Design Masterclass — Next-Gen UI with AI
-                </h4>
-                <p className="text-xs text-[#71717a]">
-                  Batch #04 (Evening) • Mentor: Harpreet Singh
-                </p>
-                <div className="pt-2 flex items-center justify-between border-t border-white/5 text-xs text-[#a1a1aa]">
-                  <span>Access: Lifetime Access</span>
-                  <Link
-                    to="/my-learning"
-                    className="text-emerald-400 font-semibold hover:underline"
+              {enrollments && enrollments.length > 0 ? (
+                enrollments.map((enr, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 rounded-2xl bg-[#181a24] border border-[#0bc40e]/30 space-y-3 shadow-md hover:border-[#0bc40e]/60 transition-all"
                   >
-                    Open Hub →
-                  </Link>
-                </div>
-              </div>
-
-              {/* Default Course 2 */}
-              <div className="p-5 rounded-2xl bg-[#181a24] border border-white/10 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                    Weekend Batch • Active
-                  </span>
-                  <span className="text-xs text-white font-bold">₹2,999</span>
-                </div>
-                <h4 className="text-sm font-bold text-white">
-                  Graphic Design & AI Mastery
-                </h4>
-                <p className="text-xs text-[#71717a]">
-                  Batch #02 (Weekend) • Mentor: Harpreet Singh
-                </p>
-                <div className="pt-2 flex items-center justify-between border-t border-white/5 text-xs text-[#a1a1aa]">
-                  <span>Access: Lifetime Access</span>
-                  <Link
-                    to="/my-learning"
-                    className="text-emerald-400 font-semibold hover:underline"
-                  >
-                    Open Hub →
-                  </Link>
-                </div>
-              </div>
-
-              {/* Real Paid Enrollments from local storage */}
-              {enrollments.map((enr, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-2xl bg-[#181a24] border border-[#0bc40e]/30 space-y-3 shadow-md"
-                >
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-bold text-[#0bc40e] bg-[#0bc40e]/15 px-2.5 py-0.5 rounded-full border border-[#0bc40e]/30">
+                        Paid &amp; Enrolled ({enr.classMode?.toUpperCase() || 'ONLINE'})
+                      </span>
+                      <span className="text-xs text-white font-bold">
+                        ₹{enr.amountPaid ? Number(enr.amountPaid).toLocaleString('en-IN') : (enr.amount || 2999)}
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-white">
+                      {enr.courseTitle || 'UI Design Masterclass — Next-Gen UI Design with AI'}
+                    </h4>
+                    <p className="text-xs text-[#71717a]">
+                      Enrolled on:{' '}
+                      {enr.enrolledAt
+                        ? new Date(enr.enrolledAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
+                        : 'Recent'}
+                    </p>
+                    <div className="pt-2 flex items-center justify-between border-t border-white/5 text-xs text-[#a1a1aa]">
+                      <span className="text-emerald-400 font-medium">Access: Active</span>
+                      <Link
+                        to="/my-learning"
+                        className="text-white hover:text-emerald-400 font-semibold flex items-center gap-1 transition-colors"
+                      >
+                        <span>Open Classroom →</span>
+                      </Link>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="p-5 rounded-2xl bg-[#181a24] border border-white/10 space-y-3 shadow-md">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-[#0bc40e] bg-[#0bc40e]/15 px-2 py-0.5 rounded border border-[#0bc40e]/30">
-                      Paid &amp; Enrolled ({enr.classMode?.toUpperCase() || 'ONLINE'})
+                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                      Live Cohort • Active
                     </span>
-                    <span className="text-xs text-white font-bold">
-                      ₹{enr.amount || 2999}
-                    </span>
+                    <span className="text-xs text-white font-bold">₹2,999</span>
                   </div>
                   <h4 className="text-sm font-bold text-white">
-                    {enr.courseTitle || enr.courseSlug}
+                    UI Design Masterclass — Next-Gen UI Design with AI
                   </h4>
                   <p className="text-xs text-[#71717a]">
-                    Enrolled on:{' '}
-                    {enr.enrolledAt
-                      ? new Date(enr.enrolledAt).toLocaleDateString()
-                      : 'Recent'}
+                    Batch #04 (Evening) • Mentor: Harpreet Singh
                   </p>
                   <div className="pt-2 flex items-center justify-between border-t border-white/5 text-xs text-[#a1a1aa]">
-                    <span>Access: Active</span>
+                    <span className="text-emerald-400 font-medium">Access: Lifetime Access</span>
                     <Link
                       to="/my-learning"
-                      className="text-emerald-400 font-semibold hover:underline"
+                      className="text-white hover:text-emerald-400 font-semibold flex items-center gap-1 transition-colors"
                     >
-                      Open Hub →
+                      <span>Open Classroom →</span>
                     </Link>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         )}

@@ -16,7 +16,7 @@ export default function Courses() {
       duration: "1 Month Comprehensive",
       description: "Master modern UI design principles, Figma design systems, component architecture, and AI-accelerated workflows.",
       price: "₹2,999",
-      image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80",
+      image: "/images/ui-design-masterclass.jpg",
       isNew: true
     },
     {
@@ -30,7 +30,7 @@ export default function Courses() {
       duration: "7 Days Sprint",
       description: "Master graphic design principles, visual composition, branding, and cutting-edge generative AI design tools in 7 days.",
       price: "₹2,999",
-      image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80",
+      image: "/images/graphic-design-in-7-days.jpg",
       isNew: true
     },
     {

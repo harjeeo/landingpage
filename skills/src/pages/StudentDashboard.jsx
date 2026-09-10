@@ -79,7 +79,7 @@ const PURCHASED_COURSES = [
     sessionsCompleted: 6,
     totalSessions: 16,
     nextClass: 'Saturday, 11:00 AM',
-    thumbnail: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80'
+    thumbnail: '/images/graphic-design-in-7-days.jpg'
   }
 ];
 

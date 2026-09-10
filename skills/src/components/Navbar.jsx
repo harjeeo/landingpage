@@ -189,14 +189,10 @@ export default function Navbar() {
             )}
           </div>
 
-          <a href="/#courses" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Ebooks</a>
+          <Link to="/courses" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">All Courses</Link>
+          <Link to="/ebooks" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Ebooks</Link>
           <Link to="/testimonial" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">Testimonials</Link>
           <Link to="/faq" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">FAQ</Link>
-          {currentUser && (
-            <Link to="/dashboard" className="text-sm font-semibold text-[#0bc40e] hover:text-[#0aa30c] transition-colors flex items-center gap-1">
-              Dashboard
-            </Link>
-          )}
         </div>
 
         {/* Action Buttons Desktop */}
@@ -320,14 +316,23 @@ export default function Navbar() {
                   </button>
                 </div>
 
+                {/* All Courses */}
+                <Link
+                  to="/courses"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-3.5 text-xl font-medium text-[#dfdfe2] hover:text-white hover:translate-x-1 transition-all border-b border-white/10"
+                >
+                  All Courses
+                </Link>
+
                 {/* Ebooks */}
-                <a
-                  href="/#courses"
+                <Link
+                  to="/ebooks"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block py-3.5 text-xl font-medium text-[#dfdfe2] hover:text-white hover:translate-x-1 transition-all border-b border-white/10"
                 >
                   Ebooks
-                </a>
+                </Link>
 
                 {/* Testimonials */}
                 <Link

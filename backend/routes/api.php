@@ -13,6 +13,7 @@ Route::post('/auth/signup', [AuthController::class, 'signup']);
 
 Route::get('/platform-settings/public', [PlatformSettingController::class, 'publicConfig']);
 Route::get('/public-config', [PlatformSettingController::class, 'publicConfig']);
+Route::post('/subscribers', [PlatformSettingController::class, 'subscribe']);
 
 Route::post('/subscriptions/checkout', [SubscriptionController::class, 'checkout']);
 Route::post('/subscriptions/verify', [SubscriptionController::class, 'verify']);

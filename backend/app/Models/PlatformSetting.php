@@ -200,6 +200,35 @@ class PlatformSetting extends Model
                     'status' => 'Active',
                 ],
             ],
+            'subscribersList' => [
+                [
+                    'id' => 'sub-1',
+                    'phone' => '+91 98145 22993',
+                    'source' => 'Homepage Newsletter',
+                    'status' => 'Active',
+                    'subscribedDate' => '09 Sep 2026',
+                    'subscribedTime' => '02:15 PM',
+                    'created_at' => '2026-09-09T08:45:00.000Z',
+                ],
+                [
+                    'id' => 'sub-2',
+                    'phone' => '+91 98765 43210',
+                    'source' => 'Homepage Newsletter',
+                    'status' => 'Active',
+                    'subscribedDate' => '08 Sep 2026',
+                    'subscribedTime' => '11:40 AM',
+                    'created_at' => '2026-09-08T06:10:00.000Z',
+                ],
+                [
+                    'id' => 'sub-3',
+                    'phone' => '+91 99887 76655',
+                    'source' => 'Homepage Newsletter',
+                    'status' => 'Active',
+                    'subscribedDate' => '05 Sep 2026',
+                    'subscribedTime' => '05:20 PM',
+                    'created_at' => '2026-09-05T11:50:00.000Z',
+                ],
+            ],
         ];
     }
 }

@@ -7,13 +7,13 @@ export default function Footer() {
     {
       title: "UI Design Masterclass — Next-Gen UI Design with AI",
       description: "Master modern UI design principles, Figma design systems, component architecture, and AI-accelerated workflows.",
-      image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=200&q=80",
+      image: "/images/ui-design-masterclass.jpg",
       link: "/courses/ui-design-masterclass"
     },
     {
       title: "Graphic Design in 7 Days — Learn, Create & Master AI",
       description: "Master graphic design principles, typography, branding, marketing visuals, and generative AI design in 7 days.",
-      image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=200&q=80",
+      image: "/images/graphic-design-in-7-days.jpg",
       link: "/courses/graphic-design-in-7-days"
     },
     {
@@ -90,6 +90,11 @@ export default function Footer() {
               <li>
                 <Link to="/courses" className="hover:text-white transition-colors">
                   All Courses
+                </Link>
+              </li>
+              <li>
+                <Link to="/ebooks" className="hover:text-white transition-colors">
+                  E-Books
                 </Link>
               </li>
               <li>

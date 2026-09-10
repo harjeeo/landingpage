@@ -111,12 +111,21 @@ const COURSE_DATA = {
     heroTagline: 'Design High-Converting, Production-Ready Digital Interfaces Powered by AI',
     categoryBadge: '✨ Next-Gen UI & AI Masterclass',
     description: 'Learn how to create world-class UI designs, build scalable design systems in Figma, and accelerate your creative workflow using cutting-edge AI design tools.',
-    coverImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
+    coverImage: '/images/ui-design-masterclass.jpg',
     price: '₹2,999',
     students: '2,400+ Students',
     rating: '5.0 Rating (340+ Reviews)',
     duration: '16+ Hours HD Video',
     level: 'All Levels',
+    pricingPoints: [
+      'Getting Started with Google Stitch',
+      'Creating Wireframes with AI',
+      'Stitch to Figma Conversion',
+      'Master UI Design with AI',
+      'Figma Basics',
+      'Customized UI Design',
+      'Development-Ready UI with AI'
+    ],
     whatYouWillLearn: [
       {
         title: "1. Next-Gen UI Foundations & Visual Design",
@@ -177,107 +186,78 @@ const COURSE_DATA = {
     ],
     modules: [
       {
-        title: "Module 01 — UI/UX Design Fundamentals",
-        lessonsCount: "8 lessons • 1 hour 15 min",
+        title: "Module 1 — Getting Started with Google Stitch",
+        lessonsCount: "4 lessons • 45 min",
         lessons: [
-          "UI vs UX — Understanding the Difference",
-          "Design Thinking & User-Centered Design",
-          "Visual Hierarchy & Layout Principles",
-          "Typography & Font Pairing",
-          "Color Theory & Design Systems",
-          "Spacing, Grids & Alignment",
-          "Common UI Design Mistakes",
-          "Understanding Modern Digital Products"
+          "Understanding Google Stitch and its capabilities",
+          "Stitch interface and core workflow",
+          "Creating your first AI-generated interface",
+          "Understanding prompts and design instructions"
         ]
       },
       {
-        title: "Module 02 — Figma From Zero to Pro",
-        lessonsCount: "8 lessons • 1 hour 30 min",
+        title: "Module 2 — Creating Wireframes with AI",
+        lessonsCount: "5 lessons • 1 hour",
         lessons: [
-          "Figma Interface & Essential Tools",
-          "Frames, Layers, Shapes & Components",
-          "Auto Layout & Responsive Design",
-          "Constraints & Layout Grids",
-          "Components & Variants",
-          "Styles, Variables & Design Tokens",
-          "Prototyping & Interactive Flows",
-          "Developer Handoff & Collaboration"
+          "Understanding Wireframes & User Flow",
+          "Turning Ideas into AI-Generated Wireframes",
+          "Creating Wireframes with Google Stitch",
+          "Refining Layouts & Screen Structures with AI",
+          "From Wireframe to Final UI Concept"
         ]
       },
       {
-        title: "Module 03 — UX Process & Interface Planning",
-        lessonsCount: "8 lessons • 1 hour 20 min",
+        title: "Module 3 — Stitch to Figma Conversion",
+        lessonsCount: "5 lessons • 1 hour 10 min",
         lessons: [
-          "Understanding User Needs",
-          "User Personas & User Journeys",
-          "Information Architecture",
-          "User Flows",
-          "Wireframing — Low to High Fidelity",
-          "Designing Web & Mobile Experiences",
-          "UX Research Basics",
-          "Turning Ideas into Practical UI Solutions"
+          "Preparing Stitch Designs for Figma",
+          "Converting AI-Generated Screens into Editable UI",
+          "Rebuilding & Organizing Layers in Figma",
+          "Creating Components from Stitch Designs",
+          "Cleaning & Structuring the Final Figma File"
         ]
       },
       {
-        title: "Module 04 — Advanced UI Design & Design Systems",
-        lessonsCount: "8 lessons • 1 hour 35 min",
+        title: "Module 4 — Master UI Design with AI",
+        lessonsCount: "5 lessons • 1 hour 15 min",
         lessons: [
-          "Creating Professional Design Systems",
-          "Color & Typography Systems",
-          "Components & Component Libraries",
-          "Responsive Web Design",
-          "Mobile App UI Design",
-          "Forms, Tables, Dashboards & Complex Interfaces",
-          "Accessibility & Usability",
-          "Creating Consistent Product Experiences"
+          "Understanding Modern UI Design Principles",
+          "Using AI for UI Ideas & Design Exploration",
+          "Creating Professional Web & Mobile Interfaces",
+          "Improving Visual Hierarchy, Spacing & Typography",
+          "Designing Better UI with AI-Assisted Workflows"
         ]
       },
       {
-        title: "Module 05 — AI-Powered UI Design",
-        lessonsCount: "10 lessons • 1 hour 45 min",
+        title: "Module 5 — Figma Basics",
+        lessonsCount: "5 lessons • 1 hour 20 min",
         lessons: [
-          "Introduction to AI in UI/UX Design",
-          "Figma AI for Design Workflows",
-          "AI-Assisted Content & UI Generation",
-          "Using AI for Design Ideas & Variations",
-          "Prompting for UI/UX Design",
-          "Google Stitch — Turning Ideas/Prompts into UI Concepts",
-          "Exploring AI-generated layouts & interfaces",
-          "Refining AI-generated designs manually",
-          "AI + Figma Workflow",
-          "Where AI Helps — and Where Designers Still Matter"
+          "Getting Started with Figma",
+          "Frames, Layers, Shapes & Essential Tools",
+          "Typography, Colors, Grids & Spacing",
+          "Auto Layout & Responsive Design Basics",
+          "Components, Variants & Basic Prototyping"
         ]
       },
       {
-        title: "Module 06 — Real-World UI Design Project",
-        lessonsCount: "10 lessons • 2 hours",
+        title: "Module 6 — Customized UI Design",
+        lessonsCount: "5 lessons • 1 hour 15 min",
         lessons: [
-          "Project Brief & Requirement Analysis",
-          "Competitor & Product Research",
-          "Sitemap & User Flow",
-          "Wireframes",
-          "Creating the Visual Direction",
-          "Designing Complete UI Screens",
-          "Responsive Desktop & Mobile Versions",
-          "Interactive Prototype",
-          "Design Review & Iteration",
-          "Final UI Presentation"
+          "Transforming AI Concepts into Custom Designs",
+          "Customizing Colors, Typography & Visual Style",
+          "Designing Custom Components & Interactions",
+          "Creating Responsive Web & Mobile UI",
+          "Polishing UI for a Professional Final Look"
         ]
       },
       {
-        title: "Module 07 — Portfolio, Freelancing & Career",
-        lessonsCount: "10 lessons • 1 hour 50 min",
+        title: "Module 7 — Development-Ready UI with AI",
+        lessonsCount: "4 lessons • 1 hour",
         lessons: [
-          "Creating a Professional UI/UX Portfolio",
-          "Turning Projects into Case Studies",
-          "Presenting Your Design Process",
-          "Figma Prototype Presentation",
-          "Creating Portfolio on Behance / Personal Website",
-          "Building a Strong Designer Profile",
-          "Finding Freelance UI Design Projects",
-          "Client Communication & Design Presentation",
-          "Preparing for UI/UX Design Interviews",
-          "How to Keep Learning in the AI Era"
+          "Preparing Figma Designs for Development",
+          "Building UI with Claude",
+          "Building & Refining UI with Antigravity",
+          "Using Codex to Turn Designs into Functional UI"
         ]
       }
     ]
@@ -468,7 +448,7 @@ const COURSE_DATA = {
     heroTagline: 'Learn. Create. Master AI.',
     categoryBadge: '🎨 Graphic Design & AI Masterclass',
     description: 'Master graphic design fundamentals, typography, branding, visual hierarchy, marketing visuals, and cutting-edge generative AI design workflows in just 7 days.',
-    coverImage: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
+    coverImage: '/images/graphic-design-in-7-days.jpg',
     price: '₹2,999',
     students: '1,500+ Students',
     rating: '5.0 Rating (Loved by creators, designers & marketing professionals)',
@@ -1725,7 +1705,9 @@ export default function FigmaMasterclassPage() {
               {(course.modules && course.modules.length > 0) ? `${course.modules.length}-module industry-aligned syllabus` : 'Industry-aligned syllabus'}
             </h2>
             <p className="text-base text-slate-600">
-             Designed in partnership with hiring managers. Continuously updated for AI-first workflows.
+              {course.curriculumSubtitle || (course.slug === 'ui-design-masterclass'
+                ? 'Designed for AI-first UI workflows. Learn Google Stitch, master Figma, customize interfaces, and turn your designs into development-ready products.'
+                : 'Designed in partnership with hiring managers. Continuously updated for AI-first workflows.')}
             </p>
           </div>
 
@@ -1857,21 +1839,17 @@ export default function FigmaMasterclassPage() {
                 </div>
 
                 <div className="space-y-3 pt-2 text-sm text-slate-700 border-t border-slate-100">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Learn Figma with Real-World Projects
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Design Modern &amp; Conversion-Focused Interfaces
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Use AI to Design Faster &amp; Smarter
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Build Portfolio-Ready UI Projects
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Course Completion
-                  </div>
+                  {(course.pricingPoints || [
+                    "Learn Figma with Real-World Projects",
+                    "Design Modern & Conversion-Focused Interfaces",
+                    "Use AI to Design Faster & Smarter",
+                    "Build Portfolio-Ready UI Projects",
+                    "Certificate of Course Completion"
+                  ]).map((point, pIdx) => (
+                    <div key={pIdx} className="flex items-center gap-2.5">
+                      <span className="text-emerald-600 font-bold">✓</span> {point}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -1905,21 +1883,17 @@ export default function FigmaMasterclassPage() {
                 </div>
 
                 <div className="space-y-3 pt-2 text-sm text-slate-700 border-t border-slate-100">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Learn Figma with Real-World Projects
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Design Modern &amp; Conversion-Focused Interfaces
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Use AI to Design Faster &amp; Smarter
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Build Portfolio-Ready UI Projects
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-emerald-600 font-bold">✓</span> Certificate of Course Completion
-                  </div>
+                  {(course.pricingPoints || [
+                    "Learn Figma with Real-World Projects",
+                    "Design Modern & Conversion-Focused Interfaces",
+                    "Use AI to Design Faster & Smarter",
+                    "Build Portfolio-Ready UI Projects",
+                    "Certificate of Course Completion"
+                  ]).map((point, pIdx) => (
+                    <div key={pIdx} className="flex items-center gap-2.5">
+                      <span className="text-emerald-600 font-bold">✓</span> {point}
+                    </div>
+                  ))}
                 </div>
               </div>
 

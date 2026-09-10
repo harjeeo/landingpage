@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserIcon } from 'hugeicons-react';
 
 const REVIEWS_DATA = [
   {
@@ -433,10 +434,12 @@ const REVIEWS_DATA = [
   }
 ];
 
+const HOMEPAGE_REVIEWS = REVIEWS_DATA.slice(0, 12);
+
 export default function WallOfLove() {
   const [votedIds, setVotedIds] = useState(new Set());
   const [helpfulCounts, setHelpfulCounts] = useState(
-    REVIEWS_DATA.reduce((acc, item) => ({ ...acc, [item.id]: item.helpfulCount }), {})
+    HOMEPAGE_REVIEWS.reduce((acc, item) => ({ ...acc, [item.id]: item.helpfulCount }), {})
   );
 
   const toggleHelpful = (id) => {
@@ -478,7 +481,7 @@ export default function WallOfLove() {
 
         {/* 3-Column Masonry Reviews Grid */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {REVIEWS_DATA.map((t) => {
+          {HOMEPAGE_REVIEWS.map((t) => {
             const hasVoted = votedIds.has(t.id);
             const count = helpfulCounts[t.id];
             return (
@@ -490,11 +493,9 @@ export default function WallOfLove() {
                   {/* Avatar, Name, Verified Badge, Course Tag */}
                   <div className="flex items-center gap-3 mb-3">
                     <div className="relative">
-                      <img
-                        src={t.avatar}
-                        alt={t.name}
-                        className="w-10 h-10 rounded-full object-cover border border-slate-200"
-                      />
+                      <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 shrink-0">
+                        <UserIcon className="w-5 h-5 text-slate-600" />
+                      </div>
                       <span className="absolute -bottom-1 -right-1 text-xs">{t.flag}</span>
                     </div>
 

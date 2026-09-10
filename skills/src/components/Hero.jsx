@@ -99,22 +99,12 @@ export default function Hero() {
           >
             Explore Courses
           </a>
-          {currentUser ? (
-            <Link
-              to="/dashboard"
-              className="px-8 py-3.5 rounded-xl bg-[#141622] hover:bg-[#1f2231] border border-[#0bc40e]/40 hover:border-[#0bc40e] text-white font-semibold text-sm transition-all hover:-translate-y-0.5 flex items-center gap-2 shadow-lg shadow-[#0bc40e]/10"
-            >
-              <span>Go to Dashboard</span>
-              <span className="text-[#0bc40e]">→</span>
-            </Link>
-          ) : (
-            <a
-              href="#courses"
-              className="px-8 py-3.5 rounded-xl bg-[#141622] hover:bg-[#1f2231] border border-white/10 text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
-            >
-              Start Learning
-            </a>
-          )}
+          <a
+            href="#courses"
+            className="px-8 py-3.5 rounded-xl bg-[#141622] hover:bg-[#1f2231] border border-white/10 text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
+          >
+            Start Learning
+          </a>
         </div>
 
         {/* Social Proof / Trust Cards (2 Side-by-Side Cards) */}

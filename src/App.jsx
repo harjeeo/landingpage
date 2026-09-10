@@ -29,6 +29,7 @@ import SuperAdminActivityPage from "./pages/superadmin/SuperAdminActivityPage";
 import SuperAdminSettingsPage from "./pages/superadmin/SuperAdminSettingsPage";
 import SuperAdminLiveClassesPage from "./pages/superadmin/SuperAdminLiveClassesPage";
 import SuperAdminStudentsPage from "./pages/superadmin/SuperAdminStudentsPage";
+import SuperAdminSubscribersPage from "./pages/superadmin/SuperAdminSubscribersPage";
 import RequireAuth from "./components/superadmin/RequireAuth";
 
 export default function App() {
@@ -73,6 +74,7 @@ export default function App() {
         >
           <Route index element={<SuperAdminDashboardPage />} />
           <Route path="students" element={<SuperAdminStudentsPage />} />
+          <Route path="subscribers" element={<SuperAdminSubscribersPage />} />
           <Route path="leads" element={<SuperAdminLeadsPage />} />
           <Route path="subscriptions" element={<SuperAdminSubscriptionsPage />} />
           <Route path="payments" element={<SuperAdminPaymentsPage />} />

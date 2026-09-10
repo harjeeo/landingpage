@@ -11,6 +11,7 @@ import {
   Mortarboard01Icon,
   Settings02Icon,
   Logout01Icon,
+  TelephoneIcon,
 } from "hugeicons-react";
 import ThemeToggle from "../components/superadmin/ThemeToggle";
 import { logout } from "../lib/superadmin/useAuth";
@@ -18,6 +19,7 @@ import { logout } from "../lib/superadmin/useAuth";
 const navLinks = [
   { to: "/super-admin", label: "Dashboard", icon: Home01Icon, end: true },
   { to: "/super-admin/students", label: "Students", icon: Mortarboard01Icon },
+  { to: "/super-admin/subscribers", label: "Subscribers", icon: TelephoneIcon },
   { to: "/super-admin/leads", label: "Leads", icon: InboxIcon },
   { to: "/super-admin/subscriptions", label: "Subscriptions", icon: RepeatIcon },
   { to: "/super-admin/payments", label: "Payments", icon: CreditCardIcon },
