@@ -19,7 +19,7 @@ export default function Footer() {
     {
       title: "Shopify 1 Week Master Course",
       description: "Master Shopify store design, custom Liquid themes, e-commerce UX, and conversion optimization in 7 days.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=200&q=80",
+      image: "/images/shopify-1-week-master-course.jpg",
       link: "/courses/shopify-1-week-master-course"
     }
   ];

@@ -18,6 +18,7 @@ import FigmaMasterclassPage from './pages/FigmaMasterclassPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import CoursesPage from './pages/CoursesPage';
 import EbooksPage from './pages/EbooksPage';
+import SingleEbookPage from './pages/SingleEbookPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import StudentDashboard from './pages/StudentDashboard';
@@ -84,6 +85,9 @@ function MainLayout() {
         <Route path="/buy" element={<CoursesPage />} />
         <Route path="/ebooks" element={<EbooksPage />} />
         <Route path="/e-books" element={<EbooksPage />} />
+        <Route path="/ebooks/:ebookSlug" element={<SingleEbookPage />} />
+        <Route path="/ebook/:ebookSlug" element={<SingleEbookPage />} />
+        <Route path="/e-books/:ebookSlug" element={<SingleEbookPage />} />
         <Route path="/testimonial" element={<TestimonialsPage />} />
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/faq" element={<FaqPage />} />

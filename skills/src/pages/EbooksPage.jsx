@@ -6,189 +6,17 @@ import {
   StarIcon,
   ShoppingBag01Icon,
   Download01Icon,
-  EyeIcon,
   CheckmarkCircle02Icon,
   SparklesIcon,
   Cancel01Icon,
   ArrowRight01Icon,
   Tag01Icon
 } from 'hugeicons-react';
-
-const EBOOKS_DATA = [
-  {
-    id: 'dont-make-me-think',
-    title: "Don't Make Me Think — Revisited",
-    author: "Steve Krug",
-    badge: "UI/UX",
-    rating: "5.0",
-    reviewsCount: "420+",
-    price: 199,
-    originalPrice: 999,
-    discount: "80% OFF",
-    pages: "216 Pages",
-    format: "PDF + EPUB",
-    image: "/images/ebooks/dont-make-me-think.png",
-    description: "A common sense approach to intuitive web and mobile usability design.",
-    highlights: [
-      "Core laws of intuitive interface navigation",
-      "Designing for scanning rather than reading",
-      "Mobile usability and touch-first ergonomics",
-      "User testing with zero budget"
-    ]
-  },
-  {
-    id: 'rocket-surgery-made-easy',
-    title: "Rocket Surgery Made Easy",
-    author: "Steve Krug",
-    badge: "UI/UX",
-    rating: "4.9",
-    reviewsCount: "310+",
-    price: 199,
-    originalPrice: 899,
-    discount: "78% OFF",
-    pages: "168 Pages",
-    format: "PDF + Checklists",
-    image: "/images/ebooks/rocket-surgery-made-easy.png",
-    description: "The do-it-yourself actionable guide to finding and fixing usability problems fast.",
-    highlights: [
-      "Running monthly 1-hour DIY usability tests",
-      "Identifying the most severe UX bottlenecks",
-      "Making high-impact tweaks with minimal effort",
-      "Ready-to-use usability testing scripts & checklists"
-    ]
-  },
-  {
-    id: 'creativity-inc',
-    title: "Creativity, Inc.",
-    author: "Ed Catmull",
-    badge: "Graphic Design",
-    rating: "5.0",
-    reviewsCount: "580+",
-    price: 199,
-    originalPrice: 1299,
-    discount: "85% OFF",
-    pages: "340 Pages",
-    format: "PDF + Summary Guide",
-    image: "/images/ebooks/creativity-inc.png",
-    description: "Overcoming the unseen forces that stand in the way of true inspiration and creativity.",
-    highlights: [
-      "Building world-class creative team dynamics",
-      "The Braintrust philosophy for candid feedback",
-      "Navigating artistic failure and iterative craft",
-      "Storytelling and visual balance principles"
-    ]
-  },
-  {
-    id: 'design-of-everyday-things',
-    title: "The Design of Everyday Things",
-    author: "Don Norman",
-    badge: "UI/UX",
-    rating: "5.0",
-    reviewsCount: "890+",
-    price: 199,
-    originalPrice: 999,
-    discount: "80% OFF",
-    pages: "368 Pages",
-    format: "PDF + EPUB",
-    image: "/images/ebooks/dont-make-me-think.png",
-    description: "Fundamental principles of human-centered design, cognitive affordance, and UX.",
-    highlights: [
-      "Affordances, signifiers, and mapping concepts",
-      "The 7 stages of user action and execution gaps",
-      "Error prevention and forgiving design systems",
-      "Human-centered design thinking framework"
-    ]
-  },
-  {
-    id: 'graphic-design-rules',
-    title: "Graphic Design Rules & Visual Balance",
-    author: "Sean Adams",
-    badge: "Graphic Design",
-    rating: "4.9",
-    reviewsCount: "270+",
-    price: 199,
-    originalPrice: 799,
-    discount: "75% OFF",
-    pages: "220 Pages",
-    format: "PDF + Cheatsheet",
-    image: "/images/ebooks/creativity-inc.png",
-    description: "365 essential design laws for typography, color theory, spacing, and grids.",
-    highlights: [
-      "Golden ratio and dynamic grid layouts",
-      "Color psychology and contrast ratios",
-      "Visual hierarchy that directs the viewer's eye",
-      "When to follow design rules and when to break them"
-    ]
-  },
-  {
-    id: 'thinking-with-type',
-    title: "Thinking with Type — Typography Mastery",
-    author: "Ellen Lupton",
-    badge: "Graphic Design",
-    rating: "5.0",
-    reviewsCount: "340+",
-    price: 199,
-    originalPrice: 899,
-    discount: "78% OFF",
-    pages: "240 Pages",
-    format: "PDF + Font Pairings",
-    image: "/images/ebooks/rocket-surgery-made-easy.png",
-    description: "Essential visual guide for designers on letterforms, grid systems, and hierarchy.",
-    highlights: [
-      "Type anatomy, kerning, leading, and tracking",
-      "Harmonious font pairings for modern web and print",
-      "Modular grid systems and baseline grids",
-      "Expressive editorial and digital typography"
-    ]
-  },
-  {
-    id: 'microcopy-ux-writing',
-    title: "Microcopy & UX Writing Playbook",
-    author: "Kinneret Yifrah",
-    badge: "UI/UX",
-    rating: "4.9",
-    reviewsCount: "190+",
-    price: 199,
-    originalPrice: 699,
-    discount: "72% OFF",
-    pages: "175 Pages",
-    format: "PDF + Copy Templates",
-    image: "/images/ebooks/dont-make-me-think.png",
-    description: "Practical framework to write clear, high-converting buttons, error messages, and flows.",
-    highlights: [
-      "Crafting frictionless CTA copy and micro-interactions",
-      "Humanizing empty states and error recovery messages",
-      "Tone of voice matrix for brand personalities",
-      "Onboarding flows that retain new users"
-    ]
-  },
-  {
-    id: 'logo-design-love',
-    title: "Logo Design Love & Brand Identity",
-    author: "David Airey",
-    badge: "Graphic Design",
-    rating: "5.0",
-    reviewsCount: "460+",
-    price: 199,
-    originalPrice: 1199,
-    discount: "83% OFF",
-    pages: "230 Pages",
-    format: "PDF + Brand Guide",
-    image: "/images/ebooks/creativity-inc.png",
-    description: "Guide to creating iconic, timeless brand identities, logos, and client presentations.",
-    highlights: [
-      "Developing unforgettable logo concepts",
-      "Conducting discovery calls & client briefs",
-      "Crafting brand guideline manuals",
-      "Presenting concepts without endless revision rounds"
-    ]
-  }
-];
+import { EBOOKS_DATA } from '../data/ebooksData';
 
 export default function EbooksPage() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [previewBook, setPreviewBook] = useState(null);
   const [purchaseBook, setPurchaseBook] = useState(null);
   const [buyerForm, setBuyerForm] = useState({ name: '', email: '', phone: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -360,23 +188,14 @@ export default function EbooksPage() {
                     </div>
 
                     {/* Book Cover Image with 3D shadow style */}
-                    <img
-                      src={book.image}
-                      alt={book.title}
-                      className="w-full h-full object-contain rounded-lg drop-shadow-[0_12px_20px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-
-                    {/* Quick Preview Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 p-4 z-10">
-                      <button
-                        onClick={() => setPreviewBook(book)}
-                        className="px-3.5 py-2 rounded-xl bg-white text-slate-900 text-xs font-bold flex items-center gap-1.5 shadow-lg hover:bg-slate-100 transition-all active:scale-95"
-                      >
-                        <EyeIcon className="w-4 h-4 text-purple-700" />
-                        <span>Quick Look</span>
-                      </button>
-                    </div>
+                    <Link to={`/ebooks/${book.slug || book.id}`} className="w-full h-full flex items-center justify-center cursor-pointer">
+                      <img
+                        src={book.image}
+                        alt={book.title}
+                        className="w-full h-full object-contain rounded-lg drop-shadow-[0_12px_20px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </Link>
                   </div>
 
                   {/* Book Card Body */}
@@ -394,9 +213,11 @@ export default function EbooksPage() {
                       </div>
 
                       {/* E-book Title */}
-                      <h3 className="text-base font-bold text-white group-hover:text-purple-300 transition-colors line-clamp-1">
-                        {book.title}
-                      </h3>
+                      <Link to={`/ebooks/${book.slug || book.id}`} className="block">
+                        <h3 className="text-base font-bold text-white group-hover:text-purple-300 transition-colors line-clamp-1">
+                          {book.title}
+                        </h3>
+                      </Link>
 
                       {/* Author */}
                       <p className="text-[12px] font-medium text-purple-400/90 -mt-1">
@@ -426,7 +247,7 @@ export default function EbooksPage() {
                       {/* Buy Action Button */}
                       <button
                         onClick={() => handleBuyClick(book)}
-                        className="w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-purple-950/50 hover:shadow-purple-900/60 transition-all active:scale-98 cursor-pointer"
+                        className="w-full py-2.5 px-3.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-[#0bc40e]/20 hover:shadow-[#0bc40e]/30 transition-all active:scale-98 cursor-pointer"
                       >
                         <ShoppingBag01Icon className="w-4 h-4" />
                         <span>Get E-Book • ₹{book.price}</span>
@@ -481,82 +302,6 @@ export default function EbooksPage() {
         </div>
 
       </div>
-
-      {/* Quick Preview Modal */}
-      {previewBook && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-2xl bg-[#131520] border border-white/15 rounded-3xl overflow-hidden shadow-2xl shadow-purple-950/40 p-6 sm:p-8 space-y-6">
-            
-            <button
-              onClick={() => setPreviewBook(null)}
-              className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
-            >
-              <Cancel01Icon className="w-5 h-5" />
-            </button>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-start">
-              <div className="w-full aspect-[3/4] bg-[#090b10] rounded-2xl overflow-hidden border border-white/10 p-2 flex items-center justify-center">
-                <img
-                  src={previewBook.image}
-                  alt={previewBook.title}
-                  className="w-full h-full object-contain rounded-lg drop-shadow-xl"
-                />
-              </div>
-
-              <div className="sm:col-span-2 space-y-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                      previewBook.badge === 'UI/UX' ? 'bg-purple-500/20 text-purple-300' : 'bg-amber-500/20 text-amber-300'
-                    }`}>
-                      {previewBook.badge}
-                    </span>
-                    <span className="text-xs text-slate-400">{previewBook.pages}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-white">{previewBook.title}</h3>
-                  <p className="text-xs text-purple-400 font-semibold">by {previewBook.author}</p>
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  {previewBook.description}
-                </p>
-
-                <div className="space-y-2">
-                  <h4 className="text-xs font-bold text-white uppercase tracking-wider">Key Highlights Covered</h4>
-                  <ul className="space-y-1.5 text-xs text-slate-300">
-                    {previewBook.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <CheckmarkCircle02Icon className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-2 flex items-center gap-4">
-                  <div>
-                    <span className="text-2xl font-black text-white">₹{previewBook.price}</span>
-                    <span className="text-xs text-slate-500 line-through ml-2">₹{previewBook.originalPrice}</span>
-                  </div>
-                  <button
-                    onClick={() => {
-                      const b = previewBook;
-                      setPreviewBook(null);
-                      handleBuyClick(b);
-                    }}
-                    className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-purple-900/40"
-                  >
-                    <ShoppingBag01Icon className="w-4 h-4" />
-                    <span>Get E-Book Now</span>
-                  </button>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      )}
 
       {/* Buy / Instant Checkout Modal */}
       {purchaseBook && (

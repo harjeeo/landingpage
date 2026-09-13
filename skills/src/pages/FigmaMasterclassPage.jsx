@@ -268,7 +268,7 @@ const COURSE_DATA = {
     heroTagline: 'Build & Launch High-Converting E-Commerce Stores In 7 Days',
     categoryBadge: '🛍️ Shopify Masterclass',
     description: 'Learn how to build, design, customize, and launch a complete professional Shopify store from scratch in just 7 days.',
-    coverImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/shopify-1-week-master-course.jpg',
     price: '₹2,999',
     students: '650+ Students',
     rating: '4.9 Rating (120+ Reviews)',
