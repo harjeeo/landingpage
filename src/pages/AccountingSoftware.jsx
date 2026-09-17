@@ -114,11 +114,10 @@ export default function AccountingSoftware() {
               <span className="text-brand-600">Ab Aur Smart.</span>
             </h1>
 
-            <p className="mt-5 max-w-lg text-ink-700">
-              From grocery stores and supermarkets to fashion boutiques —
-              Counter POS handles superfast barcode billing, inventory management,
-              instant receipt printing, and live analytics in one integrated
-              platform.
+            <p className="mt-5 max-w-lg text-ink-700 leading-relaxed">
+              Fast billing, real-time inventory, and customer management — all in one smart POS.
+              <br className="hidden sm:inline" />{" "}
+              Make your business digital, organised, and easy to manage with Counter POS.
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
