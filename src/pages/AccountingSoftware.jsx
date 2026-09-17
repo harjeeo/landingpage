@@ -104,20 +104,20 @@ export default function AccountingSoftware() {
             <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-600">
               <Calculator01Icon size={14} strokeWidth={2} />
               <span style={{ fontFamily: "var(--font-hand)", fontSize: "20px" }}>
-                Restaurants & Cafe
+                Counter POS
               </span>
             </span>
 
             <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-ink-900 md:text-5xl">
-              The Complete POS
+              Business Ka Har Counter,
               <br />
-              for <span className="text-brand-600">Restaurants & Cafes</span>
+              <span className="text-brand-600">Ab Smarter</span>
             </h1>
 
             <p className="mt-5 max-w-lg text-ink-700">
-              From a standalone diner to a 50-table fine dining restaurant —
-              7shifts POS handles billing, QR ordering, kitchen display,
-              customer loyalty, and live analytics in one integrated
+              From grocery stores and supermarkets to fashion boutiques —
+              Counter POS handles superfast barcode billing, inventory management,
+              instant receipt printing, and live analytics in one integrated
               platform.
             </p>
 
