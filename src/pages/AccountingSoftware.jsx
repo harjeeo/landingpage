@@ -11,13 +11,6 @@ import {
   QuoteUpIcon,
 } from "hugeicons-react";
 
-const heroStats = [
-  { value: "+30%", label: "Table Turns" },
-  { value: "-40%", label: "Kitchen Errors" },
-  { value: "0", label: "Paper Tickets" },
-  { value: "7 days", label: "Free Trial" },
-];
-
 const barStats = [
   { value: "500+", label: "Active Merchants" },
   { value: "30 min", label: "Average Setup Time" },
@@ -144,21 +137,14 @@ export default function AccountingSoftware() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            {heroStats.map(({ value, label }) => (
-              <div
-                key={label}
-                className="border border-ink-900/5 bg-ink-900/[0.02] p-6"
-                style={{ borderRadius: "20px" }}
-              >
-                <p className="text-3xl font-extrabold tracking-tight text-accent-500">
-                  {value}
-                </p>
-                <p className="mt-1 text-xs font-bold uppercase tracking-wide text-ink-500">
-                  {label}
-                </p>
-              </div>
-            ))}
+          <div className="relative flex items-center justify-center">
+            <div className="w-full overflow-hidden rounded-2xl border border-ink-900/5 bg-white p-2 shadow-[0_8px_30px_rgba(11,13,23,0.08)]">
+              <img
+                src="/images/counter-pos.jpg"
+                alt="Counter POS System for Grocery, Retail and Clothing Stores"
+                className="w-full h-auto object-contain rounded-xl"
+              />
+            </div>
           </div>
         </div>
       </section>

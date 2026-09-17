@@ -324,7 +324,7 @@ export default function MyLearningPage() {
           </div>
         </section>
 
-        {/* SECTION 2: My Purchased Courses List (Exact same UI as Image 2) */}
+        {/* SECTION 2: My Purchased Courses List */}
         <section className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
@@ -528,6 +528,147 @@ export default function MyLearningPage() {
       )}
 
       {/* MODAL 2: Certificate of Completion Modal */}
+      {selectedCertCourse && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
+          <div className="bg-slate-900 border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative text-white my-8">
+            
+            {/* Modal Header Controls */}
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-[#0bc40e]/20 text-[#0bc40e] flex items-center justify-center font-bold">
+                  🎓
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white">Verified Certificate of Completion</h3>
+                  <span className="text-xs text-[#a1a1aa]">Credential ID: {selectedCertCourse.certificateId}</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedCertCourse(null)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Printable Certificate Canvas Card */}
+            <div className="relative bg-gradient-to-b from-[#0c0e15] to-[#13151f] border-4 border-amber-400/40 rounded-2xl p-6 sm:p-10 text-center space-y-6 shadow-2xl overflow-hidden">
+              
+              {/* Decorative Corner Ornaments */}
+              <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-amber-400/60 rounded-tl pointer-events-none" />
+              <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-amber-400/60 rounded-tr pointer-events-none" />
+              <div className="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2 border-amber-400/60 rounded-bl pointer-events-none" />
+              <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-amber-400/60 rounded-br pointer-events-none" />
+              
+              {/* Academy Brand Header */}
+              <div className="space-y-1">
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-400">
+                  DESIGNS CLUE SKILLS ACADEMY
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-wide uppercase">
+                  Certificate of Completion
+                </h2>
+                <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2" />
+              </div>
+
+              {/* Recipient */}
+              <div className="space-y-2 py-2">
+                <p className="text-xs uppercase tracking-widest text-[#a1a1aa] font-medium">
+                  This is proudly presented to
+                </p>
+                <div className="text-2xl sm:text-3xl font-black text-amber-300 tracking-tight underline decoration-amber-400/40 underline-offset-8">
+                  {studentName}
+                </div>
+              </div>
+
+              {/* Course Accomplishment Description */}
+              <div className="space-y-2 max-w-lg mx-auto">
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                  for successfully mastering the curriculum and completing all practical projects in
+                </p>
+                <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
+                  {selectedCertCourse.courseTitle}
+                </h4>
+                <div className="flex items-center justify-center gap-2 pt-1">
+                  <span className="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                    {selectedCertCourse.mode === 'offline' ? '📍 In-Person Studio (Ludhiana)' : '💻 Online Live Masterclass'}
+                  </span>
+                  <span className="text-[11px] text-slate-400 font-medium">
+                    Issued: {selectedCertCourse.date}
+                  </span>
+                </div>
+              </div>
+
+              {/* Signatures & Seal */}
+              <div className="pt-6 border-t border-white/10 flex items-end justify-between gap-4 text-left">
+                <div className="space-y-1">
+                  <div className="font-serif italic text-base text-amber-300">Harpreet Singh</div>
+                  <div className="text-[10px] text-slate-400 border-t border-slate-700 pt-1 font-semibold uppercase tracking-wider">
+                    Lead Mentor &amp; Founder
+                  </div>
+                </div>
+
+                {/* Verified Golden Badge */}
+                <div className="w-14 h-14 rounded-full border-2 border-amber-400/60 bg-amber-500/10 text-amber-400 flex flex-col items-center justify-center text-[8px] font-black uppercase tracking-tighter shrink-0 shadow-lg shadow-amber-500/20">
+                  <span>★ VERIFIED ★</span>
+                  <span className="text-[7px] text-amber-300">DC SKILLS</span>
+                </div>
+
+                <div className="space-y-1 text-right">
+                  <div className="font-mono text-xs text-slate-300">{selectedCertCourse.certificateId}</div>
+                  <div className="text-[10px] text-slate-400 border-t border-slate-700 pt-1 font-semibold uppercase tracking-wider">
+                    Verified Credential ID
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Modal Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+              <span className="text-xs text-[#a1a1aa] text-center sm:text-left">
+                ✓ Shareable on LinkedIn, Resume &amp; Portfolio
+              </span>
+              
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-[#0bc40e] hover:bg-[#0aa30c] text-white font-bold text-xs transition-all shadow-md shadow-[#0bc40e]/20 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                  </svg>
+                  <span>Print / Save PDF</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCertCourse(null)}
+                  className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs transition-all cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* Certificate Download Toast */}
+      {certDownloadedToast && (
+        <div className="fixed bottom-8 right-8 z-50 p-4 rounded-2xl bg-emerald-950 border border-emerald-500/40 text-white shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="w-8 h-8 rounded-xl bg-emerald-500 text-black flex items-center justify-center font-bold text-sm shrink-0">
+            ✓
+          </div>
+          <div>
+            <div className="text-xs font-bold text-white">Certificate PDF Downloaded!</div>
+            <div className="text-[11px] text-emerald-200">Your official completion certificate has been saved to your downloads.</div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: Certificate of Completion Modal */}
       {selectedCertCourse && (
         <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
           <div className="bg-slate-900 border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative text-white my-8">
