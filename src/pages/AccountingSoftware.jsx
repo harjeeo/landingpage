@@ -109,9 +109,9 @@ export default function AccountingSoftware() {
             </span>
 
             <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-ink-900 md:text-5xl">
-              Business Ka Har Counter,
+              Aapki Dukaan,
               <br />
-              <span className="text-brand-600">Ab Smarter</span>
+              <span className="text-brand-600">Ab Aur Smart.</span>
             </h1>
 
             <p className="mt-5 max-w-lg text-ink-700">
