@@ -138,13 +138,11 @@ export default function AccountingSoftware() {
           </div>
 
           <div className="relative flex items-center justify-center">
-            <div className="w-full overflow-hidden rounded-2xl border border-ink-900/5 bg-white p-2 shadow-[0_8px_30px_rgba(11,13,23,0.08)]">
-              <img
-                src="/images/counter-pos.jpg"
-                alt="Counter POS System for Grocery, Retail and Clothing Stores"
-                className="w-full h-auto object-contain rounded-xl"
-              />
-            </div>
+            <img
+              src="/images/counter-pos.png"
+              alt="Counter POS System for Grocery, Retail and Clothing Stores"
+              className="w-full h-auto max-h-[520px] object-contain"
+            />
           </div>
         </div>
       </section>
