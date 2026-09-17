@@ -14,10 +14,6 @@ import {
   Briefcase01Icon,
   Restaurant01Icon,
   Calculator01Icon,
-  Message01Icon,
-  Task01Icon,
-  Wallet01Icon,
-  CoinsDollarIcon,
 } from "hugeicons-react";
 
 const links = [
@@ -50,29 +46,9 @@ const appsMenu = [
   },
   {
     icon: Calculator01Icon,
-    title: "Accounting Software",
-    desc: "Track hours and attendance with an easy-to-use time clock",
+    title: "Counter POS",
+    desc: "Fast billing, barcode scanning, and instant receipts",
     to: "/accounting-software",
-  },
-  {
-    icon: Message01Icon,
-    title: "Team Communication",
-    desc: "Keep everyone in sync with built-in messaging",
-  },
-  {
-    icon: Task01Icon,
-    title: "Task Management",
-    desc: "Assign and track tasks across every shift",
-  },
-  {
-    icon: Wallet01Icon,
-    title: "Tip Manager",
-    desc: "Pool and distribute tips accurately, automatically",
-  },
-  {
-    icon: CoinsDollarIcon,
-    title: "Payroll",
-    desc: "Turn approved hours into paychecks without the busywork",
   },
 ];
 

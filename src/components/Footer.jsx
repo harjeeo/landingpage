@@ -23,11 +23,7 @@ const columns = [
     title: "Apps",
     links: [
       { label: "Cafe & Restaurant POS", to: "/pos/cafe-restaurant" },
-      { label: "Accounting Software", to: "/accounting-software" },
-      "Team Communication",
-      "Task Management",
-      "Tip Manager",
-      "Payroll",
+      { label: "Counter POS", to: "/accounting-software" },
     ],
   },
   {
