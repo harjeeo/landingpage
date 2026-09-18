@@ -5,7 +5,7 @@ import {
   Calculator01Icon,
   UserGroup03Icon,
   Hotel01Icon,
-  ScissorIcon,
+  ComputerIcon,
   ArrowRight02Icon,
   Tick02Icon,
 } from "hugeicons-react";
@@ -43,7 +43,7 @@ const tabs = [
       "Real-time financial reports",
     ],
     cta: "Explore Accounting Software",
-    to: "/accounting-software",
+    to: "/counter-pos",
   },
   {
     key: "hr",
@@ -78,19 +78,21 @@ const tabs = [
     to: "/apps",
   },
   {
-    key: "salon",
-    label: "Salon Management",
-    icon: ScissorIcon,
-    heading: "Salon Management Software",
-    title: "Appointments and clients, simplified",
-    desc: "Book appointments, manage staff schedules, and keep client history handy.",
+    key: "counter-pos",
+    label: "Counter POS",
+    icon: ComputerIcon,
+    image: "/images/counter-pos.jpg",
+    imageAlt: "Counter POS billing and inventory system",
+    heading: "Counter POS",
+    title: "Fast billing, stock & accounts in one place",
+    desc: "Manage retail, grocery, and store counters with barcode scanning, instant receipts, and real-time inventory.",
     bullets: [
-      "Appointment scheduling",
-      "Staff & service management",
-      "Client history & billing",
+      "Barcode scanning & instant billing",
+      "Real-time inventory & low-stock alerts",
+      "GST invoices & thermal receipt printing",
     ],
-    cta: "Explore Salon Management",
-    to: "/apps",
+    cta: "Explore Counter POS",
+    to: "/counter-pos",
   },
 ];
 
@@ -109,12 +111,12 @@ export default function WorkSmarter() {
           key tasks connected in one place.
         </p>
 
-        <a
-          href="#get-started"
+        <Link
+          to="/signup"
           className="mt-8 inline-flex items-center rounded-full bg-brand-600 px-6 py-3 text-base font-semibold text-white hover:bg-brand-700"
         >
           Get my free trial
-        </a>
+        </Link>
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-8 border-b border-ink-900/10">
           {tabs.map((tab) => {

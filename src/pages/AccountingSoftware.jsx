@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 import {
   Calculator01Icon,
   ComputerIcon,
-  QrCodeIcon,
-  ChefHatIcon,
+  Invoice01Icon,
+  PackageIcon,
+  PrinterIcon,
   UserGroupIcon,
   ChartBarLineIcon,
-  CreditCardIcon,
-  PackageIcon,
-  Megaphone01Icon,
+  Building02Icon,
+  Shield01Icon,
   QuoteUpIcon,
 } from "hugeicons-react";
 
@@ -15,49 +16,54 @@ const barStats = [
   { value: "500+", label: "Active Merchants" },
   { value: "30 min", label: "Average Setup Time" },
   { value: "100%", label: "Offline-Ready" },
-  { value: "7 days", label: "Free Trial" },
+  { value: "30 days", label: "Free Trial" },
 ];
 
 const features = [
   {
     icon: ComputerIcon,
     title: "Smart Billing",
-    desc: "Fast, accurate, tax-compliant bills. Print or share digitally in one tap.",
+    desc: "Barcode scan se instant billing, sab payment modes support. Cash, Card, UPI ya Credit — har tarah se bill banao.",
   },
   {
-    icon: QrCodeIcon,
-    title: "QR Table Ordering",
-    desc: "Customers scan, order, and pay from their phone. No app needed.",
-  },
-  {
-    icon: ChefHatIcon,
-    title: "Kitchen Display (KDS)",
-    desc: "Real-time order streaming to kitchen. Zero paper tickets, zero confusion.",
-  },
-  {
-    icon: UserGroupIcon,
-    title: "Customer Loyalty",
-    desc: "Auto-reward with points. Digital promotions. Birthday offers.",
-  },
-  {
-    icon: ChartBarLineIcon,
-    title: "Live Analytics",
-    desc: "Revenue, top dishes, peak hours — all tracked live on any device.",
-  },
-  {
-    icon: CreditCardIcon,
-    title: "All Payments",
-    desc: "Cards, wallets, and every major payment processor — accepted.",
+    icon: Invoice01Icon,
+    title: "GST-Ready Invoices",
+    desc: "Professional invoices with your logo aur custom branding. Estimates, Sales Orders, Delivery Challans bhi ek click mein.",
   },
   {
     icon: PackageIcon,
     title: "Inventory Control",
-    desc: "Track ingredients, set low-stock alerts, reduce food waste.",
+    desc: "Real-time stock tracking, low-stock alerts automatically milein. Multi-warehouse aur multi-branch support ek hi dashboard se.",
   },
   {
-    icon: Megaphone01Icon,
-    title: "Native Promotions",
-    desc: "Build loyalty, send win-back offers, and run digital campaigns — all from your dashboard.",
+    icon: PrinterIcon,
+    title: "Thermal Receipt Printing",
+    desc: "58mm aur 80mm dono printer sizes fully supported. Fast checkout, clean aur professional receipts har baar.",
+  },
+  {
+    icon: UserGroupIcon,
+    title: "Customer Ledger",
+    desc: "Udhaar/credit tracking apne customers ka easily manage karo. Purchase history aur loyalty points bhi track ho jaye.",
+  },
+  {
+    icon: Calculator01Icon,
+    title: "Automated Accounting",
+    desc: "Ledgers automatically update, bank reconciliation ho jaye smooth. GST reports aur payables/receivables ek jagah dikhein.",
+  },
+  {
+    icon: ChartBarLineIcon,
+    title: "Business Insights",
+    desc: "Sales aur stock reports real-time dashboard pe milte hain. Aging reports se receivables/payables ka status clear rahe.",
+  },
+  {
+    icon: Building02Icon,
+    title: "Multi-Branch Management",
+    desc: "Cloud-based system — kahin se bhi access karo, kabhi bhi. Multiple branches ek hi account se control karo easily.",
+  },
+  {
+    icon: Shield01Icon,
+    title: "Role-Based Access",
+    desc: "Admin, Manager, Staff ke liye alag-alag permissions set karo. Data secure rahe, har user apna kaam hi dekhe.",
   },
 ];
 
@@ -69,18 +75,18 @@ const steps = [
   },
   {
     n: "02",
-    title: "Add Your Menu",
-    desc: "Upload your menu with photos, prices, and category tabs using our simple editor.",
+    title: "Add Your Products",
+    desc: "Upload your inventory with photos, prices, and categories using our simple editor.",
   },
   {
     n: "03",
-    title: "Set Up Tables & QR",
-    desc: "Name your tables and print QR codes. Customers can order immediately from day one.",
+    title: "Set Up Billing & GST",
+    desc: "Add your business details, GST number, and printer. Start billing from day one.",
   },
   {
     n: "04",
     title: "Go Live & Grow",
-    desc: "Start billing, track live orders, and monitor revenue from the dashboard — anywhere, anytime.",
+    desc: "Start billing, track stock live, and monitor sales from the dashboard — anywhere, anytime.",
   },
 ];
 
@@ -119,18 +125,18 @@ export default function AccountingSoftware() {
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
-              <a
-                href="#get-started"
+              <Link
+                to="/signup"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white hover:bg-brand-700"
               >
                 Start 30-Days Free Trial
-              </a>
-              <a
-                href="#demo"
+              </Link>
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-ink-900/10 px-6 py-3.5 text-sm font-semibold text-ink-900 hover:bg-ink-900/5"
               >
                 Book a Demo
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -197,7 +203,7 @@ export default function AccountingSoftware() {
               Live in under thirty minutes.
             </h2>
             <p className="mt-3 text-ink-700">
-              Our onboarding team walks you through it. You bill your first
+              Our setup team walks you through it. Bill your first
               customer the same day.
             </p>
 
@@ -225,9 +231,7 @@ export default function AccountingSoftware() {
           >
             <QuoteUpIcon size={24} strokeWidth={2} className="text-brand-600" />
             <p className="mt-4 text-lg font-semibold leading-snug text-ink-900">
-              "We replaced our old POS and three separate systems with
-              7shifts POS. Our kitchen errors dropped significantly and the
-              QR ordering is a huge time-saver during rush hours."
+              "We replaced our old khata system and manual billing with Counter POS. GST invoicing ho gaya bilkul hassle-free, aur stock tracking ne humara bahut time bacha diya during peak hours."
             </p>
 
             <div className="mt-6 flex items-center gap-3">
@@ -236,10 +240,10 @@ export default function AccountingSoftware() {
               </span>
               <span>
                 <span className="block text-sm font-semibold text-ink-900">
-                  R.I.
+                  R. Sharma
                 </span>
                 <span className="block text-xs font-bold uppercase tracking-wide text-ink-500">
-                  Restaurant Owner, Toronto
+                  Rama Supermart
                 </span>
               </span>
             </div>

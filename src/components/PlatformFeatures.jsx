@@ -49,7 +49,7 @@ const features = [
     color: "indigo",
     title: "Invoicing & GST",
     desc: "Create professional invoices, manage GST and track every transaction.",
-    to: "/accounting-software",
+    to: "/counter-pos",
   },
   {
     icon: ChartBarLineIcon,
@@ -57,7 +57,7 @@ const features = [
     color: "purple",
     title: "Expenses & Financial Reports",
     desc: "Track income, expenses, purchases and get clear financial insights.",
-    to: "/accounting-software",
+    to: "/counter-pos",
   },
   {
     icon: UserGroup03Icon,

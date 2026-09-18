@@ -233,7 +233,7 @@ export default function Login() {
 
           <p className="mt-6 text-center text-sm text-ink-500">
             New to Ojar?{" "}
-            <Link to="/pricing" className="font-semibold text-ink-900 underline">
+            <Link to="/signup" className="font-semibold text-ink-900 underline">
               Start your free trial
             </Link>
           </p>

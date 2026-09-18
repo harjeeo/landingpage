@@ -1,15 +1,16 @@
+import { Link } from "react-router-dom";
 import { Cancel01Icon, Tick02Icon } from "hugeicons-react";
 
 const oldWay = [
-  "Data scattered across different systems",
-  "More manual work and follow-ups",
-  "Difficult to track business performance",
+  "Bills handwritten ya alag-alag apps mein",
+  "Stock count galat, end of day pata chalta hai",
+  "GST filing ka tension har month",
 ];
 
 const withUs = [
-  "Everything your business needs in one place",
-  "Streamlined operations with less manual work",
-  "Faster decisions with real-time business insights",
+  "Billing, inventory aur GST — sab ek jagah",
+  "Real-time stock, kabhi bhi kahin se dekho",
+  "Automated reports, filing ka jhanjhat khatam",
 ];
 
 export default function WhyConnected() {
@@ -17,12 +18,11 @@ export default function WhyConnected() {
     <section className="px-4 py-20">
       <div className="mx-auto max-w-5xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-ink-900 md:text-5xl">
-          Why smarter business management wins
+          Why smart billing beats old-school counters
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-ink-700">
-          When your operations, people, finances, and customers work from one
-          platform, it's easier to stay organized, save time, and grow your
-          business.
+          Jab billing, stock, aur accounts ek hi platform pe chalte hain,
+          business chalana easy ho jata hai — kam confusion, zyada control.
         </p>
 
         <div className="mt-10 grid gap-6 text-left md:grid-cols-2">
@@ -34,7 +34,7 @@ export default function WhyConnected() {
               The old way
             </p>
             <h3 className="mt-1 text-2xl font-extrabold tracking-tight text-ink-900">
-              Disconnected tools, more work
+              Khata, Excel & guesswork
             </h3>
 
             <ul className="mt-8 flex flex-col gap-4">
@@ -54,10 +54,10 @@ export default function WhyConnected() {
               className="text-2xl text-white"
               style={{ fontFamily: "var(--font-hand)" }}
             >
-              With Our Platform
+              With Counter POS
             </p>
             <h3 className="mt-1 text-2xl font-extrabold tracking-tight text-white">
-              One connected system, complete control
+              One app, poora control
             </h3>
 
             <ul className="mt-8 flex flex-col gap-4">
@@ -73,12 +73,12 @@ export default function WhyConnected() {
           </div>
         </div>
 
-        <a
-          href="#get-started"
+        <Link
+          to="/signup"
           className="mt-10 inline-flex items-center rounded-full bg-brand-600 px-6 py-3 text-base font-semibold text-white hover:bg-brand-700"
         >
-          Start for Free - No Subscription
-        </a>
+          Start Free — No Card Required
+        </Link>
       </div>
     </section>
   );

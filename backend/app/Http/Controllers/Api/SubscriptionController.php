@@ -212,9 +212,28 @@ class SubscriptionController extends Controller
 
     public function mine(Request $request)
     {
-        $subscriptions = Subscription::where('user_id', $request->user()->id)
-            ->orderByDesc('created_at')
-            ->get();
+        $type = $request->query('type'); // 'saas' or 'skills' / 'course'
+
+        $query = Subscription::where('user_id', $request->user()->id)
+            ->orderByDesc('created_at');
+
+        if ($type === 'saas') {
+            $query->where('billing_cycle', 'not like', 'course_%')
+                  ->where('billing_cycle', 'not like', 'ebook_%')
+                  ->where('plan', 'not like', '%Masterclass%')
+                  ->where('plan', 'not like', '%Course%')
+                  ->where('plan', 'not like', '%Ebook%');
+        } elseif ($type === 'skills' || $type === 'course') {
+            $query->where(function ($q) {
+                $q->where('billing_cycle', 'like', 'course_%')
+                  ->orWhere('billing_cycle', 'like', 'ebook_%')
+                  ->orWhere('plan', 'like', '%Masterclass%')
+                  ->orWhere('plan', 'like', '%Course%')
+                  ->orWhere('plan', 'like', '%Ebook%');
+            });
+        }
+
+        $subscriptions = $query->get();
 
         return response()->json([
             'items' => $subscriptions->map(fn ($s) => $this->mapSubscription($s)),

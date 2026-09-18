@@ -1,67 +1,70 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-const SPOTLIGHT_VIDEOS = [
+const SPOTLIGHT_STUDENTS = [
+  {
+    id: 'student-1',
+    name: 'Harpreet Singh',
+    course: 'UI/UX Design Masterclass',
+    coverImage: '/images/spotlight-student-1.jpg',
+  },
+  {
+    id: 'student-2',
+    name: 'Gurpreet Singh',
+    course: 'Graphic Design & AI Mastery',
+    coverImage: '/images/spotlight-student-2.jpg',
+  },
   {
     id: 'abhishek',
     name: 'Abhishek S.',
     course: 'Figma Masterclass',
     coverImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
   },
   {
     id: 'miles',
     name: 'Miles M.',
     course: 'UI Design Course',
     coverImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
   },
   {
     id: 'pranavi',
     name: 'Pranavi C.',
     course: 'UX Research Course',
-    coverImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
+    coverImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=700',
   },
   {
     id: 'angel',
     name: 'Angel B.',
-    course: 'UX Research Course',
+    course: 'Shopify Course',
     coverImage: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
   },
   {
     id: 'kyle',
     name: 'Kyle Torres',
     course: 'Graphic & UI Mastery',
     coverImage: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
   },
   {
     id: 'viya',
     name: 'Viya Sharma',
     course: 'Digital Marketing & Ads',
     coverImage: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
   },
   {
     id: 'alyssa',
     name: 'Alyssa D.',
-    course: 'Figma Masterclass',
-    coverImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
+    course: 'UI/UX Design Masterclass',
+    coverImage: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=700',
   },
   {
     id: 'marcus',
     name: 'Marcus Vance',
-    course: 'Meta & Google Ads',
+    course: 'Web Design & Shopify',
     coverImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=700',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'
-  }
+  },
 ];
 
 export default function StudentSpotlight() {
-  const [activeVideo, setActiveVideo] = useState(null);
   const [activeDot, setActiveDot] = useState(0);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -86,7 +89,7 @@ export default function StudentSpotlight() {
     if (sliderRef.current) {
       const scrollPos = sliderRef.current.scrollLeft;
       const index = Math.round(scrollPos / CARD_SCROLL_WIDTH);
-      setActiveDot(Math.min(index, SPOTLIGHT_VIDEOS.length - 1));
+      setActiveDot(Math.min(index, SPOTLIGHT_STUDENTS.length - 1));
     }
   };
 
@@ -183,11 +186,10 @@ export default function StudentSpotlight() {
             }`}
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {SPOTLIGHT_VIDEOS.map((item) => (
+            {SPOTLIGHT_STUDENTS.map((item) => (
               <div
                 key={item.id}
-                onClick={() => setActiveVideo(item)}
-                className="snap-start shrink-0 w-[240px] sm:w-[260px] md:w-[275px] aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden relative group cursor-pointer border border-white/10 bg-[#12151e] shadow-xl hover:shadow-2xl hover:border-white/20 transition-all duration-300"
+                className="snap-start shrink-0 w-[240px] sm:w-[260px] md:w-[275px] aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden relative group border border-white/10 bg-[#12151e] shadow-xl hover:border-white/20 transition-all duration-300"
               >
                 {/* Reel Thumbnail Image (Full Reel Height) */}
                 <img
@@ -197,16 +199,9 @@ export default function StudentSpotlight() {
                 />
 
                 {/* Ambient Dark Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/30 group-hover:via-transparent transition-colors" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/20 group-hover:via-transparent transition-colors" />
 
-                {/* Center Play Button with Blur */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-[#6400e6] group-hover:border-[#6400e6] transition-all duration-300">
-                  <svg className="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-
-                {/* Bottom Overlay Card (Image 2 style with User Icon and Course Info) */}
+                {/* Bottom Overlay Card with User Icon and Course Info */}
                 <div className="absolute bottom-3 left-3 right-3 bg-[#111420]/85 backdrop-blur-md border border-white/10 rounded-xl sm:rounded-2xl p-3 shadow-lg flex flex-col justify-center space-y-1 text-left transition-transform group-hover:-translate-y-0.5 duration-200">
                   <div className="flex items-center gap-1.5 text-white font-bold text-xs sm:text-sm tracking-tight truncate">
                     <svg className="w-3.5 h-3.5 text-[#852ef7] shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -229,7 +224,7 @@ export default function StudentSpotlight() {
 
           {/* Slider Pagination Dots */}
           <div className="flex items-center justify-center gap-2 pt-6">
-            {SPOTLIGHT_VIDEOS.map((_, dotIdx) => (
+            {SPOTLIGHT_STUDENTS.map((_, dotIdx) => (
               <button
                 key={dotIdx}
                 onClick={() => scrollToIndex(dotIdx)}
@@ -245,42 +240,6 @@ export default function StudentSpotlight() {
         </div>
 
       </div>
-
-      {/* Video Modal Player */}
-      {activeVideo && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="relative w-full max-w-3xl bg-[#111420] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            <div className="flex items-center justify-between p-4 border-b border-white/10">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#6400e6] flex items-center justify-center text-white font-bold text-xs">
-                  {activeVideo.name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">{activeVideo.name}</h4>
-                  <p className="text-xs text-slate-400">{activeVideo.course}</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="text-slate-400 hover:text-white p-1.5 rounded-lg bg-white/10 text-xs font-bold transition-colors cursor-pointer"
-              >
-                ✕ Close
-              </button>
-            </div>
-            
-            <div className="aspect-video w-full">
-              <iframe
-                src={activeVideo.videoUrl}
-                title={activeVideo.name}
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      )}
-
     </section>
   );
 }

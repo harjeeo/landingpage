@@ -44,7 +44,7 @@ export default function DemoRequestForm() {
       <div className="border-b border-ink-900/5 px-8 py-6 text-center">
         <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-600">
           <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
-          7-Day Free Trial
+          30-Day Free Trial
         </span>
         <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-ink-900">
           Book Your Free Demo

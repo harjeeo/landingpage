@@ -44,7 +44,7 @@ const principles = [
 ];
 
 const numbers = [
-  { value: "270+", label: "Active Businesses" },
+  { value: "500+", label: "Active Businesses" },
   { value: "24/7", label: "Cloud Access" },
   { value: "15 min", label: "Average Setup Time" },
   { value: "99.9%", label: "Platform Uptime" },
@@ -118,8 +118,10 @@ export default function About() {
             className="border border-ink-900/5 bg-ink-900/[0.02] p-6"
             style={{ borderRadius: "20px" }}
           >
-            <div
-              className="mb-6 aspect-video w-full bg-ink-900/5"
+            <img
+              src="/images/about-story.jpg"
+              alt="Ojar Business Management Platform"
+              className="mb-6 aspect-video w-full object-cover shadow-sm"
               style={{ borderRadius: "16px" }}
             />
             <div className="flex flex-col gap-3">

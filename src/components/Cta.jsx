@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Rocket01Icon, ArrowRight02Icon, PlayIcon } from "hugeicons-react";
 
 export default function Cta() {
@@ -18,18 +19,18 @@ export default function Cta() {
           just 5 minutes.
         </p>
         <div>
-          <a
-            href="#pricing"
+          <Link
+            to="/signup"
           >
             Get Started For Free
             <ArrowRight02Icon size={16} />
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/contact"
           >
             <PlayIcon size={16} />
             Book A Free Demo
-          </a>
+          </Link>
         </div>
       </div>
     </section>

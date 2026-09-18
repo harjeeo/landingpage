@@ -38,7 +38,7 @@ const contactCards = [
 const messagePerks = [
   {
     icon: FlashIcon,
-    title: "7-Day Free Trial Available",
+    title: "30-Day Free Trial Available",
     desc: "Start with full access — no credit card, no commitment.",
   },
   {

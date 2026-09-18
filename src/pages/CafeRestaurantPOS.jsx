@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Restaurant01Icon,
   ComputerIcon,
@@ -15,14 +16,14 @@ const heroStats = [
   { value: "+30%", label: "Table Turns" },
   { value: "-40%", label: "Kitchen Errors" },
   { value: "0", label: "Paper Tickets" },
-  { value: "7 days", label: "Free Trial" },
+  { value: "30 days", label: "Free Trial" },
 ];
 
 const barStats = [
   { value: "500+", label: "Active Merchants" },
   { value: "30 min", label: "Average Setup Time" },
   { value: "100%", label: "Offline-Ready" },
-  { value: "7 days", label: "Free Trial" },
+  { value: "30 days", label: "Free Trial" },
 ];
 
 const features = [
@@ -129,18 +130,18 @@ export default function CafeRestaurantPOS() {
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
-              <a
-                href="#get-started"
+              <Link
+                to="/signup"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white hover:bg-brand-700"
               >
                 Start 30-Days Free Trial
-              </a>
-              <a
-                href="#demo"
+              </Link>
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-ink-900/10 px-6 py-3.5 text-sm font-semibold text-ink-900 hover:bg-ink-900/5"
               >
                 Book a Demo
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
+import { getSession } from "../lib/customerAuth";
 import {
   Menu01Icon,
   Cancel01Icon,
@@ -48,7 +49,7 @@ const appsMenu = [
     icon: Calculator01Icon,
     title: "Counter POS",
     desc: "Fast billing, barcode scanning, and instant receipts",
-    to: "/accounting-software",
+    to: "/counter-pos",
   },
 ];
 
@@ -57,7 +58,20 @@ export default function Navbar() {
   const [appsOpen, setAppsOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const location = useLocation();
-  const isDashboard = location.pathname.startsWith("/dashboard");
+  const [session, setSession] = useState(() => getSession());
+
+  useEffect(() => {
+    const syncAuth = () => setSession(getSession());
+    syncAuth();
+    window.addEventListener("storage", syncAuth);
+    window.addEventListener("customer-auth-changed", syncAuth);
+    return () => {
+      window.removeEventListener("storage", syncAuth);
+      window.removeEventListener("customer-auth-changed", syncAuth);
+    };
+  }, [location.pathname]);
+
+  const isLoggedIn = Boolean(session);
 
   return (
     <div className="sticky top-0 z-50 px-4 py-4">
@@ -192,7 +206,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
-          {isDashboard ? (
+          {isLoggedIn ? (
             <Link
               to="/dashboard"
               className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
@@ -207,12 +221,12 @@ export default function Navbar() {
               >
                 Login
               </Link>
-              <a
-                href="#signup"
+              <Link
+                to="/signup"
                 className="rounded-full bg-brand-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-brand-700"
               >
                 Start 30-Days Free Trial
-              </a>
+              </Link>
             </>
           )}
         </div>
@@ -276,7 +290,7 @@ export default function Navbar() {
             )}
           </ul>
           <div className="mt-4 flex flex-col gap-2">
-            {isDashboard ? (
+            {isLoggedIn ? (
               <Link
                 to="/dashboard"
                 onClick={() => setOpen(false)}
@@ -293,12 +307,13 @@ export default function Navbar() {
                 >
                   Login
                 </Link>
-                <a
-                  href="#signup"
+                <Link
+                  to="/signup"
+                  onClick={() => setOpen(false)}
                   className="rounded-full bg-brand-600 px-5 py-2.5 text-center text-[15px] font-semibold text-white hover:bg-brand-700"
                 >
                   Start 30-Days Free Trial
-                </a>
+                </Link>
               </>
             )}
           </div>

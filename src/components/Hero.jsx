@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Tick02Icon, ArrowRight02Icon, StarIcon } from "hugeicons-react";
 import DemoRequestForm from "./DemoRequestForm";
 
@@ -50,19 +51,19 @@ export default function Hero() {
           </ul>
 
           <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
-            <a
-              href="#get-started"
+            <Link
+              to="/signup"
               className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white hover:bg-brand-700"
             >
               Get Started
               <ArrowRight02Icon size={18} strokeWidth={2.5} />
-            </a>
-            <a
-              href="#contact-us"
+            </Link>
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-2 rounded-full border border-ink-900/10 px-7 py-3.5 text-base font-semibold text-ink-900 hover:bg-ink-900/5"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
 
           <div className="mt-8 flex items-center gap-3">

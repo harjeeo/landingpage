@@ -50,7 +50,7 @@ export default function BlogSection() {
           {posts.map((p, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow group cursor-pointer"
+              className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden flex flex-col justify-between group cursor-pointer"
             >
               <div>
                 <div className="h-48 overflow-hidden bg-slate-100">

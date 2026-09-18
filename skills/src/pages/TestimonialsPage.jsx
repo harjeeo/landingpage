@@ -677,7 +677,7 @@ export default function TestimonialsPage() {
             return (
               <div
                 key={t.id}
-                className="break-inside-avoid inline-block w-full bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                className="break-inside-avoid inline-block w-full bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between"
               >
                 <div>
                   {/* Avatar, Name, Verified Badge, Course Tag */}

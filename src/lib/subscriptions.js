@@ -39,7 +39,7 @@ export async function verifyPayment(payload) {
 }
 
 export async function getMySubscriptions() {
-  const result = await request("/subscriptions/mine");
+  const result = await request("/subscriptions/mine?type=saas");
   return result.items;
 }
 

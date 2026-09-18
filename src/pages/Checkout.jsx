@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation, Link } from "react-router-dom";
 import {
   Mail01Icon,
   LockPasswordIcon,
@@ -27,13 +27,18 @@ const inputClass =
 
 export default function Checkout() {
   const [params] = useSearchParams();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const plan = PLAN_LABELS[params.get("plan")] ? params.get("plan") : "Starter";
   const billingCycle = params.get("billing") === "monthly" ? "monthly" : "annual";
 
   const [session, setSession] = useState(() => customerAuth.getSession());
-  const [mode, setMode] = useState("login");
+  const [mode, setMode] = useState(() => {
+    return params.get("mode") === "signup" || location.pathname.startsWith("/signup")
+      ? "signup"
+      : "login";
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -52,6 +57,8 @@ export default function Checkout() {
     setForm((f) => ({ ...f, [field]: value }));
   }
 
+  const isSignupPage = location.pathname.startsWith("/signup");
+
   async function handleAuthSubmit(e) {
     e.preventDefault();
     setError("");
@@ -62,6 +69,9 @@ export default function Checkout() {
           ? await customerAuth.login(form.email, form.password)
           : await customerAuth.signup(form);
       setSession({ user });
+      if (isSignupPage) {
+        navigate("/dashboard");
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -135,15 +145,33 @@ export default function Checkout() {
         style={{ borderRadius: "20px" }}
       >
         <div className="border-b border-ink-900/5 pb-6 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-600">
-            {PLAN_LABELS[plan]} Plan
-          </span>
-          <p className="mt-3 text-3xl font-extrabold tracking-tight text-ink-900">
-            ₹{price}
-            <span className="text-base font-semibold text-ink-500">
-              /mo, {billingCycle === "annual" ? "billed annually" : "billed monthly"}
-            </span>
-          </p>
+          {isSignupPage ? (
+            <>
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wide text-brand-600">
+                30-Days Free Trial
+              </span>
+              <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-ink-900">
+                {mode === "login" ? "Welcome Back" : "Start your 30-day free trial"}
+              </h1>
+              <p className="mt-1 text-sm text-ink-500">
+                {mode === "login"
+                  ? "Log in to access your account"
+                  : "No credit card required. Full access to all features."}
+              </p>
+            </>
+          ) : (
+            <>
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-600">
+                {PLAN_LABELS[plan]} Plan
+              </span>
+              <p className="mt-3 text-3xl font-extrabold tracking-tight text-ink-900">
+                ₹{price}
+                <span className="text-base font-semibold text-ink-500">
+                  /mo, {billingCycle === "annual" ? "billed annually" : "billed monthly"}
+                </span>
+              </p>
+            </>
+          )}
         </div>
 
         {paid ? (
@@ -248,10 +276,31 @@ export default function Checkout() {
                 disabled={submitting}
                 className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 py-3.5 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-60"
               >
-                {submitting ? "Please wait…" : mode === "login" ? "Login & Continue" : "Sign Up & Continue"}
+                {submitting
+                  ? "Please wait…"
+                  : isSignupPage
+                    ? mode === "login"
+                      ? "Login to Dashboard"
+                      : "Start 30-Days Free Trial"
+                    : mode === "login"
+                      ? "Login & Continue"
+                      : "Sign Up & Continue"}
                 <ArrowRight02Icon size={16} strokeWidth={2.5} />
               </button>
             </form>
+          </div>
+        ) : isSignupPage ? (
+          <div className="pt-6 text-center">
+            <p className="text-sm text-ink-500">Signed in as</p>
+            <p className="font-semibold text-ink-900">{session.user?.email}</p>
+
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 py-3.5 text-sm font-semibold text-white hover:bg-brand-700"
+            >
+              Go to Dashboard
+              <ArrowRight02Icon size={16} strokeWidth={2.5} />
+            </button>
           </div>
         ) : (
           <div className="pt-6">
@@ -272,8 +321,8 @@ export default function Checkout() {
         )}
 
         <p className="mt-6 text-center text-xs text-ink-500">
-          <Link to="/pricing" className="hover:text-brand-600">
-            ← Back to Pricing
+          <Link to={isSignupPage ? "/" : "/pricing"} className="hover:text-brand-600">
+            ← Back to {isSignupPage ? "Home" : "Pricing"}
           </Link>
         </p>
       </div>

@@ -86,7 +86,7 @@ export default function Testimonials() {
             return (
               <div
                 key={t.id}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                className="bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between"
               >
                 <div>
                   {/* Avatar, Name, Verified Badge, Course Tag */}

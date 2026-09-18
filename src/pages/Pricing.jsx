@@ -98,7 +98,7 @@ const trialItems = [
   },
   {
     title: "Seamless Transition",
-    desc: "If you love it, your chosen plan activates automatically after 7 days at the listed price.",
+    desc: "If you love it, your chosen plan activates automatically after 30 days at the listed price.",
   },
 ];
 
@@ -123,7 +123,7 @@ export default function Pricing() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-lg text-ink-700">
-            Start with a <span className="font-semibold text-ink-900">7-day free trial</span> —
+            Start with a <span className="font-semibold text-ink-900">30-day free trial</span> —
             no credit card, no commitment. Cancel any time.
           </p>
         </div>
@@ -275,13 +275,13 @@ export default function Pricing() {
               <SparklesIcon size={20} strokeWidth={2} />
             </span>
             <h2 className="text-2xl font-extrabold tracking-tight text-ink-900">
-              Your 7-Day Free Trial
+              Your 30-Day Free Trial
             </h2>
           </div>
 
           <p className="mt-4 max-w-2xl text-ink-700">
-            Experience everything 7shifts has to offer — completely free for
-            7 days. No strings attached, no surprises.
+            Experience everything Ojar has to offer — completely free for
+            30 days. No strings attached, no surprises.
           </p>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">

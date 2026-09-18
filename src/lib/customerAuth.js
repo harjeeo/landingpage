@@ -21,10 +21,16 @@ export function getToken() {
 
 function setSession(session) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("customer-auth-changed"));
+  }
 }
 
 export function logout() {
   localStorage.removeItem(STORAGE_KEY);
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("customer-auth-changed"));
+  }
 }
 
 export async function login(email, password) {
@@ -54,4 +60,14 @@ export async function signup({ name, businessName, phone, email, password }) {
 
   setSession({ token: data.token, user: data.user });
   return data.user;
+}
+
+export function updateSessionUser(fields) {
+  const current = getSession();
+  if (current && current.user) {
+    const updated = { ...current, user: { ...current.user, ...fields } };
+    setSession(updated);
+    return updated.user;
+  }
+  return null;
 }

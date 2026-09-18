@@ -3,7 +3,6 @@ import {
   Call02Icon,
   Mail01Icon,
   Location01Icon,
-  ArrowRight02Icon,
 } from "hugeicons-react";
 import Logo from "./Logo";
 
@@ -23,7 +22,7 @@ const columns = [
     title: "Apps",
     links: [
       { label: "Cafe & Restaurant POS", to: "/pos/cafe-restaurant" },
-      { label: "Counter POS", to: "/accounting-software" },
+      { label: "Counter POS", to: "/counter-pos" },
     ],
   },
   {
@@ -68,18 +67,18 @@ export default function Footer() {
             </p>
           </div>
           <div className="flex flex-shrink-0 items-center gap-3">
-            <a
-              href="#get-started"
+            <Link
+              to="/signup"
               className="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
             >
               Get Started
-            </a>
-            <a
-              href="#contact-us"
+            </Link>
+            <Link
+              to="/contact"
               className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/5"
             >
               Talk to Sales
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -94,28 +93,6 @@ export default function Footer() {
               platform.
             </p>
 
-            <p className="mt-8 text-sm font-semibold text-white">
-              Subscribe to Business Insights
-            </p>
-            <p className="mt-1 max-w-xs text-xs text-white/60">
-              Get useful tips, product updates & business insights delivered to
-              your inbox.
-            </p>
-            <form className="mt-2 flex max-w-xs items-center gap-2">
-              <input
-                type="email"
-                placeholder="Email address"
-                className="w-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40"
-                style={{ borderRadius: "12px" }}
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white hover:bg-brand-700"
-              >
-                <ArrowRight02Icon size={18} strokeWidth={2.5} />
-              </button>
-            </form>
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">

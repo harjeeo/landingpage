@@ -34,7 +34,7 @@ import RequireAuth from "./components/superadmin/RequireAuth";
 
 export default function App() {
   const location = useLocation();
-  const isAuthPage = location.pathname.startsWith("/login");
+  const isAuthPage = location.pathname.startsWith("/login") || location.pathname.startsWith("/signup");
   const isSuperAdmin = location.pathname.startsWith("/super-admin");
   const isCheckout = location.pathname.startsWith("/checkout");
   const hideChrome = isAuthPage || isSuperAdmin || isCheckout;
@@ -54,6 +54,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/apps" element={<AllApps />} />
         <Route path="/pos/cafe-restaurant" element={<CafeRestaurantPOS />} />
+        <Route path="/counter-pos" element={<AccountingSoftware />} />
         <Route path="/accounting-software" element={<AccountingSoftware />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="/data-security-policy" element={<DataSecurityPolicy />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/signup" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/super-admin" element={<SuperAdminLoginPage />} />
         <Route
