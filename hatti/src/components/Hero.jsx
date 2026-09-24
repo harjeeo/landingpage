@@ -159,9 +159,9 @@ export default function Hero() {
 
         {/* 7. Store Showcase Graphic */}
         <div className="mt-16 sm:mt-20 max-w-5xl mx-auto">
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
+          <div className="relative flex items-center justify-center">
             <img
-              src="/images/store-showcase.jpg"
+              src="/images/store-showcase.png"
               alt="Hatti Retail & Fashion Storefront Setup"
               className="w-full h-auto object-contain mx-auto transition-transform duration-500 hover:scale-[1.01]"
             />
