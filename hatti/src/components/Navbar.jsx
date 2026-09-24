@@ -16,16 +16,13 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         
         {/* Brand Logo */}
-        <div className="flex items-center gap-2.5">
-          <a href="#" className="flex items-center gap-2 group">
-            {/* Logo Icon */}
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-600 via-amber-500 to-orange-400 flex items-center justify-center text-white shadow-sm shadow-orange-500/20 group-hover:scale-105 transition-transform">
-              <span className="font-black text-base tracking-tighter">H</span>
-            </div>
-            {/* Logo Text */}
-            <span className="text-xl font-bold tracking-tight text-slate-900 font-sans">
-              Hatti
-            </span>
+        <div className="flex items-center">
+          <a href="#" className="flex items-center group">
+            <img
+              src="/hatti-logo.png"
+              alt="Hatti Logo"
+              className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </a>
         </div>
 
