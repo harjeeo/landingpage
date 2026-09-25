@@ -166,6 +166,23 @@ export default function AccountingSoftware() {
         </div>
       </section>
 
+      {/* Counter POS Quick Billing Showcase */}
+      <section className="px-4 pb-16">
+        <div className="mx-auto max-w-5xl">
+          <div
+            className="overflow-hidden border border-ink-900/10 bg-white shadow-[0_16px_40px_rgba(11,13,23,0.06)]"
+            style={{ borderRadius: "24px" }}
+          >
+            <img
+              src="/images/counter-pos-quick-billing.png"
+              alt="Counter POS Quick Billing & Features Breakdown"
+              className="w-full h-auto object-contain"
+              style={{ borderRadius: "24px" }}
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="px-4 py-16">
         <div className="mx-auto max-w-5xl">
           <SectionLabel>Everything In One Platform</SectionLabel>

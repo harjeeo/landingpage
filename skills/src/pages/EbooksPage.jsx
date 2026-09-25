@@ -98,7 +98,7 @@ export default function EbooksPage() {
               { id: 'All', label: 'All E-Books', count: EBOOKS_DATA.length },
               { id: 'UI/UX', label: 'UI/UX', count: EBOOKS_DATA.filter(b => b.badge === 'UI/UX').length },
               { id: 'Graphic Design', label: 'Graphic Design', count: EBOOKS_DATA.filter(b => b.badge === 'Graphic Design').length },
-            ].map((tab) => {
+            ].filter(tab => tab.count > 0).map((tab) => {
               const isActive = activeCategory === tab.id;
               return (
                 <button

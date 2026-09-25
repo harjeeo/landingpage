@@ -14,18 +14,18 @@ import * as customerAuth from "../lib/customerAuth";
 const highlights = [
   {
     icon: FlashIcon,
-    title: "Up and running in 30 minutes",
-    desc: "Onboarding team gets you live the same day.",
+    title: "Lightning-Fast Billing",
+    desc: "Instant receipts, barcode scanning, KOT & QR ordering.",
   },
   {
     icon: Shield01Icon,
-    title: "Bank-grade security",
-    desc: "End-to-end encrypted. SOC-2 ready infrastructure.",
+    title: "100% Offline-Ready & Secure",
+    desc: "Bill without internet. Automatic encrypted sync when online.",
   },
   {
     icon: ChartBarLineIcon,
-    title: "Real-time analytics",
-    desc: "Schedules, labor cost & team performance — live.",
+    title: "Live Inventory & Sales Analytics",
+    desc: "Real-time stock alerts, profit tracking & GST invoicing.",
   },
 ];
 
@@ -91,18 +91,17 @@ export default function Login() {
 
           <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
-            Restaurant Team Platform
+            Smart POS & Retail Platform
           </span>
 
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl">
-            Run your restaurant
+            Smart POS for Cafes,
             <br />
-            <span className="text-brand-400">from anywhere.</span>
+            <span className="text-brand-400">Retail & Counters.</span>
           </h1>
 
           <p className="mt-4 max-w-sm text-white/60">
-            Scheduling, time clocking, payroll & team messaging — one
-            platform, any device.
+            Fast billing, barcode scanning, QR ordering & live stock management — all in one powerful system.
           </p>
         </div>
 
@@ -149,7 +148,7 @@ export default function Login() {
           <h1 className="text-3xl font-extrabold tracking-tight text-ink-900">
             Welcome back
           </h1>
-          <p className="mt-1 text-ink-500">Sign in to your restaurant dashboard.</p>
+          <p className="mt-1 text-ink-500">Sign in to your business dashboard.</p>
 
           <button
             type="button"
